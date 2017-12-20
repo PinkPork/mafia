@@ -11,6 +11,7 @@ import Foundation
 protocol PlayerView: class {
     func setPlayers(players: [PlayerMO])
     func addNewPlayer(player: PlayerMO)
+    func deletePlayer(player: PlayerMO, indexPath: IndexPath)
 }
 
 class PlayerPresenter {
@@ -25,7 +26,7 @@ class PlayerPresenter {
     
     func savePlayer(name: String) {
         self.playerService.savePlayer(name: name) {[weak self] (player) in
-            if let player = player {
+            if let player = player {                
                 self?.view.addNewPlayer(player: player)
             }
         }
@@ -33,9 +34,26 @@ class PlayerPresenter {
     
     func showPlayers() {
         playerService.getPlayers { [weak self] (players) in
-            if let players = players {
-                self?.view.setPlayers(players: PlayerMO.assignRandomRole(to: players))
+            if let strongSelf = self {
+                if let players = players {
+                    strongSelf.view.setPlayers(players: strongSelf.refreshRoles(players: players))
+                }
             }
         }
-    }        
+    }
+    
+    func refreshRoles(players: [PlayerMO]) -> [PlayerMO] {
+        if players.count >= GameRules.minimumPlayers {
+            return PlayerMO.assignRandomRole(to: players)
+        }
+        return players
+    }
+    
+    func deletePlayer(player: PlayerMO, indexPath: IndexPath) {
+        playerService.deletePlayer(player: player) { [weak self] (success) in
+            if success {
+                self?.view.deletePlayer(player: player, indexPath: indexPath)
+            }
+        }
+    }
 }

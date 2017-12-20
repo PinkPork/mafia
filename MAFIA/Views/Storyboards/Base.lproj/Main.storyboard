@@ -4,7 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,38 +17,63 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oQm-oX-6bK">
-                                <rect key="frame" x="0.0" y="264" width="375" height="403"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="auI-ir-4YL">
-                                <rect key="frame" x="0.0" y="64" width="375" height="200"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T8y-f5-Pwu">
+                                <rect key="frame" x="0.0" y="64" width="375" height="60"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z0i-pH-HsG">
+                                        <rect key="frame" x="66.5" y="19.5" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08L-Io-bBv">
+                                        <rect key="frame" x="266.5" y="19.5" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="ccJ-yK-BT6"/>
+                                    <constraint firstItem="Z0i-pH-HsG" firstAttribute="centerX" secondItem="T8y-f5-Pwu" secondAttribute="centerX" constant="-100" id="E0z-qn-NfM"/>
+                                    <constraint firstItem="Z0i-pH-HsG" firstAttribute="centerY" secondItem="T8y-f5-Pwu" secondAttribute="centerY" id="Ix7-Ui-zkK"/>
+                                    <constraint firstItem="08L-Io-bBv" firstAttribute="centerX" secondItem="T8y-f5-Pwu" secondAttribute="centerX" constant="100" id="Tnt-hD-n4j"/>
+                                    <constraint firstAttribute="height" constant="60" id="i0H-x6-JCc"/>
+                                    <constraint firstItem="08L-Io-bBv" firstAttribute="centerY" secondItem="Z0i-pH-HsG" secondAttribute="centerY" id="ygd-fN-184"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oQm-oX-6bK">
+                                <rect key="frame" x="0.0" y="124" width="375" height="543"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="oQm-oX-6bK" firstAttribute="top" secondItem="T8y-f5-Pwu" secondAttribute="bottom" id="62e-ev-vXM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oQm-oX-6bK" secondAttribute="trailing" id="746-HB-14y"/>
+                            <constraint firstItem="T8y-f5-Pwu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="DMT-eb-gRb"/>
+                            <constraint firstItem="T8y-f5-Pwu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="E88-fR-YJv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="oQm-oX-6bK" secondAttribute="bottom" id="OkK-gZ-5Ea"/>
-                            <constraint firstItem="auI-ir-4YL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="P2P-lf-hi5"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="auI-ir-4YL" secondAttribute="trailing" id="YCN-gN-62P"/>
-                            <constraint firstItem="oQm-oX-6bK" firstAttribute="top" secondItem="auI-ir-4YL" secondAttribute="bottom" id="f1D-Cw-yda"/>
-                            <constraint firstItem="auI-ir-4YL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="inf-gK-MuZ"/>
+                            <constraint firstItem="T8y-f5-Pwu" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="UU5-5M-ynJ"/>
                             <constraint firstItem="oQm-oX-6bK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pXi-Oh-J6K"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="MAFIA" id="15l-ID-Vvp">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hq9-24-ZAP">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="hq9-24-ZAP">
                             <connections>
                                 <action selector="addPlayer:" destination="BYZ-38-t0r" id="Hnn-MM-2xq"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="zd0-oL-Nnz">
+                            <connections>
+                                <action selector="refreshRoles:" destination="BYZ-38-t0r" id="Fgq-wC-C94"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="civiliansLabel" destination="Z0i-pH-HsG" id="vH7-Jh-jtA"/>
+                        <outlet property="mafiaLabel" destination="08L-Io-bBv" id="195-sg-COC"/>
                         <outlet property="tableView" destination="oQm-oX-6bK" id="lJT-3B-2rn"/>
                     </connections>
                 </viewController>

@@ -10,15 +10,49 @@ import UIKit
 
 class PlayersViewController: UIViewController, PlayerView {
     
-    
     // MARK: - IBOutlets
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var civiliansLabel: UILabel!
+    @IBOutlet weak var mafiaLabel: UILabel!
+    
     
     // MARK: Vars & Constants
     
+    private let kHeaderView: CGFloat = 60
     var presenter: PlayerPresenter!
-    var playersToDisplay: [PlayerMO] = [PlayerMO]()
+    var playersToDisplay: [PlayerMO] = [PlayerMO]() {
+        didSet {
+            updateGameUI()
+        }
+    }
+    var eliminatedPlayers: [PlayerMO] = [PlayerMO]() {
+        didSet {
+            updateGameUI()
+        }
+    }
+    
+    var civilianTotal: Int {
+        get {
+            let mafiaPlayers = playersToDisplay.count / 3
+            var civiliansPlaying = playersToDisplay.count - mafiaPlayers
+            civiliansPlaying = eliminatedPlayers.reduce(civiliansPlaying, {(result, player) -> Int in
+                return player.role != .mafia ? result - 1 : result
+            })
+            
+            return civiliansPlaying
+        }
+    }
+    
+    var mafiaTotal: Int {
+        get {
+            var mafiaPlayers = playersToDisplay.count / 3
+            mafiaPlayers = eliminatedPlayers.reduce(mafiaPlayers, {(result, player) -> Int in
+                return player.role == .mafia ? result - 1 : result
+            })
+            return mafiaPlayers
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +68,12 @@ class PlayersViewController: UIViewController, PlayerView {
     
     fileprivate func setupTableView() {
         tableView.dataSource = self
+        tableView.delegate = self
+        self.tableView.contentInset = UIEdgeInsets(top: kHeaderView, left: 0, bottom: 0, right: 0)
         tableView.register(UINib.init(nibName: PlayerTableViewCell.nib, bundle: Bundle.main), forCellReuseIdentifier: PlayerTableViewCell.identifier)
     }
+    
+    // MARK: - PlayerView Protocol
     
     func setPlayers(players: [PlayerMO]) {
         playersToDisplay = players
@@ -44,8 +82,15 @@ class PlayersViewController: UIViewController, PlayerView {
     
     func addNewPlayer(player: PlayerMO) {
         playersToDisplay.append(player)
+        playersToDisplay = self.presenter.refreshRoles(players: playersToDisplay)
         tableView.reloadData()
     }
+    
+    func deletePlayer(player: PlayerMO, indexPath: IndexPath) {
+        playersToDisplay.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+    
     
     // MARK: - IBActions
     
@@ -77,10 +122,49 @@ class PlayersViewController: UIViewController, PlayerView {
         present(alert, animated: true)
     }
     
+    
+    @IBAction func refreshRoles(_ sender: UIBarButtonItem) {
+        playersToDisplay = self.presenter.refreshRoles(players: playersToDisplay)
+        eliminatedPlayers.removeAll()
+        tableView.reloadData()
+    }
+    
+    // MARK: - Methods
+    
+    func updateGameUI() {
+        civiliansLabel.text = "\("CIVILIANS_TITLE".localized()) \n \(civilianTotal)"
+        mafiaLabel.text = "\("MAFIA_TITLE".localized()) \n \(mafiaTotal)"
+        endGame()
+    }
+    
+    func endGame() {
+        var message: String = ""
+        
+        
+        if mafiaTotal == 0 {
+            message = "CIVILIANS_WON_GAME_MESSAGE".localized()
+        } else if civilianTotal > mafiaTotal {
+            return
+        } else if mafiaTotal >= civilianTotal {
+            message = "MAFIA_WON_GAME_MESSAGE"
+        }
+        let alert = UIAlertController(title: "END_GAME_TITLE".localized(), message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default) { [weak self] (_) in
+            if let strongSelf = self {
+                strongSelf.playersToDisplay = strongSelf.presenter.refreshRoles(players: strongSelf.playersToDisplay)
+                strongSelf.eliminatedPlayers.removeAll()
+                strongSelf.tableView.reloadData()
+            }
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }
 
 
 // MARK: - TableView Datasource
+
 extension PlayersViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -95,6 +179,29 @@ extension PlayersViewController: UITableViewDataSource {
         let player = playersToDisplay[indexPath.row]
         cell.setCellData(player: player)
         return cell
+    }
+}
+
+// MARK: - TableView Delegate
+
+extension PlayersViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let playerToEliminate = playersToDisplay[indexPath.row]
+        eliminatedPlayers.append(playerToEliminate)
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let deselectedPlayer = playersToDisplay[indexPath.row]
+        eliminatedPlayers.remove(at: eliminatedPlayers.index(of: deselectedPlayer)!)
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        return [UITableViewRowAction.init(style: .destructive, title: "DELETE_PLAYER_ACTION".localized(), handler: { [weak self] (_, indexPath) in
+            if let strongSelf = self {
+                strongSelf.presenter.deletePlayer(player: strongSelf.playersToDisplay[indexPath.row], indexPath: indexPath)
+            }
+        })]
     }
 }
 

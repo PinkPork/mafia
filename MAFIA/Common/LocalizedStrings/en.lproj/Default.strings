@@ -1,0 +1,15 @@
+/* 
+  Default.strings
+  MAFIA
+
+  Created by Santiago Carmona gonzalez on 12/20/17.
+  Copyright © 2017 Santiago Carmona Gonzalez. All rights reserved.
+*/
+
+
+"CIVILIANS_TITLE" = "Civiles";
+"MAFIA_TITLE" = "Mafia";
+"DELETE_PLAYER_ACTION" = "Eliminar jugador";
+"END_GAME_TITLE" = "Fin del juego";
+"MAFIA_WON_GAME_MESSAGE" = "La mafia gano el juego";
+"CIVILIANS_WON_GAME_MESSAGE" = "Los aldeanos ganaron el juego";

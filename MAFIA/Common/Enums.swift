@@ -13,8 +13,9 @@ enum Role {
     case king,
     doctor,
     sheriff,
+    civilian,
     mafia,
-    civilian
+    none
     
     var imageDescription: String {
         return String(describing: self)

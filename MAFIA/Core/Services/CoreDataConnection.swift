@@ -74,4 +74,21 @@ class CoreDataConnection {
         }
     }
     
+    func delete<T>(object: T) -> Bool {
+        guard let managedContext = managedContext else {
+            print(ErrorCoreData.invalidManagedContext.localizedDescription)
+            return false
+        }
+        
+        managedContext.delete(object as! NSManagedObject)
+        
+        do {
+            try managedContext.save()
+            return true
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+            return false
+        }
+    }
+    
 }
