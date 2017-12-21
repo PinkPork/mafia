@@ -138,8 +138,12 @@ class PlayersViewController: UIViewController, PlayerView {
     }
     
     func endGame() {
-        var message: String = ""
         
+        if playersToDisplay.count < GameRules.minimumPlayers {
+            return
+        }
+        
+        var message: String = ""
         
         if mafiaTotal == 0 {
             message = "CIVILIANS_WON_GAME_MESSAGE".localized()
