@@ -55,7 +55,7 @@ class PlayersViewController: UIViewController, PlayerView {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad()        
         self.setupTableView()
         self.presenter = PlayerPresenter(view: self, playerService: PlayerService())
         self.presenter.showPlayers()
@@ -95,31 +95,33 @@ class PlayersViewController: UIViewController, PlayerView {
     // MARK: - IBActions
     
     @IBAction func addPlayer(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "New Player",
-                                      message: "Add a new player",
-                                      preferredStyle: .alert)
-        
-        let saveAction = UIAlertAction(title: "Save",
-                                       style: .default) {
-                                        [unowned self] action in
-                                        
-                                        guard let textField = alert.textFields?.first,
-                                            let nameToSave = textField.text else {
-                                                return
-                                        }
-                                        
-                                        self.presenter.savePlayer(name: nameToSave)
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: .default)
-        
-        alert.addTextField()
-        
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
-        
-        present(alert, animated: true)
+//        let alert = UIAlertController(title: "New Player",
+//                                      message: "Add a new player",
+//                                      preferredStyle: .alert)
+//
+//        let saveAction = UIAlertAction(title: "Save",
+//                                       style: .default) {
+//                                        [unowned self] action in
+//
+//                                        guard let textField = alert.textFields?.first,
+//                                            let nameToSave = textField.text else {
+//                                                return
+//                                        }
+//
+//                                        self.presenter.savePlayer(name: nameToSave)
+//        }
+//
+//        let cancelAction = UIAlertAction(title: "Cancel",
+//                                         style: .default)
+//
+//        alert.addTextField()
+//
+//        alert.addAction(saveAction)
+//        alert.addAction(cancelAction)
+//
+//        present(alert, animated: true)
+            let menu = SideMenu.sharedInstance
+            try! menu?.show(view: self.view)
     }
     
     
@@ -150,17 +152,20 @@ class PlayersViewController: UIViewController, PlayerView {
         } else if civilianTotal > mafiaTotal {
             return
         } else if mafiaTotal >= civilianTotal {
-            message = "MAFIA_WON_GAME_MESSAGE"
+            message = "MAFIA_WON_GAME_MESSAGE".localized()
         }
         let alert = UIAlertController(title: "END_GAME_TITLE".localized(), message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default) { [weak self] (_) in
+        let okAction = UIAlertAction(title: "END_GAME_ACTION_TITLE".localized(), style: .default) { [weak self] (_) in
             if let strongSelf = self {
                 strongSelf.playersToDisplay = strongSelf.presenter.refreshRoles(players: strongSelf.playersToDisplay)
                 strongSelf.eliminatedPlayers.removeAll()
                 strongSelf.tableView.reloadData()
             }
         }
+        let continuePlayingAction = UIAlertAction(title: "CONTINUE_GAME_ACTION_TITLE".localized(), style: .default, handler: nil)
+        
         alert.addAction(okAction)
+        alert.addAction(continuePlayingAction)
         self.present(alert, animated: true, completion: nil)
     }
     

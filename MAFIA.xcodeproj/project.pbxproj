@@ -23,6 +23,10 @@
 		96591C7F1FE85B660067BB2E /* MAFIATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96591C7E1FE85B660067BB2E /* MAFIATests.swift */; };
 		96591C8A1FE85B660067BB2E /* MAFIAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96591C891FE85B660067BB2E /* MAFIAUITests.swift */; };
 		965F34F91FE9CE8C00752CD9 /* MutableCollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F34F81FE9CE8C00752CD9 /* MutableCollectionExtension.swift */; };
+		96F9DE7B1FED605B00C32C30 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F9DE7A1FED605B00C32C30 /* MenuTableViewController.swift */; };
+		96F9DE7F1FED60A900C32C30 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F9DE7D1FED60A900C32C30 /* MenuTableViewCell.swift */; };
+		96F9DE801FED60A900C32C30 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96F9DE7E1FED60A900C32C30 /* MenuTableViewCell.xib */; };
+		96F9DE821FED83DC00C32C30 /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F9DE811FED83DC00C32C30 /* SideMenu.swift */; };
 		97CE9FCE1FEB05A700A8A55E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CE9FCD1FEB05A700A8A55E /* Utils.swift */; };
 		97CE9FD01FEB08AE00A8A55E /* GameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CE9FCF1FEB08AE00A8A55E /* GameRules.swift */; };
 		97CE9FD31FEB14C900A8A55E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CE9FD21FEB14C900A8A55E /* StringExtension.swift */; };
@@ -69,6 +73,10 @@
 		96591C891FE85B660067BB2E /* MAFIAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAFIAUITests.swift; sourceTree = "<group>"; };
 		96591C8B1FE85B660067BB2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		965F34F81FE9CE8C00752CD9 /* MutableCollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCollectionExtension.swift; sourceTree = "<group>"; };
+		96F9DE7A1FED605B00C32C30 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		96F9DE7D1FED60A900C32C30 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		96F9DE7E1FED60A900C32C30 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
+		96F9DE811FED83DC00C32C30 /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		97CE9FCD1FEB05A700A8A55E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		97CE9FCF1FEB08AE00A8A55E /* GameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
 		97CE9FD21FEB14C900A8A55E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -208,6 +216,7 @@
 		96591C971FE85B7F0067BB2E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				96F9DE791FED603600C32C30 /* Menu */,
 				9620D7BA1FE97125008E0F55 /* Controllers */,
 				9620D7B91FE9711C008E0F55 /* Storyboards */,
 			);
@@ -238,6 +247,25 @@
 				965F34F81FE9CE8C00752CD9 /* MutableCollectionExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		96F9DE791FED603600C32C30 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				96F9DE7C1FED608C00C32C30 /* TableViewCells */,
+				96F9DE7A1FED605B00C32C30 /* MenuTableViewController.swift */,
+				96F9DE811FED83DC00C32C30 /* SideMenu.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		96F9DE7C1FED608C00C32C30 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				96F9DE7D1FED60A900C32C30 /* MenuTableViewCell.swift */,
+				96F9DE7E1FED60A900C32C30 /* MenuTableViewCell.xib */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 		97CE9FCB1FEB057E00A8A55E /* Common */ = {
@@ -375,6 +403,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96F9DE801FED60A900C32C30 /* MenuTableViewCell.xib in Resources */,
 				97CE9FD71FEB15CF00A8A55E /* Default.strings in Resources */,
 				9620D7C61FE995D0008E0F55 /* PlayerTableViewCell.xib in Resources */,
 				96591C741FE85B660067BB2E /* LaunchScreen.storyboard in Resources */,
@@ -407,16 +436,19 @@
 				9620D7B41FE94F29008E0F55 /* PlayerService.swift in Sources */,
 				9620D7BD1FE98A44008E0F55 /* PlayerMO+CoreDataClass.swift in Sources */,
 				96002FD11FE860E300F8DF1F /* PlayerPresenter.swift in Sources */,
+				96F9DE821FED83DC00C32C30 /* SideMenu.swift in Sources */,
 				96591C691FE85B660067BB2E /* PlayersViewController.swift in Sources */,
 				97CE9FD01FEB08AE00A8A55E /* GameRules.swift in Sources */,
 				9620D7B61FE95134008E0F55 /* CoreDataConnection.swift in Sources */,
 				96591C671FE85B660067BB2E /* AppDelegate.swift in Sources */,
 				97CE9FD31FEB14C900A8A55E /* StringExtension.swift in Sources */,
+				96F9DE7B1FED605B00C32C30 /* MenuTableViewController.swift in Sources */,
 				965F34F91FE9CE8C00752CD9 /* MutableCollectionExtension.swift in Sources */,
 				9620D7C51FE995D0008E0F55 /* PlayerTableViewCell.swift in Sources */,
 				9620D7C01FE99267008E0F55 /* Enums.swift in Sources */,
 				96591C6F1FE85B660067BB2E /* MAFIA.xcdatamodeld in Sources */,
 				97CE9FCE1FEB05A700A8A55E /* Utils.swift in Sources */,
+				96F9DE7F1FED60A900C32C30 /* MenuTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

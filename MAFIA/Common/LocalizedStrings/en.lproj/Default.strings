@@ -13,3 +13,5 @@
 "END_GAME_TITLE" = "Fin del juego";
 "MAFIA_WON_GAME_MESSAGE" = "La mafia gano el juego";
 "CIVILIANS_WON_GAME_MESSAGE" = "Los aldeanos ganaron el juego";
+"END_GAME_ACTION_TITLE" = "Iniciar nueva partida";
+"CONTINUE_GAME_ACTION_TITLE" = "Continuar jugando";
