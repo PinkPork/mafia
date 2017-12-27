@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlayersViewController: UIViewController, PlayerView {
+class PlayersViewController: UIViewController {
     
     // MARK: - IBOutlets
     
@@ -56,9 +56,9 @@ class PlayersViewController: UIViewController, PlayerView {
     
     override func viewDidLoad() {
         super.viewDidLoad()        
-        self.setupTableView()
-        self.presenter = PlayerPresenter(view: self, playerService: PlayerService())
-        self.presenter.showPlayers()
+        setupTableView()
+        presenter = PlayerPresenter(view: self, playerService: PlayerService())
+        presenter.showPlayers()
     }
     
     override func didReceiveMemoryWarning() {
@@ -69,26 +69,8 @@ class PlayersViewController: UIViewController, PlayerView {
     fileprivate func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        self.tableView.contentInset = UIEdgeInsets(top: kHeaderView, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: kHeaderView, left: 0, bottom: 0, right: 0)
         tableView.register(UINib.init(nibName: PlayerTableViewCell.nib, bundle: Bundle.main), forCellReuseIdentifier: PlayerTableViewCell.identifier)
-    }
-    
-    // MARK: - PlayerView Protocol
-    
-    func setPlayers(players: [PlayerMO]) {
-        playersToDisplay = players
-        tableView.reloadData()
-    }
-    
-    func addNewPlayer(player: PlayerMO) {
-        playersToDisplay.append(player)
-        playersToDisplay = self.presenter.refreshRoles(players: playersToDisplay)
-        tableView.reloadData()
-    }
-    
-    func deletePlayer(player: PlayerMO, indexPath: IndexPath) {
-        playersToDisplay.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
     
@@ -170,6 +152,28 @@ class PlayersViewController: UIViewController, PlayerView {
     
 }
 
+// MARK: - PlayerView Protocol
+
+extension PlayersViewController: PlayerView {
+    
+    
+    func setPlayers(players: [PlayerMO]) {
+        playersToDisplay = players
+        tableView.reloadData()
+    }
+    
+    func addNewPlayer(player: PlayerMO) {
+        playersToDisplay.append(player)
+        playersToDisplay = self.presenter.refreshRoles(players: playersToDisplay)
+        tableView.reloadData()
+    }
+    
+    func deletePlayer(player: PlayerMO, indexPath: IndexPath) {
+        playersToDisplay.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+}
+
 
 // MARK: - TableView Datasource
 
@@ -212,4 +216,3 @@ extension PlayersViewController: UITableViewDelegate {
         })]
     }
 }
-

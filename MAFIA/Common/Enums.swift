@@ -21,5 +21,15 @@ enum Role {
         return String(describing: self)
     }
 }
+
+enum MenuOptions: String {
+    
+    case NewPlayer = "MENU_ADD_NEW_PLAYER"
+    case PlayersList = "MENU_PLAYERS_LIST"
+    
+    var title: String {
+        return self.rawValue.localized()
+    }
+}
     
 

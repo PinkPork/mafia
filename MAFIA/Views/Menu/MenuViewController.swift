@@ -12,18 +12,31 @@ class MenuViewController: UIViewController {
     
     // MARK: - IBOutlets
     
-    
     @IBOutlet weak var tableView: UITableView!
     
-
+    // MARK: -  Vars & Constants
+    
+    var menuOptions: [MenuOptions] = []
+    var presenter: MenuPresenter!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         setupTableView()
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Methods
+    
+    private func setupView() {
+        presenter = MenuPresenter(view: self)
+        presenter.displayOptions()
     }
     
     private func setupTableView() {
@@ -31,18 +44,30 @@ class MenuViewController: UIViewController {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
+
+// MARK: - MenuView protocol conformance
+
+extension MenuViewController: MenuView {
+    func setMenu(options: [MenuOptions]) {
+        menuOptions = options
+        tableView.reloadData()
+    }
+}
+
+
+// MARK: - TableView DataSource
 
 extension MenuViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -50,12 +75,22 @@ extension MenuViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return menuOptions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = "\(indexPath.row) celldaaa"
+        cell.textLabel?.text = menuOptions[indexPath.row].title
         return cell
     }
 }
+
+// MARK: - TableView Delegate
+
+extension MenuViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+}
+
+
