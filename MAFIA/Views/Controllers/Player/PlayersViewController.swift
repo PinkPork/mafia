@@ -34,7 +34,7 @@ class PlayersViewController: UIViewController {
     
     var civilianTotal: Int {
         get {
-            let mafiaPlayers = playersToDisplay.count / 3     //Esto sirve para calcular la cantidad de mafiosos
+            let mafiaPlayers = playersToDisplay.count / 3     //Esto sirve para calcular la cantidad de mafiosos.
             var civiliansPlaying = playersToDisplay.count - mafiaPlayers
             civiliansPlaying = eliminatedPlayers.reduce(civiliansPlaying, {(result, player) -> Int in
                 return player.role != .mafia ? result - 1 : result
