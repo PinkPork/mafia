@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlayersViewController: UIViewController, PlayerView {
+class PlayersViewController: UIViewController {
     
     // MARK: - IBOutlets
     
@@ -56,9 +56,9 @@ class PlayersViewController: UIViewController, PlayerView {
     
     override func viewDidLoad() {
         super.viewDidLoad()        
-        self.setupTableView()
-        self.presenter = PlayerPresenter(view: self, playerService: PlayerService())
-        self.presenter.showPlayers()
+        setupTableView()
+        presenter = PlayerPresenter(view: self, playerService: PlayerService())
+        presenter.showPlayers()
     }
     
     override func didReceiveMemoryWarning() {
@@ -69,59 +69,40 @@ class PlayersViewController: UIViewController, PlayerView {
     fileprivate func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        self.tableView.contentInset = UIEdgeInsets(top: kHeaderView, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: kHeaderView, left: 0, bottom: 0, right: 0)
         tableView.register(UINib.init(nibName: PlayerTableViewCell.nib, bundle: Bundle.main), forCellReuseIdentifier: PlayerTableViewCell.identifier)
-    }
-    
-    // MARK: - PlayerView Protocol
-    
-    func setPlayers(players: [PlayerMO]) {
-        playersToDisplay = players
-        tableView.reloadData()
-    }
-    
-    func addNewPlayer(player: PlayerMO) {
-        playersToDisplay.append(player)
-        playersToDisplay = self.presenter.refreshRoles(players: playersToDisplay)
-        tableView.reloadData()
-    }
-    
-    func deletePlayer(player: PlayerMO, indexPath: IndexPath) {
-        playersToDisplay.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
     
     // MARK: - IBActions
     
     @IBAction func addPlayer(_ sender: UIBarButtonItem) {
-//        let alert = UIAlertController(title: "New Player",
-//                                      message: "Add a new player",
-//                                      preferredStyle: .alert)
-//
-//        let saveAction = UIAlertAction(title: "Save",
-//                                       style: .default) {
-//                                        [unowned self] action in
-//
-//                                        guard let textField = alert.textFields?.first,
-//                                            let nameToSave = textField.text else {
-//                                                return
-//                                        }
-//
-//                                        self.presenter.savePlayer(name: nameToSave)
-//        }
-//
-//        let cancelAction = UIAlertAction(title: "Cancel",
-//                                         style: .default)
-//
-//        alert.addTextField()
-//
-//        alert.addAction(saveAction)
-//        alert.addAction(cancelAction)
-//
-//        present(alert, animated: true)
-            let menu = SideMenu.sharedInstance
-            try! menu?.show(view: self.view)
+        //        let alert = UIAlertController(title: "New Player",
+        //                                      message: "Add a new player",
+        //                                      preferredStyle: .alert)
+        //
+        //        let saveAction = UIAlertAction(title: "Save",
+        //                                       style: .default) {
+        //                                        [unowned self] action in
+        //
+        //                                        guard let textField = alert.textFields?.first,
+        //                                            let nameToSave = textField.text else {
+        //                                                return
+        //                                        }
+        //
+        //                                        self.presenter.savePlayer(name: nameToSave)
+        //        }
+        //
+        //        let cancelAction = UIAlertAction(title: "Cancel",
+        //                                         style: .default)
+        //
+        //        alert.addTextField()
+        //
+        //        alert.addAction(saveAction)
+        //        alert.addAction(cancelAction)
+        //
+        //        present(alert, animated: true)
+        try! SideMenu.sharedInstance?.show(view: self.view)
     }
     
     
@@ -171,6 +152,28 @@ class PlayersViewController: UIViewController, PlayerView {
     
 }
 
+// MARK: - PlayerView Protocol
+
+extension PlayersViewController: PlayerView {
+    
+    
+    func setPlayers(players: [PlayerMO]) {
+        playersToDisplay = players
+        tableView.reloadData()
+    }
+    
+    func addNewPlayer(player: PlayerMO) {
+        playersToDisplay.append(player)
+        playersToDisplay = self.presenter.refreshRoles(players: playersToDisplay)
+        tableView.reloadData()
+    }
+    
+    func deletePlayer(player: PlayerMO, indexPath: IndexPath) {
+        playersToDisplay.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+}
+
 
 // MARK: - TableView Datasource
 
@@ -213,4 +216,3 @@ extension PlayersViewController: UITableViewDelegate {
         })]
     }
 }
-

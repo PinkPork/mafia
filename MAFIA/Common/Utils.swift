@@ -9,18 +9,31 @@
 import UIKit
 
 struct Utils {
-    // UI
-    var screenHeight: CGFloat {
+    // MARK: - UI
+    
+    /// Default navigation bar height value = **44.0**
+    static let defaultNavigationBarHeight: CGFloat = 44.0
+    
+    /// Returns main UIScreen height
+    static var screenHeight: CGFloat {
         return UIScreen.main.bounds.height
     }
     
-    var screenWidth: CGFloat {
+    /// Returns main UIScreen width
+    static var screenWidth: CGFloat {
         return UIScreen.main.bounds.width
     }
     
-    var bounds: CGRect {
+    /// Returns main UIScreen bounds
+    static var screenBounds: CGRect {
         return UIScreen.main.bounds
     }
+    
+    /// Returns navigationBarHeight which by default is **44.0** plus the status bar frame height
+    static var navigationBarheight: CGFloat {
+        return UIApplication.shared.statusBarFrame.size.height + defaultNavigationBarHeight
+    }
+    
 }
 
 struct Segues {

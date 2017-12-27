@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let _ = SideMenu { (menu) in
             menu.menuOffsetSize = 110.0
             menu.useAnimations = true
-            menu.menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenuScene") as! MenuTableViewController
+            menu.menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenuScene")
         }
         
         return true
