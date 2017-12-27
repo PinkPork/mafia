@@ -7,11 +7,32 @@
 */
 
 
+
+// MARK: -  Main Titles
+
 "CIVILIANS_TITLE" = "Civiles";
 "MAFIA_TITLE" = "Mafia";
-"DELETE_PLAYER_ACTION" = "Eliminar jugador";
+
+// MARK: - Alert titles
+
 "END_GAME_TITLE" = "Fin del juego";
+
+// MARK: - Alert Messages
+
 "MAFIA_WON_GAME_MESSAGE" = "La mafia gano el juego";
 "CIVILIANS_WON_GAME_MESSAGE" = "Los aldeanos ganaron el juego";
+
+// MARK: - Alert Action Titles
+
 "END_GAME_ACTION_TITLE" = "Iniciar nueva partida";
 "CONTINUE_GAME_ACTION_TITLE" = "Continuar jugando";
+"DELETE_PLAYER_ACTION" = "Eliminar jugador";
+
+// MARK: - Menu Titles
+
+"MENU_ADD_NEW_PLAYER" = "Agregar nuevo jugador";
+"MENU_PLAYERS_LIST" = "Listas de jugadores";
+
+
+
+
