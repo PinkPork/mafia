@@ -95,33 +95,32 @@ class PlayersViewController: UIViewController, PlayerView {
     // MARK: - IBActions
     
     @IBAction func addPlayer(_ sender: UIBarButtonItem) {
-//        let alert = UIAlertController(title: "New Player",
-//                                      message: "Add a new player",
-//                                      preferredStyle: .alert)
-//
-//        let saveAction = UIAlertAction(title: "Save",
-//                                       style: .default) {
-//                                        [unowned self] action in
-//
-//                                        guard let textField = alert.textFields?.first,
-//                                            let nameToSave = textField.text else {
-//                                                return
-//                                        }
-//
-//                                        self.presenter.savePlayer(name: nameToSave)
-//        }
-//
-//        let cancelAction = UIAlertAction(title: "Cancel",
-//                                         style: .default)
-//
-//        alert.addTextField()
-//
-//        alert.addAction(saveAction)
-//        alert.addAction(cancelAction)
-//
-//        present(alert, animated: true)
-            let menu = SideMenu.sharedInstance
-            try! menu?.show(view: self.view)
+        //        let alert = UIAlertController(title: "New Player",
+        //                                      message: "Add a new player",
+        //                                      preferredStyle: .alert)
+        //
+        //        let saveAction = UIAlertAction(title: "Save",
+        //                                       style: .default) {
+        //                                        [unowned self] action in
+        //
+        //                                        guard let textField = alert.textFields?.first,
+        //                                            let nameToSave = textField.text else {
+        //                                                return
+        //                                        }
+        //
+        //                                        self.presenter.savePlayer(name: nameToSave)
+        //        }
+        //
+        //        let cancelAction = UIAlertAction(title: "Cancel",
+        //                                         style: .default)
+        //
+        //        alert.addTextField()
+        //
+        //        alert.addAction(saveAction)
+        //        alert.addAction(cancelAction)
+        //
+        //        present(alert, animated: true)
+        try! SideMenu.sharedInstance?.show(view: self.view)
     }
     
     
