@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = Utils.Palette.Basic.darkBlue
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: Utils.Palette.Basic.white]
         UIApplication.shared.statusBarStyle = .lightContent
+                
         
         return true
     }

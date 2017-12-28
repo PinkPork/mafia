@@ -14,6 +14,11 @@
 		9620D7C01FE99267008E0F55 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620D7BF1FE99267008E0F55 /* Enums.swift */; };
 		9620D7C51FE995D0008E0F55 /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620D7C31FE995D0008E0F55 /* PlayerTableViewCell.swift */; };
 		9620D7C61FE995D0008E0F55 /* PlayerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9620D7C41FE995D0008E0F55 /* PlayerTableViewCell.xib */; };
+		963BA3DE1FF58E6000090DDE /* PlayersListMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963BA3DC1FF58E6000090DDE /* PlayersListMO+CoreDataClass.swift */; };
+		963BA3E11FF58F4200090DDE /* PlayersListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963BA3E01FF58F4200090DDE /* PlayersListService.swift */; };
+		963BA3E31FF596A600090DDE /* PlayerServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963BA3E21FF596A600090DDE /* PlayerServiceTests.swift */; };
+		963BA3E51FF596BC00090DDE /* PlayersListServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963BA3E41FF596BC00090DDE /* PlayersListServiceTests.swift */; };
+		963BA3E81FF59C3600090DDE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963BA3E71FF59C3600090DDE /* MockData.swift */; };
 		96591C671FE85B660067BB2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96591C661FE85B660067BB2E /* AppDelegate.swift */; };
 		96591C691FE85B660067BB2E /* PlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96591C681FE85B660067BB2E /* PlayersViewController.swift */; };
 		96591C6C1FE85B660067BB2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96591C6A1FE85B660067BB2E /* Main.storyboard */; };
@@ -60,6 +65,11 @@
 		9620D7BF1FE99267008E0F55 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		9620D7C31FE995D0008E0F55 /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
 		9620D7C41FE995D0008E0F55 /* PlayerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerTableViewCell.xib; sourceTree = "<group>"; };
+		963BA3DC1FF58E6000090DDE /* PlayersListMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayersListMO+CoreDataClass.swift"; sourceTree = "<group>"; };
+		963BA3E01FF58F4200090DDE /* PlayersListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersListService.swift; sourceTree = "<group>"; };
+		963BA3E21FF596A600090DDE /* PlayerServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerServiceTests.swift; sourceTree = "<group>"; };
+		963BA3E41FF596BC00090DDE /* PlayersListServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersListServiceTests.swift; sourceTree = "<group>"; };
+		963BA3E71FF59C3600090DDE /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		96591C631FE85B660067BB2E /* MAFIA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAFIA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96591C661FE85B660067BB2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96591C681FE85B660067BB2E /* PlayersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +125,7 @@
 		96002FCA1FE85D8E00F8DF1F /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				963BA3DC1FF58E6000090DDE /* PlayersListMO+CoreDataClass.swift */,
 				9620D7BB1FE98A44008E0F55 /* PlayerMO+CoreDataClass.swift */,
 			);
 			path = Entities;
@@ -125,6 +136,7 @@
 			children = (
 				9620D7B31FE94F29008E0F55 /* PlayerService.swift */,
 				9620D7B51FE95134008E0F55 /* CoreDataConnection.swift */,
+				963BA3E01FF58F4200090DDE /* PlayersListService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -165,6 +177,14 @@
 			path = TableViewCells;
 			sourceTree = "<group>";
 		};
+		963BA3E61FF59C2500090DDE /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				963BA3E71FF59C3600090DDE /* MockData.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		96591C5A1FE85B660067BB2E = {
 			isa = PBXGroup;
 			children = (
@@ -203,8 +223,11 @@
 		96591C7D1FE85B660067BB2E /* MAFIATests */ = {
 			isa = PBXGroup;
 			children = (
+				963BA3E61FF59C2500090DDE /* Mocks */,
 				96591C7E1FE85B660067BB2E /* MAFIATests.swift */,
 				96591C801FE85B660067BB2E /* Info.plist */,
+				963BA3E21FF596A600090DDE /* PlayerServiceTests.swift */,
+				963BA3E41FF596BC00090DDE /* PlayersListServiceTests.swift */,
 			);
 			path = MAFIATests;
 			sourceTree = "<group>";
@@ -458,6 +481,8 @@
 				97CE9FD31FEB14C900A8A55E /* StringExtension.swift in Sources */,
 				96B3C3151FF3F9F600363A3F /* UIVIewExtension.swift in Sources */,
 				965F34F91FE9CE8C00752CD9 /* MutableCollectionExtension.swift in Sources */,
+				963BA3DE1FF58E6000090DDE /* PlayersListMO+CoreDataClass.swift in Sources */,
+				963BA3E11FF58F4200090DDE /* PlayersListService.swift in Sources */,
 				96B3C3171FF40BB100363A3F /* MenuViewController.swift in Sources */,
 				9620D7C51FE995D0008E0F55 /* PlayerTableViewCell.swift in Sources */,
 				9620D7C01FE99267008E0F55 /* Enums.swift in Sources */,
@@ -472,7 +497,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				963BA3E31FF596A600090DDE /* PlayerServiceTests.swift in Sources */,
+				963BA3E81FF59C3600090DDE /* MockData.swift in Sources */,
 				96591C7F1FE85B660067BB2E /* MAFIATests.swift in Sources */,
+				963BA3E51FF596BC00090DDE /* PlayersListServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
