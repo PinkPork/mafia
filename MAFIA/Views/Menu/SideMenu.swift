@@ -31,7 +31,7 @@ class SideMenu : NSObject {
     
     static var sharedInstance:SideMenu!
     
-    var menuViewController:UIViewController?
+    var menuViewController: MenuViewController?
     var menuOffsetSize:CGFloat = 0
     var useAnimations:Bool = true
     var useOverlayer:Bool = true
@@ -45,8 +45,8 @@ class SideMenu : NSObject {
     
     var menuSize:CGSize! {
         return CGSize(
-            width: Utils.screenWidth - menuOffsetSize,
-            height: Utils.screenHeight - Utils.navigationBarheight
+            width: Utils.UI.screenWidth - menuOffsetSize,
+            height: Utils.UI.screenHeight - Utils.UI.navigationBarheight
         )
     }
     
@@ -64,7 +64,7 @@ class SideMenu : NSObject {
     }
         
     internal func build() {
-        let rect = CGRect(x: 0, y: Utils.navigationBarheight, width: Utils.screenWidth, height: menuSize.height)
+        let rect = CGRect(x: 0, y: Utils.UI.navigationBarheight, width: Utils.UI.screenWidth, height: menuSize.height)
         
         overlayer = UIView(frame: rect)
         overlayer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
@@ -77,7 +77,7 @@ class SideMenu : NSObject {
             
             menu.view.frame = CGRect(
                 x: -menuSize.width,
-                y: Utils.navigationBarheight,
+                y: Utils.UI.navigationBarheight,
                 width: menuSize.width,
                 height: menuSize.height
             )
@@ -162,7 +162,7 @@ class SideMenu : NSObject {
     internal func _close() {
         menuViewController!.view.frame = CGRect(
             x: -menuSize.width,
-            y: Utils.navigationBarheight,
+            y: Utils.UI.navigationBarheight,
             width: menuSize.width,
             height: menuSize.height
         )
@@ -173,7 +173,7 @@ class SideMenu : NSObject {
         
         return CGRect(
             x: menuSize.width * status.rawValue,
-            y: Utils.navigationBarheight,
+            y: Utils.UI.navigationBarheight,
             width: menuSize.width,
             height: menuSize.height
         )
@@ -181,8 +181,8 @@ class SideMenu : NSObject {
     
     func buildFrame(x: CGFloat) -> CGRect {
         return CGRect(
-            x: x - Utils.screenWidth,
-            y: Utils.navigationBarheight,
+            x: x - Utils.UI.screenWidth,
+            y: Utils.UI.navigationBarheight,
             width: menuSize.width,
             height: menuSize.height
         )

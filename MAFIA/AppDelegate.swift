@@ -16,13 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
         // Load Side Menu context and scene
+        
         let _ = SideMenu { (menu) in
             menu.menuOffsetSize = 110.0
             menu.useAnimations = true
-            menu.menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenuScene")
+            menu.menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenuScene") as? MenuViewController
         }
+        
+        // Navigation bar setup
+        
+        UINavigationBar.appearance().tintColor = Utils.Palette.Basic.white
+        UINavigationBar.appearance().barTintColor = Utils.Palette.Basic.darkBlue
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: Utils.Palette.Basic.white]
+        UIApplication.shared.statusBarStyle = .lightContent
         
         return true
     }

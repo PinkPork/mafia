@@ -60,9 +60,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="MAFIA" id="15l-ID-Vvp">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="WFJ-7Z-SAz">
+                        <barButtonItem key="leftBarButtonItem" image="icon_menu" id="WFJ-7Z-SAz">
                             <connections>
-                                <action selector="addPlayer:" destination="BYZ-38-t0r" id="SFP-Vg-HrO"/>
+                                <action selector="showMenu:" destination="BYZ-38-t0r" id="qP2-8o-p86"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="zd0-oL-Nnz">
@@ -79,7 +79,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="504.80000000000001" y="123.68815592203899"/>
+            <point key="canvasLocation" x="889" y="332"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="w4h-42-qNU">
+            <objects>
+                <viewController id="aI8-xt-oCI" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BS7-7G-xov">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="1Sd-0b-Hsn"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Ep-0l-LJy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="889" y="-1262"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hli-Bk-gWx">
@@ -93,11 +108,13 @@
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="fWn-0N-06J"/>
+                        <segue destination="3Yn-SM-Kce" kind="show" identifier="SeguePlayersList" id="gOc-tw-ftr"/>
+                        <segue destination="aI8-xt-oCI" kind="show" identifier="SegueNewPlayer" id="MeJ-g4-9iU"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tNe-y2-Yca" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-359" y="124"/>
+            <point key="canvasLocation" x="103" y="333"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="on7-Fc-S56">
@@ -127,7 +144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SKX-6D-DLN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-359" y="849"/>
+            <point key="canvasLocation" x="-1375" y="117"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="cHV-C5-Km2">
@@ -142,7 +159,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P47-dP-FfV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="505" y="849"/>
+            <point key="canvasLocation" x="889" y="-589"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_menu" width="24" height="24"/>
+    </resources>
 </document>

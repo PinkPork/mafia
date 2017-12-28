@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol MenuViewControllerDelegate: class {
+    func performSegue(with identifier: String)
+}
+
 class MenuViewController: UIViewController {
     
     // MARK: - IBOutlets
@@ -18,6 +22,7 @@ class MenuViewController: UIViewController {
     
     var menuOptions: [MenuOptions] = []
     var presenter: MenuPresenter!
+    weak var delegate: MenuViewControllerDelegate?
     
     
     override func viewDidLoad() {
@@ -41,6 +46,7 @@ class MenuViewController: UIViewController {
     
     private func setupTableView() {
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
@@ -89,7 +95,10 @@ extension MenuViewController: UITableViewDataSource {
 
 extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let selectedOption = menuOptions[indexPath.row]
+        let segue = "Segue\(selectedOption)"
+        delegate?.performSegue(with: segue)
+        try! SideMenu.sharedInstance.close()
     }
 }
 

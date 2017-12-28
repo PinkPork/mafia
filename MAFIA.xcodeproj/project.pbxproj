@@ -141,6 +141,7 @@
 		9620D7BA1FE97125008E0F55 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				967A0E1C1FF455DF00B631FB /* ListPlayers */,
 				9620D7C11FE995B5008E0F55 /* Player */,
 			);
 			path = Controllers;
@@ -252,6 +253,13 @@
 				965F34F81FE9CE8C00752CD9 /* MutableCollectionExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		967A0E1C1FF455DF00B631FB /* ListPlayers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ListPlayers;
 			sourceTree = "<group>";
 		};
 		96F9DE791FED603600C32C30 /* Menu */ = {
