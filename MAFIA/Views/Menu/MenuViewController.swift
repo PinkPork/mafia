@@ -97,8 +97,8 @@ extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedOption = menuOptions[indexPath.row]
         let segue = "Segue\(selectedOption)"
-        delegate?.performSegue(with: segue)
-        try! SideMenu.sharedInstance.close()
+        try! SideMenu.sharedInstance?.animateMenu()
+        delegate?.performSegue(with: segue)        
     }
 }
 
