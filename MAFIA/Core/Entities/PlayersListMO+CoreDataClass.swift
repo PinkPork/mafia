@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 @objc(PlayersListMO)
-public class PlayersListMO: NSManagedObject {
+public class PlayersListMO: NSManagedObject, CoreDataIdentifier {
     
     // MARK: - Vars & Constants
     

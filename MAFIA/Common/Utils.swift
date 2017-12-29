@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 struct Utils {
     
@@ -48,6 +49,6 @@ struct Utils {
             static let black: UIColor = UIColor(red:0.00, green:0.00, blue:0.00, alpha:1.0)
             static let gray: UIColor = UIColor(red:0.35, green:0.36, blue:0.38, alpha:1.0)
         }
-    }
+    }        
     
 }

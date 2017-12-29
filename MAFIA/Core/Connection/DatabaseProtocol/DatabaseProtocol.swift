@@ -12,10 +12,11 @@ import CoreData
 typealias Database = ReadableDatabase & WritableDatabase
 
 protocol ReadableDatabase {
-    func loadObjects<Type>(matching query: String) -> [Type]
+    func loadObjects<Type>(_ modelName: String, matching query: String?, params: [Any]?) -> [Type]
     func loadObject<Type>(withId id: String) -> Type?
 }
 
 protocol WritableDatabase {
     func save<Type>(_ object: Type) -> Bool
+    func delete<Type>(_ object: Type) -> Bool
 }

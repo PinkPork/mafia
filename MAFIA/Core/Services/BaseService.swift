@@ -10,9 +10,9 @@ import Foundation
 
 class BaseService {
     
-    internal let coreDatabase: Database
-    
-    init() {
-       self.coreDatabase = CoreDataConnection()
-    }
+//    internal let coreDatabase: Database
+////
+////    init() {
+//       self.coreDatabase = CoreDataConnection()
+//    }
 }

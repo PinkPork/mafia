@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6E2618AD1FF5C9BD00F3AF93 /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2618AC1FF5C9BD00F3AF93 /* DatabaseProtocol.swift */; };
 		6E2618AF1FF5D2B200F3AF93 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2618AE1FF5D2B200F3AF93 /* BaseService.swift */; };
+		6E8F889E1FF701D900F7AB49 /* NSManagedObjectContextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F889D1FF701D900F7AB49 /* NSManagedObjectContextExtension.swift */; };
 		96002FD11FE860E300F8DF1F /* PlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96002FD01FE860E300F8DF1F /* PlayerPresenter.swift */; };
 		9620D7B41FE94F29008E0F55 /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620D7B31FE94F29008E0F55 /* PlayerService.swift */; };
 		9620D7B61FE95134008E0F55 /* CoreDataConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620D7B51FE95134008E0F55 /* CoreDataConnection.swift */; };
@@ -62,6 +63,7 @@
 /* Begin PBXFileReference section */
 		6E2618AC1FF5C9BD00F3AF93 /* DatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
 		6E2618AE1FF5D2B200F3AF93 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
+		6E8F889D1FF701D900F7AB49 /* NSManagedObjectContextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtension.swift; sourceTree = "<group>"; };
 		96002FD01FE860E300F8DF1F /* PlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPresenter.swift; sourceTree = "<group>"; };
 		9620D7B31FE94F29008E0F55 /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
 		9620D7B51FE95134008E0F55 /* CoreDataConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataConnection.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			children = (
 				97CE9FD21FEB14C900A8A55E /* StringExtension.swift */,
 				96B3C3141FF3F9F600363A3F /* UIVIewExtension.swift */,
+				6E8F889D1FF701D900F7AB49 /* NSManagedObjectContextExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				963BA3DE1FF58E6000090DDE /* PlayersListMO+CoreDataClass.swift in Sources */,
 				963BA3E11FF58F4200090DDE /* PlayersListService.swift in Sources */,
 				96B3C3171FF40BB100363A3F /* MenuViewController.swift in Sources */,
+				6E8F889E1FF701D900F7AB49 /* NSManagedObjectContextExtension.swift in Sources */,
 				9620D7C51FE995D0008E0F55 /* PlayerTableViewCell.swift in Sources */,
 				9620D7C01FE99267008E0F55 /* Enums.swift in Sources */,
 				96591C6F1FE85B660067BB2E /* MAFIA.xcdatamodeld in Sources */,
