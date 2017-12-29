@@ -17,8 +17,7 @@ enum ErrorCoreData: Error {
 class CoreDataConnection {
     
     // MARK: - Vars & Constants
-    
-    static let shared = CoreDataConnection()
+        
     var managedContext: NSManagedObjectContext?
     
     init() {
@@ -35,14 +34,14 @@ class CoreDataConnection {
         return NSEntityDescription.entity(forEntityName: name , in: managedContext)
     }
     
-    func getObject(entity: NSEntityDescription) throws -> NSManagedObject {
+    private func getObject(entity: NSEntityDescription) throws -> NSManagedObject {
         guard let managedContext = managedContext else {
             throw ErrorCoreData.invalidManagedContext
         }
         return NSManagedObject(entity: entity, insertInto: managedContext)
     }
     
-    func getObject(fromEntityName name: String) throws -> NSManagedObject {
+    private func getObject(fromEntityName name: String) throws -> NSManagedObject {
         guard let entity = try getEntity(name: name) else{
             throw ErrorCoreData.invalidEntity
         }
@@ -51,30 +50,30 @@ class CoreDataConnection {
         return object
     }
     
-    func fetchRequest(entityName: String) throws -> [NSManagedObject] {
+    private func fetchRequest(entityName: String) -> [NSManagedObject] {
         guard let managedContext = managedContext else {
-            throw ErrorCoreData.invalidManagedContext
+            return [NSManagedObject]()
         }
         let request = NSFetchRequest<NSManagedObject>(entityName: entityName)
-        return try managedContext.fetch(request)
+        return try! managedContext.fetch(request)
     }
     
-    func save<T>(object: T) -> T? {
+   private func save<T>(object: T) -> Bool {
         guard let managedContext = managedContext else {
             print(ErrorCoreData.invalidManagedContext.localizedDescription)
-            return nil
+            return false
         }
         
         do {
             try managedContext.save()
-            return object
+            return true
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
-            return nil
+            return false
         }
     }
     
-    func delete<T>(object: T) -> Bool {
+    private func delete<T>(object: T) -> Bool {
         guard let managedContext = managedContext else {
             print(ErrorCoreData.invalidManagedContext.localizedDescription)
             return false
@@ -91,4 +90,20 @@ class CoreDataConnection {
         }
     }
     
+}
+
+
+extension CoreDataConnection: Database {
+    
+    func loadObject<Type>(withId id: String) -> Type? {
+        return try! getObject(fromEntityName: id) as! Type
+    }
+    
+    func loadObjects<Type>(matching query: String) -> [Type] {
+        return fetchRequest(entityName: query) as! [Type]
+    }
+    
+    func save<Type>(_ object: Type) -> Bool {
+        return save(object: object)
+    }
 }

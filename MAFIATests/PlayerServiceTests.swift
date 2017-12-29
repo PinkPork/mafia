@@ -22,8 +22,10 @@ class PlayerServiceTests: XCTestCase {
         super.tearDown()
     }
     
-    func testCreatePlayList() {
-        
+    func testCreatePlayer() {
+        service.savePlayer(name: MockData.Player.name) { (player) in
+            XCTAssertNotNil(player, "There was an error creating a player with name: \(name)")
+        }
     }
 }
 

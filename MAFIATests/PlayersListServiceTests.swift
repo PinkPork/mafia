@@ -25,14 +25,18 @@ class PlayersListServiceTests: XCTestCase {
     }
     
     func testCreatePlayList() {
-        let players = try! CoreDataConnection.shared.fetchRequest(entityName: PlayerMO.entityName) as! [PlayerMO]
-        service.createPlayersListWith(name: MockData.PlayersList.name, players: players, completion: { (playerList) in
-            XCTAssertNotNil(playerList, "There was a problem creatin a list with name: \(MockData.PlayersList.name)")
-        })
+        let playerService = PlayerService()
+        playerService.getPlayers { (players) in
+            if let players = players {
+                self.service.createPlayersListWith(name: MockData.PlayersList.name, players: players, completion: { (playerList) in
+                    XCTAssertNotNil(playerList, "There was a problem creatin a list with name: \(MockData.PlayersList.name)")
+                })
+            }
+        }
     }
     
     func testGetAllLists() {
-        let allLists = try! CoreDataConnection.shared.fetchRequest(entityName: PlayersListMO.entityName) as! [PlayersListMO]
+        let allLists: [PlayersListMO] = service.coreDatabase.loadObjects(matching: PlayersListMO.entityName)
         for list in allLists {
             print("------ El nombre de la lista es: " + list.name!)
             for player in list.players! {

@@ -10,14 +10,19 @@ import Foundation
 
 typealias CreatePlayersListCompletion = ((PlayersListMO?) -> Void)
 
-class PlayersListService {
+class PlayersListService: BaseService {
     
     func createPlayersListWith(name: String, players: [PlayerMO], completion: CreatePlayersListCompletion) {
-        if let entity = try! CoreDataConnection.shared.getEntity(name: PlayersListMO.entityName) {
-            let playerList = PlayersListMO(entity: entity , insertInto: CoreDataConnection.shared.managedContext)
+        let coreDataConnection = coreDatabase as! CoreDataConnection
+        if let entity = try! coreDataConnection.getEntity(name: PlayersListMO.entityName) {
+            let playerList = PlayersListMO(entity: entity , insertInto: coreDataConnection.managedContext)
             playerList.name = name
             playerList.addToPlayers(NSSet(array: players))
-            completion(CoreDataConnection.shared.save(object: playerList))
+            if coreDatabase.save(playerList) {
+                completion(playerList)
+            } else {
+                completion(nil)
+            }
         }
     }
 }

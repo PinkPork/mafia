@@ -12,22 +12,24 @@ typealias GetPlayersCompletion = (([PlayerMO]?) -> Void)
 typealias SavePlayerCompletion = ((PlayerMO?) -> Void)
 typealias DeletePlayerCompletion = ((Bool) -> Void)
 
-class PlayerService {
+class PlayerService: BaseService {
     
     func savePlayer(name: String, completion: SavePlayerCompletion) {
-        let object = try? CoreDataConnection.shared.getObject(fromEntityName: PlayerMO.entityName)
-        object?.setValue(name, forKey: "name")
-        completion(CoreDataConnection.shared.save(object: object) as? PlayerMO)
+        if let object: PlayerMO = coreDatabase.loadObject(withId: PlayerMO.entityName) {
+            object.setValue(name, forKey: "name")
+            if coreDatabase.save(object) {
+                completion(object)
+            }
+        }
     }
     
     func getPlayers(completion: @escaping GetPlayersCompletion) {
-        if let playerObjects = try? CoreDataConnection.shared.fetchRequest(entityName: PlayerMO.entityName) {
-            completion(playerObjects as? [PlayerMO])
-        }
-        completion(nil)
+        let playerObjects: [PlayerMO] = coreDatabase.loadObjects(matching: PlayerMO.entityName)
+        completion(playerObjects)
     }
     
-    func deletePlayer(player: PlayerMO, completion: DeletePlayerCompletion) {        
-            completion(CoreDataConnection.shared.delete(object: player))
+    // TODO: Implement delete action on DatabaseProtocol
+    func deletePlayer(player: PlayerMO, completion: DeletePlayerCompletion) {
+//        completion(CoreDataConnection.shared.delete(object: player))
     }
 }
