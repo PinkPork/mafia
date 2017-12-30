@@ -8,11 +8,12 @@
 
 import Foundation
 
-typealias CreatePlayersListCompletion = ((PlayersListMO?) -> Void)
+typealias CreateListPlayersCompletion = ((PlayersListMO?) -> Void)
+typealias GetListPlayersCompletion = (([PlayersListMO]?) -> Void)
 
 class PlayersListService: BaseService {
     
-    func createPlayersListWith(name: String, players: [PlayerMO] = [PlayerMO](), completion: CreatePlayersListCompletion) {
+    func createPlayersListWith(name: String, players: [PlayerMO] = [PlayerMO](), completion: CreateListPlayersCompletion) {
 //        if let playerList: PlayersListMO = coreDatabase.loadObject(withId: PlayersListMO.entityName) {
 //            playerList.name = name
 //            playerList.players = NSSet(array: players)
@@ -22,5 +23,9 @@ class PlayersListService: BaseService {
 //            }
 //        }
 //        completion(nil)
+    }
+    
+    func getPlayers(completion: @escaping GetListPlayersCompletion) {
+        completion(CoreDataConnection.shared.managedContext.loadObjects(PlayersListMO.entityName))
     }
 }
