@@ -17,9 +17,12 @@ class ListPlayersViewController: UIViewController {
     // MARK: - Vars & Lets
     
     var listPlayers: [PlayersListMO] = [PlayersListMO]()
+    var presenter: ListPlayersPresenter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
+        setupView()
 
         // Do any additional setup after loading the view.
     }
@@ -35,7 +38,18 @@ class ListPlayersViewController: UIViewController {
     @IBAction func addLists(_ sender: Any) {
     }
     
-
+    // MARK: - Methods
+    
+    func setupView() {
+        presenter = ListPlayersPresenter(view: self, playerListService: PlayersListService())
+        
+        presenter.showListPlayers()
+    }
+    
+    func setupTableView() {
+        tableView.dataSource = self
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -48,15 +62,25 @@ class ListPlayersViewController: UIViewController {
 
 }
 
+extension ListPlayersViewController: ListPlayersView {
+    func setListPlayers(listPlayers: [PlayersListMO]) {
+        self.listPlayers = listPlayers
+        tableView.reloadData()
+    }
+}
+
 // MARK: - TableView DataSource
 
 extension ListPlayersViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return listPlayers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = UITableViewCell()
+        let list = listPlayers[indexPath.row]
+        cell.textLabel?.text = list.name
+        return cell
     }
 }

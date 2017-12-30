@@ -14,15 +14,16 @@ typealias GetListPlayersCompletion = (([PlayersListMO]?) -> Void)
 class PlayersListService: BaseService {
     
     func createPlayersListWith(name: String, players: [PlayerMO] = [PlayerMO](), completion: CreateListPlayersCompletion) {
-//        if let playerList: PlayersListMO = coreDatabase.loadObject(withId: PlayersListMO.entityName) {
-//            playerList.name = name
-//            playerList.players = NSSet(array: players)
-//            if coreDatabase.save(playerList) {
-//                completion(playerList)
-//                return
-//            }
-//        }
-//        completion(nil)
+        if let playerEntity = CoreDataConnection.shared.getEntity(withName: PlayersListMO.entityName) {
+            let playerList = PlayersListMO(entity: playerEntity, insertInto: CoreDataConnection.shared.managedContext)
+            playerList.name = name
+            playerList.players = NSSet(array: players)
+            if CoreDataConnection.shared.managedContext.save(playerList) {
+                completion(playerList)
+                return
+            }
+        }
+        completion(nil)
     }
     
     func getPlayers(completion: @escaping GetListPlayersCompletion) {

@@ -75,7 +75,7 @@
                         <outlet property="civiliansLabel" destination="Z0i-pH-HsG" id="vH7-Jh-jtA"/>
                         <outlet property="mafiaLabel" destination="08L-Io-bBv" id="195-sg-COC"/>
                         <outlet property="tableView" destination="oQm-oX-6bK" id="lJT-3B-2rn"/>
-                        <segue destination="3Yn-SM-Kce" kind="show" id="juw-8L-iw2"/>
+                        <segue destination="3Yn-SM-Kce" kind="show" identifier="SeguePlayersList" id="juw-8L-iw2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -110,6 +110,7 @@
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="fWn-0N-06J"/>
                         <segue destination="aI8-xt-oCI" kind="show" identifier="SegueNewPlayer" id="MeJ-g4-9iU"/>
+                        <segue destination="3Yn-SM-Kce" kind="show" identifier="SeguePlayersList" id="aTT-aN-KIC"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tNe-y2-Yca" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -155,7 +156,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LLa-5U-24y">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
@@ -187,4 +188,7 @@
     <resources>
         <image name="icon_menu" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="aTT-aN-KIC"/>
+    </inferredMetricsTieBreakers>
 </document>

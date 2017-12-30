@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ListPlayersView: class {
-    func setListPlayers(listPLayers: [PlayersListMO])
+    func setListPlayers(listPlayers: [PlayersListMO])
     
 }
 
@@ -23,6 +23,10 @@ class ListPlayersPresenter {
     }
     
     func showListPlayers() {
-        playerListService.
+        playerListService.getPlayers { (listPlayers) in
+            if let list = listPlayers {
+                self.view.setListPlayers(listPlayers: list)
+            }
+        }
     }
 }
