@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mhX-BQ-57f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mhX-BQ-57f">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -75,6 +75,7 @@
                         <outlet property="civiliansLabel" destination="Z0i-pH-HsG" id="vH7-Jh-jtA"/>
                         <outlet property="mafiaLabel" destination="08L-Io-bBv" id="195-sg-COC"/>
                         <outlet property="tableView" destination="oQm-oX-6bK" id="lJT-3B-2rn"/>
+                        <segue destination="3Yn-SM-Kce" kind="show" identifier="SeguePlayersList" id="juw-8L-iw2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -108,8 +109,8 @@
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="fWn-0N-06J"/>
-                        <segue destination="3Yn-SM-Kce" kind="show" identifier="SeguePlayersList" id="gOc-tw-ftr"/>
                         <segue destination="aI8-xt-oCI" kind="show" identifier="SegueNewPlayer" id="MeJ-g4-9iU"/>
+                        <segue destination="3Yn-SM-Kce" kind="show" identifier="SeguePlayersList" id="aTT-aN-KIC"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tNe-y2-Yca" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -146,16 +147,38 @@
             </objects>
             <point key="canvasLocation" x="-1375" y="117"/>
         </scene>
-        <!--View Controller-->
+        <!--Listas de Jugadores-->
         <scene sceneID="cHV-C5-Km2">
             <objects>
-                <viewController id="3Yn-SM-Kce" sceneMemberID="viewController">
+                <viewController id="3Yn-SM-Kce" customClass="ListPlayersViewController" customModule="MAFIA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bow-8B-ckG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LLa-5U-24y">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4vC-ec-VZX" firstAttribute="trailing" secondItem="LLa-5U-24y" secondAttribute="trailing" id="1TL-dP-gLn"/>
+                            <constraint firstItem="4vC-ec-VZX" firstAttribute="bottom" secondItem="LLa-5U-24y" secondAttribute="bottom" id="Aja-tQ-kDX"/>
+                            <constraint firstItem="LLa-5U-24y" firstAttribute="leading" secondItem="4vC-ec-VZX" secondAttribute="leading" id="f2i-wu-iwZ"/>
+                            <constraint firstItem="LLa-5U-24y" firstAttribute="top" secondItem="4vC-ec-VZX" secondAttribute="top" id="j63-1b-nrr"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4vC-ec-VZX"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Listas de Jugadores" id="dWM-xw-Pcs">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="FaG-R9-NJH">
+                            <connections>
+                                <action selector="addLists:" destination="3Yn-SM-Kce" id="Pdg-EP-0QP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="LLa-5U-24y" id="shC-UV-R3Q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P47-dP-FfV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -165,4 +188,7 @@
     <resources>
         <image name="icon_menu" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="aTT-aN-KIC"/>
+    </inferredMetricsTieBreakers>
 </document>

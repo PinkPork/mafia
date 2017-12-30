@@ -41,6 +41,8 @@
 		97CE9FD01FEB08AE00A8A55E /* GameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CE9FCF1FEB08AE00A8A55E /* GameRules.swift */; };
 		97CE9FD31FEB14C900A8A55E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CE9FD21FEB14C900A8A55E /* StringExtension.swift */; };
 		97CE9FD71FEB15CF00A8A55E /* Default.strings in Resources */ = {isa = PBXBuildFile; fileRef = 97CE9FD91FEB15CF00A8A55E /* Default.strings */; };
+		CFE3DA871FF70ECA004D9D0F /* ListPlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE3DA861FF70ECA004D9D0F /* ListPlayersViewController.swift */; };
+		CFE3DA8A1FF71B43004D9D0F /* ListPLayersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE3DA891FF71B43004D9D0F /* ListPLayersPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +103,8 @@
 		97CE9FCF1FEB08AE00A8A55E /* GameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
 		97CE9FD21FEB14C900A8A55E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		97CE9FD81FEB15CF00A8A55E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Default.strings; sourceTree = "<group>"; };
+		CFE3DA861FF70ECA004D9D0F /* ListPlayersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListPlayersViewController.swift; path = MAFIA/Views/Controllers/ListPlayers/ListPlayersViewController.swift; sourceTree = SOURCE_ROOT; };
+		CFE3DA891FF71B43004D9D0F /* ListPLayersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPLayersPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,7 +180,7 @@
 		9620D7BA1FE97125008E0F55 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				967A0E1C1FF455DF00B631FB /* ListPlayers */,
+				CFE3DA881FF70F0C004D9D0F /* ListPlayers */,
 				9620D7C11FE995B5008E0F55 /* Player */,
 			);
 			path = Controllers;
@@ -279,6 +283,7 @@
 			children = (
 				96002FD01FE860E300F8DF1F /* PlayerPresenter.swift */,
 				96BEA68B1FF42F6000231518 /* MenuPresenter.swift */,
+				CFE3DA891FF71B43004D9D0F /* ListPLayersPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -300,13 +305,6 @@
 				965F34F81FE9CE8C00752CD9 /* MutableCollectionExtension.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		967A0E1C1FF455DF00B631FB /* ListPlayers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ListPlayers;
 			sourceTree = "<group>";
 		};
 		96F9DE791FED603600C32C30 /* Menu */ = {
@@ -356,6 +354,14 @@
 				97CE9FD91FEB15CF00A8A55E /* Default.strings */,
 			);
 			path = LocalizedStrings;
+			sourceTree = "<group>";
+		};
+		CFE3DA881FF70F0C004D9D0F /* ListPlayers */ = {
+			isa = PBXGroup;
+			children = (
+				CFE3DA861FF70ECA004D9D0F /* ListPlayersViewController.swift */,
+			);
+			path = ListPlayers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -516,8 +522,10 @@
 				96591C6F1FE85B660067BB2E /* MAFIA.xcdatamodeld in Sources */,
 				97CE9FCE1FEB05A700A8A55E /* Utils.swift in Sources */,
 				96F9DE7F1FED60A900C32C30 /* MenuTableViewCell.swift in Sources */,
+				CFE3DA871FF70ECA004D9D0F /* ListPlayersViewController.swift in Sources */,
 				96BEA68C1FF42F6000231518 /* MenuPresenter.swift in Sources */,
 				6E2618AD1FF5C9BD00F3AF93 /* DatabaseProtocol.swift in Sources */,
+				CFE3DA8A1FF71B43004D9D0F /* ListPLayersPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
