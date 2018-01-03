@@ -291,20 +291,11 @@
 		96591C991FE85B940067BB2E /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				965F34F71FE9CE7700752CD9 /* Extensions */,
 				6E2618AB1FF5C99D00F3AF93 /* Connection */,
 				9620D7B21FE94F16008E0F55 /* Services */,
 				96002FCA1FE85D8E00F8DF1F /* Entities */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		965F34F71FE9CE7700752CD9 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				965F34F81FE9CE8C00752CD9 /* MutableCollectionExtension.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		96F9DE791FED603600C32C30 /* Menu */ = {
@@ -344,6 +335,7 @@
 				97CE9FD21FEB14C900A8A55E /* StringExtension.swift */,
 				96B3C3141FF3F9F600363A3F /* UIVIewExtension.swift */,
 				6E8F889D1FF701D900F7AB49 /* NSManagedObjectContextExtension.swift */,
+				965F34F81FE9CE8C00752CD9 /* MutableCollectionExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";

@@ -62,7 +62,14 @@ class ListPlayersViewController: UIViewController {
 
 }
 
+// MARK: - ListPlayersView protocol conformance
+
 extension ListPlayersViewController: ListPlayersView {
+    func addNewList(listPlayer: PlayersListMO) {
+        listPlayers.append(listPlayer)
+        tableView.reloadData()
+    }
+    
     func setListPlayers(listPlayers: [PlayersListMO]) {
         self.listPlayers = listPlayers
         tableView.reloadData()

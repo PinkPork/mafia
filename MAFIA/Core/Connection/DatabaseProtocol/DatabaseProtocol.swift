@@ -5,6 +5,10 @@
 //  Created by Santiago Carmona gonzalez on 12/28/17.
 //  Copyright © 2017 Santiago Carmona Gonzalez. All rights reserved.
 //
+//
+//
+// This protocol is intended to be used in every Database of we are using like CoreData, Firebase or something else,
+// the idea is to be conformed by the object. For example in this case it is conformed by NSManagedObjectContext
 
 import Foundation
 import CoreData
