@@ -15,19 +15,23 @@ class GameViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var civiliansLabel: UILabel!
     @IBOutlet weak var mafiaLabel: UILabel!
+    @IBOutlet weak var currentPlayerListName: UILabel!
     
     
     // MARK: Vars & Constants
     
-    private let kHeaderView: CGFloat = 60
-    var presenter: GamePresenter!
-    var playersToDisplay: [PlayerMO] = [PlayerMO]()
+    private let kHeaderView: CGFloat = 80
+    private var presenter: GamePresenter!
+    private var playersToDisplay: [PlayerMO] = [PlayerMO]() {
+        didSet {
+            tableView.isUserInteractionEnabled = playersToDisplay.count >= GameRules.minimumPlayers
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()        
         setupTableView()
-        presenter = GamePresenter(view: self, playerService: PlayerService())
-        presenter.showPlayers()
+        setupView()
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,12 +54,31 @@ class GameViewController: UIViewController {
     
     // MARK: - Methods
     
+    private func setupView() {
+        presenter = GamePresenter(view: self)
+        presenter.showPlayers()
+        currentPlayerListName.text = "LIST_PLAYER_NO_NAME".localized()
+        civiliansLabel.text = nil
+        mafiaLabel.text = nil
+    }
+    
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.contentInset = UIEdgeInsets(top: kHeaderView, left: 0, bottom: 0, right: 0)
         tableView.register(UINib.init(nibName: PlayerTableViewCell.nib, bundle: Bundle.main), forCellReuseIdentifier: PlayerTableViewCell.identifier)
     }
+    
+    
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationViewController = segue.destination as? ListPlayersViewController {
+            destinationViewController.gamePresenter = presenter
+        }
+     }
+    
     
 }
 
@@ -82,6 +105,7 @@ extension GameViewController: GameView {
     func updateGameUI() {
         civiliansLabel.text = presenter.aliveCiviliansPlayerText
         mafiaLabel.text = presenter.aliveMafiaPlayerText
+        currentPlayerListName.text = presenter.selectedListName
     }
     
     func endGame(winner: Role) {
@@ -111,6 +135,7 @@ extension GameViewController: GameView {
     }
     
     func restartGame() {
+        presenter.showPlayers()
         refreshRoles()
     }
     
@@ -147,6 +172,7 @@ extension GameViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let playerToEliminate = playersToDisplay[indexPath.row]
         presenter.eliminatePlayer(player: playerToEliminate)
+        presenter.didEndGame()
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -165,6 +191,6 @@ extension GameViewController: UITableViewDelegate {
 
 extension GameViewController: MenuViewControllerDelegate {
     func performSegue(withIdentifier identifier: String) {
-        self.navigationController?.performSegue(withIdentifier: identifier, sender: nil)
+        self.performSegue(withIdentifier: identifier, sender: nil)
     }
 }

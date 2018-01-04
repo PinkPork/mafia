@@ -17,7 +17,7 @@ class ListPlayersPresenter {
     unowned var view: ListPlayersView
     private let playerListService: PlayersListService
     
-    init(view: ListPlayersView, playerListService: PlayersListService) {
+    init(view: ListPlayersView, playerListService: PlayersListService = PlayersListService()) {
         self.view = view
         self.playerListService = playerListService
     }
@@ -36,5 +36,9 @@ class ListPlayersPresenter {
                 self?.view.setListPlayers(listPlayers: list)
             }
         }
+    }
+    
+    func selectList(list: PlayersListMO) {
+        GameManager.currentGame.setSelectedList(listPlayers: list)
     }
 }

@@ -12,6 +12,7 @@
 
 "CIVILIANS_TITLE" = "Civiles";
 "MAFIA_TITLE" = "Mafia";
+"LIST_PLAYER_NO_NAME" = "Selecciona una lista para jugar";
 
 // MARK: - Alert titles
 

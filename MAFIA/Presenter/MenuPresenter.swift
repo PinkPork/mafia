@@ -23,9 +23,6 @@ class MenuPresenter {
     }
     
     func displayOptions() {
-        self.view.setMenu(options: [.NewPlayer, .PlayersList])
+        self.view.setMenu(options: [.PlayersList])
     }
-    
-    
 }
-

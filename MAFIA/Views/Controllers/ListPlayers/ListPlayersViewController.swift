@@ -16,8 +16,9 @@ class ListPlayersViewController: UIViewController {
     
     // MARK: - Vars & Constants
     
-    var listPlayers: [PlayersListMO] = [PlayersListMO]()
-    var presenter: ListPlayersPresenter!
+    private var listPlayers: [PlayersListMO] = [PlayersListMO]()
+    private var presenter: ListPlayersPresenter!
+    weak var gamePresenter: GamePresenter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +30,6 @@ class ListPlayersViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    
     // MARK: - IBActions
     
     @IBAction func addLists(_ sender: Any) {
@@ -37,14 +37,14 @@ class ListPlayersViewController: UIViewController {
     
     // MARK: - Methods
     
-    func setupView() {
-        presenter = ListPlayersPresenter(view: self, playerListService: PlayersListService())
-        
+    private func setupView() {
+        presenter = ListPlayersPresenter(view: self)
         presenter.showListPlayers()
     }
     
-    func setupTableView() {
+    private func setupTableView() {
         tableView.dataSource = self
+        tableView.delegate = self
     }
     
     /*
@@ -86,5 +86,13 @@ extension ListPlayersViewController: UITableViewDataSource {
         let list = listPlayers[indexPath.row]
         cell.textLabel?.text = list.name
         return cell
+    }
+}
+
+extension ListPlayersViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedList = listPlayers[indexPath.row]
+        presenter.selectList(list: selectedList)
+        gamePresenter.restartGame()
     }
 }

@@ -54,7 +54,7 @@ protocol GameView: class {
 
 class GamePresenter {
     
-    unowned let view: GameView
+    private unowned let view: GameView
     fileprivate let playerService: PlayerService
     
     var aliveCiviliansPlayerText: String {
@@ -65,7 +65,11 @@ class GamePresenter {
         return "\("MAFIA_TITLE".localized()) \n \(GameManager.currentGame.aliveMafia)"
     }
     
-    init(view: GameView, playerService: PlayerService) {
+    var selectedListName: String? {
+        return GameManager.currentGame.listName
+    }
+    
+    init(view: GameView, playerService: PlayerService = PlayerService()) {
         self.view = view
         self.playerService = playerService
     }

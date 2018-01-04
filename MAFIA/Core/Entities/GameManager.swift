@@ -23,6 +23,10 @@ class GameManager {
         return nil
     }
     
+    var listName: String? {
+        return selectedListPlayers?.name
+    }
+    
     var numberOfPlayersPlaying: Int {
         return selectedListPlayers?.players?.count ?? 0
     }
