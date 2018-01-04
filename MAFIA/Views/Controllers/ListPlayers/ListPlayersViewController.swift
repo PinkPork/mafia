@@ -14,7 +14,7 @@ class ListPlayersViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    // MARK: - Vars & Lets
+    // MARK: - Vars & Constants
     
     var listPlayers: [PlayersListMO] = [PlayersListMO]()
     var presenter: ListPlayersPresenter!
@@ -23,13 +23,10 @@ class ListPlayersViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         setupView()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     

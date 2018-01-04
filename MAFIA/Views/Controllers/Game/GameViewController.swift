@@ -1,5 +1,5 @@
 //
-//  PlayersViewController.swift
+//  GameViewController.swift
 //  MAFIA
 //
 //  Created by Santiago Carmona Gonzalez on 12/18/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlayersViewController: UIViewController {
+class GameViewController: UIViewController {
     
     // MARK: - IBOutlets
     
@@ -20,59 +20,19 @@ class PlayersViewController: UIViewController {
     // MARK: Vars & Constants
     
     private let kHeaderView: CGFloat = 60
-    var presenter: PlayerPresenter!
-    var playersToDisplay: [PlayerMO] = [PlayerMO]() {
-        didSet {
-            updateGameUI()
-        }
-    }
-    var eliminatedPlayers: [PlayerMO] = [PlayerMO]() {
-        didSet {
-            updateGameUI()
-        }
-    }
-    
-    var civilianTotal: Int {
-        get {
-            let mafiaPlayers = playersToDisplay.count / 3     //Esto sirve para calcular la cantidad de mafiosos.
-            var civiliansPlaying = playersToDisplay.count - mafiaPlayers
-            civiliansPlaying = eliminatedPlayers.reduce(civiliansPlaying, {(result, player) -> Int in
-                return player.role != .mafia ? result - 1 : result
-            })
-            
-            return civiliansPlaying
-        }
-    }
-    
-    var mafiaTotal: Int {
-        get {
-            var mafiaPlayers = playersToDisplay.count / 3
-            mafiaPlayers = eliminatedPlayers.reduce(mafiaPlayers, {(result, player) -> Int in
-                return player.role == .mafia ? result - 1 : result
-            })
-            return mafiaPlayers
-        }
-    }
+    var presenter: GamePresenter!
+    var playersToDisplay: [PlayerMO] = [PlayerMO]()
     
     override func viewDidLoad() {
         super.viewDidLoad()        
         setupTableView()
-        presenter = PlayerPresenter(view: self, playerService: PlayerService())
+        presenter = GamePresenter(view: self, playerService: PlayerService())
         presenter.showPlayers()
     }
     
     override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        super.didReceiveMemoryWarning()        
     }
-    
-    fileprivate func setupTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.contentInset = UIEdgeInsets(top: kHeaderView, left: 0, bottom: 0, right: 0)
-        tableView.register(UINib.init(nibName: PlayerTableViewCell.nib, bundle: Bundle.main), forCellReuseIdentifier: PlayerTableViewCell.identifier)
-    }
-    
     
     // MARK: - IBActions
     
@@ -85,55 +45,23 @@ class PlayersViewController: UIViewController {
     
     
     @IBAction func refreshRoles(_ sender: UIBarButtonItem) {
-        playersToDisplay = self.presenter.refreshRoles(players: playersToDisplay)
-        eliminatedPlayers.removeAll()
-        tableView.reloadData()
+        refreshRoles()
     }
     
     // MARK: - Methods
     
-    func updateGameUI() {
-        civiliansLabel.text = "\("CIVILIANS_TITLE".localized()) \n \(civilianTotal)"
-        mafiaLabel.text = "\("MAFIA_TITLE".localized()) \n \(mafiaTotal)"
-        endGame()
-    }
-    
-    func endGame() {
-        
-        if playersToDisplay.count < GameRules.minimumPlayers {
-            return
-        }
-        
-        var message: String = ""
-        
-        if mafiaTotal == 0 {
-            message = "CIVILIANS_WON_GAME_MESSAGE".localized()
-        } else if civilianTotal > mafiaTotal {
-            return
-        } else if mafiaTotal >= civilianTotal {
-            message = "MAFIA_WON_GAME_MESSAGE".localized()
-        }
-        let alert = UIAlertController(title: "END_GAME_TITLE".localized(), message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "END_GAME_ACTION_TITLE".localized(), style: .default) { [weak self] (_) in
-            if let strongSelf = self {
-                strongSelf.playersToDisplay = strongSelf.presenter.refreshRoles(players: strongSelf.playersToDisplay)
-                strongSelf.eliminatedPlayers.removeAll()
-                strongSelf.tableView.reloadData()
-            }
-        }
-        let continuePlayingAction = UIAlertAction(title: "CONTINUE_GAME_ACTION_TITLE".localized(), style: .default, handler: nil)
-        
-        alert.addAction(okAction)
-        alert.addAction(continuePlayingAction)
-        self.present(alert, animated: true, completion: nil)
+    private func setupTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.contentInset = UIEdgeInsets(top: kHeaderView, left: 0, bottom: 0, right: 0)
+        tableView.register(UINib.init(nibName: PlayerTableViewCell.nib, bundle: Bundle.main), forCellReuseIdentifier: PlayerTableViewCell.identifier)
     }
     
 }
 
 // MARK: - PlayerView Protocol
 
-extension PlayersViewController: PlayerView {
-    
+extension GameViewController: GameView {
     
     func setPlayers(players: [PlayerMO]) {
         playersToDisplay = players
@@ -150,12 +78,52 @@ extension PlayersViewController: PlayerView {
         playersToDisplay.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
+    
+    func updateGameUI() {
+        civiliansLabel.text = presenter.aliveCiviliansPlayerText
+        mafiaLabel.text = presenter.aliveMafiaPlayerText
+    }
+    
+    func endGame(winner: Role) {
+        var message: String = ""
+        switch winner {
+        case .civilian:
+            message = "CIVILIANS_WON_GAME_MESSAGE".localized()
+        case .mafia:
+            message = "MAFIA_WON_GAME_MESSAGE".localized()
+        default:
+            return
+        }
+        
+        let alert = UIAlertController(title: "END_GAME_TITLE".localized(), message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "END_GAME_ACTION_TITLE".localized(), style: .default) { [weak self] (_) in
+            if let strongSelf = self {
+                strongSelf.presenter.restartGame()
+            }
+        }
+        let continuePlayingAction = UIAlertAction(title: "CONTINUE_GAME_ACTION_TITLE".localized(), style: .default, handler: nil)
+        
+        alert.addAction(okAction)
+        alert.addAction(continuePlayingAction)
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    func restartGame() {
+        refreshRoles()
+    }
+    
+    private func refreshRoles() {
+        playersToDisplay = presenter.refreshRoles(players: playersToDisplay)
+        tableView.reloadData()
+    }
 }
 
 
 // MARK: - TableView Datasource
 
-extension PlayersViewController: UITableViewDataSource {
+extension GameViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -174,16 +142,16 @@ extension PlayersViewController: UITableViewDataSource {
 
 // MARK: - TableView Delegate
 
-extension PlayersViewController: UITableViewDelegate {
+extension GameViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let playerToEliminate = playersToDisplay[indexPath.row]
-        eliminatedPlayers.append(playerToEliminate)
+        presenter.eliminatePlayer(player: playerToEliminate)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let deselectedPlayer = playersToDisplay[indexPath.row]
-        eliminatedPlayers.remove(at: eliminatedPlayers.index(of: deselectedPlayer)!)
+        presenter.revivePlayer(player: deselectedPlayer)
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -195,8 +163,8 @@ extension PlayersViewController: UITableViewDelegate {
     }
 }
 
-extension PlayersViewController: MenuViewControllerDelegate {
-    func performSegue(with identifier: String) {
+extension GameViewController: MenuViewControllerDelegate {
+    func performSegue(withIdentifier identifier: String) {
         self.navigationController?.performSegue(withIdentifier: identifier, sender: nil)
     }
 }

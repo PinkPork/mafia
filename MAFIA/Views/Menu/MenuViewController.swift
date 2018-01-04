@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MenuViewControllerDelegate: class {
-    func performSegue(with identifier: String)
+    func performSegue(withIdentifier identifier: String)
 }
 
 class MenuViewController: UIViewController {
@@ -98,7 +98,8 @@ extension MenuViewController: UITableViewDelegate {
         let selectedOption = menuOptions[indexPath.row]
         let segue = "Segue\(selectedOption)"
         try! SideMenu.sharedInstance?.animateMenu()
-        delegate?.performSegue(with: segue)        
+        delegate?.performSegue(withIdentifier: segue)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
