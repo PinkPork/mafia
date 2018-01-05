@@ -8,8 +8,8 @@
 
 import Foundation
 
-
-enum Role {
+/// All the roles which will be used on the app
+enum Role { // TODO: This might change in the future if we are going to add the feature of add custom Roles.
     case king,
     doctor,
     sheriff,
@@ -22,6 +22,8 @@ enum Role {
     }
 }
 
+
+/// The options displayed on the side Menu
 enum MenuOptions: String {
     
     case NewPlayer = "MENU_ADD_NEW_PLAYER"

@@ -9,6 +9,12 @@
 import CoreData
 
 extension NSManagedObjectContext: Database {
+    
+    /// Loads a collection of objects matching the Data Model name given in `modelName` and the query `query`
+    /// - parameter modelName: The Data model name
+    /// - parameter query: The query used to filter the collection
+    /// - parameter params: Parameters used by query
+    
     func loadObjects<Type>(_ modelName: String, matching query: String? = nil, params: [Any]? = nil) -> [Type] {
         let request: NSFetchRequest<NSManagedObject> = NSFetchRequest<NSManagedObject>(entityName: modelName)
         if let query = query {
@@ -17,6 +23,9 @@ extension NSManagedObjectContext: Database {
         return try! self.fetch(request) as! [Type]
     }
     
+    /// Loads an object
+    /// - parameter id: The model entityDescription
+    /// - returns: An NSManagedObject with the entityDescription given by the `id` parameter
     
     func loadObject<Type>(withId id: String) -> Type? {
         if let entityDescription = NSEntityDescription.entity(forEntityName: id , in: self) {

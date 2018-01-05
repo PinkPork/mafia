@@ -14,24 +14,21 @@ class ListPlayersViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    // MARK: - Vars & Lets
+    // MARK: - Vars & Constants
     
-    var listPlayers: [PlayersListMO] = [PlayersListMO]()
-    var presenter: ListPlayersPresenter!
+    private var listPlayers: [PlayersListMO] = [PlayersListMO]()
+    private var presenter: ListPlayersPresenter!
+    weak var gamePresenter: GamePresenter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupView()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
     
     // MARK: - IBActions
     
@@ -54,14 +51,14 @@ class ListPlayersViewController: UIViewController {
     
     // MARK: - Methods
     
-    func setupView() {
-        presenter = ListPlayersPresenter(view: self, playerListService: PlayersListService())
-        
+    private func setupView() {
+        presenter = ListPlayersPresenter(view: self)
         presenter.showListPlayers()
     }
     
-    func setupTableView() {
+    private func setupTableView() {
         tableView.dataSource = self
+        tableView.delegate = self
     }
     
     /*
@@ -76,7 +73,14 @@ class ListPlayersViewController: UIViewController {
 
 }
 
+// MARK: - ListPlayersView protocol conformance
+
 extension ListPlayersViewController: ListPlayersView {
+    func addNewList(listPlayer: PlayersListMO) {
+        listPlayers.append(listPlayer)
+        tableView.reloadData()
+    }
+    
     func setListPlayers(listPlayers: [PlayersListMO]) {
         self.listPlayers = listPlayers
         tableView.reloadData()
@@ -96,5 +100,13 @@ extension ListPlayersViewController: UITableViewDataSource {
         let list = listPlayers[indexPath.row]
         cell.textLabel?.text = list.name
         return cell
+    }
+}
+
+extension ListPlayersViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedList = listPlayers[indexPath.row]
+        presenter.selectList(list: selectedList)
+        gamePresenter.restartGame()
     }
 }

@@ -10,23 +10,35 @@ import UIKit
 
 protocol ListPlayersView: class {
     func setListPlayers(listPlayers: [PlayersListMO])
-    
+    func addNewList(listPlayer: PlayersListMO)
 }
 
 class ListPlayersPresenter {
     unowned var view: ListPlayersView
     private let playerListService: PlayersListService
     
-    init(view: ListPlayersView, playerListService: PlayersListService) {
+    init(view: ListPlayersView, playerListService: PlayersListService = PlayersListService()) {
         self.view = view
         self.playerListService = playerListService
     }
     
-    func showListPlayers() {
-        playerListService.getPlayers { (listPlayers) in
-            if let list = listPlayers {
-                self.view.setListPlayers(listPlayers: list)
+    func createList(withName name: String) {
+        playerListService.createPlayersListWith(name: name) { [weak self] (listPlayer) in
+            if let listPlayer = listPlayer {
+                self?.view.addNewList(listPlayer: listPlayer)
             }
         }
+    }
+    
+    func showListPlayers() {
+        playerListService.getPlayers { [weak self] (listPlayers) in
+            if let list = listPlayers {
+                self?.view.setListPlayers(listPlayers: list)
+            }
+        }
+    }
+    
+    func selectList(list: PlayersListMO) {
+        GameManager.currentGame.setSelectedList(listPlayers: list)
     }
 }
