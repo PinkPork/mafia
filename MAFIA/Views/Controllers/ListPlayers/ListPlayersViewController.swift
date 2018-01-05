@@ -36,6 +36,20 @@ class ListPlayersViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func addLists(_ sender: Any) {
+        let alertController = UIAlertController(title: "Agregar Listas", message: "Ingrese las listas deseadas", preferredStyle: .alert)
+        alertController.addTextField(configurationHandler: nil)
+        let addButton = UIAlertAction(title: "Agregar", style: .default) { (action) in
+            
+            let textField = alertController.textFields?.first
+            textField?.text
+            
+        }
+        let cancelButton = UIAlertAction(title: "Cancelar", style: .cancel)
+        
+        alertController.addAction(addButton)
+        alertController.addAction(cancelButton)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     // MARK: - Methods
