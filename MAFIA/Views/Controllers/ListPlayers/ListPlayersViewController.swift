@@ -19,6 +19,7 @@ class ListPlayersViewController: UIViewController {
     private var listPlayers: [PlayersListMO] = [PlayersListMO]()
     private var presenter: ListPlayersPresenter!
     weak var gamePresenter: GamePresenter!
+    private var addListAction: UIAlertAction?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,27 @@ class ListPlayersViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func addLists(_ sender: Any) {
+        let alertController = UIAlertController(title: "ADD_LIST_TITLE".localized(), message: "ADD_LIST_MESSAGE".localized(), preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            textField.delegate = self
+        }
+        addListAction = UIAlertAction(title: "ADD_LIST_ACTION".localized(), style: .default) { (action) in
+            
+            let textField = alertController.textFields?.first
+            guard let listName = textField?.text, !listName.isEmpty else {
+                print("No hay ningún texto")
+                return
+            }
+            self.presenter.createList(withName: listName)
+            
+            
+        }
+        let cancelButton = UIAlertAction(title: "CANCEL_ACTION".localized(), style: .cancel)
+        
+        alertController.addAction(addListAction!)
+        alertController.addAction(cancelButton)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     // MARK: - Methods
@@ -45,6 +67,12 @@ class ListPlayersViewController: UIViewController {
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
+    }
+    
+    private func updateAddButtonState(text: String?) {
+        // Disable the Add buttos if the text field is empty.
+        let emptyText = text ?? ""
+        addListAction?.isEnabled = !emptyText.isEmpty
     }
     
     /*
@@ -62,6 +90,11 @@ class ListPlayersViewController: UIViewController {
 // MARK: - ListPlayersView protocol conformance
 
 extension ListPlayersViewController: ListPlayersView {
+    func deleteList(listPlayer: PlayersListMO, indexPath: IndexPath) {
+        listPlayers.remove(at: indexPath.row)
+        tableView.reloadData()
+    }
+    
     func addNewList(listPlayer: PlayersListMO) {
         listPlayers.append(listPlayer)
         tableView.reloadData()
@@ -89,10 +122,43 @@ extension ListPlayersViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - TableView Delegate
+
 extension ListPlayersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedList = listPlayers[indexPath.row]
         presenter.selectList(list: selectedList)
         gamePresenter.restartGame()
     }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        return [UITableViewRowAction.init(style: .destructive, title: "DELETE_LIST_ACTION".localized(), handler: { [weak self] (_, indexPath) in
+            if let strongSelf = self {
+                strongSelf.presenter.deleteList(playersList: strongSelf.listPlayers[indexPath.row], indexPath: indexPath)
+                // strongSelf.presenter.deletePlayer(player: strongSelf.playersToDisplay[indexPath.row], indexPath: indexPath)
+            }
+        })]
+    }
 }
+
+// MARK: - TextField Delegate
+
+extension ListPlayersViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // Hide the keyboard.
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        updateAddButtonState(text: textField.text)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        // Disable the Save button while editing.
+        addListAction?.isEnabled = false
+    }
+}
+
+

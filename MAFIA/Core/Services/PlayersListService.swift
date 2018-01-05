@@ -10,6 +10,7 @@ import Foundation
 
 typealias CreateListPlayersCompletion = ((PlayersListMO?) -> Void)
 typealias GetListPlayersCompletion = (([PlayersListMO]?) -> Void)
+typealias DeleteListPlayersCompletion = ((Bool) -> Void)
 
 class PlayersListService: BaseService {
     
@@ -28,5 +29,9 @@ class PlayersListService: BaseService {
     
     func getPlayers(completion: @escaping GetListPlayersCompletion) {
         completion(CoreDataConnection.shared.managedContext.loadObjects(PlayersListMO.entityName))
+    }
+    
+    func deleteList(list: PlayersListMO, completion: DeleteListPlayersCompletion) {
+         completion(CoreDataConnection.shared.managedContext.delete(list))
     }
 }
