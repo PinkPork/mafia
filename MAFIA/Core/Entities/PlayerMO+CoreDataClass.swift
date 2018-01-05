@@ -36,6 +36,6 @@ public class PlayerMO: NSManagedObject, CoreDataIdentifier {
         for (index, player) in players.enumerated() {
             player.role = allRoles[index]
         }
-        return players.sorted(by: {$0.role.hashValue < $1.role.hashValue })
+        return players
     }
 }

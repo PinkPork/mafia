@@ -118,7 +118,7 @@ class GamePresenter {
         var winnerRole: Role = Role.none
         if GameManager.currentGame.aliveMafia == 0 {
             winnerRole = .civilian
-        } else if GameManager.currentGame.aliveMafia == GameManager.currentGame.aliveMafia {
+        } else if GameManager.currentGame.aliveMafia == GameManager.currentGame.aliveCivilians {
             winnerRole = .mafia
         }
         view.endGame(winner: winnerRole)
