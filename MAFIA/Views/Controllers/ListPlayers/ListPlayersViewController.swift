@@ -47,16 +47,15 @@ class ListPlayersViewController: UIViewController {
         tableView.delegate = self
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let destination = segue.destination as? DetailListPlayersViewController {
+            destination.listPlayers = sender as? PlayersListMO
+        }
     }
-    */
-
 }
 
 // MARK: - ListPlayersView protocol conformance
@@ -92,7 +91,8 @@ extension ListPlayersViewController: UITableViewDataSource {
 extension ListPlayersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedList = listPlayers[indexPath.row]
-        presenter.selectList(list: selectedList)
-        gamePresenter.restartGame()
+        self.performSegue(withIdentifier: Segues.detailListPlayers, sender: selectedList)
+//        presenter.selectList(list: selectedList)
+//        gamePresenter.restartGame()
     }
 }
