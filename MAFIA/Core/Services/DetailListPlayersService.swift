@@ -8,10 +8,10 @@
 
 import Foundation
 
-typealias AddPlayersToListCompletion = ((Bool) -> Void)
+typealias AddPlayersToListCompletion = ((Bool, [PlayerMO]?) -> Void)
 typealias RemovePlayerFromListCompletion = ((Bool) -> Void)
 
-class DetailListPlayerService {
+class DetailListPlayersService {
     
     func add(toList list: PlayersListMO, playersWithName players: [String], completion: AddPlayersToListCompletion) {
         if let playerEntity = CoreDataConnection.shared.getEntity(withName: PlayerMO.entityName) {
@@ -20,7 +20,7 @@ class DetailListPlayerService {
                 return rawPlayer
             }
             list.addToPlayers(NSSet(array: playersToAdd))
-            completion(CoreDataConnection.shared.managedContext.save(list))
+            completion(CoreDataConnection.shared.managedContext.save(list), playersToAdd)
         }
     }
     
