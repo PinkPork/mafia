@@ -24,8 +24,8 @@ class DetailListPlayersPresenter {
     }
     
     func addPlayer(withName name: String, list: PlayersListMO) {
-        detailListPlayersService.add(toList: list, playersWithName: [name]) { [weak self] (success, players) in
-            if let players = players, success {
+        detailListPlayersService.add(toList: list, playersWithName: [name]) { [weak self] (players) in
+            if let players = players {
                 self?.view.addNewPlayers(players: players)
             }
         }

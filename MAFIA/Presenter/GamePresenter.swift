@@ -6,41 +6,6 @@
 //  Copyright © 2017 Santiago Carmona Gonzalez. All rights reserved.
 //
 
-
-
-/**
-
- var selectedListPlayers: PlayersListMO?
- var eliminatedPlayers: [PlayerMO] = [PlayerMO]()
- 
- var playersPlaying: Int {
- return selectedListPlayers?.players?.count ?? 0
- }
- 
- var aliveCivilians: Int {
- get {
- let mafiaPlayers = playersPlaying / 3     //Esto sirve para calcular la cantidad de mafiosos.
- var civiliansPlaying = playersPlaying - mafiaPlayers
- civiliansPlaying = eliminatedPlayers.reduce(civiliansPlaying, {(result, player) -> Int in
- return player.role != .mafia ? result - 1 : result
- })
- 
- return civiliansPlaying
- }
- }
- 
- var aliveMafia: Int {
- get {
- var mafiaPlayers = playersPlaying / 3
- mafiaPlayers = eliminatedPlayers.reduce(mafiaPlayers, {(result, player) -> Int in
- return player.role == .mafia ? result - 1 : result
- })
- return mafiaPlayers
- }
- }
- 
-*/
-
 import Foundation
 
 protocol GameView: class {

@@ -16,6 +16,10 @@ class GameManager {
     private var selectedListPlayers: PlayersListMO?
     private var eliminatedPlayers: [PlayerMO] = [PlayerMO]()
     
+    private init() {
+        
+    }
+    
     var playersPlaying: [PlayerMO]? {
         if let players = selectedListPlayers?.players {
             return Array(players) as? [PlayerMO]

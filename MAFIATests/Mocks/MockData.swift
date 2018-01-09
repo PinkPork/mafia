@@ -8,13 +8,52 @@
 
 @testable import MAFIA
 import Foundation
+import CoreData
 
 struct MockData {
     struct Player {
         static let name: String = "Player Test"
+        static let name1: String = "Player Test1"
+        static let name2: String = "Player Test2"
+        static let name3: String = "Player Test3"
+        static let name4: String = "Player Test4"
+        
+        static var playerEntityName: NSEntityDescription {
+            return CoreDataConnection.shared.getEntity(withName: PlayerMO.entityName)!
+        }
+        
+        static var rawPlayers: [String] {
+            return [Player.name, Player.name1, Player.name2, Player.name3, Player.name4]
+        }
     }
     
     struct PlayersList {
-        static let name: String = "List test"
+        static let name: String = "List Test"
+        static let name1: String = "List Test1"
+        static let name2: String = "List Test2"
+        static let name3: String = "List Test3"
+        static let name4: String = "List Test4"
+        
+        static var rawLists: [String] {
+            return [PlayersList.name, PlayersList.name1, PlayersList.name2, PlayersList.name3, PlayersList.name4]
+        }
+    }
+    
+    struct CoreDataController {
+        static var managedObjectContext: NSManagedObjectContext {
+            let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle.main])!
+            
+            let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
+            
+            do {
+                try persistentStoreCoordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
+            } catch {
+                print("Adding in-memory persistent store failed")
+            }
+            
+            let managedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+            managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
+            return managedObjectContext
+        }
     }
 }

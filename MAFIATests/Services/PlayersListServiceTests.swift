@@ -11,7 +11,7 @@ import XCTest
 
 
 
-class PlayersListServiceTests: XCTestCase {
+class PlayersListServiceTests: BaseTest {
     
     var service: PlayersListService!
     
@@ -25,26 +25,30 @@ class PlayersListServiceTests: XCTestCase {
     }
     
     func testCreatePlayList() {
-        let playerService = PlayerService()
-        playerService.getPlayers { (players) in
-            if let players = players {
-                self.service.createPlayersListWith(name: MockData.PlayersList.name, players: players, completion: { (playerList) in
-                    XCTAssertNotNil(playerList, "There was a problem creating a list with name: \(MockData.PlayersList.name)")
-                })
-            }
-        }
+        service.createPlayersListWith(name: MockData.PlayersList.name, completion: { (playerList) in
+            XCTAssertNotNil(playerList, "There was a problem creating a list with name: \(MockData.PlayersList.name)")
+        })
+    }
+    
+    func testCreatePlayListWithUsers() {
     }
     
     func testGetAllLists() {
+        for list in MockData.PlayersList.rawLists {
+            service.createPlayersListWith(name: list, completion: { (playerList) in
+                XCTAssertNotNil(playerList, "There was a problem creating a list with name: \(MockData.PlayersList.name)")
+            })
+        }
+        
         service.getPlayers { (playersList) in
             XCTAssertNotNil(playersList, "The players list is empty")
             if let allLists = playersList {
                 print("\n \n ------------------------------------------------------------------------ \n \n")
                 for list in allLists {
-                    print("\n El nombre de la lista es: " + list.name! + "\n")
+                    print("\n El nombre de la lista es: " + list.name + "\n")
                     for player in list.players! {
                         let newp = player as! PlayerMO
-                        print(" * Jugador: " + newp.name!)
+                        print(" * Jugador: " + newp.name)
                     }
                 }
                 print("\n \n ------------------------------------------------------------------------ \n \n \n \n \n")

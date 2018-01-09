@@ -21,7 +21,7 @@ public class PlayersListMO: NSManagedObject, CoreDataIdentifier {
         return NSFetchRequest<PlayersListMO>(entityName: "PlayersList")
     }
     
-    @NSManaged public var name: String?
+    @NSManaged public var name: String
     @NSManaged public var players: NSSet?
     
     @objc(addPlayersObject:)

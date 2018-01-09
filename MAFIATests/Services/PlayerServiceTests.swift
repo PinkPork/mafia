@@ -9,7 +9,7 @@
 import XCTest
 @testable import MAFIA
 
-class PlayerServiceTests: XCTestCase {
+class PlayerServiceTests: BaseTest {
     
     var service: PlayerService!
     
@@ -29,34 +29,41 @@ class PlayerServiceTests: XCTestCase {
     }
     
     func testLoadPlayer() {
+        testCreatePlayer()
         service.getPlayer(withName: MockData.Player.name) { (player) in
             XCTAssertNotNil(player, "There was an error loading a player named : \(MockData.Player.name)")
         }
     }
     
     func testLoadAllPlayers() {
+        for player in MockData.Player.rawPlayers {
+            service.savePlayer(name: player) { (player) in
+                XCTAssertNotNil(player, "There was an error creating a player with name: \(name)")
+            }
+        }
         service.getPlayers { (players) in
             if let players = players {
                 print("--------------------------------------------------------------------- \n")
                 print("Hay un total de \(players.count) jugadores registrados en la app y sus nombres son: \n")
                 for player in players {
-                    print("* Jugador: \(player.name!) \n")
+                    print("* Jugador: \(player.name) \n")
                 }
                 print("--------------------------------------------------------------------- \n")
+                XCTAssertNotEqual(0, players.count, "There is not any player saved")
             }
             XCTAssertNotNil(players, "There was an error loading all players")
         }
     }
     
-    func testDeletePlayer() {
-        testCreatePlayer()
-        service.getPlayer(withName: MockData.Player.name) { (player) in
-            XCTAssertNotNil(player, "There was an error loading a player named : \(MockData.Player.name)")
-            
-            service.deletePlayer(player: player!, completion: { (success) in
-                XCTAssertTrue(success, "There was a problem deleting the player named: \(player!.name ?? "No name")")
-            })
-        }
-    }
+//    func testDeletePlayer() {
+//        testCreatePlayer()
+//        service.getPlayer(withName: MockData.Player.name) { (player) in
+//            XCTAssertNotNil(player, "There was an error loading a player named : \(MockData.Player.name)")
+//            
+//            service.deletePlayer(player: player!, completion: { (success) in
+//                XCTAssertTrue(success, "There was a problem deleting the player named: \(player!.name)")
+//            })
+//        }
+//    }
 }
 

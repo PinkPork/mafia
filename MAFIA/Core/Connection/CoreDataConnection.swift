@@ -14,11 +14,12 @@ class CoreDataConnection {
     // MARK: - Vars & Constants
     
     static let shared = CoreDataConnection()
-    let managedContext: NSManagedObjectContext
+    var managedContext: NSManagedObjectContext
     
-    init() {
+    private init() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        managedContext = appDelegate.persistentContainer.viewContext
+        let persistantContainerContext = appDelegate.persistentContainer.viewContext
+        self.managedContext = persistantContainerContext
     }
     
     func getEntity(withName modelName: String) -> NSEntityDescription? {

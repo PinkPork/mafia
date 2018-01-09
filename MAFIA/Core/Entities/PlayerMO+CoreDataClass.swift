@@ -22,7 +22,7 @@ public class PlayerMO: NSManagedObject, CoreDataIdentifier {
     // MARK: - Vars & Constants
     
     static var entityName: String = "Player"
-    @NSManaged public var name: String?
+    @NSManaged public var name: String
     var role: Role = .none
     
     class func assignRandomRole(to players: [PlayerMO]) -> [PlayerMO] {
