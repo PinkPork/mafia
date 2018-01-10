@@ -34,6 +34,9 @@ extension NSManagedObjectContext: Database {
         return nil
     }
     
+    /// Saves an object
+    /// - parameter object: The object to be saved
+    /// - returns: true if the object could be saved otherwise false
     
     func save<Type>(_ object: Type) -> Bool {
         do {
@@ -44,6 +47,10 @@ extension NSManagedObjectContext: Database {
             return false
         }
     }
+    
+    /// Deletes an object
+    /// - parameter object: The object to be deleted
+    /// - returns: true if the object could be deleted otherwise false
     
     func delete<Type>(_ object: Type) -> Bool {
         

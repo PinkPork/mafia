@@ -69,13 +69,13 @@ class GamePresenter {
         }
     }
     
-    func eliminatePlayer(player: PlayerMO) {
-        GameManager.currentGame.eliminatePlayer(player)
+    func kill(player: PlayerMO) {
+        GameManager.currentGame.kill(player)
         view.updateGameUI()
     }
     
     func revivePlayer(player: PlayerMO) {
-        GameManager.currentGame.removeFromEliminatedPlayers(player)
+        GameManager.currentGame.revive(player)
         view.updateGameUI()
     }
     
@@ -90,7 +90,7 @@ class GamePresenter {
     }
     
     func restartGame() {
-        GameManager.currentGame.removeAllEliminatedPlayers()
+        GameManager.currentGame.reviveAllKilledPlayers()
         view.restartGame()
     }
 }

@@ -25,6 +25,15 @@ public class PlayerMO: NSManagedObject, CoreDataIdentifier {
     @NSManaged public var name: String
     var role: Role = .none
     
+    /// Assigns a random role to each player with the following rules:
+    /// 1. There is only **one king** on the game
+    /// 2. There is only **one doctor** on the game
+    /// 3. There is only **one sheriff** on the game
+    /// 4. There **third part** of the players playing are **mafia**
+    /// 5. The rest of players are **civilians**
+    /// - parameter players: The players playing on the current game
+    /// - returns: An Array of players, each of them with a random role setted
+    
     class func assignRandomRole(to players: [PlayerMO]) -> [PlayerMO] {
         
         let mafiaRoles = [Role](repeatElement(Role.mafia, count: players.count / 3))

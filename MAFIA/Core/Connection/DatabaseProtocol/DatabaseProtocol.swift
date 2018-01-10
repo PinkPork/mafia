@@ -9,6 +9,7 @@
 //
 // This protocol is intended to be used in every Database of we are using like CoreData, Firebase or something else,
 // the idea is to be conformed by the object. For example in this case it is conformed by NSManagedObjectContext
+//
 
 import Foundation
 import CoreData

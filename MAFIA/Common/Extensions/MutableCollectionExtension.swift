@@ -9,6 +9,7 @@
 import Foundation
 
 extension MutableCollection {
+    
     /// Shuffles the contents of this collection.
     mutating func shuffle() {
         let c = count

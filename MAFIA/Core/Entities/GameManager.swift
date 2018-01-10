@@ -11,6 +11,7 @@ import Foundation
 class GameManager {
     
     // MARK: - Vars & Constants
+    
     static let currentGame = GameManager()
     
     private var selectedListPlayers: PlayersListMO?
@@ -21,10 +22,7 @@ class GameManager {
     }
     
     var playersPlaying: [PlayerMO]? {
-        if let players = selectedListPlayers?.players {
-            return Array(players) as? [PlayerMO]
-        }
-        return nil
+        return selectedListPlayers?.players?.toArray()
     }
     
     var listName: String? {
@@ -35,6 +33,7 @@ class GameManager {
         return selectedListPlayers?.players?.count ?? 0
     }
     
+    /// Returns the number of civilians team players that are currently playing and are live
     var aliveCivilians: Int {
         get {
             let mafiaPlayers = numberOfPlayersPlaying / 3     //Esto sirve para calcular la cantidad de mafiosos.
@@ -47,6 +46,8 @@ class GameManager {
         }
     }
     
+    
+    /// Returns the number of mafia team players that are playing and are alive
     var aliveMafia: Int {
         get {
             var mafiaPlayers = numberOfPlayersPlaying / 3
@@ -61,17 +62,21 @@ class GameManager {
         selectedListPlayers = listPlayers
     }
     
-    func eliminatePlayer(_ player: PlayerMO) {
+    /// Adds a player to the `eliminatedPlayers` array.
+    /// parameter player: The player to be kill from the current game
+    func kill(_ player: PlayerMO) {
         eliminatedPlayers.append(player)
     }
     
-    func removeFromEliminatedPlayers(_ player: PlayerMO) {
+    /// Removes a player from the `eliminatedPlayers` array
+    /// parameter player: The player to be revived from the current game
+    func revive(_ player: PlayerMO) {
         if let index = eliminatedPlayers.index(of: player) {
             eliminatedPlayers.remove(at: index)
         }
     }
     
-    func removeAllEliminatedPlayers() {
+    func reviveAllKilledPlayers() {
         eliminatedPlayers.removeAll()
     }
     

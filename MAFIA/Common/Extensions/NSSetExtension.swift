@@ -9,6 +9,9 @@
 import Foundation
 
 extension NSSet {
+    
+    /// Converts the set into an array of the same type
+    /// - returns: An Array containing the objects from the set
     func toArray<Type>() -> [Type] {
         return Array(self) as! [Type]
     }

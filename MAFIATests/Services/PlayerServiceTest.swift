@@ -1,5 +1,5 @@
 //
-//  PlayerServiceTests.swift
+//  PlayerServiceTest.swift
 //  MAFIATests
 //
 //  Created by Santiago Carmona Gonzalez on 12/28/17.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import MAFIA
 
-class PlayerServiceTests: BaseTest {
+class PlayerServiceTest: BaseTest {
     
     var service: PlayerService!
     

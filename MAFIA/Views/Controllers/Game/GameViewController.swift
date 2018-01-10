@@ -171,7 +171,7 @@ extension GameViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let playerToEliminate = playersToDisplay[indexPath.row]
-        presenter.eliminatePlayer(player: playerToEliminate)
+        presenter.kill(player: playerToEliminate)
         presenter.didEndGame()
     }
     
