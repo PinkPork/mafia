@@ -28,7 +28,8 @@ class DetailListPlayersViewController: UIViewController {
         if let setPlayersFromList = (listPlayers?.players), let playersFromList = Array(setPlayersFromList) as? [PlayerMO] {
             players = playersFromList
         }
-        self.navigationItem.title = listPlayers?.name
+        guard let title = listPlayers?.name else { return }
+        self.navigationItem.title = title
         setupView()
         setupTableView()
     }
@@ -58,7 +59,11 @@ class DetailListPlayersViewController: UIViewController {
                 print("No existe el nombre de la lista")
                 return
             }
-            self.presenter.addPlayer(withName: playerName, list: list)
+            if self.players.filter({ $0.name == playerName }).count == 0 {
+                self.presenter.addPlayer(withName: playerName, list: list)
+            } else {
+                print("El jugador ya existe, o ese nombre ya esta asignado")
+            }
         }
         let cancelButton = UIAlertAction(title: "CANCEL_ACTION".localized(), style: .cancel)
         
@@ -103,13 +108,9 @@ class DetailListPlayersViewController: UIViewController {
 
 extension DetailListPlayersViewController: DetailListPlayersView {
     
-    func addNewPlayers(players: [PlayerMO]) { // Lucho puso PlayerMO como arreglo en el presenter, pero para las listas no era arreglo, cómo es?
-        if let player = players.last, self.players.filter({ $0 != player }).count == 0 {
-            self.players.append(player)
-            tableView.reloadData()
-        } else {
-            print("Ya existe ese jugador o no hay jugadores en la lista")
-        }
+    func addNewPlayer(player: PlayerMO) {
+        self.players.append(player)
+        tableView.reloadData()
     }
     
     func deletePlayer(player: PlayerMO, indexPath: IndexPath) {
@@ -147,7 +148,8 @@ extension DetailListPlayersViewController: UITableViewDelegate {
         
         return [UITableViewRowAction.init(style: .destructive, title: "DELETE_PLAYER_ACTION".localized(), handler: {[weak self] (_, indexpath) in
             if let strongSelf = self {
-                // strongSelf.presenter.deletePlayer(player: strongSelf.players[indexpath.row], list: listPlayers, indexPath: indexpath) // Cómo se incluye la lista en este caso?
+                guard let list = strongSelf.listPlayers else { return }
+                strongSelf.presenter.deletePlayer(player: strongSelf.players[indexPath.row], list: list, indexPath: indexPath)
             }
         } )]
     }
