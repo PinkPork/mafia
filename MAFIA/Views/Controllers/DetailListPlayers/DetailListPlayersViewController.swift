@@ -78,7 +78,6 @@ class DetailListPlayersViewController: UIViewController {
     
     private func setupView() {
         presenter = DetailListPlayersPresenter(view: self)
-        // presenter.     En ListPlayersViewController se usaba la función showListPlayers(), la cual no tiene similar en DetailListPlayersPresenter
     }
     
     private func setupTableView() {
@@ -165,7 +164,11 @@ extension DetailListPlayersViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        // DIsable the save button while editing.
+        updateAddButtonState(text: textField.text)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        // Disable the Save Button while editing.
         addPlayerAction?.isEnabled = false
     }
 }
