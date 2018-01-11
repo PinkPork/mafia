@@ -8,21 +8,18 @@
 
 import Foundation
 
-typealias AddPlayersToListCompletion = (([PlayerMO]?) -> Void)
+typealias AddPlayerToListCompletion = ((PlayerMO?) -> Void)
 typealias RemovePlayerFromListCompletion = ((Bool) -> Void)
 
 class DetailListPlayersService {
     
-    func add(toList list: PlayersListMO, playersWithName players: [String], completion: AddPlayersToListCompletion) {
+    func add(toList list: PlayersListMO, playerWithName player: String, completion: AddPlayerToListCompletion) {
         if let playerEntity = CoreDataConnection.shared.getEntity(withName: PlayerMO.entityName) {
-            let playersToAdd = players.map { (name) -> PlayerMO in
-                let rawPlayer = PlayerMO(entity: playerEntity, insertInto: CoreDataConnection.shared.managedContext)
-                rawPlayer.name = name
-                return rawPlayer
-            }
-            list.addToPlayers(NSSet(array: playersToAdd))
+            let rawPlayer = PlayerMO(entity: playerEntity, insertInto: CoreDataConnection.shared.managedContext)
+            rawPlayer.name = player
+            list.addToPlayers(rawPlayer)
             if CoreDataConnection.shared.managedContext.save(list) {
-                completion(playersToAdd)
+                completion(rawPlayer)
                 return
             }
             completion(nil)
