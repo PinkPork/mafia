@@ -9,7 +9,6 @@
 import Foundation
 
 protocol DetailListPlayersView: class {
-    func setListPlayers(listPlayers: [PlayersListMO])
     func addNewPlayers(players: [PlayerMO])
     func deletePlayer(player: PlayerMO, indexPath: IndexPath)
 }
