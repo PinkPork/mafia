@@ -28,7 +28,8 @@ class DetailListPlayersViewController: UIViewController {
         if let setPlayersFromList = (listPlayers?.players), let playersFromList = Array(setPlayersFromList) as? [PlayerMO] {
             players = playersFromList
         }
-        self.navigationItem.title = listPlayers?.name
+        guard let title = listPlayers?.name else { return }
+        self.navigationItem.title = title
         setupView()
         setupTableView()
     }
