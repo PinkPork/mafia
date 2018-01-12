@@ -20,6 +20,7 @@ class ListPlayersViewController: UIViewController {
     private var presenter: ListPlayersPresenter!
     weak var gamePresenter: GamePresenter!
     private var addListAction: UIAlertAction?
+    private let listCellIndetifier: String = "PlayersListCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +68,7 @@ class ListPlayersViewController: UIViewController {
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.register(UINib.init(nibName: "PlayersListTableViewCell", bundle: nil), forCellReuseIdentifier: listCellIndetifier)
     }
     
     
@@ -105,6 +107,17 @@ extension ListPlayersViewController: ListPlayersView {
     }
 }
 
+// MARK: - PlayersListTableViewCellDelegate protocol conformance
+
+extension ListPlayersViewController: PlayersListTableViewCellDelegate {
+    func startGame(withList list: PlayersListMO) {
+        print("Se imprimió el botón")
+        presenter.selectList(list: list)
+        gamePresenter.restartGame()
+        self.navigationController?.popViewController(animated: true)
+    }
+}
+
 // MARK: - TableView DataSource
 
 extension ListPlayersViewController: UITableViewDataSource {
@@ -114,9 +127,10 @@ extension ListPlayersViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: listCellIndetifier, for: indexPath)  as! PlayersListTableViewCell
         let list = listPlayers[indexPath.row]
-        cell.textLabel?.text = list.name
+        cell.setCellData(list: list)
+        cell.delegate = self
         return cell
     }
 }
@@ -127,8 +141,6 @@ extension ListPlayersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedList = listPlayers[indexPath.row]
         self.performSegue(withIdentifier: Segues.detailListPlayers, sender: selectedList)
-//        presenter.selectList(list: selectedList)
-//        gamePresenter.restartGame()
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
