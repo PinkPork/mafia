@@ -29,23 +29,18 @@ class DetailListPlayersServiceTest: BaseTest {
     }
     
     func testAddPlayersToList() {
-        service.add(toList: list, playersWithName: MockData.Player.rawPlayers) { (playersAdded) in
+        service.add(toList: list, playerWithName: MockData.Player.name) { (playersAdded) in
             XCTAssertNotNil(playersAdded, "There was an error adding the players")
-            XCTAssertNotEqual(0, playersAdded!.count, "There were not any player added to the list")
             print("-----------------------------------------------------------")
-            for player in playersAdded! {
-                print("\n The player named: \(player.name) was added to the list named: \(list.name) \n")
-            }
+            print("\n The player named: \(playersAdded!.name) was added to the list named: \(list.name) \n")
             print("-----------------------------------------------------------")
         }
     }
     
     func testRemovePlayerFromList() {
         
-        service.add(toList: list, playersWithName: MockData.Player.rawPlayers) { (playersAdded) in
+        service.add(toList: list, playerWithName: MockData.Player.name1) { (playersAdded) in
             XCTAssertNotNil(playersAdded, "There was an error adding the players")
-            XCTAssertNotEqual(0, playersAdded!.count, "There were not any player added to the list")
-            
             XCTAssertNotNil(list.players, "There was an error with the players in the current list")
             if let firstPlayer: PlayerMO = list.players!.toArray().first {
                 print("\n ------ Removing player named: \(firstPlayer.name) from list: \(list.name) ------")
