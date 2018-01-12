@@ -11,6 +11,6 @@ import Foundation
 
 /// Main rules used in MAFIA Game
 struct GameRules {
-    static let minimumPlayers = 5
+    static let minimumPlayers = 6
     static let uniqueRoles = [Role.doctor, Role.king, Role.sheriff]
 }
