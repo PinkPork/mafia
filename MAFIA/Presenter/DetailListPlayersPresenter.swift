@@ -9,8 +9,7 @@
 import Foundation
 
 protocol DetailListPlayersView: class {
-    func setListPlayers(listPlayers: [PlayersListMO])
-    func addNewPlayers(players: [PlayerMO])
+    func addNewPlayer(player: PlayerMO)
     func deletePlayer(player: PlayerMO, indexPath: IndexPath)
 }
 
@@ -24,9 +23,9 @@ class DetailListPlayersPresenter {
     }
     
     func addPlayer(withName name: String, list: PlayersListMO) {
-        detailListPlayersService.add(toList: list, playersWithName: [name]) { [weak self] (players) in
-            if let players = players {
-                self?.view.addNewPlayers(players: players)
+        detailListPlayersService.add(toList: list, playerWithName: name) { [weak self] (player) in
+            if let player = player {
+                self?.view.addNewPlayer(player: player)
             }
         }
     }

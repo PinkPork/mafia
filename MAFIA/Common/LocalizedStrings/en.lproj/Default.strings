@@ -18,12 +18,14 @@
 
 "END_GAME_TITLE" = "Fin del juego";
 "ADD_LIST_TITLE" = "Agregar Listas";
+"ADD_PLAYER_TITLE" = "Agregar Jugadores";
 
 // MARK: - Alert Messages
 
 "MAFIA_WON_GAME_MESSAGE" = "La mafia gano el juego";
 "CIVILIANS_WON_GAME_MESSAGE" = "Los aldeanos ganaron el juego";
 "ADD_LIST_MESSAGE" = "Ingrese las listas deseadas";
+"ADD_PLAYER_MESSAGE" = "Ingrese los jugadores deseados";
 
 // MARK: - Alert Action Titles
 
@@ -33,6 +35,7 @@
 "ADD_LIST_ACTION" = "Agregar lista";
 "CANCEL_ACTION" = "Cancelar";
 "DELETE_LIST_ACTION" = "Eliminar Lista";
+"ADD_PLAYER_ACTION" = "Agregar Jugador";
 
 // MARK: - Menu Titles
 
