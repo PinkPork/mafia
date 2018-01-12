@@ -33,6 +33,7 @@ class DetailListPlayersViewController: UIViewController {
         setupView()
         setupTableView()
     }
+    // .
     
     // MARK: - IBActions
     
