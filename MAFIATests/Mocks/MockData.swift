@@ -24,7 +24,7 @@ struct MockData {
         }
         
         static var rawPlayers: [String] {
-            return [Player.name, Player.name1, Player.name2, Player.name3, Player.name4]
+            return [Player.name, Player.name1, Player.name2, Player.name3, Player.name4, Player.name5]
         }
     }
     
