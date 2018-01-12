@@ -17,6 +17,7 @@ struct MockData {
         static let name2: String = "Player Test2"
         static let name3: String = "Player Test3"
         static let name4: String = "Player Test4"
+        static let name5: String = "Player Test5"
         
         static var playerEntityName: NSEntityDescription {
             return CoreDataConnection.shared.getEntity(withName: PlayerMO.entityName)!
