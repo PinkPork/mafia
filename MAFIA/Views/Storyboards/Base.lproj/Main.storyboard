@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mhX-BQ-57f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mhX-BQ-57f">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -177,16 +177,38 @@
             </objects>
             <point key="canvasLocation" x="1750" y="-553"/>
         </scene>
-        <!--Detail List Players View Controller-->
+        <!--Title-->
         <scene sceneID="iSa-nx-pZy">
             <objects>
                 <viewController id="eYo-vp-qMA" customClass="DetailListPlayersViewController" customModule="MAFIA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oXX-Kc-fuE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JMX-Bw-gP8">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2tv-Eu-i3i" firstAttribute="trailing" secondItem="JMX-Bw-gP8" secondAttribute="trailing" id="7AW-ne-gvb"/>
+                            <constraint firstItem="2tv-Eu-i3i" firstAttribute="bottom" secondItem="JMX-Bw-gP8" secondAttribute="bottom" id="CFJ-sn-lAO"/>
+                            <constraint firstItem="JMX-Bw-gP8" firstAttribute="top" secondItem="2tv-Eu-i3i" secondAttribute="top" id="Gfx-6r-iYy"/>
+                            <constraint firstItem="JMX-Bw-gP8" firstAttribute="leading" secondItem="2tv-Eu-i3i" secondAttribute="leading" id="yrO-50-qHp"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="2tv-Eu-i3i"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="Sp3-rK-gWI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dvQ-KM-wqI">
+                            <connections>
+                                <action selector="addPlayer:" destination="eYo-vp-qMA" id="67A-aE-hMB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="JMX-Bw-gP8" id="La2-wI-XNC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ah3-t3-k9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
