@@ -18,7 +18,7 @@ class PlayersListService: BaseService {
         if let playerEntity = CoreDataConnection.shared.getEntity(withName: PlayersListMO.entityName) {
             let playerList = PlayersListMO(entity: playerEntity, insertInto: CoreDataConnection.shared.managedContext)
             playerList.name = name
-            playerList.players = NSSet(array: players)
+            playerList.players = players.toNSSet()
             if CoreDataConnection.shared.managedContext.save(playerList) {
                 completion(playerList)
                 return

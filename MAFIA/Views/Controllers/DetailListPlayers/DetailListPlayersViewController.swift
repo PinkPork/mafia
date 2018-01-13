@@ -24,18 +24,10 @@ class DetailListPlayersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let setPlayersFromList = (listPlayers?.players), let playersFromList = Array(setPlayersFromList) as? [PlayerMO] {
-            players = playersFromList
-        }
-        guard let title = listPlayers?.name else { return }
-        self.navigationItem.title = title
         setupView()
         setupTableView()
     }
-    // .
     
-    // Otro comentario
     // MARK: - IBActions
     
     @IBAction func addPlayer(_ sender: Any) {
@@ -75,6 +67,11 @@ class DetailListPlayersViewController: UIViewController {
     
     private func setupView() {
         presenter = DetailListPlayersPresenter(view: self)
+        if  let playersFromList: [PlayerMO] = listPlayers?.players?.toArray() {
+            players = playersFromList
+        }
+        guard let title = listPlayers?.name else { return }
+        self.navigationItem.title = title
     }
     
     private func setupTableView() {
@@ -135,10 +132,6 @@ extension DetailListPlayersViewController: UITableViewDataSource {
 // MARK: - TableView Delegate
 
 extension DetailListPlayersViewController: UITableViewDelegate {
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let selectedPlayer = players[indexPath.row]
-//    }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? { // Use -tableView:trailingSwipeActionsConfigurationForRowAtIndexPath: instead of this method, which will be deprecated in a future release.
         

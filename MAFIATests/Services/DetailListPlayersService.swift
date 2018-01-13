@@ -42,7 +42,7 @@ class DetailListPlayersServiceTest: BaseTest {
         service.add(toList: list, playerWithName: MockData.Player.name1) { (playersAdded) in
             XCTAssertNotNil(playersAdded, "There was an error adding the players")
             XCTAssertNotNil(list.players, "There was an error with the players in the current list")
-            if let firstPlayer: PlayerMO = list.players!.toArray().first {
+            if let firstPlayer: PlayerMO = list.players?.toArray().first {
                 print("\n ------ Removing player named: \(firstPlayer.name) from list: \(list.name) ------")
                 service.remove(firstPlayer, fromList: list, completion: { (success) in
                     if success {
