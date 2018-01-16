@@ -85,11 +85,56 @@
                         <outlet property="mafiaLabel" destination="08L-Io-bBv" id="195-sg-COC"/>
                         <outlet property="tableView" destination="oQm-oX-6bK" id="lJT-3B-2rn"/>
                         <segue destination="3Yn-SM-Kce" kind="show" identifier="SeguePlayersList" id="juw-8L-iw2"/>
+                        <segue destination="H2k-sV-yND" kind="show" id="bVc-i7-CNv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="889" y="332"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="bhn-11-JlY">
+            <objects>
+                <viewController id="H2k-sV-yND" customClass="PlayerDetailViewController" customModule="MAFIA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oOS-9r-9Tu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qne-De-V0W">
+                                <rect key="frame" x="16" y="98" width="343" height="45"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hKn-w2-qxX">
+                                <rect key="frame" x="67" y="213" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fe-oS-cEb">
+                                <rect key="frame" x="122" y="489" width="130" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qne-De-V0W" firstAttribute="leading" secondItem="zom-Fh-kdX" secondAttribute="leading" constant="16" id="a5g-lY-Ocq"/>
+                            <constraint firstItem="zom-Fh-kdX" firstAttribute="trailing" secondItem="qne-De-V0W" secondAttribute="trailing" constant="16" id="uKc-wl-1ye"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zom-Fh-kdX"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="gyP-zc-QY8"/>
+                    <connections>
+                        <outlet property="nameLabel" destination="qne-De-V0W" id="9Sk-3Y-rjJ"/>
+                        <outlet property="roleImageView" destination="hKn-w2-qxX" id="hqY-pd-0f0"/>
+                        <outlet property="roleLabel" destination="9Fe-oS-cEb" id="8zh-BV-mWt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jer-ix-qqH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2198" y="331"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hli-Bk-gWx">
