@@ -19,7 +19,7 @@ class GamePresenterTest: XCTestCase {
         super.setUp()
         mockPlayerService = MockPlayerService(players: getMockPlayers())
         let selectedPlayerList = PlayersListMO(entity: CoreDataConnection.shared.getEntity(withName: PlayersListMO.entityName)!, insertInto: CoreDataConnection.shared.managedContext)
-        selectedPlayerList.players = NSSet(array: getMockPlayers())
+        selectedPlayerList.players =  getMockPlayers().toNSSet()
         GameManager.currentGame.setSelectedList(listPlayers: selectedPlayerList)
         gamePresenterTest = GamePresenter(view: mockGameView, playerService: mockPlayerService)
     }

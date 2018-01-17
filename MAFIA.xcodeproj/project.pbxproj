@@ -42,6 +42,7 @@
 		96591C7F1FE85B660067BB2E /* MAFIATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96591C7E1FE85B660067BB2E /* MAFIATests.swift */; };
 		96591C8A1FE85B660067BB2E /* MAFIAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96591C891FE85B660067BB2E /* MAFIAUITests.swift */; };
 		965F34F91FE9CE8C00752CD9 /* MutableCollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F34F81FE9CE8C00752CD9 /* MutableCollectionExtension.swift */; };
+		967F417020098EEB006D04CB /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F416F20098EEB006D04CB /* ArrayExtension.swift */; };
 		96B3C3171FF40BB100363A3F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B3C3161FF40BB100363A3F /* MenuViewController.swift */; };
 		96BEA68C1FF42F6000231518 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BEA68B1FF42F6000231518 /* MenuPresenter.swift */; };
 		96F9DE7F1FED60A900C32C30 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F9DE7D1FED60A900C32C30 /* MenuTableViewCell.swift */; };
@@ -116,6 +117,7 @@
 		96591C891FE85B660067BB2E /* MAFIAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAFIAUITests.swift; sourceTree = "<group>"; };
 		96591C8B1FE85B660067BB2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		965F34F81FE9CE8C00752CD9 /* MutableCollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCollectionExtension.swift; sourceTree = "<group>"; };
+		967F416F20098EEB006D04CB /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		96B3C3161FF40BB100363A3F /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		96BEA68B1FF42F6000231518 /* MenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
 		96F9DE7D1FED60A900C32C30 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 				6E8F889D1FF701D900F7AB49 /* NSManagedObjectContextExtension.swift */,
 				965F34F81FE9CE8C00752CD9 /* MutableCollectionExtension.swift */,
 				96173D822005597A008742AA /* NSSetExtension.swift */,
+				967F416F20098EEB006D04CB /* ArrayExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -573,6 +576,7 @@
 				9620D7B61FE95134008E0F55 /* CoreDataConnection.swift in Sources */,
 				96591C671FE85B660067BB2E /* AppDelegate.swift in Sources */,
 				97CE9FD31FEB14C900A8A55E /* StringExtension.swift in Sources */,
+				967F417020098EEB006D04CB /* ArrayExtension.swift in Sources */,
 				6E2618AF1FF5D2B200F3AF93 /* BaseService.swift in Sources */,
 				965F34F91FE9CE8C00752CD9 /* MutableCollectionExtension.swift in Sources */,
 				963BA3DE1FF58E6000090DDE /* PlayersListMO+CoreDataClass.swift in Sources */,
