@@ -22,7 +22,6 @@ enum Role { // TODO: This might change in the future if we are going to add the 
     }
 }
 
-
 /// The options displayed on the side Menu
 enum MenuOptions: String {
     
