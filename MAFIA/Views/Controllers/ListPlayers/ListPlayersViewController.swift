@@ -36,15 +36,15 @@ class ListPlayersViewController: UIViewController {
             textField.delegate = self
             textField.becomeFirstResponder()
         }
-        addListAction = UIAlertAction(title: "ADD_LIST_ACTION".localized(), style: .default) { (action) in
+        addListAction = UIAlertAction(title: "ADD_ACTION".localized(), style: .default) { (action) in
             let textField = alertController.textFields?.first
             
             guard let listName = textField?.text else { return }
             if self.listPlayers.filter({ $0.name == listName }).count == 0 {
                 self.presenter.createList(withName: listName)
-                self.presentActionSheet(title: "LIST_ADDED_TITLE", message: String.localizedStringWithFormat("LIST_ADDED_MESSAGE".localized(), listName))
+                self.presentActionSheet(title: "LIST_ADDED_TITLE".localized(), message: String.localizedStringWithFormat("LIST_ADDED_MESSAGE".localized(), listName))
             } else {
-                self.presentActionSheet(title: "LIST_ALREADY_ADDED_TITLE", message: String.localizedStringWithFormat("LIST_ALREADY_ADDED_MESSAGE".localized(), listName))
+                self.presentActionSheet(title: "LIST_ALREADY_ADDED_TITLE".localized(), message: String.localizedStringWithFormat("LIST_ALREADY_ADDED_MESSAGE".localized(), listName))
             }
             
         }
@@ -72,15 +72,6 @@ class ListPlayersViewController: UIViewController {
     private func updateAddButtonState(text: String?) {
         let emptyText = text ?? ""
         addListAction?.isEnabled = !emptyText.isEmpty
-    }
-    
-    private func presentActionSheet(title: String?, message: String?) {
-        let alertActionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-        let okayAction = UIAlertAction(title: "OKAY".localized(), style: .default, handler: nil)
-        
-        alertActionSheet.addAction(okayAction)
-        
-        self.present(alertActionSheet, animated: true, completion: nil)
     }
     
     // MARK: - Navigation
@@ -147,7 +138,7 @@ extension ListPlayersViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        return [UITableViewRowAction.init(style: .destructive, title: "DELETE_LIST_ACTION".localized(), handler: { [weak self] (_, indexPath) in
+        return [UITableViewRowAction.init(style: .destructive, title: "DELETE_ACTION".localized(), handler: { [weak self] (_, indexPath) in
             if let strongSelf = self {
                 strongSelf.presenter.deleteList(playersList: strongSelf.listPlayers[indexPath.row], indexPath: indexPath)
             }

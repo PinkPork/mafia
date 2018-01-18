@@ -39,7 +39,7 @@ class DetailListPlayersViewController: UIViewController {
             textField.becomeFirstResponder()
         }
         
-        addPlayerAction = UIAlertAction(title: "ADD_PLAYER_ACTION".localized(), style: .default) { (action) in
+        addPlayerAction = UIAlertAction(title: "ADD_ACTION".localized(), style: .default) { (action) in
             let textField = alertController.textFields?.first
             guard let playerName = textField?.text, !playerName.isEmpty else { return }
             guard let list = self.listPlayers else { return }
@@ -81,14 +81,6 @@ class DetailListPlayersViewController: UIViewController {
         addPlayerAction?.isEnabled = !emptyText.isEmpty
     }
     
-    private func presentActionSheet(title: String?, message: String?) {
-        let alertActionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-        let okayAction = UIAlertAction(title: "OKAY".localized(), style: .default, handler: nil)
-        
-        alertActionSheet.addAction(okayAction)
-        
-        self.present(alertActionSheet, animated: true, completion: nil)
-    }
 }
 
 // MARK: - DetailListPlayersView protocol conformace
@@ -128,7 +120,7 @@ extension DetailListPlayersViewController: UITableViewDataSource {
 extension DetailListPlayersViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "DELETE_PLAYER_ACTION") {
+        let deleteAction = UIContextualAction(style: .destructive, title: "DELETE_ACTION") {
             [weak self] (contextAction: UIContextualAction, sourceView: UIView, completion: (Bool) -> Void) in
             if let strongSelf = self {
                 guard let list = strongSelf.listPlayers else { return }
