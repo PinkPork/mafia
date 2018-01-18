@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 protocol MenuView: class {
     func setMenu(options: [MenuOptions])
 }

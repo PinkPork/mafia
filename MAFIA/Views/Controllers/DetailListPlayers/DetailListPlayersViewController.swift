@@ -36,22 +36,18 @@ class DetailListPlayersViewController: UIViewController {
         
         alertController.addTextField { (textField) in
             textField.delegate = self
+            textField.becomeFirstResponder()
         }
         
-        addPlayerAction = UIAlertAction(title: "ADD_PLAYER_ACTION".localized(), style: .default) { (action) in
+        addPlayerAction = UIAlertAction(title: "ADD_ACTION".localized(), style: .default) { (action) in
             let textField = alertController.textFields?.first
-            guard let playerName = textField?.text, !playerName.isEmpty else {
-                print("No hay ningún texto")
-                return
-            }
-            guard let list = self.listPlayers else {
-                print("No existe el nombre de la lista")
-                return
-            }
+            guard let playerName = textField?.text, !playerName.isEmpty else { return }
+            guard let list = self.listPlayers else { return }
             if self.players.filter({ $0.name == playerName }).count == 0 {
                 self.presenter.addPlayer(withName: playerName, list: list)
+                self.presentActionSheet(title: "PLAYER_ADDED_TITLE".localized(), message: String.localizedStringWithFormat("PLAYER_ADDED_MESSAGE".localized(), playerName))
             } else {
-                print("El jugador ya existe, o ese nombre ya esta asignado")
+                self.presentActionSheet(title: "PLAYER_ALREADY_ADDED_TITLE".localized(), message: "PLAYER_ALREADY_ADDED_MESSAGE".localized())
             }
         }
         let cancelButton = UIAlertAction(title: "CANCEL_ACTION".localized(), style: .cancel)
@@ -84,16 +80,6 @@ class DetailListPlayersViewController: UIViewController {
         let emptyText = text ?? ""
         addPlayerAction?.isEnabled = !emptyText.isEmpty
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
 }
 
@@ -133,22 +119,27 @@ extension DetailListPlayersViewController: UITableViewDataSource {
 
 extension DetailListPlayersViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? { // Use -tableView:trailingSwipeActionsConfigurationForRowAtIndexPath: instead of this method, which will be deprecated in a future release.
-        
-        return [UITableViewRowAction.init(style: .destructive, title: "DELETE_PLAYER_ACTION".localized(), handler: {[weak self] (_, indexpath) in
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "DELETE_ACTION") {
+            [weak self] (contextAction: UIContextualAction, sourceView: UIView, completion: (Bool) -> Void) in
             if let strongSelf = self {
                 guard let list = strongSelf.listPlayers else { return }
                 strongSelf.presenter.deletePlayer(player: strongSelf.players[indexPath.row], list: list, indexPath: indexPath)
+                completion(true)
+            } else {
+                completion(false)
             }
-        } )]
+        }
+        let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
+        return swipeConfig
     }
+    
 }
 
 // MARK: - TextField Delegate
 
 extension DetailListPlayersViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // Hide the keyboard.
         textField.resignFirstResponder()
         return true
     }
@@ -158,7 +149,6 @@ extension DetailListPlayersViewController: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        // Disable the Save Button while editing.
         addPlayerAction?.isEnabled = false
     }
 }
