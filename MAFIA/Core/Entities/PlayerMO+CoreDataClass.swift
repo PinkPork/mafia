@@ -36,10 +36,10 @@ public class PlayerMO: NSManagedObject, CoreDataIdentifier {
     
     class func assignRandomRole(to players: [PlayerMO]) -> [PlayerMO] {
         
-        let mafiaRoles = [Role](repeatElement(Role.mafia, count: players.count / 3))
-        let civiliansTotal = players.count - (mafiaRoles.count + GameRules.uniqueRoles.count)
-        let civiliansRoles = [Role](repeatElement(.civilian, count: civiliansTotal))
-        var allRoles = GameRules.uniqueRoles + mafiaRoles + civiliansRoles
+        let mobRoles = [Role](repeatElement(Role.mob, count: players.count / 3))
+        let villagersTotal = players.count - (mobRoles.count + GameRules.uniqueRoles.count)
+        let villagersRoles = [Role](repeatElement(.villager, count: villagersTotal))
+        var allRoles = GameRules.uniqueRoles + mobRoles + villagersRoles
         
         allRoles.shuffle()
         for (index, player) in players.enumerated() {

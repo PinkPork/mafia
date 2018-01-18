@@ -13,12 +13,15 @@ enum Role { // TODO: This might change in the future if we are going to add the 
     case king,
     doctor,
     sheriff,
-    civilian,
-    mafia,
+    villager,
+    mob,
     none
     
     var imageDescription: String {
         return String(describing: self)
+    }
+    var roleDescription: String {
+        return String(describing: self).localized()
     }
 }
 

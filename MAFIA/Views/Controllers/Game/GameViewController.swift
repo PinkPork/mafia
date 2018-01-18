@@ -13,8 +13,8 @@ class GameViewController: UIViewController {
     // MARK: - IBOutlets
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var civiliansLabel: UILabel!
-    @IBOutlet weak var mafiaLabel: UILabel!
+    @IBOutlet weak var villagerLabel: UILabel!
+    @IBOutlet weak var mobLabel: UILabel!
     @IBOutlet weak var currentPlayerListName: UILabel!
     
     
@@ -58,8 +58,8 @@ class GameViewController: UIViewController {
         presenter = GamePresenter(view: self)
         presenter.showPlayers()
         currentPlayerListName.text = "LIST_PLAYER_NO_NAME".localized()
-        civiliansLabel.text = nil
-        mafiaLabel.text = nil
+        villagerLabel.text = nil
+        mobLabel.text = nil
     }
     
     private func setupTableView() {
@@ -103,17 +103,17 @@ extension GameViewController: GameView {
     }
     
     func updateGameUI() {
-        civiliansLabel.text = presenter.aliveCiviliansPlayerText
-        mafiaLabel.text = presenter.aliveMafiaPlayerText
+        villagerLabel.text = presenter.aliveCiviliansPlayerText
+        mobLabel.text = presenter.aliveMafiaPlayerText
         currentPlayerListName.text = presenter.selectedListName
     }
     
     func endGame(winner: Role) {
         var message: String = ""
         switch winner {
-        case .civilian:
+        case .villager:
             message = "CIVILIANS_WON_GAME_MESSAGE".localized()
-        case .mafia:
+        case .mob:
             message = "MAFIA_WON_GAME_MESSAGE".localized()
         default:
             return
@@ -173,6 +173,7 @@ extension GameViewController: UITableViewDelegate {
         let playerToEliminate = playersToDisplay[indexPath.row]
         presenter.kill(player: playerToEliminate)
         presenter.didEndGame()
+        print(playerToEliminate.role.roleDescription)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
