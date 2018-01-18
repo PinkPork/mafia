@@ -6,17 +6,25 @@
 //  Copyright © 2018 Santiago Carmona Gonzalez. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 extension UIViewController {
     
-    func presentActionSheet(title: String?, message: String?) {
-        let alertActionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-        let okayAction = UIAlertAction(title: "OKAY".localized(), style: .default, handler: nil)
+    func presentAlert(title: String?, message: String?, preferredStyle: UIAlertControllerStyle = .alert, completionFirstAction: (() -> Void)? = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
+        let okayAction = UIAlertAction(title: "OKAY".localized(), style: .default) { _ in
+            completionFirstAction?()
+        }
         
-        alertActionSheet.addAction(okayAction)
+        alertController.addAction(okayAction)
         
-        self.present(alertActionSheet, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
+
+extension UIViewController: BaseView {
+    func showAlert(withTitle title: String?, message: String?, preferredStyle: UIAlertControllerStyle, completionFirstAction: (() -> Void)?) {
+        self.presentAlert(title: title, message: message, preferredStyle: preferredStyle, completionFirstAction: completionFirstAction)
+    }
+}
+

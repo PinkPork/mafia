@@ -16,11 +16,11 @@ class DetailListPlayersViewController: UIViewController {
     
     // MARK: - Vars & Constants
     
-    private var players: [PlayerMO] = [PlayerMO]()
+    private var players: [PlayerData] = [PlayerData]()
     private var presenter: DetailListPlayersPresenter!
     private var addPlayerAction: UIAlertAction?
     
-    weak var listPlayers: PlayersListMO?
+    weak var listPlayers: PlayersListMO!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,31 +31,7 @@ class DetailListPlayersViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func addPlayer(_ sender: Any) {
-        
-        let alertController = UIAlertController(title: "ADD_PLAYER_TITLE".localized(), message: "ADD_PLAYER_MESSAGE".localized(), preferredStyle: .alert)
-        
-        alertController.addTextField { (textField) in
-            textField.delegate = self
-            textField.becomeFirstResponder()
-        }
-        
-        addPlayerAction = UIAlertAction(title: "ADD_ACTION".localized(), style: .default) { (action) in
-            let textField = alertController.textFields?.first
-            guard let playerName = textField?.text, !playerName.isEmpty else { return }
-            guard let list = self.listPlayers else { return }
-            if self.players.filter({ $0.name == playerName }).count == 0 {
-                self.presenter.addPlayer(withName: playerName, list: list)
-                self.presentActionSheet(title: "PLAYER_ADDED_TITLE".localized(), message: String.localizedStringWithFormat("PLAYER_ADDED_MESSAGE".localized(), playerName))
-            } else {
-                self.presentActionSheet(title: "PLAYER_ALREADY_ADDED_TITLE".localized(), message: "PLAYER_ALREADY_ADDED_MESSAGE".localized())
-            }
-        }
-        let cancelButton = UIAlertAction(title: "CANCEL_ACTION".localized(), style: .cancel)
-        
-        alertController.addAction(addPlayerAction!)
-        alertController.addAction(cancelButton)
-        
-        self.present(alertController, animated: true, completion: nil)
+        showAddPlayerPopUp()
     }
     
     
@@ -81,22 +57,44 @@ class DetailListPlayersViewController: UIViewController {
         addPlayerAction?.isEnabled = !emptyText.isEmpty
     }
     
+    private func showAddPlayerPopUp() {
+        let alertController = UIAlertController(title: "ADD_PLAYER_TITLE".localized(), message: "ADD_PLAYER_MESSAGE".localized(), preferredStyle: .alert)
+        
+        alertController.addTextField { (textField) in
+            textField.delegate = self
+            textField.becomeFirstResponder()
+        }
+        
+        addPlayerAction = UIAlertAction(title: "ADD_ACTION".localized(), style: .default) { (action) in
+            let textField = alertController.textFields?.first
+            guard let playerName = textField?.text, !playerName.isEmpty else { return }
+            guard let list = self.listPlayers else { return }
+            self.presenter.addPlayer(withName: playerName, toList: list, errorCompletion: self.showAddPlayerPopUp)
+        }
+        
+        let cancelButton = UIAlertAction(title: "CANCEL_ACTION".localized(), style: .cancel)
+        
+        alertController.addAction(addPlayerAction!)
+        alertController.addAction(cancelButton)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
 }
 
 // MARK: - DetailListPlayersView protocol conformace
 
 extension DetailListPlayersViewController: DetailListPlayersView {
-    
-    func addNewPlayer(player: PlayerMO) {
+   
+    func addNewPlayer(player: PlayerData) {
         self.players.append(player)
         tableView.reloadData()
     }
     
-    func deletePlayer(player: PlayerMO, indexPath: IndexPath) {
+    func deletePlayer(player: PlayerData, indexPath: IndexPath) {
         players.remove(at: indexPath.row)
         tableView.reloadData()
     }
-    
 }
 
 // MARK: - TableView DataSource
@@ -120,7 +118,7 @@ extension DetailListPlayersViewController: UITableViewDataSource {
 extension DetailListPlayersViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "DELETE_ACTION") {
+        let deleteAction = UIContextualAction(style: .destructive, title: "DELETE_ACTION".localized()) {
             [weak self] (contextAction: UIContextualAction, sourceView: UIView, completion: (Bool) -> Void) in
             if let strongSelf = self {
                 guard let list = strongSelf.listPlayers else { return }

@@ -31,7 +31,7 @@
 "ADD_LIST_MESSAGE" = "Ingrese el nombre de la lista que desea agregar.";
 "ADD_PLAYER_MESSAGE" = "Ingrese el nombre del jugador que desea agregar.";
 "LIST_ADDED_MESSAGE" = "La lista \"%@\" fue agregada exitosamente.";
-"LIST_ALREADY_ADDED_MESSAGE" = "El nombre de la lista, ya existe, ingrese un nombre diferente.";
+"LIST_ALREADY_ADDED_MESSAGE" = "El nombre de la lista %@, ya existe, ingrese un nombre diferente.";
 "PLAYER_ADDED_MESSAGE" = "El jugador \"%@\", fue agregado exitosamente";
 "PLAYER_ALREADY_ADDED_MESSAGE" = "El nombre del jugador ya fue ingresado previamente, ingrese un jugador diferente.";
 

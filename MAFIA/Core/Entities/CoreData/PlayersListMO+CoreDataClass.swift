@@ -21,6 +21,8 @@ public class PlayersListMO: NSManagedObject, CoreDataIdentifier {
         return NSFetchRequest<PlayersListMO>(entityName: "PlayersList")
     }
     
+    
+    
     @NSManaged public var name: String
     @NSManaged public var players: NSSet?
     
@@ -35,4 +37,5 @@ public class PlayersListMO: NSManagedObject, CoreDataIdentifier {
     
     @objc(removePlayers:)
     @NSManaged public func removeFromPlayers(_ values: NSSet)
+    
 }

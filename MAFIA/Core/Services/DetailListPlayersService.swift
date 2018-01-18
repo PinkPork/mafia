@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias AddPlayerToListCompletion = ((PlayerMO?) -> Void)
+typealias AddPlayerToListCompletion = ((PlayerData?) -> Void)
 typealias RemovePlayerFromListCompletion = ((Bool) -> Void)
 
 class DetailListPlayersService {
@@ -26,8 +26,8 @@ class DetailListPlayersService {
         }
     }
     
-    func remove(_ player: PlayerMO, fromList list: PlayersListMO, completion: RemovePlayerFromListCompletion) {
-        list.removeFromPlayers(player)
+    func remove(_ player: PlayerData, fromList list: PlayersListMO, completion: RemovePlayerFromListCompletion) {
+        list.removeFromPlayers(player as! PlayerMO)
         completion(CoreDataConnection.shared.managedContext.save(list))
     }
 }

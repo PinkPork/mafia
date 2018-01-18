@@ -1,30 +1,28 @@
 //
-//  PlayerMO+CoreDataClass.swift
+//  Player.swift
 //  MAFIA
 //
-//  Created by Santiago Carmona Gonzalez on 12/19/17.
-//  Copyright © 2017 Santiago Carmona Gonzalez. All rights reserved.
-//
+//  Created by Santiago Carmona Gonzalez on 1/18/18.
+//  Copyright © 2018 Santiago Carmona Gonzalez. All rights reserved.
 //
 
 import Foundation
-import CoreData
 
-
-
-protocol CoreDataIdentifier {
-    static var entityName: String { get }
+protocol PlayerData {
+    var name: String { get }
+    var role: Role { get set }
 }
 
-@objc(PlayerMO)
-public class PlayerMO: NSManagedObject, CoreDataIdentifier {
-    
-    // MARK: - Vars & Constants
-    
-    static var entityName: String = "Player"
-    @NSManaged public var name: String
-    var role: Role = .none
-    
+// We could use this struct if we decide to migrate to firebase or webservices.
+struct Player: PlayerData {
+    var name: String
+    var role: Role
+
+    init(name: String) {
+        self.name = name
+        role = .none
+    }
+
     /// Assigns a random role to each player with the following rules:
     /// 1. There is only **one king** on the game
     /// 2. There is only **one doctor** on the game
@@ -33,16 +31,16 @@ public class PlayerMO: NSManagedObject, CoreDataIdentifier {
     /// 5. The rest of players are **civilians**
     /// - parameter players: The players playing on the current game
     /// - returns: An Array of players, each of them with a random role setted
-    
-    class func assignRandomRole(to players: [PlayerMO]) -> [PlayerMO] {
-        
+
+    static func assignRandomRole(to players: [PlayerData]) -> [PlayerData] {
+
         let mafiaRoles = [Role](repeatElement(Role.mafia, count: players.count / 3))
         let civiliansTotal = players.count - (mafiaRoles.count + GameRules.uniqueRoles.count)
         let civiliansRoles = [Role](repeatElement(.civilian, count: civiliansTotal))
         var allRoles = GameRules.uniqueRoles + mafiaRoles + civiliansRoles
-        
+
         allRoles.shuffle()
-        for (index, player) in players.enumerated() {
+        for (index, var player) in players.enumerated() {
             player.role = allRoles[index]
         }
         return players

@@ -8,9 +8,9 @@
 
 import Foundation
 
-typealias GetPlayersCompletion = (([PlayerMO]?) -> Void)
-typealias GetPlayerCompletion = ((PlayerMO?) -> Void)
-typealias SavePlayerCompletion = ((PlayerMO?) -> Void)
+typealias GetPlayersCompletion = (([PlayerData]?) -> Void)
+typealias GetPlayerCompletion = ((PlayerData?) -> Void)
+typealias SavePlayerCompletion = ((PlayerData?) -> Void)
 typealias DeletePlayerCompletion = ((Bool) -> Void)
 
 class PlayerService: BaseService {
@@ -34,7 +34,7 @@ class PlayerService: BaseService {
         completion(CoreDataConnection.shared.managedContext.loadObjects(PlayerMO.entityName, matching: "name == %@", params: [name]).first)
     }
     
-    func deletePlayer(player: PlayerMO, completion: DeletePlayerCompletion) {
+    func deletePlayer(player: PlayerData, completion: DeletePlayerCompletion) {
         completion(CoreDataConnection.shared.managedContext.delete(player))
     }
 }

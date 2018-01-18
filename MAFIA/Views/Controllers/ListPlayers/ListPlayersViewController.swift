@@ -31,29 +31,7 @@ class ListPlayersViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func addLists(_ sender: Any) {
-        let alertController = UIAlertController(title: "ADD_LIST_TITLE".localized(), message: "ADD_LIST_MESSAGE".localized(), preferredStyle: .alert)
-        alertController.addTextField { (textField) in
-            textField.delegate = self
-            textField.becomeFirstResponder()
-        }
-        addListAction = UIAlertAction(title: "ADD_ACTION".localized(), style: .default) { (action) in
-            let textField = alertController.textFields?.first
-            
-            guard let listName = textField?.text else { return }
-            if self.listPlayers.filter({ $0.name == listName }).count == 0 {
-                self.presenter.createList(withName: listName)
-                self.presentActionSheet(title: "LIST_ADDED_TITLE".localized(), message: String.localizedStringWithFormat("LIST_ADDED_MESSAGE".localized(), listName))
-            } else {
-                self.presentActionSheet(title: "LIST_ALREADY_ADDED_TITLE".localized(), message: String.localizedStringWithFormat("LIST_ALREADY_ADDED_MESSAGE".localized(), listName))
-            }
-            
-        }
-        let cancelButton = UIAlertAction(title: "CANCEL_ACTION".localized(), style: .cancel)
-        
-        alertController.addAction(addListAction!)
-        alertController.addAction(cancelButton)
-        
-        self.present(alertController, animated: true, completion: nil)
+        showAddListPopUp()
     }
     
     // MARK: - Methods
@@ -74,6 +52,27 @@ class ListPlayersViewController: UIViewController {
         addListAction?.isEnabled = !emptyText.isEmpty
     }
     
+    private func showAddListPopUp() {
+        let alertController = UIAlertController(title: "ADD_LIST_TITLE".localized(), message: "ADD_LIST_MESSAGE".localized(), preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            textField.delegate = self
+            textField.becomeFirstResponder()
+        }
+        addListAction = UIAlertAction(title: "ADD_ACTION".localized(), style: .default) { (action) in
+            let textField = alertController.textFields?.first
+            
+            guard let listName = textField?.text else { return }
+            self.presenter.createList(withName: listName, errorCompletion: self.showAddListPopUp)
+        }
+        
+        let cancelButton = UIAlertAction(title: "CANCEL_ACTION".localized(), style: .cancel)
+        
+        alertController.addAction(addListAction!)
+        alertController.addAction(cancelButton)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -86,6 +85,10 @@ class ListPlayersViewController: UIViewController {
 // MARK: - ListPlayersView protocol conformance
 
 extension ListPlayersViewController: ListPlayersView {
+    func showAlert(withTitle title: String?, message: String?, preferredStyle: UIAlertControllerStyle) {
+        self.presentAlert(title: title, message: message, preferredStyle: preferredStyle)
+    }
+    
     func deleteList(listPlayer: PlayersListMO, indexPath: IndexPath) {
         listPlayers.remove(at: indexPath.row)
         tableView.reloadData()
@@ -94,12 +97,14 @@ extension ListPlayersViewController: ListPlayersView {
     func addNewList(listPlayer: PlayersListMO) {
         listPlayers.append(listPlayer)
         tableView.reloadData()
+        presentAlert(title: "LIST_ADDED_TITLE".localized(), message: String.localizedStringWithFormat("LIST_ADDED_MESSAGE".localized(), listPlayer.name), preferredStyle: .actionSheet)
     }
     
     func setListPlayers(listPlayers: [PlayersListMO]) {
         self.listPlayers = listPlayers
         tableView.reloadData()
     }
+    
 }
 
 // MARK: - PlayersListTableViewCellDelegate protocol conformance

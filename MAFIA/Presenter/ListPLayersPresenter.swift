@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ListPlayersView: class {
+protocol ListPlayersView: class, BaseView {
     func setListPlayers(listPlayers: [PlayersListMO])
     func addNewList(listPlayer: PlayersListMO)
     func deleteList(listPlayer: PlayersListMO, indexPath: IndexPath)
@@ -23,10 +23,12 @@ class ListPlayersPresenter {
         self.playersListService = playerListService
     }
     
-    func createList(withName name: String) {
+    func createList(withName name: String, errorCompletion: (() -> Void)? = nil) {
         playersListService.createPlayersListWith(name: name) { [weak self] (listPlayer) in
             if let listPlayer = listPlayer {
                 self?.view.addNewList(listPlayer: listPlayer)
+            } else {
+                self?.view.showAlert(withTitle: "LIST_ALREADY_ADDED_TITLE".localized(), message: String.localizedStringWithFormat("LIST_ALREADY_ADDED_MESSAGE".localized(), name), preferredStyle: .actionSheet, completionFirstAction: errorCompletion)
             }
         }
     }

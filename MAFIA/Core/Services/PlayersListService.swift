@@ -14,10 +14,10 @@ typealias DeleteListPlayersCompletion = ((Bool) -> Void)
 
 class PlayersListService: BaseService {
     
-    func createPlayersListWith(name: String, players: [PlayerMO] = [PlayerMO](), completion: CreateListPlayersCompletion) {
+    func createPlayersListWith(name: String, players: [PlayerData] = [PlayerMO](), completion: CreateListPlayersCompletion) {
         if let playerEntity = CoreDataConnection.shared.getEntity(withName: PlayersListMO.entityName) {
             let playerList = PlayersListMO(entity: playerEntity, insertInto: CoreDataConnection.shared.managedContext)
-            playerList.name = name
+            playerList.name = name        
             playerList.players = players.toNSSet()
             if CoreDataConnection.shared.managedContext.save(playerList) {
                 completion(playerList)

@@ -15,13 +15,13 @@ class GameManager {
     static let currentGame = GameManager()
     
     private var selectedListPlayers: PlayersListMO?
-    private var eliminatedPlayers: [PlayerMO] = [PlayerMO]()
+    private var eliminatedPlayers: [PlayerData] = [PlayerData]()
     
     private init() {
         
     }
     
-    var playersPlaying: [PlayerMO]? {
+    var playersPlaying: [PlayerData]? {
         return selectedListPlayers?.players?.toArray()
     }
     
@@ -63,14 +63,14 @@ class GameManager {
     
     /// Adds a player to the `eliminatedPlayers` array.
     /// parameter player: The player to be kill from the current game
-    func kill(_ player: PlayerMO) {
+    func kill(_ player: PlayerData) {
         eliminatedPlayers.append(player)
     }
     
     /// Removes a player from the `eliminatedPlayers` array
     /// parameter player: The player to be revived from the current game
-    func revive(_ player: PlayerMO) {
-        if let index = eliminatedPlayers.index(of: player) {
+    func revive(_ player: PlayerData) {
+        if let index = eliminatedPlayers.index(where: { $0.name == player.name}) {
             eliminatedPlayers.remove(at: index)
         }
     }
