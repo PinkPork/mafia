@@ -135,6 +135,7 @@
 		A546B41F201123FF00F3CB89 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		A546B420201123FF00F3CB89 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		A546B421201123FF00F3CB89 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Default.strings; sourceTree = "<group>"; };
+		A546B4232011342200F3CB89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		CF5A5208200926D600BC7890 /* PlayersListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersListTableViewCell.swift; sourceTree = "<group>"; };
 		CF5A5209200926D600BC7890 /* PlayersListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayersListTableViewCell.xib; sourceTree = "<group>"; };
 		CFE3DA861FF70ECA004D9D0F /* ListPlayersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListPlayersViewController.swift; path = MAFIA/Views/Controllers/ListPlayers/ListPlayersViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -658,6 +659,7 @@
 				96591C6B1FE85B660067BB2E /* Base */,
 				A546B41C20110D4500F3CB89 /* es-419 */,
 				A546B41F201123FF00F3CB89 /* es */,
+				A546B4232011342200F3CB89 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
