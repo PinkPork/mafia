@@ -27,10 +27,6 @@ class ListPlayersViewController: UIViewController {
         setupTableView()
         setupView()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     // MARK: - IBActions
     
@@ -38,16 +34,18 @@ class ListPlayersViewController: UIViewController {
         let alertController = UIAlertController(title: "ADD_LIST_TITLE".localized(), message: "ADD_LIST_MESSAGE".localized(), preferredStyle: .alert)
         alertController.addTextField { (textField) in
             textField.delegate = self
+            textField.becomeFirstResponder()
         }
         addListAction = UIAlertAction(title: "ADD_LIST_ACTION".localized(), style: .default) { (action) in
-            
             let textField = alertController.textFields?.first
-            guard let listName = textField?.text, !listName.isEmpty else {
-                print("No hay ningún texto")
-                return
-            }
-            self.presenter.createList(withName: listName)
             
+            guard let listName = textField?.text else { return }
+            if self.listPlayers.filter({ $0.name == listName }).count == 0 {
+                self.presenter.createList(withName: listName)
+                self.presentActionSheet(title: "LIST_ADDED_TITLE", message: String.localizedStringWithFormat("LIST_ADDED_MESSAGE".localized(), listName))
+            } else {
+                self.presentActionSheet(title: "LIST_ALREADY_ADDED_TITLE", message: String.localizedStringWithFormat("LIST_ALREADY_ADDED_MESSAGE".localized(), listName))
+            }
             
         }
         let cancelButton = UIAlertAction(title: "CANCEL_ACTION".localized(), style: .cancel)
@@ -71,16 +69,22 @@ class ListPlayersViewController: UIViewController {
         tableView.register(UINib.init(nibName: "PlayersListTableViewCell", bundle: nil), forCellReuseIdentifier: listCellIndetifier)
     }
     
-    
     private func updateAddButtonState(text: String?) {
-        // Disable the Add buttos if the text field is empty.
         let emptyText = text ?? ""
         addListAction?.isEnabled = !emptyText.isEmpty
     }
     
+    private func presentActionSheet(title: String?, message: String?) {
+        let alertActionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        let okayAction = UIAlertAction(title: "OKAY".localized(), style: .default, handler: nil)
+        
+        alertActionSheet.addAction(okayAction)
+        
+        self.present(alertActionSheet, animated: true, completion: nil)
+    }
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? DetailListPlayersViewController {
             destination.listPlayers = sender as? PlayersListMO
@@ -111,7 +115,6 @@ extension ListPlayersViewController: ListPlayersView {
 
 extension ListPlayersViewController: PlayersListTableViewCellDelegate {
     func startGame(withList list: PlayersListMO) {
-        print("Se imprimió el botón")
         presenter.selectList(list: list)
         gamePresenter.restartGame()
         self.navigationController?.popViewController(animated: true)
@@ -147,7 +150,6 @@ extension ListPlayersViewController: UITableViewDelegate {
         return [UITableViewRowAction.init(style: .destructive, title: "DELETE_LIST_ACTION".localized(), handler: { [weak self] (_, indexPath) in
             if let strongSelf = self {
                 strongSelf.presenter.deleteList(playersList: strongSelf.listPlayers[indexPath.row], indexPath: indexPath)
-                // strongSelf.presenter.deletePlayer(player: strongSelf.playersToDisplay[indexPath.row], indexPath: indexPath)
             }
         })]
     }
@@ -158,7 +160,6 @@ extension ListPlayersViewController: UITableViewDelegate {
 extension ListPlayersViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // Hide the keyboard.
         textField.resignFirstResponder()
         return true
     }
@@ -168,7 +169,6 @@ extension ListPlayersViewController: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        // Disable the Save button while editing.
         addListAction?.isEnabled = false
     }
 }
