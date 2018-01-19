@@ -1,0 +1,62 @@
+/* 
+  Default.strings
+  MAFIA
+
+  Created by Santiago Carmona gonzalez on 12/20/17.
+  Copyright © 2017 Santiago Carmona Gonzalez. All rights reserved.
+*/
+
+
+
+// MARK: -  Main Titles
+
+"CIVILIANS_TITLE" = "Aldeanos";
+"MAFIA_TITLE" = "Mafia";
+"LIST_PLAYER_NO_NAME" = "Selecciona una lista para jugar";
+
+// MARK: - Alert titles
+
+"END_GAME_TITLE" = "Fin del juego";
+"ADD_LIST_TITLE" = "Agregar Listas";
+"ADD_PLAYER_TITLE" = "Agregar Jugadores";
+"LIST_ADDED_TITLE" = "Lista Agregada";
+"LIST_ALREADY_ADDED_TITLE" = "Lista no agregada";
+"PLAYER_ADDED_TITLE" = "Jugador Agregado";
+"PLAYER_ALREADY_ADDED_TITLE" = "Jugador no Agregado";
+
+// MARK: - Alert Messages
+
+"MAFIA_WON_GAME_MESSAGE" = "La MAFIA gano el juego";
+"CIVILIANS_WON_GAME_MESSAGE" = "Los ALDEANOS ganaron el juego";
+"ADD_LIST_MESSAGE" = "Ingrese el nombre de la lista que desea agregar.";
+"ADD_PLAYER_MESSAGE" = "Ingrese el nombre del jugador que desea agregar.";
+"LIST_ADDED_MESSAGE" = "La lista \"%@\" fue agregada exitosamente.";
+"LIST_ALREADY_ADDED_MESSAGE" = "El nombre de la lista ya existe, ingrese un nombre diferente.";
+"PLAYER_ADDED_MESSAGE" = "El jugador \"%@\", fue agregado exitosamente";
+"PLAYER_ALREADY_ADDED_MESSAGE" = "El nombre del jugador ya fue ingresado previamente, ingrese un jugador diferente.";
+
+// MARK: - Alert Action Titles
+
+"END_GAME_ACTION_TITLE" = "Iniciar nueva partida";
+"CONTINUE_GAME_ACTION_TITLE" = "Continuar jugando";
+"ADD_ACTION" = "Agregar";
+"CANCEL_ACTION" = "Cancelar";
+"DELETE_ACTION" = "Eliminar";
+"OKAY" = "Entendido";
+
+// MARK: - Menu Titles
+
+"MENU_ADD_NEW_PLAYER" = "Agregar nuevo jugador";
+"MENU_PLAYERS_LIST" = "Listas de jugadores";
+
+// MARK: - Button Titles
+
+"USE_PLAYERS_LIST_BUTTON_TITLE" = "Usar esta lista";
+
+// MARK: - Roles
+"king" = "Rey";
+"doctor" = "Medico";
+"sheriff" = "Policia";
+"mob" = "Mafioso";
+"villager" = "Aldeano";
+"none" = "Sin rol";

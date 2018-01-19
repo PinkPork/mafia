@@ -31,14 +31,14 @@ class RawPlayer: Player {
     /// 5. The rest of players are **civilians**
     /// - parameter players: The players playing on the current game
     /// - returns: An Array of players, each of them with a random role setted
-
-    static func assignRandomRole(to players: [Player]) -> [Player] {
-
-        let mafiaRoles = [Role](repeatElement(Role.mafia, count: players.count / 3))
-        let civiliansTotal = players.count - (mafiaRoles.count + GameRules.uniqueRoles.count)
-        let civiliansRoles = [Role](repeatElement(.civilian, count: civiliansTotal))
-        var allRoles = GameRules.uniqueRoles + mafiaRoles + civiliansRoles
-
+    
+    class func assignRandomRole(to players: [Player]) -> [Player] {
+        
+        let mobRoles = [Role](repeatElement(Role.mob, count: players.count / 3))
+        let villagersTotal = players.count - (mobRoles.count + GameRules.uniqueRoles.count)
+        let villagersRoles = [Role](repeatElement(.villager, count: villagersTotal))
+        var allRoles = GameRules.uniqueRoles + mobRoles + villagersRoles
+        
         allRoles.shuffle()
         for (index, player) in players.enumerated() {
             player.role = allRoles[index]

@@ -13,8 +13,8 @@ class GameViewController: UIViewController {
     // MARK: - IBOutlets
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var civiliansLabel: UILabel!
-    @IBOutlet weak var mafiaLabel: UILabel!
+    @IBOutlet weak var villagerLabel: UILabel!
+    @IBOutlet weak var mobLabel: UILabel!
     @IBOutlet weak var currentPlayerListName: UILabel!
     
     
@@ -106,8 +106,8 @@ extension GameViewController: GameView {
     }
     
     func updateGameUI() {
-        civiliansLabel.text = presenter.aliveCiviliansPlayerText
-        mafiaLabel.text = presenter.aliveMafiaPlayerText
+        villagerLabel.text = presenter.aliveCiviliansPlayerText
+        mobLabel.text = presenter.aliveMafiaPlayerText
         currentPlayerListName.text = presenter.selectedListName
         tableView.isUserInteractionEnabled = presenter.gameCanStart
     }
@@ -115,9 +115,9 @@ extension GameViewController: GameView {
     func endGame(winner: Role) {
         var message: String = ""
         switch winner {
-        case .civilian:
+        case .villager:
             message = "CIVILIANS_WON_GAME_MESSAGE".localized()
-        case .mafia:
+        case .mob:
             message = "MAFIA_WON_GAME_MESSAGE".localized()
         default:
             return
