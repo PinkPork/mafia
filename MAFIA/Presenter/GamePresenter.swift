@@ -68,7 +68,7 @@ class GamePresenter {
     }
     
     func refreshRoles(players: [Player]) -> [Player] {
-        if gameCanStart {
+        if players.count >= GameRules.minimumPlayers {
             return RawPlayer.assignRandomRole(to: players)
         }
         players.forEach({ $0.role = .none })

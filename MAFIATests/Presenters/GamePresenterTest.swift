@@ -35,7 +35,7 @@ class GamePresenterTest: XCTestCase {
         
         
         let playersWithRoleChanged = players.filter { $0.role != .none }
-        let mafiaPlayers = playersWithRoleChanged.filter { $0.role == .mafia }
+        let mafiaPlayers = playersWithRoleChanged.filter { $0.role == .mob }
         let kingPlayer = playersWithRoleChanged.filter { $0.role == .king }
         let sheriffPlayer = playersWithRoleChanged.filter { $0.role == .sheriff }
         let doctorPlayer = playersWithRoleChanged.filter { $0.role == .doctor }
