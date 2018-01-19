@@ -32,7 +32,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()        
         setupTableView()
         setupView()
-        verifyGameCanStart()
+        updateGameUI()
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,7 +50,7 @@ class GameViewController: UIViewController {
     
     
     @IBAction func refreshRoles(_ sender: UIBarButtonItem) {
-        refreshRoles()
+        presenter.restartGame()
     }
     
     // MARK: - Methods
@@ -66,30 +66,14 @@ class GameViewController: UIViewController {
         tableView.contentInset = UIEdgeInsets(top: kHeaderView, left: 0, bottom: 0, right: 0)
         tableView.register(UINib.init(nibName: PlayerTableViewCell.nib, bundle: Bundle.main), forCellReuseIdentifier: PlayerTableViewCell.identifier)
     }
-
-    private func verifyGameCanStart() {
-
-        let gameCanStart = playersToDisplay.count >= GameRules.minimumPlayers
-
-        if playersToDisplay.count == 0 {
-            currentPlayerListName.text = "LIST_PLAYER_NO_NAME".localized()
-            civiliansLabel.text = nil
-            mafiaLabel.text = nil
-        }
-
-        if gameCanStart {
-            civiliansLabel.text = presenter.aliveCiviliansPlayerText
-            mafiaLabel.text = presenter.aliveMafiaPlayerText
-            currentPlayerListName.text = presenter.selectedListName
-        } else {
-            civiliansLabel.text = nil
-            mafiaLabel.text = nil
-        }
-        tableView.isUserInteractionEnabled = gameCanStart
+    
+    private func refreshRoles() {
+        playersToDisplay = presenter.refreshRoles(players: playersToDisplay)
+        tableView.reloadData()
     }
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationViewController = segue.destination as? ListPlayersViewController {
@@ -122,9 +106,12 @@ extension GameViewController: GameView {
     }
     
     func updateGameUI() {
-        verifyGameCanStart()
+        civiliansLabel.text = presenter.aliveCiviliansPlayerText
+        mafiaLabel.text = presenter.aliveMafiaPlayerText
+        currentPlayerListName.text = presenter.selectedListName
+        tableView.isUserInteractionEnabled = presenter.gameCanStart
     }
-
+    
     func endGame(winner: Role) {
         var message: String = ""
         switch winner {
@@ -135,30 +122,25 @@ extension GameViewController: GameView {
         default:
             return
         }
-
+        
         let alert = UIAlertController(title: "END_GAME_TITLE".localized(), message: message, preferredStyle: .alert)
-
+        
         let okAction = UIAlertAction(title: "END_GAME_ACTION_TITLE".localized(), style: .default) { [weak self] (_) in
             if let strongSelf = self {
                 strongSelf.presenter.restartGame()
             }
         }
         let continuePlayingAction = UIAlertAction(title: "CONTINUE_GAME_ACTION_TITLE".localized(), style: .default, handler: nil)
-
+        
         alert.addAction(okAction)
         alert.addAction(continuePlayingAction)
         self.present(alert, animated: true, completion: nil)
-
+        
     }
-
+    
     func restartGame() {
         presenter.showPlayers()
         refreshRoles()
-    }
-
-    private func refreshRoles() {
-        playersToDisplay = presenter.refreshRoles(players: playersToDisplay)
-        tableView.reloadData()
     }
 }
 

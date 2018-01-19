@@ -22,16 +22,29 @@ class GamePresenter {
     private unowned let view: GameView
     fileprivate let playerService: PlayerService
     
-    var aliveCiviliansPlayerText: String {
-        return "\("CIVILIANS_TITLE".localized()) \n \(GameManager.currentGame.aliveCivilians)"
+    var aliveCiviliansPlayerText: String? {
+        if GameManager.currentGame.numberOfPlayersPlaying == 0 {
+            return nil
+        }
+        return (gameCanStart ? "\("CIVILIANS_TITLE".localized()) \n \(GameManager.currentGame.aliveCivilians)" : nil)
     }
     
-    var aliveMafiaPlayerText: String {
-        return "\("MAFIA_TITLE".localized()) \n \(GameManager.currentGame.aliveMafia)"
+    var aliveMafiaPlayerText: String? {
+        if GameManager.currentGame.numberOfPlayersPlaying == 0 {
+            return nil
+        }
+        return (gameCanStart ? "\("MAFIA_TITLE".localized()) \n \(GameManager.currentGame.aliveMafia)" : nil)
     }
     
     var selectedListName: String? {
+        if GameManager.currentGame.numberOfPlayersPlaying == 0 {
+            return "LIST_PLAYER_NO_NAME".localized()
+        }
         return GameManager.currentGame.listName
+    }
+    
+    var gameCanStart: Bool {
+        return (GameManager.currentGame.numberOfPlayersPlaying >= GameRules.minimumPlayers)
     }
     
     init(view: GameView, playerService: PlayerService = PlayerService()) {
@@ -55,7 +68,7 @@ class GamePresenter {
     }
     
     func refreshRoles(players: [Player]) -> [Player] {
-        if players.count >= GameRules.minimumPlayers {
+        if gameCanStart {
             return RawPlayer.assignRandomRole(to: players)
         }
         players.forEach({ $0.role = .none })

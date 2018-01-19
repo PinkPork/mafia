@@ -55,15 +55,15 @@ class PlayerServiceTest: BaseTest {
         }
     }
     
-//    func testDeletePlayer() {
-//        testCreatePlayer()
-//        service.getPlayer(withName: MockData.Player.name) { (player) in
-//            XCTAssertNotNil(player, "There was an error loading a player named : \(MockData.Player.name)")
-//            
-//            service.deletePlayer(player: player!, completion: { (success) in
-//                XCTAssertTrue(success, "There was a problem deleting the player named: \(player!.name)")
-//            })
-//        }
-//    }
+    func testDeletePlayer() {
+        testCreatePlayer()
+        service.getPlayer(withName: MockData.Player.name) { (player) in
+            XCTAssertNotNil(player, "There was an error loading a player named : \(MockData.Player.name)")
+            
+            service.deletePlayer(player: player!, completion: { (success) in
+                XCTAssertTrue(success, "There was a problem deleting the player named: \(player!.name)")
+            })
+        }
+    }
 }
 
