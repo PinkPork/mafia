@@ -16,11 +16,11 @@ class DetailListPlayersViewController: UIViewController {
     
     // MARK: - Vars & Constants
     
-    private var players: [PlayerData] = [PlayerData]()
+    private var players: [Player] = [Player]()
     private var presenter: DetailListPlayersPresenter!
     private var addPlayerAction: UIAlertAction?
     
-    weak var listPlayers: PlayersListMO!
+    weak var listPlayers: RawPlayersList!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +39,8 @@ class DetailListPlayersViewController: UIViewController {
     
     private func setupView() {
         presenter = DetailListPlayersPresenter(view: self)
-        if  let playersFromList: [PlayerMO] = listPlayers?.players?.toArray() {
-            players = playersFromList
-        }
+        players = listPlayers.players
+        
         guard let title = listPlayers?.name else { return }
         self.navigationItem.title = title
     }
@@ -86,12 +85,12 @@ class DetailListPlayersViewController: UIViewController {
 
 extension DetailListPlayersViewController: DetailListPlayersView {
    
-    func addNewPlayer(player: PlayerData) {
+    func addNewPlayer(player: Player) {
         self.players.append(player)
         tableView.reloadData()
     }
     
-    func deletePlayer(player: PlayerData, indexPath: IndexPath) {
+    func deletePlayer(player: Player, indexPath: IndexPath) {
         players.remove(at: indexPath.row)
         tableView.reloadData()
     }

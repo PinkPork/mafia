@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PlayersListTableViewCellDelegate {
-    func startGame(withList list: PlayersListMO) -> Void
+    func startGame(withList list: PlayersList) -> Void
 }
 
 class PlayersListTableViewCell: UITableViewCell {
@@ -18,7 +18,7 @@ class PlayersListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var playersListForGameButton: UIButton!
-    var list: PlayersListMO?
+    var list: PlayersList?
     var delegate: PlayersListTableViewCellDelegate?
     
     // MARK: - IBActions
@@ -40,7 +40,7 @@ class PlayersListTableViewCell: UITableViewCell {
     
     // MARK: Methods
     
-    func setCellData(list: PlayersListMO) {
+    func setCellData(list: PlayersList) {
         self.list = list
         nameLabel.text = list.name
     }

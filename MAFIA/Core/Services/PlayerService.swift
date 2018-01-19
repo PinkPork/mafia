@@ -8,9 +8,9 @@
 
 import Foundation
 
-typealias GetPlayersCompletion = (([PlayerData]?) -> Void)
-typealias GetPlayerCompletion = ((PlayerData?) -> Void)
-typealias SavePlayerCompletion = ((PlayerData?) -> Void)
+typealias GetPlayersCompletion = (([Player]?) -> Void)
+typealias GetPlayerCompletion = ((Player?) -> Void)
+typealias SavePlayerCompletion = ((Player?) -> Void)
 typealias DeletePlayerCompletion = ((Bool) -> Void)
 
 class PlayerService: BaseService {
@@ -21,20 +21,20 @@ class PlayerService: BaseService {
             let object: PlayerMO = PlayerMO(entity: playerEntity , insertInto: CoreDataConnection.shared.managedContext)
             object.name = name
             if CoreDataConnection.shared.managedContext.save(object) {
-                completion(object)
+                completion(PlayerMO.parse(player: object))
             }
         }
     }
     
     func getPlayers(completion: @escaping GetPlayersCompletion) {
-        completion(CoreDataConnection.shared.managedContext.loadObjects(PlayerMO.entityName))
+        completion(CoreDataConnection.shared.managedContext.loadObjects(PlayerMO.entityName).map(PlayerMO.parse))
     }
     
     func getPlayer(withName name: String, completion: GetPlayerCompletion) {
-        completion(CoreDataConnection.shared.managedContext.loadObjects(PlayerMO.entityName, matching: "name == %@", params: [name]).first)
+        completion(CoreDataConnection.shared.managedContext.loadObjects(PlayerMO.entityName, matching: "name == %@", params: [name]).map(PlayerMO.parse).first)
     }
     
-    func deletePlayer(player: PlayerData, completion: DeletePlayerCompletion) {
+    func deletePlayer(player: Player, completion: DeletePlayerCompletion) {
         completion(CoreDataConnection.shared.managedContext.delete(player))
     }
 }

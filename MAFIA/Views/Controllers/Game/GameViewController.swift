@@ -22,7 +22,7 @@ class GameViewController: UIViewController {
     
     private let kHeaderView: CGFloat = 80
     private var presenter: GamePresenter!
-    private var playersToDisplay: [PlayerData] = [PlayerData]() {
+    private var playersToDisplay: [Player] = [Player]() {
         didSet {
             tableView.isUserInteractionEnabled = playersToDisplay.count >= GameRules.minimumPlayers
         }
@@ -86,18 +86,18 @@ class GameViewController: UIViewController {
 
 extension GameViewController: GameView {
     
-    func setPlayers(players: [PlayerData]) {
+    func setPlayers(players: [Player]) {
         playersToDisplay = players
         tableView.reloadData()
     }
     
-    func addNewPlayer(player: PlayerData) {
+    func addNewPlayer(player: Player) {
         playersToDisplay.append(player)
-        playersToDisplay = self.presenter.refreshRoles(players: playersToDisplay as! [PlayerMO])
+        playersToDisplay = self.presenter.refreshRoles(players: playersToDisplay)
         tableView.reloadData()
     }
     
-    func deletePlayer(player: PlayerData, indexPath: IndexPath) {
+    func deletePlayer(player: Player, indexPath: IndexPath) {
         playersToDisplay.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
@@ -140,7 +140,7 @@ extension GameViewController: GameView {
     }
     
     private func refreshRoles() {
-        playersToDisplay = presenter.refreshRoles(players: playersToDisplay as! [PlayerMO])
+        playersToDisplay = presenter.refreshRoles(players: playersToDisplay)
         tableView.reloadData()
     }
 }
@@ -171,19 +171,19 @@ extension GameViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let playerToEliminate = playersToDisplay[indexPath.row]
-        presenter.kill(player: playerToEliminate as! PlayerMO)
+        presenter.kill(player: playerToEliminate)
         presenter.didEndGame()
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let deselectedPlayer = playersToDisplay[indexPath.row]
-        presenter.revivePlayer(player: deselectedPlayer as! PlayerMO)
+        presenter.revivePlayer(player: deselectedPlayer)
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         return [UITableViewRowAction.init(style: .destructive, title: "DELETE_ACTION".localized(), handler: { [weak self] (_, indexPath) in
             if let strongSelf = self {
-                strongSelf.presenter.deletePlayer(player: strongSelf.playersToDisplay[indexPath.row] as! PlayerMO, indexPath: indexPath)
+                strongSelf.presenter.deletePlayer(player: strongSelf.playersToDisplay[indexPath.row], indexPath: indexPath)
             }
         })]
     }

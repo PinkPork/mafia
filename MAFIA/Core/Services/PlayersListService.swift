@@ -8,19 +8,26 @@
 
 import Foundation
 
-typealias CreateListPlayersCompletion = ((PlayersListMO?) -> Void)
-typealias GetListPlayersCompletion = (([PlayersListMO]?) -> Void)
+typealias CreateListPlayersCompletion = ((PlayersList?) -> Void)
+typealias GetListPlayersCompletion = (([PlayersList]?) -> Void)
 typealias DeleteListPlayersCompletion = ((Bool) -> Void)
 
 class PlayersListService: BaseService {
     
-    func createPlayersListWith(name: String, players: [PlayerData] = [PlayerMO](), completion: CreateListPlayersCompletion) {
+    func createPlayersListWith(name: String, players: [Player] = [Player](), completion: CreateListPlayersCompletion) {
         if let playerEntity = CoreDataConnection.shared.getEntity(withName: PlayersListMO.entityName) {
             let playerList = PlayersListMO(entity: playerEntity, insertInto: CoreDataConnection.shared.managedContext)
-            playerList.name = name        
-            playerList.players = players.toNSSet()
+            playerList.name = name
+            
+            playerList.players = players.map({ (player) -> PlayerMO in
+                let playerEntity = CoreDataConnection.shared.getEntity(withName: PlayerMO.entityName)
+                let playerMO = PlayerMO(entity: playerEntity!, insertInto: CoreDataConnection.shared.managedContext)
+                playerMO.name = player.name
+                return playerMO
+            }).toNSSet()
+            
             if CoreDataConnection.shared.managedContext.save(playerList) {
-                completion(playerList)
+                completion(PlayersListMO.parse(playersList: playerList))
                 return
             }
         }
@@ -28,10 +35,10 @@ class PlayersListService: BaseService {
     }
     
     func getPlayers(completion: @escaping GetListPlayersCompletion) {
-        completion(CoreDataConnection.shared.managedContext.loadObjects(PlayersListMO.entityName))
+        completion(CoreDataConnection.shared.managedContext.loadObjects(PlayersListMO.entityName).map(PlayersListMO.parse))
     }
     
-    func deleteList(list: PlayersListMO, completion: DeleteListPlayersCompletion) {
+    func deleteList(list: PlayersList, completion: DeleteListPlayersCompletion) {
          completion(CoreDataConnection.shared.managedContext.delete(list))
     }
 }

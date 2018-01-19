@@ -9,8 +9,8 @@
 import Foundation
 
 protocol DetailListPlayersView: class, BaseView {
-    func addNewPlayer(player: PlayerData)
-    func deletePlayer(player: PlayerData, indexPath: IndexPath)
+    func addNewPlayer(player: Player)
+    func deletePlayer(player: Player, indexPath: IndexPath)
 }
 
 class DetailListPlayersPresenter {
@@ -22,9 +22,9 @@ class DetailListPlayersPresenter {
         self.detailListPlayersService = detailListPlayersService
     }
     
-    func addPlayer(withName name: String, toList list: PlayersListMO, errorCompletion: (() -> Void)? = nil) {
+    func addPlayer(withName name: String, toList list: PlayersList, errorCompletion: (() -> Void)? = nil) {
         
-        guard let players: [PlayerMO] = list.players?.toArray(), players.filter({ $0.name == name }).count == 0 else {
+        guard list.players.filter({ $0.name == name }).count == 0 else {
             self.view.showAlert(withTitle: "PLAYER_ALREADY_ADDED_TITLE".localized(),
                                 message: "PLAYER_ALREADY_ADDED_MESSAGE".localized(),
                                 preferredStyle: .actionSheet,
@@ -40,7 +40,7 @@ class DetailListPlayersPresenter {
         }
     }
     
-    func deletePlayer(player: PlayerData, list: PlayersListMO, indexPath: IndexPath) {
+    func deletePlayer(player: Player, list: PlayersList, indexPath: IndexPath) {
         detailListPlayersService.remove(player, fromList: list) { [weak self] (success) in
             if success {
                 self?.view.deletePlayer(player: player, indexPath: indexPath)

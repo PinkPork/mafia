@@ -8,13 +8,13 @@
 
 import Foundation
 
-protocol PlayerData {
+protocol Player: class {
     var name: String { get }
     var role: Role { get set }
 }
 
 // We could use this struct if we decide to migrate to firebase or webservices.
-struct Player: PlayerData {
+class RawPlayer: Player {
     var name: String
     var role: Role
 
@@ -32,7 +32,7 @@ struct Player: PlayerData {
     /// - parameter players: The players playing on the current game
     /// - returns: An Array of players, each of them with a random role setted
 
-    static func assignRandomRole(to players: [PlayerData]) -> [PlayerData] {
+    static func assignRandomRole(to players: [Player]) -> [Player] {
 
         let mafiaRoles = [Role](repeatElement(Role.mafia, count: players.count / 3))
         let civiliansTotal = players.count - (mafiaRoles.count + GameRules.uniqueRoles.count)
@@ -40,7 +40,7 @@ struct Player: PlayerData {
         var allRoles = GameRules.uniqueRoles + mafiaRoles + civiliansRoles
 
         allRoles.shuffle()
-        for (index, var player) in players.enumerated() {
+        for (index, player) in players.enumerated() {
             player.role = allRoles[index]
         }
         return players
