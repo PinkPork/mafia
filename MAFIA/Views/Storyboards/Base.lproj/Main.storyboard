@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mhX-BQ-57f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mhX-BQ-57f">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -80,10 +80,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="civiliansLabel" destination="Z0i-pH-HsG" id="vH7-Jh-jtA"/>
                         <outlet property="currentPlayerListName" destination="bPs-tW-ux6" id="RWk-mY-z2b"/>
-                        <outlet property="mafiaLabel" destination="08L-Io-bBv" id="195-sg-COC"/>
+                        <outlet property="mobLabel" destination="08L-Io-bBv" id="195-sg-COC"/>
                         <outlet property="tableView" destination="oQm-oX-6bK" id="lJT-3B-2rn"/>
+                        <outlet property="villagerLabel" destination="Z0i-pH-HsG" id="vH7-Jh-jtA"/>
                         <segue destination="3Yn-SM-Kce" kind="show" identifier="SeguePlayersList" id="juw-8L-iw2"/>
                     </connections>
                 </viewController>

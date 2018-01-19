@@ -82,9 +82,9 @@ class GamePresenter {
     func didEndGame() {
         var winnerRole: Role = Role.none
         if GameManager.currentGame.aliveMafia == 0 {
-            winnerRole = .civilian
+            winnerRole = .villager
         } else if GameManager.currentGame.aliveMafia == GameManager.currentGame.aliveCivilians {
-            winnerRole = .mafia
+            winnerRole = .mob
         }
         view.endGame(winner: winnerRole)
     }
