@@ -18,7 +18,7 @@ extension PlayerMO {
     }
 
     @NSManaged public var name: String?
-    @NSManaged public var playersList: NSSet?
+//    @NSManaged public var playersList: NSSet?
 
 }
 

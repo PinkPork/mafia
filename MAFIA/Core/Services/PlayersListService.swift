@@ -10,35 +10,39 @@ import Foundation
 
 typealias CreateListPlayersCompletion = ((PlayersList?) -> Void)
 typealias GetListPlayersCompletion = (([PlayersList]?) -> Void)
+typealias GetListCompletion = ((PlayersList?) -> Void)
 typealias DeleteListPlayersCompletion = ((Bool) -> Void)
 
 class PlayersListService: BaseService {
     
     func createPlayersListWith(name: String, players: [Player] = [Player](), completion: CreateListPlayersCompletion) {
-        if let playerEntity = CoreDataConnection.shared.getEntity(withName: PlayersListMO.entityName) {
-            let playerList = PlayersListMO(entity: playerEntity, insertInto: CoreDataConnection.shared.managedContext)
-            playerList.name = name
-            
-            playerList.players = players.map({ (player) -> PlayerMO in
-                let playerEntity = CoreDataConnection.shared.getEntity(withName: PlayerMO.entityName)
-                let playerMO = PlayerMO(entity: playerEntity!, insertInto: CoreDataConnection.shared.managedContext)
-                playerMO.name = player.name
-                return playerMO
-            }).toNSSet()
-            
-            if CoreDataConnection.shared.managedContext.save(playerList) {
-                completion(PlayersListMO.parse(playersList: playerList))
-                return
-            }
+
+        let playerList = PlayersListMO(name: name)
+        playerList.players = players.map(PlayerMO.reverseParse).toNSSet()
+
+        if CoreDataConnection.shared.managedContext.save(playerList) {
+            completion(PlayersListMO.parse(playersList: playerList))
+            return
         }
+        
         completion(nil)
     }
-    
-    func getPlayers(completion: @escaping GetListPlayersCompletion) {
-        completion(CoreDataConnection.shared.managedContext.loadObjects(PlayersListMO.entityName).map(PlayersListMO.parse))
+
+    func getLists(completion: @escaping GetListPlayersCompletion) {
+        let objects: [PlayersListMO] = CoreDataConnection.shared.managedContext.loadObjects(PlayersListMO.entityName)
+        completion(objects.map(PlayersListMO.parse))
     }
-    
+
+    func getList(withName name: String, completion: GetListCompletion) {
+        let objects: [PlayersListMO] = CoreDataConnection.shared.managedContext.loadObjects(PlayersListMO.entityName, matching: "name == %@", params: [name])
+        completion(objects.map(PlayersListMO.parse).first)
+    }
+
     func deleteList(list: PlayersList, completion: DeleteListPlayersCompletion) {
-         completion(CoreDataConnection.shared.managedContext.delete(list))
+        if let playersListMO = PlayersListMO.reverseParse(fromList: list) {
+            completion(CoreDataConnection.shared.managedContext.delete(playersListMO))
+            return
+        }
+        completion(false)
     }
 }

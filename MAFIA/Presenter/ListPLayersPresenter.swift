@@ -41,8 +41,8 @@ class ListPlayersPresenter {
         }
     }
     
-    func showListPlayers() {
-        playersListService.getPlayers { [weak self] (listPlayers) in
+    func showListPlayers() {        
+        playersListService.getLists { [weak self] (listPlayers) in
             if let list = listPlayers {
                 self?.view.setListPlayers(listPlayers: list)
             }

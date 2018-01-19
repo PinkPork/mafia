@@ -15,8 +15,7 @@ class DetailListPlayersViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Vars & Constants
-    
-    private var players: [Player] = [Player]()
+
     private var presenter: DetailListPlayersPresenter!
     private var addPlayerAction: UIAlertAction?
     
@@ -39,7 +38,6 @@ class DetailListPlayersViewController: UIViewController {
     
     private func setupView() {
         presenter = DetailListPlayersPresenter(view: self)
-        players = listPlayers.players
         
         guard let title = listPlayers?.name else { return }
         self.navigationItem.title = title
@@ -86,12 +84,12 @@ class DetailListPlayersViewController: UIViewController {
 extension DetailListPlayersViewController: DetailListPlayersView {
    
     func addNewPlayer(player: Player) {
-        self.players.append(player)
+        listPlayers.players.append(player)
         tableView.reloadData()
     }
     
     func deletePlayer(player: Player, indexPath: IndexPath) {
-        players.remove(at: indexPath.row)
+        listPlayers.players.remove(at: indexPath.row)
         tableView.reloadData()
     }
 }
@@ -101,12 +99,12 @@ extension DetailListPlayersViewController: DetailListPlayersView {
 extension DetailListPlayersViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return players.count
+        return listPlayers.players.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        let player = players[indexPath.row]
+        let player = listPlayers.players[indexPath.row]
         cell.textLabel?.text = player.name
         return cell
     }
@@ -116,12 +114,12 @@ extension DetailListPlayersViewController: UITableViewDataSource {
 
 extension DetailListPlayersViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "DELETE_ACTION".localized()) {
             [weak self] (contextAction: UIContextualAction, sourceView: UIView, completion: (Bool) -> Void) in
             if let strongSelf = self {
                 guard let list = strongSelf.listPlayers else { return }
-                strongSelf.presenter.deletePlayer(player: strongSelf.players[indexPath.row], list: list, indexPath: indexPath)
+                strongSelf.presenter.deletePlayer(player: strongSelf.listPlayers.players[indexPath.row], list: list, indexPath: indexPath)
                 completion(true)
             } else {
                 completion(false)

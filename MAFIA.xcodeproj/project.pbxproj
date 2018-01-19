@@ -23,7 +23,7 @@
 		960A297520002BB100D23981 /* DetailListPlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A297420002BB100D23981 /* DetailListPlayersViewController.swift */; };
 		960A297720002C5B00D23981 /* Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A297620002C5B00D23981 /* Segues.swift */; };
 		960A2979200034DD00D23981 /* DetailListPlayersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A2978200034DD00D23981 /* DetailListPlayersService.swift */; };
-		960A297B2000388500D23981 /* DetailListPlayersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A297A2000388500D23981 /* DetailListPlayersService.swift */; };
+		960A297B2000388500D23981 /* DetailListPlayersServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A297A2000388500D23981 /* DetailListPlayersServiceTest.swift */; };
 		96173D81200523E1008742AA /* BaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96173D80200523E1008742AA /* BaseTest.swift */; };
 		96173D832005597A008742AA /* NSSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96173D822005597A008742AA /* NSSetExtension.swift */; };
 		96173D8620056369008742AA /* GamePresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96173D8520056369008742AA /* GamePresenterTest.swift */; };
@@ -101,7 +101,7 @@
 		960A297420002BB100D23981 /* DetailListPlayersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListPlayersViewController.swift; sourceTree = "<group>"; };
 		960A297620002C5B00D23981 /* Segues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segues.swift; sourceTree = "<group>"; };
 		960A2978200034DD00D23981 /* DetailListPlayersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListPlayersService.swift; sourceTree = "<group>"; };
-		960A297A2000388500D23981 /* DetailListPlayersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListPlayersService.swift; sourceTree = "<group>"; };
+		960A297A2000388500D23981 /* DetailListPlayersServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListPlayersServiceTest.swift; sourceTree = "<group>"; };
 		96173D80200523E1008742AA /* BaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTest.swift; sourceTree = "<group>"; };
 		96173D822005597A008742AA /* NSSetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSSetExtension.swift; sourceTree = "<group>"; };
 		96173D8520056369008742AA /* GamePresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenterTest.swift; sourceTree = "<group>"; };
@@ -188,24 +188,14 @@
 		6E2618AB1FF5C99D00F3AF93 /* Connection */ = {
 			isa = PBXGroup;
 			children = (
-				6E2618B21FF5DB6500F3AF93 /* DatabaseProtocol */,
 				9620D7B51FE95134008E0F55 /* CoreDataConnection.swift */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
 		};
-		6E2618B21FF5DB6500F3AF93 /* DatabaseProtocol */ = {
-			isa = PBXGroup;
-			children = (
-				6E2618AC1FF5C9BD00F3AF93 /* DatabaseProtocol.swift */,
-			);
-			path = DatabaseProtocol;
-			sourceTree = "<group>";
-		};
 		96002FCA1FE85D8E00F8DF1F /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				96A0864120115829003A1E59 /* CoreData */,
 				9630A8911FFEA29B000C96CA /* GameManager.swift */,
 				96775C872011403A0092658D /* Player.swift */,
 				6E0163142011785F00E91421 /* PlayersList.swift */,
@@ -226,7 +216,7 @@
 			children = (
 				963BA3E21FF596A600090DDE /* PlayerServiceTest.swift */,
 				963BA3E41FF596BC00090DDE /* PlayersListServiceTest.swift */,
-				960A297A2000388500D23981 /* DetailListPlayersService.swift */,
+				960A297A2000388500D23981 /* DetailListPlayersServiceTest.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -393,17 +383,11 @@
 		966546852010F9DF008D0A8B /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				6E2618AC1FF5C9BD00F3AF93 /* DatabaseProtocol.swift */,
 				966546862010F9FA008D0A8B /* BaseView.swift */,
 				6E01631A20117AAE00E91421 /* CoreDataIdentifier.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		96A0864120115829003A1E59 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CoreData;
 			sourceTree = "<group>";
 		};
 		96F9DE791FED603600C32C30 /* Menu */ = {
@@ -668,7 +652,7 @@
 				96173D8A2005669C008742AA /* MockPlayerService.swift in Sources */,
 				963BA3E81FF59C3600090DDE /* MockData.swift in Sources */,
 				96591C7F1FE85B660067BB2E /* MAFIATests.swift in Sources */,
-				960A297B2000388500D23981 /* DetailListPlayersService.swift in Sources */,
+				960A297B2000388500D23981 /* DetailListPlayersServiceTest.swift in Sources */,
 				96173D8820056537008742AA /* MockGameView.swift in Sources */,
 				96173D81200523E1008742AA /* BaseTest.swift in Sources */,
 				963BA3E51FF596BC00090DDE /* PlayersListServiceTest.swift in Sources */,

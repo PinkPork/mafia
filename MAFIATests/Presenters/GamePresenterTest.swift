@@ -19,8 +19,8 @@ class GamePresenterTest: XCTestCase {
         super.setUp()
         mockPlayerService = MockPlayerService(players: getMockPlayers())
         let selectedPlayerList = PlayersListMO(entity: CoreDataConnection.shared.getEntity(withName: PlayersListMO.entityName)!, insertInto: CoreDataConnection.shared.managedContext)
-        selectedPlayerList.players =  getMockPlayers().toNSSet()
-        GameManager.currentGame.setSelectedList(listPlayers: selectedPlayerList)
+//        selectedPlayerList.players =  getMockPlayers().toNSSet()
+        GameManager.currentGame.setSelectedList(listPlayers: PlayersListMO.parse(playersList: selectedPlayerList))
         gamePresenterTest = GamePresenter(view: mockGameView, playerService: mockPlayerService)
     }
     
@@ -65,13 +65,9 @@ class GamePresenterTest: XCTestCase {
     
     /// Gets 5 mock players with different name and the same role **Role.none** for test
     /// - returns: An Array `PlayerMO` with mockData
-    private func getMockPlayers() -> [PlayerMO] {
-        return MockData.Player.rawPlayers.map({ (name) -> PlayerMO in
-            let playerEntity = CoreDataConnection.shared.getEntity(withName: PlayerMO.entityName)
-            let playerMO = PlayerMO(entity: playerEntity!, insertInto: CoreDataConnection.shared.managedContext)
-            playerMO.name = name
-            playerMO.role = .none
-            return playerMO
+    private func getMockPlayers() -> [Player] {
+        return MockData.Player.rawPlayers.map({ (name) -> Player in
+           return RawPlayer(name: name)
         })
     }
 }

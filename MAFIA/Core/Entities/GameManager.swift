@@ -78,5 +78,13 @@ class GameManager {
     func reviveAllKilledPlayers() {
         eliminatedPlayers.removeAll()
     }
+
+    func removeForCurrentGame(player: Player) -> Bool {
+        if let index = selectedListPlayers?.players.index(where: { $0.name == player.name}) {
+            selectedListPlayers?.players.remove(at: index)
+            return true
+        }
+        return false
+    }
     
 }

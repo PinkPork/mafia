@@ -11,17 +11,17 @@ import Foundation
 
 class MockPlayerService: PlayerService {
     
-    private let players: [PlayerMO]
+    private let players: [Player]
     
-    init(players: [PlayerMO]) {
+    init(players: [Player]) {
         self.players = players
     }
     
-    override func savePlayer(name: String, completion: (PlayerMO?) -> Void) {
+    override func savePlayer(name: String, completion: (Player?) -> Void) {
         completion(players.first)
     }
     
-    override func getPlayer(withName name: String, completion: (PlayerMO?) -> Void) {
+    override func getPlayer(withName name: String, completion: (Player?) -> Void) {
         completion(players.first(where: { (player) -> Bool in
             return player.name == name
         }))

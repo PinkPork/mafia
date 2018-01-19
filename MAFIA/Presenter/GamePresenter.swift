@@ -58,14 +58,14 @@ class GamePresenter {
         if players.count >= GameRules.minimumPlayers {
             return RawPlayer.assignRandomRole(to: players)
         }
+        players.forEach({ $0.role = .none })
         return players
     }
     
     func deletePlayer(player: Player, indexPath: IndexPath) {
-        playerService.deletePlayer(player: player) { [weak self] (success) in
-            if success {
-                self?.view.deletePlayer(player: player, indexPath: indexPath)
-            }
+        if GameManager.currentGame.removeForCurrentGame(player: player) {
+            view.deletePlayer(player: player, indexPath: indexPath)
+            view.updateGameUI()
         }
     }
     
