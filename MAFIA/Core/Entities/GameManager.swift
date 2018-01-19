@@ -46,7 +46,6 @@ class GameManager {
         }
     }
     
-    
     /// Returns the number of mafia team players that are playing and are alive
     var aliveMafia: Int {
         get {
