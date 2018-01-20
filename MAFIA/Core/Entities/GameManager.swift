@@ -39,7 +39,7 @@ class GameManager {
             let mafiaPlayers = numberOfPlayersPlaying / 3     //Esto sirve para calcular la cantidad de mafiosos.
             var civiliansPlaying = numberOfPlayersPlaying - mafiaPlayers
             civiliansPlaying = eliminatedPlayers.reduce(civiliansPlaying, {(result, player) -> Int in
-                return player.role != .mafia ? result - 1 : result
+                return player.role != .mob ? result - 1 : result
             })
             
             return civiliansPlaying
@@ -51,7 +51,7 @@ class GameManager {
         get {
             var mafiaPlayers = numberOfPlayersPlaying / 3
             mafiaPlayers = eliminatedPlayers.reduce(mafiaPlayers, {(result, player) -> Int in
-                return player.role == .mafia ? result - 1 : result
+                return player.role == .mob ? result - 1 : result
             })
             return mafiaPlayers
         }
