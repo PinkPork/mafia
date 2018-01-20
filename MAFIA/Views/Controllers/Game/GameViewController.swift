@@ -204,7 +204,7 @@ extension GameViewController: UITableViewDelegate {
                 }
             }))
         }
-        actionsForRow.append(UITableViewRowAction.init(style: .destructive, title: "DELETE_PLAYER_ACTION".localized(), handler: { [weak self] (_, indexPath) in
+        actionsForRow.append(UITableViewRowAction.init(style: .destructive, title: "DELETE_ACTION".localized(), handler: { [weak self] (_, indexPath) in
             if let strongSelf = self {
                 strongSelf.presenter.deletePlayer(player: playerToKill, indexPath: indexPath)
             }
