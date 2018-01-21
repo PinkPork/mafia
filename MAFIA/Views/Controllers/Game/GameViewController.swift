@@ -174,18 +174,10 @@ extension GameViewController: UITableViewDataSource {
 extension GameViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        let playerToEliminate = playersToDisplay[indexPath.row]
-        //        presenter.kill(player: playerToEliminate)
-        //        presenter.didEndGame()
         let displayedPlayer = playersToDisplay[indexPath.row]
         self.performSegue(withIdentifier: Segues.playerDetail, sender: displayedPlayer)
         
         
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        //        let deselectedPlayer = playersToDisplay[indexPath.row]
-        //        presenter.revivePlayer(player: deselectedPlayer)
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
