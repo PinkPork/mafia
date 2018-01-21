@@ -79,4 +79,19 @@ class GameManager {
         eliminatedPlayers.removeAll()
     }
     
+    func checkForKilledPlayers(player: PlayerMO) -> Bool {
+        let filteredPlayer = eliminatedPlayers.filter { (playerToSearch) -> Bool in
+            if player.name == playerToSearch.name {
+                return true
+            } else {
+                return false
+            }
+        }
+        if filteredPlayer.count == 0 {
+            return false
+        } else {
+            return true
+        }
+    }
+    
 }
