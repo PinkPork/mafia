@@ -52,6 +52,8 @@
 // MARK: - Button Titles
 
 "USE_PLAYERS_LIST_BUTTON_TITLE" = "Use this list";
+"KILL_PLAYER_BUTTON_TITLE" = "Kill player";
+"REVIVE_PLAYER_BUTTON_TITLE" = "Revive player";
 
 // MARK: - Roles
 "king" = "King";

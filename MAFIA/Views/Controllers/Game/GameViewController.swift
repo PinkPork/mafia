@@ -78,6 +78,9 @@ class GameViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationViewController = segue.destination as? ListPlayersViewController {
             destinationViewController.gamePresenter = presenter
+        } else if let destinationViewController = segue.destination as? PlayerDetailViewController {
+            destinationViewController.navigationItem.title = presenter.selectedListName
+            destinationViewController.player = sender as? Player
         }
     }
     
@@ -169,27 +172,41 @@ extension GameViewController: UITableViewDataSource {
 extension GameViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let playerToEliminate = playersToDisplay[indexPath.row]
-        presenter.kill(player: playerToEliminate)
-        presenter.didEndGame()
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let deselectedPlayer = playersToDisplay[indexPath.row]
-        presenter.revivePlayer(player: deselectedPlayer)
+        let displayedPlayer = playersToDisplay[indexPath.row]
+        self.performSegue(withIdentifier: Segues.playerDetail, sender: displayedPlayer)
+        
+        
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        return [UITableViewRowAction.init(style: .destructive, title: "DELETE_ACTION".localized(), handler: { [weak self] (_, indexPath) in
+        let playerToKill = playersToDisplay[indexPath.row]
+        var actionsForRow = [UITableViewRowAction]()
+        if GameManager.currentGame.checkForKilledPlayers(player: playerToKill) == false {
+            actionsForRow.append(UITableViewRowAction.init(style: .destructive, title: "KILL_PLAYER_BUTTON_TITLE".localized(), handler: { [weak self] (_, indexPath) in
+                if let strongSelf = self {
+                    strongSelf.presenter.kill(player: strongSelf.playersToDisplay[indexPath.row])
+                    tableView.reloadData()
+                }
+            }))
+        } else {
+            actionsForRow.append(UITableViewRowAction.init(style: .normal, title: "REVIVE_PLAYER_BUTTON_TITLE".localized(), handler: { [weak self] (_, indexPath) in
+                if let strongSelf = self {
+                    strongSelf.presenter.revivePlayer(player: strongSelf.playersToDisplay[indexPath.row])
+                    tableView.reloadData()
+                }
+            }))
+        }
+        actionsForRow.append(UITableViewRowAction.init(style: .destructive, title: "DELETE_ACTION".localized(), handler: { [weak self] (_, indexPath) in
             if let strongSelf = self {
-                strongSelf.presenter.deletePlayer(player: strongSelf.playersToDisplay[indexPath.row], indexPath: indexPath)
+                strongSelf.presenter.deletePlayer(player: playerToKill, indexPath: indexPath)
             }
-        })]
+        }))
+        return actionsForRow
     }
 }
-
 extension GameViewController: MenuViewControllerDelegate {
     func performSegue(withIdentifier identifier: String) {
         self.performSegue(withIdentifier: identifier, sender: nil)
     }
 }
+

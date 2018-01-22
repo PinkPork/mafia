@@ -11,4 +11,5 @@ import Foundation
 /// Contains all the segues used in the storyboard
 struct Segues {
     static let detailListPlayers = "SegueDetailPlayersList"
+    static let playerDetail = "SeguePlayerDetail"
 }

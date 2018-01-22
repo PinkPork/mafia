@@ -18,6 +18,7 @@ class PlayerTableViewCell: UITableViewCell {
     // MARK: - Vars & Constants
     static let nib: String = "PlayerTableViewCell"
     static let identifier: String = "PlayerCell"
+    var player: Player!
     
 
     override func awakeFromNib() {
@@ -27,14 +28,16 @@ class PlayerTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        self.contentView.backgroundColor = selected ? UIColor.red : UIColor.white
+//        self.contentView.backgroundColor = selected ? UIColor.red : UIColor.white
     }
     
     // MARK: - Methods
     
     func setCellData(player: Player) {
+        self.player = player
         self.nameLabel.text = player.name
         self.roleImageView.image = UIImage(named: "\(player.role.imageDescription)")
+        self.contentView.backgroundColor = GameManager.currentGame.checkForKilledPlayers(player: player) ? UIColor.red : UIColor.white
     }
     
 }

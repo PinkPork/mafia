@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oQm-oX-6bK">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oQm-oX-6bK">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -85,11 +85,70 @@
                         <outlet property="tableView" destination="oQm-oX-6bK" id="lJT-3B-2rn"/>
                         <outlet property="villagerLabel" destination="Z0i-pH-HsG" id="vH7-Jh-jtA"/>
                         <segue destination="3Yn-SM-Kce" kind="show" identifier="SeguePlayersList" id="juw-8L-iw2"/>
+                        <segue destination="H2k-sV-yND" kind="show" identifier="SeguePlayerDetail" id="bVc-i7-CNv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="889" y="332"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="bhn-11-JlY">
+            <objects>
+                <viewController id="H2k-sV-yND" customClass="PlayerDetailViewController" customModule="MAFIA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oOS-9r-9Tu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qne-De-V0W">
+                                <rect key="frame" x="16" y="98" width="343" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="AGD-1u-YRp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="civilian" translatesAutoresizingMaskIntoConstraints="NO" id="hKn-w2-qxX">
+                                <rect key="frame" x="16" y="213" width="343" height="214"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fe-oS-cEb">
+                                <rect key="frame" x="16" y="489" width="343" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="gkn-66-yUf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qne-De-V0W" firstAttribute="top" secondItem="zom-Fh-kdX" secondAttribute="top" constant="34" id="1tz-EA-Ox0"/>
+                            <constraint firstItem="9Fe-oS-cEb" firstAttribute="leading" secondItem="zom-Fh-kdX" secondAttribute="leading" constant="16" id="FV1-CA-MWf"/>
+                            <constraint firstItem="zom-Fh-kdX" firstAttribute="trailing" secondItem="hKn-w2-qxX" secondAttribute="trailing" constant="16" id="Hvg-en-NkC"/>
+                            <constraint firstItem="hKn-w2-qxX" firstAttribute="leading" secondItem="zom-Fh-kdX" secondAttribute="leading" constant="16" id="NUa-19-DPH"/>
+                            <constraint firstItem="zom-Fh-kdX" firstAttribute="trailing" secondItem="9Fe-oS-cEb" secondAttribute="trailing" constant="16" id="TeQ-HS-E7i"/>
+                            <constraint firstItem="zom-Fh-kdX" firstAttribute="bottom" secondItem="9Fe-oS-cEb" secondAttribute="bottom" constant="141" id="Vga-qW-wjE"/>
+                            <constraint firstItem="qne-De-V0W" firstAttribute="leading" secondItem="zom-Fh-kdX" secondAttribute="leading" constant="16" id="a5g-lY-Ocq"/>
+                            <constraint firstItem="zom-Fh-kdX" firstAttribute="trailing" secondItem="9Fe-oS-cEb" secondAttribute="trailing" constant="16" id="o3a-OZ-IrZ"/>
+                            <constraint firstItem="9Fe-oS-cEb" firstAttribute="leading" secondItem="zom-Fh-kdX" secondAttribute="leading" constant="16" id="tAy-6P-l7f"/>
+                            <constraint firstItem="zom-Fh-kdX" firstAttribute="trailing" secondItem="qne-De-V0W" secondAttribute="trailing" constant="16" id="uKc-wl-1ye"/>
+                            <constraint firstItem="hKn-w2-qxX" firstAttribute="top" secondItem="qne-De-V0W" secondAttribute="bottom" constant="70" id="uol-lK-WTv"/>
+                            <constraint firstItem="9Fe-oS-cEb" firstAttribute="top" secondItem="hKn-w2-qxX" secondAttribute="bottom" constant="62" id="zVN-ps-faA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zom-Fh-kdX"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="gyP-zc-QY8"/>
+                    <connections>
+                        <outlet property="nameLabel" destination="qne-De-V0W" id="9Sk-3Y-rjJ"/>
+                        <outlet property="roleImageView" destination="hKn-w2-qxX" id="hqY-pd-0f0"/>
+                        <outlet property="roleLabel" destination="9Fe-oS-cEb" id="8zh-BV-mWt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jer-ix-qqH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2197.5999999999999" y="330.58470764617692"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hli-Bk-gWx">
@@ -216,6 +275,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="civilian" width="1200" height="633"/>
         <image name="icon_menu" width="24" height="24"/>
     </resources>
 </document>

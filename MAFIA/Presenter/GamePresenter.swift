@@ -85,6 +85,7 @@ class GamePresenter {
     func kill(player: Player) {
         GameManager.currentGame.kill(player)
         view.updateGameUI()
+        didEndGame()
     }
     
     func revivePlayer(player: Player) {
@@ -96,7 +97,7 @@ class GamePresenter {
         var winnerRole: Role = Role.none
         if GameManager.currentGame.aliveMafia == 0 {
             winnerRole = .villager
-        } else if GameManager.currentGame.aliveMafia == GameManager.currentGame.aliveCivilians {
+        } else if GameManager.currentGame.aliveMafia >= GameManager.currentGame.aliveCivilians {
             winnerRole = .mob
         }
         view.endGame(winner: winnerRole)
