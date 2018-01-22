@@ -12,4 +12,9 @@ import Foundation
 struct Segues {
     static let detailListPlayers = "SegueDetailPlayersList"
     static let playerDetail = "SeguePlayerDetail"
+
+    struct Menu {
+        static let addNewPlayer = "SegueAddNewPlayer"
+        static let playersList = "SegueMenuPlayersList"
+    }
 }

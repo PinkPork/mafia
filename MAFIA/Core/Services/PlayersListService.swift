@@ -18,7 +18,7 @@ class PlayersListService: BaseService {
     func createPlayersListWith(name: String, players: [Player] = [Player](), completion: CreateListPlayersCompletion) {
 
         let playerList = PlayersListMO(name: name)
-        playerList.players = players.map(PlayerMO.reverseParse).toNSSet()
+        playerList.players = players.flatMap(PlayerMO.reverseParse).toNSSet()
 
         if CoreDataConnection.shared.managedContext.save(playerList) {
             completion(PlayersListMO.parse(playersList: playerList))

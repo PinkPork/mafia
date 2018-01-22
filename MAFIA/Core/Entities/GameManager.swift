@@ -74,11 +74,15 @@ class GameManager {
             eliminatedPlayers.remove(at: index)
         }
     }
-    
+
+    /// Removes all players from the `eliminatedPlayers` array
     func reviveAllKilledPlayers() {
         eliminatedPlayers.removeAll()
     }
 
+    /// Removes a players from the playersPlaying array so that player wouldn't appear any more in the current game.
+    /// **NOTE:** If you want to play again with the player you should select again the list.
+    /// returns: `true` if the player could be deleted from the current game, otherwise `false`
     func removeForCurrentGame(player: Player) -> Bool {
         if let index = selectedListPlayers?.players.index(where: { $0.name == player.name}) {
             selectedListPlayers?.players.remove(at: index)
@@ -86,7 +90,9 @@ class GameManager {
         }
         return false
     }
-    
+
+    /// Checks if the player had been killed
+    /// returns: `true` if the player had been killed, otherwise `false`
     func checkForKilledPlayers(player: Player) -> Bool {
         let filteredPlayer = eliminatedPlayers.filter { (playerToSearch) -> Bool in
             if player.name == playerToSearch.name {

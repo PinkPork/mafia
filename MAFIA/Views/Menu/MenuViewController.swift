@@ -80,7 +80,15 @@ extension MenuViewController: UITableViewDataSource {
 extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedOption = menuOptions[indexPath.row]
-        let segue = "Segue\(selectedOption)"
+        var segue: String!
+
+        switch selectedOption {
+        case .PlayersList:
+            segue = Segues.Menu.playersList            
+        default:
+            return
+        }
+
         try! SideMenu.sharedInstance?.animateMenu()
         delegate?.performSegue(withIdentifier: segue)
         tableView.deselectRow(at: indexPath, animated: true)

@@ -33,6 +33,10 @@ class PlayerService: BaseService {
     }
     
     func deletePlayer(player: Player, completion: DeletePlayerCompletion) {
-        completion(CoreDataConnection.shared.managedContext.delete(PlayerMO.reverseParse(fromPlayer: player)))
+        if let playerToDelete = PlayerMO.reverseParse(fromPlayer: player) {
+            completion(CoreDataConnection.shared.managedContext.delete(playerToDelete))
+            return
+        }
+        completion(false)
     }
 }
