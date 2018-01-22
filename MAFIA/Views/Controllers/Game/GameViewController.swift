@@ -22,9 +22,9 @@ class GameViewController: UIViewController {
     
     private let kHeaderView: CGFloat = 80
     private var presenter: GamePresenter!
-    private var playersToDisplay: [PlayerMO] = [PlayerMO]() {
+    private var playersToDisplay: [Player] = [Player]() {
         didSet {
-            tableView.isUserInteractionEnabled = playersToDisplay.count >= GameRules.minimumPlayers
+            updateGameUI()
         }
     }
     
@@ -32,6 +32,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()        
         setupTableView()
         setupView()
+        updateGameUI()
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,7 +50,7 @@ class GameViewController: UIViewController {
     
     
     @IBAction func refreshRoles(_ sender: UIBarButtonItem) {
-        refreshRoles()
+        presenter.restartGame()
     }
     
     // MARK: - Methods
@@ -57,9 +58,6 @@ class GameViewController: UIViewController {
     private func setupView() {
         presenter = GamePresenter(view: self)
         presenter.showPlayers()
-        currentPlayerListName.text = "LIST_PLAYER_NO_NAME".localized()
-        villagerLabel.text = nil
-        mobLabel.text = nil
     }
     
     private func setupTableView() {
@@ -69,16 +67,20 @@ class GameViewController: UIViewController {
         tableView.register(UINib.init(nibName: PlayerTableViewCell.nib, bundle: Bundle.main), forCellReuseIdentifier: PlayerTableViewCell.identifier)
     }
     
+    private func refreshRoles() {
+        playersToDisplay = presenter.refreshRoles(players: playersToDisplay)
+        tableView.reloadData()
+    }
     
     // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation.
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationViewController = segue.destination as? ListPlayersViewController {
             destinationViewController.gamePresenter = presenter
         } else if let destinationViewController = segue.destination as? PlayerDetailViewController {
             destinationViewController.navigationItem.title = presenter.selectedListName
-            destinationViewController.player = sender as? PlayerMO
+            destinationViewController.player = sender as? Player
         }
     }
     
@@ -89,27 +91,28 @@ class GameViewController: UIViewController {
 
 extension GameViewController: GameView {
     
-    func setPlayers(players: [PlayerMO]) {
+    func setPlayers(players: [Player]) {
         playersToDisplay = players
         tableView.reloadData()
     }
     
-    func addNewPlayer(player: PlayerMO) {
+    func addNewPlayer(player: Player) {
         playersToDisplay.append(player)
         playersToDisplay = self.presenter.refreshRoles(players: playersToDisplay)
         tableView.reloadData()
     }
     
-    func deletePlayer(player: PlayerMO, indexPath: IndexPath) {
+    func deletePlayer(player: Player, indexPath: IndexPath) {
         playersToDisplay.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
+        refreshRoles()
     }
     
     func updateGameUI() {
         villagerLabel.text = presenter.aliveCiviliansPlayerText
         mobLabel.text = presenter.aliveMafiaPlayerText
         currentPlayerListName.text = presenter.selectedListName
-        tableView.reloadData()
+        tableView.isUserInteractionEnabled = presenter.gameCanStart
     }
     
     func endGame(winner: Role) {
@@ -141,11 +144,6 @@ extension GameViewController: GameView {
     func restartGame() {
         presenter.showPlayers()
         refreshRoles()
-    }
-    
-    private func refreshRoles() {
-        playersToDisplay = presenter.refreshRoles(players: playersToDisplay)
-        tableView.reloadData()
     }
 }
 
@@ -187,12 +185,14 @@ extension GameViewController: UITableViewDelegate {
             actionsForRow.append(UITableViewRowAction.init(style: .destructive, title: "KILL_PLAYER_BUTTON_TITLE".localized(), handler: { [weak self] (_, indexPath) in
                 if let strongSelf = self {
                     strongSelf.presenter.kill(player: strongSelf.playersToDisplay[indexPath.row])
+                    tableView.reloadData()
                 }
             }))
         } else {
             actionsForRow.append(UITableViewRowAction.init(style: .normal, title: "REVIVE_PLAYER_BUTTON_TITLE".localized(), handler: { [weak self] (_, indexPath) in
                 if let strongSelf = self {
                     strongSelf.presenter.revivePlayer(player: strongSelf.playersToDisplay[indexPath.row])
+                    tableView.reloadData()
                 }
             }))
         }

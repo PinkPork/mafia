@@ -18,7 +18,7 @@ class PlayerTableViewCell: UITableViewCell {
     // MARK: - Vars & Constants
     static let nib: String = "PlayerTableViewCell"
     static let identifier: String = "PlayerCell"
-    var player: PlayerMO!
+    var player: Player!
     
 
     override func awakeFromNib() {
@@ -33,7 +33,7 @@ class PlayerTableViewCell: UITableViewCell {
     
     // MARK: - Methods
     
-    func setCellData(player: PlayerMO) {
+    func setCellData(player: Player) {
         self.player = player
         self.nameLabel.text = player.name
         self.roleImageView.image = UIImage(named: "\(player.role.imageDescription)")

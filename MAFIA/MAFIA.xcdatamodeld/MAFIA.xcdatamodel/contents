@@ -2,11 +2,16 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Player" representedClassName="PlayerMO" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="playersList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlayersList" inverseName="players" inverseEntity="PlayersList" syncable="YES"/>
+        <relationship name="playersLists" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayersList" inverseName="players" inverseEntity="PlayersList" syncable="YES"/>
     </entity>
     <entity name="PlayersList" representedClassName="PlayersListMO" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player" inverseName="playersList" inverseEntity="Player" syncable="YES"/>
+        <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player" inverseName="playersLists" inverseEntity="Player" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="name"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="Player" positionX="288" positionY="27" width="128" height="75"/>

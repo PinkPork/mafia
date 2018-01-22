@@ -9,9 +9,9 @@
 import Foundation
 
 protocol GameView: class {
-    func setPlayers(players: [PlayerMO])
-    func addNewPlayer(player: PlayerMO)
-    func deletePlayer(player: PlayerMO, indexPath: IndexPath)
+    func setPlayers(players: [Player])
+    func addNewPlayer(player: Player)
+    func deletePlayer(player: Player, indexPath: IndexPath)
     func updateGameUI()
     func endGame(winner: Role)
     func restartGame()
@@ -22,16 +22,29 @@ class GamePresenter {
     private unowned let view: GameView
     fileprivate let playerService: PlayerService
     
-    var aliveCiviliansPlayerText: String {
-        return "\("CIVILIANS_TITLE".localized()) \n \(GameManager.currentGame.aliveCivilians)"
+    var aliveCiviliansPlayerText: String? {
+        if GameManager.currentGame.numberOfPlayersPlaying == 0 {
+            return nil
+        }
+        return (gameCanStart ? "\("CIVILIANS_TITLE".localized()) \n \(GameManager.currentGame.aliveCivilians)" : nil)
     }
     
-    var aliveMafiaPlayerText: String {
-        return "\("MAFIA_TITLE".localized()) \n \(GameManager.currentGame.aliveMafia)"
+    var aliveMafiaPlayerText: String? {
+        if GameManager.currentGame.numberOfPlayersPlaying == 0 {
+            return nil
+        }
+        return (gameCanStart ? "\("MAFIA_TITLE".localized()) \n \(GameManager.currentGame.aliveMafia)" : nil)
     }
     
     var selectedListName: String? {
+        if GameManager.currentGame.numberOfPlayersPlaying == 0 {
+            return "LIST_PLAYER_NO_NAME".localized()
+        }
         return GameManager.currentGame.listName
+    }
+    
+    var gameCanStart: Bool {
+        return (GameManager.currentGame.numberOfPlayersPlaying >= GameRules.minimumPlayers)
     }
     
     init(view: GameView, playerService: PlayerService = PlayerService()) {
@@ -54,27 +67,28 @@ class GamePresenter {
         }
     }
     
-    func refreshRoles(players: [PlayerMO]) -> [PlayerMO] {
+    func refreshRoles(players: [Player]) -> [Player] {
         if players.count >= GameRules.minimumPlayers {
-            return PlayerMO.assignRandomRole(to: players)
+            return RawPlayer.assignRandomRole(to: players)
         }
+        players.forEach({ $0.role = .none })
         return players
     }
     
-    func deletePlayer(player: PlayerMO, indexPath: IndexPath) {
-        playerService.deletePlayer(player: player) { [weak self] (success) in
-            if success {
-                self?.view.deletePlayer(player: player, indexPath: indexPath)
-            }
+    func deletePlayer(player: Player, indexPath: IndexPath) {
+        if GameManager.currentGame.removeForCurrentGame(player: player) {
+            view.deletePlayer(player: player, indexPath: indexPath)
+            view.updateGameUI()
         }
     }
     
-    func kill(player: PlayerMO) {
+    func kill(player: Player) {
         GameManager.currentGame.kill(player)
         view.updateGameUI()
+        didEndGame()
     }
     
-    func revivePlayer(player: PlayerMO) {
+    func revivePlayer(player: Player) {
         GameManager.currentGame.revive(player)
         view.updateGameUI()
     }
@@ -83,7 +97,7 @@ class GamePresenter {
         var winnerRole: Role = Role.none
         if GameManager.currentGame.aliveMafia == 0 {
             winnerRole = .villager
-        } else if GameManager.currentGame.aliveMafia == GameManager.currentGame.aliveCivilians {
+        } else if GameManager.currentGame.aliveMafia >= GameManager.currentGame.aliveCivilians {
             winnerRole = .mob
         }
         view.endGame(winner: winnerRole)

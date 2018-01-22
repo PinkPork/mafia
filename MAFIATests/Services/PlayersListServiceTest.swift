@@ -37,21 +37,30 @@ class PlayersListServiceTest: BaseTest {
                 XCTAssertNotNil(playerList, "There was a problem creating a list with name: \(MockData.PlayersList.name)")
             })
         }
-        
-        service.getPlayers { (playersList) in
-            XCTAssertNotNil(playersList, "The players list is empty")
-            if let allLists = playersList {
+
+        service.getLists { (players) in
+            XCTAssertNotNil(players, "The players list is empty")
+            if let allLists = players {
                 print("\n \n ------------------------------------------------------------------------ \n \n")
                 for list in allLists {
                     print("\n El nombre de la lista es: " + list.name + "\n")
-                    for player in list.players! {
-                        let newp = player as! PlayerMO
-                        print(" * Jugador: " + newp.name)
+                    for player in list.players {
+                        print(" * Jugador: " + player.name)
                     }
                 }
                 print("\n \n ------------------------------------------------------------------------ \n \n \n \n \n")
                 XCTAssertNotEqual(0, allLists.count, "The player has not any list")
             }
+        }
+    }
+    
+    func testDeleteList() {
+        service.createPlayersListWith(name: MockData.PlayersList.name, completion: { (playerList) in
+            XCTAssertNotNil(playerList, "There was a problem creating a list with name: \(MockData.PlayersList.name)")
+        })
+        
+        service.deleteList(list: RawPlayersList(name: MockData.PlayersList.name)) { (success) in
+            XCTAssertTrue(success, "There was a problem deleting a list with name: \(MockData.PlayersList.name)")
         }
     }
 }

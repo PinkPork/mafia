@@ -18,15 +18,15 @@ class MockGameView: GameView {
     var endGameCalled = false
     var restartGameCalled = false
     
-    func setPlayers(players: [PlayerMO]) {
+    func setPlayers(players: [Player]) {
         setPlayersCalled = true
     }
     
-    func addNewPlayer(player: PlayerMO) {
+    func addNewPlayer(player: Player) {
         addNewPlayerCalled = true
     }
     
-    func deletePlayer(player: PlayerMO, indexPath: IndexPath) {
+    func deletePlayer(player: Player, indexPath: IndexPath) {
         deletePlayerCalled = true
     }
     

@@ -12,7 +12,7 @@ class PlayerDetailViewController: UIViewController {
     
     // MARK: - Vars & Lets
     
-    weak var player: PlayerMO!
+    weak var player: Player!
     
     // MARK: - IBOutlets
     
@@ -47,7 +47,7 @@ class PlayerDetailViewController: UIViewController {
     
     // MARK: - Methods
     
-    private func setData(player: PlayerMO) {
+    private func setData(player: Player) {
         self.nameLabel.text = player.name
         self.roleImageView.image = UIImage(named: "\(player.role.imageDescription)")
         self.roleLabel.text = player.role.roleDescription

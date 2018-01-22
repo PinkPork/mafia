@@ -14,15 +14,15 @@ class GameManager {
     
     static let currentGame = GameManager()
     
-    private var selectedListPlayers: PlayersListMO?
-    private var eliminatedPlayers: [PlayerMO] = [PlayerMO]()
+    private var selectedListPlayers: PlayersList?
+    private var eliminatedPlayers: [Player] = [Player]()
     
     private init() {
         
     }
     
-    var playersPlaying: [PlayerMO]? {
-        return selectedListPlayers?.players?.toArray()
+    var playersPlaying: [Player]? {
+        return selectedListPlayers?.players
     }
     
     var listName: String? {
@@ -57,20 +57,20 @@ class GameManager {
         }
     }
     
-    func setSelectedList(listPlayers: PlayersListMO) {
+    func setSelectedList(listPlayers: PlayersList) {
         selectedListPlayers = listPlayers
     }
     
     /// Adds a player to the `eliminatedPlayers` array.
     /// parameter player: The player to be kill from the current game
-    func kill(_ player: PlayerMO) {
+    func kill(_ player: Player) {
         eliminatedPlayers.append(player)
     }
     
     /// Removes a player from the `eliminatedPlayers` array
     /// parameter player: The player to be revived from the current game
-    func revive(_ player: PlayerMO) {
-        if let index = eliminatedPlayers.index(of: player) {
+    func revive(_ player: Player) {
+        if let index = eliminatedPlayers.index(where: { $0.name == player.name}) {
             eliminatedPlayers.remove(at: index)
         }
     }
@@ -78,8 +78,16 @@ class GameManager {
     func reviveAllKilledPlayers() {
         eliminatedPlayers.removeAll()
     }
+
+    func removeForCurrentGame(player: Player) -> Bool {
+        if let index = selectedListPlayers?.players.index(where: { $0.name == player.name}) {
+            selectedListPlayers?.players.remove(at: index)
+            return true
+        }
+        return false
+    }
     
-    func checkForKilledPlayers(player: PlayerMO) -> Bool {
+    func checkForKilledPlayers(player: Player) -> Bool {
         let filteredPlayer = eliminatedPlayers.filter { (playerToSearch) -> Bool in
             if player.name == playerToSearch.name {
                 return true

@@ -15,12 +15,11 @@ class DetailListPlayersViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Vars & Constants
-    
-    private var players: [PlayerMO] = [PlayerMO]()
+
     private var presenter: DetailListPlayersPresenter!
     private var addPlayerAction: UIAlertAction?
     
-    weak var listPlayers: PlayersListMO?
+    weak var listPlayers: RawPlayersList!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,31 +30,7 @@ class DetailListPlayersViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func addPlayer(_ sender: Any) {
-        
-        let alertController = UIAlertController(title: "ADD_PLAYER_TITLE".localized(), message: "ADD_PLAYER_MESSAGE".localized(), preferredStyle: .alert)
-        
-        alertController.addTextField { (textField) in
-            textField.delegate = self
-            textField.becomeFirstResponder()
-        }
-        
-        addPlayerAction = UIAlertAction(title: "ADD_ACTION".localized(), style: .default) { (action) in
-            let textField = alertController.textFields?.first
-            guard let playerName = textField?.text, !playerName.isEmpty else { return }
-            guard let list = self.listPlayers else { return }
-            if self.players.filter({ $0.name == playerName }).count == 0 {
-                self.presenter.addPlayer(withName: playerName, list: list)
-                self.presentActionSheet(title: "PLAYER_ADDED_TITLE".localized(), message: String.localizedStringWithFormat("PLAYER_ADDED_MESSAGE".localized(), playerName))
-            } else {
-                self.presentActionSheet(title: "PLAYER_ALREADY_ADDED_TITLE".localized(), message: "PLAYER_ALREADY_ADDED_MESSAGE".localized())
-            }
-        }
-        let cancelButton = UIAlertAction(title: "CANCEL_ACTION".localized(), style: .cancel)
-        
-        alertController.addAction(addPlayerAction!)
-        alertController.addAction(cancelButton)
-        
-        self.present(alertController, animated: true, completion: nil)
+        showAddPlayerPopUp()
     }
     
     
@@ -63,9 +38,7 @@ class DetailListPlayersViewController: UIViewController {
     
     private func setupView() {
         presenter = DetailListPlayersPresenter(view: self)
-        if  let playersFromList: [PlayerMO] = listPlayers?.players?.toArray() {
-            players = playersFromList
-        }
+        
         guard let title = listPlayers?.name else { return }
         self.navigationItem.title = title
     }
@@ -81,22 +54,44 @@ class DetailListPlayersViewController: UIViewController {
         addPlayerAction?.isEnabled = !emptyText.isEmpty
     }
     
+    private func showAddPlayerPopUp() {
+        let alertController = UIAlertController(title: "ADD_PLAYER_TITLE".localized(), message: "ADD_PLAYER_MESSAGE".localized(), preferredStyle: .alert)
+        
+        alertController.addTextField { (textField) in
+            textField.delegate = self
+            textField.becomeFirstResponder()
+        }
+        
+        addPlayerAction = UIAlertAction(title: "ADD_ACTION".localized(), style: .default) { (action) in
+            let textField = alertController.textFields?.first
+            guard let playerName = textField?.text, !playerName.isEmpty else { return }
+            guard let list = self.listPlayers else { return }
+            self.presenter.addPlayer(withName: playerName, toList: list, errorCompletion: self.showAddPlayerPopUp)
+        }
+        
+        let cancelButton = UIAlertAction(title: "CANCEL_ACTION".localized(), style: .cancel)
+        
+        alertController.addAction(addPlayerAction!)
+        alertController.addAction(cancelButton)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
 }
 
 // MARK: - DetailListPlayersView protocol conformace
 
 extension DetailListPlayersViewController: DetailListPlayersView {
-    
-    func addNewPlayer(player: PlayerMO) {
-        self.players.append(player)
+   
+    func addNewPlayer(player: Player) {
+        listPlayers.players.append(player)
         tableView.reloadData()
     }
     
-    func deletePlayer(player: PlayerMO, indexPath: IndexPath) {
-        players.remove(at: indexPath.row)
+    func deletePlayer(player: Player, indexPath: IndexPath) {
+        listPlayers.players.remove(at: indexPath.row)
         tableView.reloadData()
     }
-    
 }
 
 // MARK: - TableView DataSource
@@ -104,12 +99,12 @@ extension DetailListPlayersViewController: DetailListPlayersView {
 extension DetailListPlayersViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return players.count
+        return listPlayers.players.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        let player = players[indexPath.row]
+        let player = listPlayers.players[indexPath.row]
         cell.textLabel?.text = player.name
         return cell
     }
@@ -119,12 +114,12 @@ extension DetailListPlayersViewController: UITableViewDataSource {
 
 extension DetailListPlayersViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "DELETE_ACTION") {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "DELETE_ACTION".localized()) {
             [weak self] (contextAction: UIContextualAction, sourceView: UIView, completion: (Bool) -> Void) in
             if let strongSelf = self {
                 guard let list = strongSelf.listPlayers else { return }
-                strongSelf.presenter.deletePlayer(player: strongSelf.players[indexPath.row], list: list, indexPath: indexPath)
+                strongSelf.presenter.deletePlayer(player: strongSelf.listPlayers.players[indexPath.row], list: list, indexPath: indexPath)
                 completion(true)
             } else {
                 completion(false)
