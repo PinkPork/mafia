@@ -21,7 +21,7 @@ enum Role { // TODO: This might change in the future if we are going to add the 
         return String(describing: self)
     }
     var roleDescription: String {
-        return String(describing: self).localized()
+        return String(describing: self).localized().capitalizeFirst()
     }
 }
 

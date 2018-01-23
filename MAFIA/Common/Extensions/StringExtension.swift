@@ -41,4 +41,14 @@ extension String {
         }
         return localized
     }
+    
+    func capitalizeFirst() -> String {
+        let offset = 1
+        if self.count >= offset {
+            let firstIndex = self.index(startIndex, offsetBy: 1)
+            return self[..<firstIndex].capitalized + self[firstIndex...].lowercased()
+        } else {
+            return ""
+        }
+    }
 }
