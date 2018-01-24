@@ -55,6 +55,10 @@
 "KILL_PLAYER_BUTTON_TITLE" = "Kill player";
 "REVIVE_PLAYER_BUTTON_TITLE" = "Revive player";
 
+// MARK: - Action Titles
+
+"PULL_TO_REFRESH_ACTION" = "Pull to Refresh";
+
 // MARK: - Roles
 "king" = "King";
 "doctor" = "Doctor";
