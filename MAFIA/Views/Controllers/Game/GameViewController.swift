@@ -27,6 +27,7 @@ class GameViewController: UIViewController {
             updateGameUI()
         }
     }
+    private var pullToRefresh: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()        
@@ -65,11 +66,22 @@ class GameViewController: UIViewController {
         tableView.delegate = self
         tableView.contentInset = UIEdgeInsets(top: kHeaderView, left: 0, bottom: 0, right: 0)
         tableView.register(UINib.init(nibName: PlayerTableViewCell.nib, bundle: Bundle.main), forCellReuseIdentifier: PlayerTableViewCell.identifier)
+        
+        pullToRefresh = UIRefreshControl()
+        pullToRefresh.attributedTitle = NSAttributedString(string: "PULL_TO_REFRESH_ACTION".localized())
+        pullToRefresh.addTarget(self, action: #selector(refreshRoles(_:)), for: UIControlEvents.valueChanged)
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = pullToRefresh
+        } else {
+            tableView.addSubview(pullToRefresh)
+        }
     }
     
     private func refreshRoles() {
         playersToDisplay = presenter.refreshRoles(players: playersToDisplay)
         tableView.reloadData()
+        self.pullToRefresh.endRefreshing()
     }
     
     // MARK: - Navigation
@@ -83,8 +95,6 @@ class GameViewController: UIViewController {
             destinationViewController.player = sender as? Player
         }
     }
-    
-    
 }
 
 // MARK: - PlayerView Protocol
