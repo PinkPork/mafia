@@ -35,5 +35,3 @@ enum MenuOptions: String {
         return self.rawValue.localized()
     }
 }
-    
-

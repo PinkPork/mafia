@@ -61,6 +61,7 @@
 		97CE9FD31FEB14C900A8A55E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CE9FD21FEB14C900A8A55E /* StringExtension.swift */; };
 		97CE9FD71FEB15CF00A8A55E /* Default.strings in Resources */ = {isa = PBXBuildFile; fileRef = 97CE9FD91FEB15CF00A8A55E /* Default.strings */; };
 		A546B4182010CDC000F3CB89 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A546B4172010CDC000F3CB89 /* UIViewControllerExtension.swift */; };
+		AD1C6D5909604EEF3DA38444 /* Pods_MAFIA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CFE82394293015048A278BB /* Pods_MAFIA.framework */; };
 		CF5A520A200926D600BC7890 /* PlayersListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5A5208200926D600BC7890 /* PlayersListTableViewCell.swift */; };
 		CF5A520B200926D600BC7890 /* PlayersListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF5A5209200926D600BC7890 /* PlayersListTableViewCell.xib */; };
 		CFB15BD1200D985E00B02AFB /* PlayerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB15BD0200D985E00B02AFB /* PlayerDetailViewController.swift */; };
@@ -87,6 +88,8 @@
 
 /* Begin PBXFileReference section */
 		07434A7D2002B2E0004AE1CC /* DetailListPlayersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListPlayersPresenter.swift; sourceTree = "<group>"; };
+		307593A3C5E5C930B25F1631 /* Pods-MAFIA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAFIA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MAFIA/Pods-MAFIA.debug.xcconfig"; sourceTree = "<group>"; };
+		3352B843D1F40BA1BDA85695 /* Pods-MAFIA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAFIA.release.xcconfig"; path = "Pods/Target Support Files/Pods-MAFIA/Pods-MAFIA.release.xcconfig"; sourceTree = "<group>"; };
 		6E0163142011785F00E91421 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		6E016316201178E500E91421 /* PlayerMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6E016317201178E500E91421 /* PlayerMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -145,6 +148,7 @@
 		97CE9FCF1FEB08AE00A8A55E /* GameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
 		97CE9FD21FEB14C900A8A55E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		97CE9FD81FEB15CF00A8A55E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Default.strings; sourceTree = "<group>"; };
+		9CFE82394293015048A278BB /* Pods_MAFIA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MAFIA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A546B4172010CDC000F3CB89 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		A546B41C20110D4500F3CB89 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Main.strings"; sourceTree = "<group>"; };
 		A546B41D20110D4500F3CB89 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD1C6D5909604EEF3DA38444 /* Pods_MAFIA.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,6 +190,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12B843804BCD6964D835B66C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9CFE82394293015048A278BB /* Pods_MAFIA.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6E0163242011800C00E91421 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,6 +321,8 @@
 				96591C7D1FE85B660067BB2E /* MAFIATests */,
 				96591C881FE85B660067BB2E /* MAFIAUITests */,
 				96591C641FE85B660067BB2E /* Products */,
+				D66B8CD5A3C5D0A89DBD9AD5 /* Pods */,
+				12B843804BCD6964D835B66C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -480,6 +495,15 @@
 			path = ListPlayers;
 			sourceTree = "<group>";
 		};
+		D66B8CD5A3C5D0A89DBD9AD5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				307593A3C5E5C930B25F1631 /* Pods-MAFIA.debug.xcconfig */,
+				3352B843D1F40BA1BDA85695 /* Pods-MAFIA.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -487,9 +511,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96591C8E1FE85B660067BB2E /* Build configuration list for PBXNativeTarget "MAFIA" */;
 			buildPhases = (
+				A57F786DE5A10F190107C625 /* [CP] Check Pods Manifest.lock */,
 				96591C5F1FE85B660067BB2E /* Sources */,
 				96591C601FE85B660067BB2E /* Frameworks */,
 				96591C611FE85B660067BB2E /* Resources */,
+				F9310E8AC09678AB24B928B1 /* [CP] Embed Pods Frameworks */,
+				17527F7A9BB4EC11211E2CBB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -614,6 +641,56 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		17527F7A9BB4EC11211E2CBB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MAFIA/Pods-MAFIA-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A57F786DE5A10F190107C625 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MAFIA-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9310E8AC09678AB24B928B1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MAFIA/Pods-MAFIA-frameworks.sh\"\n\"${PODS_ROOT}/SwiftLint/swiftlint\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		96591C5F1FE85B660067BB2E /* Sources */ = {
@@ -850,6 +927,7 @@
 		};
 		96591C8F1FE85B660067BB2E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 307593A3C5E5C930B25F1631 /* Pods-MAFIA.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -866,6 +944,7 @@
 		};
 		96591C901FE85B660067BB2E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3352B843D1F40BA1BDA85695 /* Pods-MAFIA.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

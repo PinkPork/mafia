@@ -94,5 +94,3 @@ extension MenuViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
-
-

@@ -1,0 +1,131 @@
+#------- COMMENT to enable a rule, UNCOMMENT to disable: -------#
+#-------    these rules are usually enabled by default   -------#
+disabled_rules:
+
+# List of rules: https://github.com/realm/SwiftLint/blob/master/Rules.md
+
+#--- Stylistic rules ---#
+- syntactic_sugar 				# >50 warnings (easy to fix, but no auto-correct)
+- control_statement 			# >100 warnings (ease to fix, but no auto-correct)
+- identifier_name 				# 371 errors (requires refactor)
+- trailing_whitespace 			# <3000 warnings (ease to fix, needs review)
+#- opening_brace
+#- vertical_whitespace
+#- statement_position
+#- trailing_newline
+#- empty_enum_arguments
+#- implicit_getter
+#- trailing_semicolon
+#- legacy_constructor
+#- return_arrow_whitespace
+#- shorthand_operator
+#- vertical_parameter_alignment
+#- leading_whitespace
+#- mark
+#- operator_whitespace
+#- closing_brace
+#- compiler_protocol_init
+#- redundant_void_return
+#- generic_type_name
+#- attributes
+#- closure_parameter_position
+#- trailing_comma
+#- empty_parentheses_with_trailing_closure
+
+#--- Hygienic rules ---#
+- function_body_length 			# >20 warnings (requires refactor)
+- line_length 					# >1000 warnings (requires refactor, length could be configured)
+- type_body_length 				# 6 warnings & 4 errors (requires refactor)
+- file_length 					# 15 warnings & 2 errors (requires refactor)
+
+#--- Convention rules ---#
+- redundant_string_enum_value 	# 18 warnings (easy to fix, but no autocorrect)
+- unused_optional_binding 		# 23 warnings (easy to fix, but no autocorrect)
+- unused_closure_parameter 		# 35 warnings (easy to fix, but no autocorrect)
+- type_name 					# 10 issues (requires refactor)
+- for_where 					# 27 warnings (fairly easy to fix)
+#- colon
+#- comma
+#- redundant_optional_initialization
+#- unused_enumerated
+#- redundant_discardable_let
+#- legacy_cggeometry_functions
+#- legacy_nsgeometry_functions
+#- private_over_fileprivate
+#- protocol_property_accessors_order
+#- empty_parameters
+#- void_return
+#- legacy_constant
+
+#--- Code smell rules ---#
+#- function_parameter_count 		# 10 warnings & 2 errors (requires refactor)
+- force_cast 					# 211 errors (requires refactor)
+- cyclomatic_complexity 		# 28 warnings & 4 errors (requires refactor)
+- nesting 						# 58 warnings (requires refactor)
+- todo 							# 20 warning (requires analysis and maybe refactor)
+- large_tuple 					# 1 warning & 2 errors (requires refactor)
+- force_try
+
+#--- Bug avoiding rules ---#
+- valid_ibinspectable 				# 3 warnings (needs review)
+- notification_center_detachment 	# 1 warning (needs review)
+#- discarded_notification_center_observer
+#- class_delegate_protocol
+#- dynamic_inline
+#- weak_delegate
+#- private_unit_test
+#- private_outlet
+
+#--- Others ---#
+- custom_rules # for custom rules check https://github.com/realm/SwiftLint
+
+
+#------- UNCOMMENT to enable a rule, COMMENT to disable: -------#
+#-------   these rules are usually disabled by default   -------#
+opt_in_rules:
+
+#--- Stylistic rules ---#
+#- vertical_parameter_alignment_on_call		# 42 warnings (no auto-correct)
+#- closure_end_indentation 					# 2 warnings (needs review)
+#- conditional_returns_on_newline			# 17 warnings (needs review)
+#- let_var_whitespace						# 15 warnings (needs review)
+#- number_separator							# 87 warnings (needs review)
+#- switch_case_on_newline					# 21 warnings (needs review)
+#- unneeded_parentheses_in_closure_argument	# 89 warnings (needs review)
+- operator_usage_whitespace
+- closure_spacing
+- multiline_parameters
+
+#--- Convention rules ---#
+#- explicit_init					# 80 issues (needs review)
+#- explicit_top_level_acl			# 218 warnings (needs review)
+#- file_header						# 35 warnings (review)
+#- implicit_return					# 17 warnings (review)
+#- nimble_operator					# 0 warnings (needs review)
+
+#--- Code smell rules ---#
+- force_unwrapping					# 417 warnings (requires refactor)
+
+#--- Bug avoiding rules ---#
+#- empty_count			 			# 114 errors (easy but no auto-corrcect)
+#- overridden_super_call			# 1 warning (needs review)
+#- prohibited_super_call			# 0 warnings (needs review)
+- fatal_error_message
+
+#--- Other rules ---#
+#- explicit_type_interface			# 757 warnings (needs review)
+#- extension_access_modifier 		# 5 warnings (needs review)
+#- first_where						# 1 warning (needs review)
+#- implicitly_unwrapped_optional	# 68 warnings (needs review)
+#- no_extension_access_modifier		# 53 errores (needs review)
+#- object_literal					# 29 warnings (needs review)
+#- redundant_nil_coalescing			# 29 warnings (needs review)
+#- sorted_imports					# 24 warnings (needs review)
+#- strict_fileprivate				# 96 warnings (needs review)
+
+
+#------- Other configurations -------#
+excluded:
+  - Carthage
+
+reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji)
