@@ -18,9 +18,9 @@ class GamePresenterTest: XCTestCase {
     override func setUp() {
         super.setUp()
         mockPlayerService = MockPlayerService(players: getMockPlayers())
-        let selectedPlayerList = PlayersListMO(entity: CoreDataConnection.shared.getEntity(withName: PlayersListMO.entityName)!, insertInto: CoreDataConnection.shared.managedContext)
+        let selectedPlayerList = ListMO(entity: CoreDataConnection.shared.getEntity(withName: ListMO.entityName)!, insertInto: CoreDataConnection.shared.managedContext)
 //        selectedPlayerList.players =  getMockPlayers().toNSSet()
-        GameManager.currentGame.setSelectedList(listPlayers: PlayersListMO.parse(playersList: selectedPlayerList))
+        GameManager.currentGame.setSelectedList(listPlayers: ListMO.parse(list: selectedPlayerList))
         gamePresenterTest = GamePresenter(view: mockGameView, playerService: mockPlayerService)
     }
     

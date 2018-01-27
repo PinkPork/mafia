@@ -15,14 +15,14 @@ import XCTest
 class DetailListPlayersServiceTest: BaseTest {
     
     var service: DetailListPlayersService!
-    var list: PlayersList!
+    var list: List!
     
     override func setUp() {
         super.setUp()
         service = DetailListPlayersService()
-        let listMo = PlayersListMO(entity: CoreDataConnection.shared.getEntity(withName: PlayersListMO.entityName)!, insertInto: CoreDataConnection.shared.managedContext)
+        let listMo = ListMO(entity: CoreDataConnection.shared.getEntity(withName: ListMO.entityName)!, insertInto: CoreDataConnection.shared.managedContext)
         listMo.name = MockData.PlayersList.name
-        list = PlayersListMO.parse(playersList: listMo)
+        list = ListMO.parse(list: listMo)
     }
     
     override func tearDown() {

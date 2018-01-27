@@ -19,7 +19,7 @@ class DetailListPlayersViewController: UIViewController {
     private var presenter: DetailListPlayersPresenter!
     private var addPlayerAction: UIAlertAction?
     
-    weak var listPlayers: RawPlayersList!
+    weak var listPlayers: RawList!
 
     override func viewDidLoad() {
         super.viewDidLoad()

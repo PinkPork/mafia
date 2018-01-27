@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(PlayersListMO)
-public class PlayersListMO: NSManagedObject {
+@objc(ListMO)
+public class ListMO: NSManagedObject {
 
 }

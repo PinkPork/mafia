@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		07434A7E2002B2E0004AE1CC /* DetailListPlayersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07434A7D2002B2E0004AE1CC /* DetailListPlayersPresenter.swift */; };
-		6E0163152011785F00E91421 /* PlayersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0163142011785F00E91421 /* PlayersList.swift */; };
+		6E0163152011785F00E91421 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0163142011785F00E91421 /* List.swift */; };
 		6E016318201178E500E91421 /* PlayerMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E016316201178E500E91421 /* PlayerMO+CoreDataClass.swift */; };
 		6E016319201178E500E91421 /* PlayerMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E016317201178E500E91421 /* PlayerMO+CoreDataProperties.swift */; };
 		6E01631B20117AAE00E91421 /* CoreDataIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E01631A20117AAE00E91421 /* CoreDataIdentifier.swift */; };
-		6E01631E20117B4E00E91421 /* PlayersListMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E01631C20117B4E00E91421 /* PlayersListMO+CoreDataClass.swift */; };
-		6E01631F20117B4E00E91421 /* PlayersListMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E01631D20117B4E00E91421 /* PlayersListMO+CoreDataProperties.swift */; };
+		6E01631E20117B4E00E91421 /* ListMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E01631C20117B4E00E91421 /* ListMO+CoreDataClass.swift */; };
+		6E01631F20117B4E00E91421 /* ListMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E01631D20117B4E00E91421 /* ListMO+CoreDataProperties.swift */; };
 		6E0163262011802100E91421 /* PlayerMOExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0163252011802100E91421 /* PlayerMOExtension.swift */; };
-		6E016328201190E700E91421 /* PlayersListMOExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E016327201190E700E91421 /* PlayersListMOExtension.swift */; };
+		6E016328201190E700E91421 /* ListMOExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E016327201190E700E91421 /* ListMOExtension.swift */; };
 		6E2618AD1FF5C9BD00F3AF93 /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2618AC1FF5C9BD00F3AF93 /* DatabaseProtocol.swift */; };
 		6E2618AF1FF5D2B200F3AF93 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2618AE1FF5D2B200F3AF93 /* BaseService.swift */; };
 		6E8F889E1FF701D900F7AB49 /* NSManagedObjectContextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F889D1FF701D900F7AB49 /* NSManagedObjectContextExtension.swift */; };
@@ -87,14 +87,14 @@
 
 /* Begin PBXFileReference section */
 		07434A7D2002B2E0004AE1CC /* DetailListPlayersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListPlayersPresenter.swift; sourceTree = "<group>"; };
-		6E0163142011785F00E91421 /* PlayersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersList.swift; sourceTree = "<group>"; };
+		6E0163142011785F00E91421 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		6E016316201178E500E91421 /* PlayerMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6E016317201178E500E91421 /* PlayerMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6E01631A20117AAE00E91421 /* CoreDataIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataIdentifier.swift; sourceTree = "<group>"; };
-		6E01631C20117B4E00E91421 /* PlayersListMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayersListMO+CoreDataClass.swift"; sourceTree = "<group>"; };
-		6E01631D20117B4E00E91421 /* PlayersListMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayersListMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6E01631C20117B4E00E91421 /* ListMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListMO+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6E01631D20117B4E00E91421 /* ListMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6E0163252011802100E91421 /* PlayerMOExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMOExtension.swift; sourceTree = "<group>"; };
-		6E016327201190E700E91421 /* PlayersListMOExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersListMOExtension.swift; sourceTree = "<group>"; };
+		6E016327201190E700E91421 /* ListMOExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMOExtension.swift; sourceTree = "<group>"; };
 		6E2618AC1FF5C9BD00F3AF93 /* DatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
 		6E2618AE1FF5D2B200F3AF93 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		6E8F889D1FF701D900F7AB49 /* NSManagedObjectContextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtension.swift; sourceTree = "<group>"; };
@@ -189,7 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				6E0163252011802100E91421 /* PlayerMOExtension.swift */,
-				6E016327201190E700E91421 /* PlayersListMOExtension.swift */,
+				6E016327201190E700E91421 /* ListMOExtension.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -207,7 +207,7 @@
 			children = (
 				9630A8911FFEA29B000C96CA /* GameManager.swift */,
 				96775C872011403A0092658D /* Player.swift */,
-				6E0163142011785F00E91421 /* PlayersList.swift */,
+				6E0163142011785F00E91421 /* List.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -302,8 +302,8 @@
 			children = (
 				6E016316201178E500E91421 /* PlayerMO+CoreDataClass.swift */,
 				6E016317201178E500E91421 /* PlayerMO+CoreDataProperties.swift */,
-				6E01631C20117B4E00E91421 /* PlayersListMO+CoreDataClass.swift */,
-				6E01631D20117B4E00E91421 /* PlayersListMO+CoreDataProperties.swift */,
+				6E01631C20117B4E00E91421 /* ListMO+CoreDataClass.swift */,
+				6E01631D20117B4E00E91421 /* ListMO+CoreDataProperties.swift */,
 				96591C651FE85B660067BB2E /* MAFIA */,
 				96591C7D1FE85B660067BB2E /* MAFIATests */,
 				96591C881FE85B660067BB2E /* MAFIAUITests */,
@@ -623,14 +623,14 @@
 				9620D7B41FE94F29008E0F55 /* PlayerService.swift in Sources */,
 				96002FD11FE860E300F8DF1F /* GamePresenter.swift in Sources */,
 				966546872010F9FA008D0A8B /* BaseView.swift in Sources */,
-				6E0163152011785F00E91421 /* PlayersList.swift in Sources */,
+				6E0163152011785F00E91421 /* List.swift in Sources */,
 				960A297720002C5B00D23981 /* Segues.swift in Sources */,
 				96F9DE821FED83DC00C32C30 /* SideMenu.swift in Sources */,
 				96173D832005597A008742AA /* NSSetExtension.swift in Sources */,
 				96591C691FE85B660067BB2E /* GameViewController.swift in Sources */,
 				97CE9FD01FEB08AE00A8A55E /* GameRules.swift in Sources */,
 				9620D7B61FE95134008E0F55 /* CoreDataConnection.swift in Sources */,
-				6E016328201190E700E91421 /* PlayersListMOExtension.swift in Sources */,
+				6E016328201190E700E91421 /* ListMOExtension.swift in Sources */,
 				96591C671FE85B660067BB2E /* AppDelegate.swift in Sources */,
 				6E01631B20117AAE00E91421 /* CoreDataIdentifier.swift in Sources */,
 				97CE9FD31FEB14C900A8A55E /* StringExtension.swift in Sources */,
@@ -653,11 +653,11 @@
 				96F9DE7F1FED60A900C32C30 /* MenuTableViewCell.swift in Sources */,
 				CFE3DA871FF70ECA004D9D0F /* ListPlayersViewController.swift in Sources */,
 				CF5A520A200926D600BC7890 /* PlayersListTableViewCell.swift in Sources */,
-				6E01631E20117B4E00E91421 /* PlayersListMO+CoreDataClass.swift in Sources */,
+				6E01631E20117B4E00E91421 /* ListMO+CoreDataClass.swift in Sources */,
 				96BEA68C1FF42F6000231518 /* MenuPresenter.swift in Sources */,
 				960A297520002BB100D23981 /* DetailListPlayersViewController.swift in Sources */,
 				6E2618AD1FF5C9BD00F3AF93 /* DatabaseProtocol.swift in Sources */,
-				6E01631F20117B4E00E91421 /* PlayersListMO+CoreDataProperties.swift in Sources */,
+				6E01631F20117B4E00E91421 /* ListMO+CoreDataProperties.swift in Sources */,
 				07434A7E2002B2E0004AE1CC /* DetailListPlayersPresenter.swift in Sources */,
 				960A2979200034DD00D23981 /* DetailListPlayersService.swift in Sources */,
 				CFE3DA8A1FF71B43004D9D0F /* ListPlayersPresenter.swift in Sources */,

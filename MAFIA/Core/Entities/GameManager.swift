@@ -14,7 +14,7 @@ class GameManager {
     
     static let currentGame = GameManager()
     
-    private var selectedListPlayers: PlayersList?
+    private var selectedListPlayers: List?
     private var eliminatedPlayers: [Player] = [Player]()
     
     private init() {
@@ -57,7 +57,7 @@ class GameManager {
         }
     }
     
-    func setSelectedList(listPlayers: PlayersList) {
+    func setSelectedList(listPlayers: List) {
         selectedListPlayers = listPlayers
     }
     
