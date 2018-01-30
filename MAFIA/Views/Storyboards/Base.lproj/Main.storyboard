@@ -73,9 +73,9 @@
                                 <action selector="showMenu:" destination="BYZ-38-t0r" id="qP2-8o-p86"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="zd0-oL-Nnz">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ayc-mb-5y1">
                             <connections>
-                                <action selector="refreshRoles:" destination="BYZ-38-t0r" id="Fgq-wC-C94"/>
+                                <action selector="addPlayerInCurrentGame:" destination="BYZ-38-t0r" id="lDa-ky-eFJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
