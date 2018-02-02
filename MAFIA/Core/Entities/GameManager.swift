@@ -108,4 +108,14 @@ class GameManager {
         }
     }
     
+    func addPlayerInSelectedList(_ player: Player) -> Bool {
+        guard selectedListPlayers?.players.filter({ $0.name == player.name}).count == 0 else {
+            return false
+        }
+
+        selectedListPlayers?.players.append(player)
+        return true
+        
+    }
+    
 }

@@ -28,6 +28,7 @@ class GameViewController: UIViewController {
         }
     }
     private var pullToRefresh: UIRefreshControl!
+    private var addPlayerAction: UIAlertAction?
     
     override func viewDidLoad() {
         super.viewDidLoad()        
@@ -49,9 +50,8 @@ class GameViewController: UIViewController {
         }
     }
     
-    
-    @IBAction func refreshRoles(_ sender: UIBarButtonItem) {
-        presenter.restartGame()
+    @IBAction func addPlayerInCurrentGame(_ sender: Any) {
+        addPlayerPopUp()
     }
     
     // MARK: - Methods
@@ -59,6 +59,12 @@ class GameViewController: UIViewController {
     private func setupView() {
         presenter = GamePresenter(view: self)
         presenter.showPlayers()
+    }
+    
+    private func updateAddButtonState(text: String?) {
+        // Disable the Add button if the text field is empty.
+        let emptyText = text ?? ""
+        addPlayerAction?.isEnabled = !emptyText.isEmpty
     }
     
     private func setupTableView() {
@@ -82,6 +88,33 @@ class GameViewController: UIViewController {
         playersToDisplay = presenter.refreshRoles(players: playersToDisplay)
         tableView.reloadData()
         self.pullToRefresh.endRefreshing()
+    }
+    
+    @objc func refreshRoles(_ sender: UIBarButtonItem) {
+        presenter.restartGame()
+    }
+    
+    private func addPlayerPopUp() {
+        let alertController = UIAlertController(title: "ADD_PLAYER_TITLE".localized(), message: "ADD_PLAYER_MESSAGE".localized(), preferredStyle: .alert)
+        
+        alertController.addTextField { (textField) in
+            textField.delegate = self
+            textField.becomeFirstResponder()
+        }
+        
+        addPlayerAction = UIAlertAction(title: "ADD_ACTION".localized(), style: .default) { (action) in
+            let textField = alertController.textFields?.first
+            guard let playerName = textField?.text, !playerName.isEmpty else { return }
+            self.presenter.addPlayerInCurrentGame(withName: playerName)
+        }
+        
+        let cancelButton = UIAlertAction(title: "CANCEL_ACTION".localized(), style: .cancel)
+        
+        alertController.addAction(addPlayerAction!)
+        alertController.addAction(cancelButton)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
     }
     
     // MARK: - Navigation
@@ -217,6 +250,23 @@ extension GameViewController: UITableViewDelegate {
 extension GameViewController: MenuViewControllerDelegate {
     func performSegue(withIdentifier identifier: String) {
         self.performSegue(withIdentifier: identifier, sender: nil)
+    }
+}
+
+// MARK: - TextField Delegate
+
+extension GameViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        updateAddButtonState(text: textField.text)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        addPlayerAction?.isEnabled = false
     }
 }
 
