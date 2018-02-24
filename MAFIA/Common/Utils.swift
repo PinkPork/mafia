@@ -48,6 +48,7 @@ struct Utils {
             static let white: UIColor = UIColor(red:0.89, green:0.91, blue:0.95, alpha:1.0)
             static let black: UIColor = UIColor(red:0.00, green:0.00, blue:0.00, alpha:1.0)
             static let gray: UIColor = UIColor(red:0.35, green:0.36, blue:0.38, alpha:1.0)
+            static let red: UIColor = UIColor(red: 0.56, green: 0.13, blue: 0.13, alpha: 1.0)
         }
     }        
     
