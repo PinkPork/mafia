@@ -16,7 +16,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var villagerLabel: UILabel!
     @IBOutlet weak var mobLabel: UILabel!
     @IBOutlet weak var currentPlayerListName: UILabel!
-    
+    @IBOutlet weak var emptyView: EmptyListView!
     
     // MARK: Vars & Constants
     
@@ -59,6 +59,10 @@ class GameViewController: UIViewController {
     private func setupView() {
         presenter = GamePresenter(view: self)
         presenter.showPlayers()
+        
+        emptyView.delegate = self
+        
+        
     }
     
     private func updateAddButtonState(text: String?) {
@@ -154,8 +158,16 @@ extension GameViewController: GameView {
     func updateGameUI() {
         villagerLabel.text = presenter.aliveCiviliansPlayerText
         mobLabel.text = presenter.aliveMafiaPlayerText
+        
+        if presenter.selectedListName != "LIST_PLAYER_NO_NAME".localized() {
+            emptyView.isHidden = true
+        } else {
+            emptyView.isHidden = false
+        }
+        
         currentPlayerListName.text = presenter.selectedListName
         tableView.isUserInteractionEnabled = presenter.gameCanStart
+        
     }
     
     func endGame(winner: Role) {
@@ -268,5 +280,17 @@ extension GameViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         addPlayerAction?.isEnabled = false
     }
+    
+}
+
+// MARK: - EmptyListViewDelegate conformance
+
+extension GameViewController: EmptyListViewDelegate {
+    
+    func goToAction() {
+        SideMenu.sharedInstance.menuViewController?.delegate = self
+        SideMenu.sharedInstance.menuViewController?.goTo(menuOption: .PlayersList)
+    }
+    
 }
 

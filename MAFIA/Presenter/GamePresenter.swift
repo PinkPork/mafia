@@ -37,7 +37,7 @@ class GamePresenter {
     }
     
     var selectedListName: String? {
-        if GameManager.currentGame.numberOfPlayersPlaying == 0 {
+        if !GameManager.currentGame.isSelectedListPlayers {
             return "LIST_PLAYER_NO_NAME".localized()
         }
         return GameManager.currentGame.listName

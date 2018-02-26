@@ -66,3 +66,7 @@
 "mob" = "Mobster";
 "villager" = "Villager";
 "none" = "No role";
+
+// MARK - Fonts:
+
+"PAPYRUS_FONT" = "Papyrus";

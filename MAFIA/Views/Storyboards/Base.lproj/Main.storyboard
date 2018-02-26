@@ -54,15 +54,23 @@
                                     <constraint firstItem="08L-Io-bBv" firstAttribute="centerY" secondItem="Z0i-pH-HsG" secondAttribute="centerY" id="ygd-fN-184"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="62C-5r-IPh" customClass="EmptyListView" customModule="MAFIA" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="62C-5r-IPh" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="5FX-6J-IpZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oQm-oX-6bK" secondAttribute="trailing" id="746-HB-14y"/>
                             <constraint firstItem="T8y-f5-Pwu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="DMT-eb-gRb"/>
+                            <constraint firstItem="62C-5r-IPh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DwE-C5-NSZ"/>
                             <constraint firstItem="T8y-f5-Pwu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="E88-fR-YJv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="oQm-oX-6bK" secondAttribute="bottom" id="OkK-gZ-5Ea"/>
                             <constraint firstItem="oQm-oX-6bK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="R4k-O3-pl5"/>
                             <constraint firstItem="T8y-f5-Pwu" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="UU5-5M-ynJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="62C-5r-IPh" secondAttribute="trailing" id="nhd-Vd-zZV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="62C-5r-IPh" secondAttribute="bottom" id="ofj-be-vzk"/>
                             <constraint firstItem="oQm-oX-6bK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pXi-Oh-J6K"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -81,6 +89,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="currentPlayerListName" destination="bPs-tW-ux6" id="RWk-mY-z2b"/>
+                        <outlet property="emptyView" destination="62C-5r-IPh" id="Jcu-ZQ-zLH"/>
                         <outlet property="mobLabel" destination="08L-Io-bBv" id="195-sg-COC"/>
                         <outlet property="tableView" destination="oQm-oX-6bK" id="lJT-3B-2rn"/>
                         <outlet property="villagerLabel" destination="Z0i-pH-HsG" id="vH7-Jh-jtA"/>
