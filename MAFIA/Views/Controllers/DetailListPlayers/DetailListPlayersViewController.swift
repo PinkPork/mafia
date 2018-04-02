@@ -100,10 +100,8 @@ class DetailListPlayersViewController: UIViewController {
     }
 
     private func setupAddFromOtherListButton() {
-        gradient.colors = [Utils.Palette.Basic.red.cgColor, Utils.Palette.Basic.black.cgColor]
-        gradient.cornerRadius = 28
-
-        addFromOtherListButton.layer.insertSublayer(gradient, at: 0)
+        addFromOtherListButton.layer.cornerRadius = 28
+        addFromOtherListButton.addGradient()
         addFromOtherListButton.setTitle("ADD_FROM_OTHER_LIST".localized(), for: .normal)
         addFromOtherListButton.setTitleColor(Utils.Palette.Basic.white, for: .normal)
         addFromOtherListButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)

@@ -16,8 +16,6 @@ class EmptyListView: UIView {
     
     // MARK: - Properties
     
-    let gradient = CAGradientLayer()
-    
     weak var delegate: EmptyListViewDelegate?
     
     // MARK: - IBOutlets
@@ -30,36 +28,22 @@ class EmptyListView: UIView {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         let myView = Bundle.main.loadNibNamed("EmptyListView", owner: self, options: nil)?.first as! UIView
-        
         myView.frame = self.bounds
-        
         addSubview(myView)
-        
         setup()
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        
-        gradient.frame = buttonOutlet.bounds
-        
-    }
-    
+
     // MARK: - Methods
     
     func setup() {
-        
-        gradient.colors = [Utils.Palette.Basic.red.cgColor, Utils.Palette.Basic.black.cgColor]
-        gradient.cornerRadius = 28
-        
-        buttonOutlet.layer.insertSublayer(gradient, at: 0)
+        buttonOutlet.layer.cornerRadius = 28
         buttonOutlet.setTitleColor(Utils.Palette.Basic.white, for: .normal)
+        buttonOutlet.addGradient()
         
         titleLabel.font = UIFont(name: "PAPYRUS_FONT".localized(), size: 36.0)
         titleLabel.textColor = Utils.Palette.Basic.gray
@@ -73,10 +57,7 @@ class EmptyListView: UIView {
     // MARK: - IBActions
     
     @IBAction func buttonAction(_ sender: Any) {
-        
         delegate?.goToAction()
-        
     }
-    
 
 }

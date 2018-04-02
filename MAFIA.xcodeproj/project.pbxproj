@@ -54,6 +54,7 @@
 		9688E1A620728C2600853071 /* PlayerDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688E1A420728C2600853071 /* PlayerDetailsTableViewCell.swift */; };
 		9688E1A720728C2600853071 /* PlayerDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9688E1A520728C2600853071 /* PlayerDetailsTableViewCell.xib */; };
 		9688E1A92072B44700853071 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688E1A82072B44700853071 /* UIColorExtension.swift */; };
+		9688E1AD2072C7F100853071 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688E1AC2072C7F100853071 /* UIViewExtension.swift */; };
 		96B3C3171FF40BB100363A3F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B3C3161FF40BB100363A3F /* MenuViewController.swift */; };
 		96BEA68C1FF42F6000231518 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BEA68B1FF42F6000231518 /* MenuPresenter.swift */; };
 		96F9DE7F1FED60A900C32C30 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F9DE7D1FED60A900C32C30 /* MenuTableViewCell.swift */; };
@@ -144,6 +145,7 @@
 		9688E1A420728C2600853071 /* PlayerDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		9688E1A520728C2600853071 /* PlayerDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		9688E1A82072B44700853071 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		9688E1AC2072C7F100853071 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		96B3C3161FF40BB100363A3F /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		96BEA68B1FF42F6000231518 /* MenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
 		96F9DE7D1FED60A900C32C30 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
@@ -464,6 +466,7 @@
 				967F416F20098EEB006D04CB /* ArrayExtension.swift */,
 				A546B4172010CDC000F3CB89 /* UIViewControllerExtension.swift */,
 				9688E1A82072B44700853071 /* UIColorExtension.swift */,
+				9688E1AC2072C7F100853071 /* UIViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -695,6 +698,7 @@
 				6E01631F20117B4E00E91421 /* PlayersListMO+CoreDataProperties.swift in Sources */,
 				07434A7E2002B2E0004AE1CC /* DetailListPlayersPresenter.swift in Sources */,
 				960A2979200034DD00D23981 /* DetailListPlayersService.swift in Sources */,
+				9688E1AD2072C7F100853071 /* UIViewExtension.swift in Sources */,
 				CFE3DA8A1FF71B43004D9D0F /* ListPlayersPresenter.swift in Sources */,
 				9630A8921FFEA29B000C96CA /* GameManager.swift in Sources */,
 				CF20DF962041F7720045D941 /* EmptyListView.swift in Sources */,
