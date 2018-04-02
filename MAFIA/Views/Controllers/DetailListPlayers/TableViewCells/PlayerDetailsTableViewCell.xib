@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="PlayerDetailsTableViewCell" customModule="MAFIA" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="badge" translatesAutoresizingMaskIntoConstraints="NO" id="lLg-oX-01r">
+                        <rect key="frame" x="16" y="15" width="20" height="22"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tgv-se-GNt">
+                        <rect key="frame" x="44" y="16" width="260" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tu4-JE-eta">
+                        <rect key="frame" x="10" y="42" width="300" height="1.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1.5" id="ig8-pF-zOc"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Tu4-JE-eta" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="8au-Rm-bu4"/>
+                    <constraint firstAttribute="trailing" secondItem="tgv-se-GNt" secondAttribute="trailing" constant="16" id="H7E-ND-XgC"/>
+                    <constraint firstItem="tgv-se-GNt" firstAttribute="centerY" secondItem="lLg-oX-01r" secondAttribute="centerY" id="XFU-Zj-2ag"/>
+                    <constraint firstItem="Tu4-JE-eta" firstAttribute="top" secondItem="lLg-oX-01r" secondAttribute="bottom" constant="5" id="ZMH-yn-GmS"/>
+                    <constraint firstAttribute="trailing" secondItem="Tu4-JE-eta" secondAttribute="trailing" constant="10" id="hzQ-GQ-uV1"/>
+                    <constraint firstItem="lLg-oX-01r" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="oPz-Ds-3gG"/>
+                    <constraint firstItem="tgv-se-GNt" firstAttribute="leading" secondItem="lLg-oX-01r" secondAttribute="trailing" constant="8" id="tcb-sJ-lSI"/>
+                    <constraint firstAttribute="bottom" secondItem="Tu4-JE-eta" secondAttribute="bottom" id="u2q-3x-pMM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="bottomBorderView" destination="Tu4-JE-eta" id="YBP-iZ-Lbp"/>
+                <outlet property="decorativeImage" destination="lLg-oX-01r" id="4Nh-j8-Jcc"/>
+                <outlet property="nameLabel" destination="tgv-se-GNt" id="8iz-9q-2O8"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="badge" width="20" height="22"/>
+    </resources>
+</document>

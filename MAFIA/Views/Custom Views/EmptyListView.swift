@@ -25,8 +25,8 @@ class EmptyListView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var buttonOutlet: UIButton!
-    
-    
+
+    // MARK: - Life Cycle
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -64,7 +64,10 @@ class EmptyListView: UIView {
         titleLabel.font = UIFont(name: "PAPYRUS_FONT".localized(), size: 36.0)
         titleLabel.textColor = Utils.Palette.Basic.gray
         messageLabel.font = UIFont(name: "PAPYRUS_FONT".localized(), size: 14.0)
-        
+    }
+
+    func set(titleLabel title: String) {
+        titleLabel.text = title
     }
     
     // MARK: - IBActions

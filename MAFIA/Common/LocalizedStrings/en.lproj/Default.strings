@@ -54,6 +54,7 @@
 "USE_PLAYERS_LIST_BUTTON_TITLE" = "Use this list";
 "KILL_PLAYER_BUTTON_TITLE" = "Kill player";
 "REVIVE_PLAYER_BUTTON_TITLE" = "Revive player";
+"ADD_FROM_OTHER_LIST" = "Add from other list";
 
 // MARK: - Action Titles
 
@@ -70,3 +71,7 @@
 // MARK - Fonts:
 
 "PAPYRUS_FONT" = "Papyrus";
+
+// MARK: - Empty view titles
+
+"EMPTY_DETAIL_LIST_PLAYERS" = "You don't have any member in this list";
