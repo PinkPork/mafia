@@ -105,6 +105,7 @@ opt_in_rules:
 #- strict_fileprivate		
 
 
-#excluded:
+excluded:
+- Pods
 
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji)
