@@ -688,7 +688,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MAFIA/Pods-MAFIA-frameworks.sh\"\n\"${PODS_ROOT}/SwiftLint/swiftlint\"";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MAFIA/Pods-MAFIA-frameworks.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
