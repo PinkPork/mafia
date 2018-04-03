@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 extension Array {
     
     /// Converts an array to a NSSEt

@@ -18,7 +18,7 @@ class GamePresenterTest: XCTestCase {
     override func setUp() {
         super.setUp()
         mockPlayerService = MockPlayerService(players: getMockPlayers())
-        let selectedPlayerList = ListMO(entity: CoreDataConnection.shared.getEntity(withName: ListMO.entityName)!, insertInto: CoreDataConnection.shared.managedContext)
+        let selectedPlayerList = ListMO(entity: CoreDataConnection.shared.getEntity(withName: ListMO.entityName), insertInto: CoreDataConnection.shared.managedContext)
 //        selectedPlayerList.players =  getMockPlayers().toNSSet()
         GameManager.currentGame.setSelectedList(listPlayers: ListMO.parse(list: selectedPlayerList))
         gamePresenterTest = GamePresenter(view: mockGameView, playerService: mockPlayerService)
@@ -32,7 +32,6 @@ class GamePresenterTest: XCTestCase {
     func testRefreshRoles() {
         var players = getMockPlayers()
         players = gamePresenterTest.refreshRoles(players: players)
-        
         
         let playersWithRoleChanged = players.filter { $0.role != .none }
         let mafiaPlayers = playersWithRoleChanged.filter { $0.role == .mob }
@@ -55,7 +54,7 @@ class GamePresenterTest: XCTestCase {
         XCTAssertEqual(playersWithRoleChanged.count / 3, mafiaPlayers.count, "There are \(mafiaPlayers.count) mafia on the game")
         
         // Check that all player has a role assigned and is different from none
-        XCTAssertNotEqual(0, playersWithRoleChanged.count,"""
+        XCTAssertNotEqual(0, playersWithRoleChanged.count, """
             There was a shuffle problem
             minimun players: \(GameRules.minimumPlayers)
             players: \(players.count)

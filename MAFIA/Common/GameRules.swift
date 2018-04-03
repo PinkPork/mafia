@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 /// Main rules used in MAFIA Game
 struct GameRules {
     static let minimumPlayers = 6

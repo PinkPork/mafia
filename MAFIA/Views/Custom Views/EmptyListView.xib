@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmptyListView" customModule="MAFIA" customModuleProvider="target">
+            <connections>
+                <outlet property="buttonOutlet" destination="Vqe-6u-8q4" id="fF9-0y-dTl"/>
+                <outlet property="messageLabel" destination="atk-W4-mzA" id="8ya-lB-Qd8"/>
+                <outlet property="titleLabel" destination="y5K-DY-JYK" id="Hhn-Gn-dis"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Cae la noche" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atk-W4-mzA">
+                    <rect key="frame" x="20" y="396.5" width="335" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vqe-6u-8q4">
+                    <rect key="frame" x="60" y="497" width="255" height="65"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="65" id="fU1-ur-2tz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <state key="normal" title="Seleccionar"/>
+                    <connections>
+                        <action selector="buttonAction:" destination="-1" eventType="touchUpInside" id="Ehb-3t-Zl5"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Necesitas una lista para jugar" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5K-DY-JYK">
+                    <rect key="frame" x="20" y="240.5" width="335" height="86"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="atk-W4-mzA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="0MP-16-Ncg"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Vqe-6u-8q4" secondAttribute="bottom" constant="50" id="0oL-ez-6oo"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Vqe-6u-8q4" secondAttribute="trailing" constant="60" id="8pM-Qg-3Ga"/>
+                <constraint firstItem="y5K-DY-JYK" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-50" id="FqY-Wy-li2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="atk-W4-mzA" secondAttribute="trailing" constant="20" id="OYI-Ol-jU6"/>
+                <constraint firstItem="y5K-DY-JYK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="P1k-E3-mmX"/>
+                <constraint firstItem="atk-W4-mzA" firstAttribute="top" secondItem="y5K-DY-JYK" secondAttribute="bottom" constant="70" id="TcZ-oi-egL"/>
+                <constraint firstAttribute="trailing" secondItem="y5K-DY-JYK" secondAttribute="trailing" constant="20" id="Wdj-Cf-2UO"/>
+                <constraint firstItem="Vqe-6u-8q4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="60" id="n53-NU-OWe"/>
+                <constraint firstItem="y5K-DY-JYK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="qUb-pk-iXN"/>
+                <constraint firstItem="Vqe-6u-8q4" firstAttribute="top" secondItem="atk-W4-mzA" secondAttribute="bottom" constant="80" id="she-Ha-XBm"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+</document>

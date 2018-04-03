@@ -22,8 +22,12 @@ class CoreDataConnection {
         self.managedContext = persistantContainerContext
     }
     
-    func getEntity(withName modelName: String) -> NSEntityDescription? {
-        return NSEntityDescription.entity(forEntityName: modelName , in: managedContext)
+    func getEntity(withName modelName: String) -> NSEntityDescription {
+        guard let entity = NSEntityDescription.entity(forEntityName: modelName, in: managedContext) else {
+            assertionFailure("Couldn't find an entity named: \(modelName)")
+            return NSEntityDescription()
+        }
+
+        return entity
     }
 }
-

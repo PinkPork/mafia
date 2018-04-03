@@ -19,7 +19,7 @@ class ListPlayersViewController: UIViewController {
     private var listPlayers: [List] = [List]()
     private var presenter: ListPlayersPresenter!
     weak var gamePresenter: GamePresenter!
-    private var addListAction: UIAlertAction?
+    private var addListAction: UIAlertAction!
     private let listCellIndetifier: String = "PlayersListCell"
 
     override func viewDidLoad() {
@@ -67,7 +67,7 @@ class ListPlayersViewController: UIViewController {
         
         let cancelButton = UIAlertAction(title: "CANCEL_ACTION".localized(), style: .cancel)
         
-        alertController.addAction(addListAction!)
+        alertController.addAction(addListAction)
         alertController.addAction(cancelButton)
         
         self.present(alertController, animated: true, completion: nil)
@@ -168,5 +168,3 @@ extension ListPlayersViewController: UITextFieldDelegate {
         addListAction?.isEnabled = false
     }
 }
-
-

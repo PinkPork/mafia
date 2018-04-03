@@ -9,42 +9,43 @@
 import UIKit
 import UIKit.UIGestureRecognizerSubclass
 
-class SideMenu : NSObject {
+class SideMenu: NSObject {
     
-    enum SideMenuError : Error{
+    enum SideMenuError: Error {
         case InvalidMenuContext
     }
     
-    enum SideMenuStatus : CGFloat {
-        case Opened     =  0
-        case Closed     = -1.0
-        case Unknown    =  1.0
+    enum SideMenuStatus: CGFloat {
+        case Opened = 0
+        case Closed = -1.0
+        case Unknown = 1.0
     }
     
-    static var sharedInstance:SideMenu!
+    static var sharedInstance: SideMenu!
     
     var menuViewController: MenuViewController?
-    var menuOffsetSize:CGFloat = 0
-    var useAnimations:Bool = true
-    var useOverlayer:Bool = true
-    var status:SideMenuStatus = .Closed
-    var animationDuration:TimeInterval = 0.250
+    var menuOffsetSize: CGFloat = 0
+    var useAnimations: Bool = true
+    var useOverlayer: Bool = true
+    var status: SideMenuStatus = .Closed
+    var animationDuration: TimeInterval = 0.250
     
-    var initialPosition:CGPoint?
-    var wasNotified:Bool = false
-    var canToggle:Bool = false
-    var overlayer:UIView!
+    var initialPosition: CGPoint?
+    var wasNotified: Bool = false
+    var canToggle: Bool = false
+    var overlayer: UIView!
     
-    var menuSize:CGSize! {
+    var menuSize: CGSize! {
         return CGSize(
             width: Utils.UI.screenWidth - menuOffsetSize,
             height: Utils.UI.screenHeight - Utils.UI.navigationBarheight
         )
     }
     
-    typealias BuilderClosure = (_ menu: SideMenu) -> ()
-    typealias MenuCompletionClosure = () -> ()
-    
+    typealias BuilderClosure = (_ menu: SideMenu) -> Void
+    typealias MenuCompletionClosure = () -> Void
+
+    @discardableResult
     init(context: BuilderClosure) {
         super.init()
         
@@ -74,7 +75,7 @@ class SideMenu : NSObject {
         }
     }
     
-    @objc func show(view:UIView!) throws {
+    @objc func show(view: UIView!) throws {
         defer {
             try! animateMenu()
         }
@@ -97,7 +98,6 @@ class SideMenu : NSObject {
             switch self.status {
             case .Opened:
                 self.close()
-                break
             default:
                 self.open()
             }
@@ -132,9 +132,10 @@ class SideMenu : NSObject {
         )
     }
     
-    func didBeginIn(point:UITouch) {
+    func didBeginIn(point: UITouch) {
         wasNotified = false
         canToggle = false
-        initialPosition = point.location(in: menuViewController!.view!.superview)
+        guard let menu = menuViewController else { return }
+        initialPosition = point.location(in: menu.view?.superview)
     }
 }

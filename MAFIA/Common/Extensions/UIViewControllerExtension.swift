@@ -27,4 +27,3 @@ extension UIViewController: BaseView {
         self.presentAlert(title: title, message: message, preferredStyle: preferredStyle, completionFirstAction: completionFirstAction)
     }
 }
-

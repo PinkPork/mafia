@@ -20,7 +20,6 @@ class PlayerTableViewCell: UITableViewCell {
     static let identifier: String = "PlayerCell"
     var player: Player!
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

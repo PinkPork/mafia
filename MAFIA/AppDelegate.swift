@@ -14,12 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // Load Side Menu context and scene
         
-        let _ = SideMenu { (menu) in
+         SideMenu { (menu) in
             menu.menuOffsetSize = 110.0
             menu.useAnimations = true
             menu.menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenuScene") as? MenuViewController
@@ -27,12 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Navigation bar setup
         
+        UINavigationBar.appearance().isTranslucent = true
         UINavigationBar.appearance().tintColor = Utils.Palette.Basic.white
-        UINavigationBar.appearance().barTintColor = Utils.Palette.Basic.darkBlue
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: Utils.Palette.Basic.white]
+        UINavigationBar.appearance().barTintColor = Utils.Palette.Basic.red
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: Utils.Palette.Basic.white, .font: UIFont.get(withType: .papyrus, size: 24)]
         UIApplication.shared.statusBarStyle = .lightContent
                 
-        
         return true
     }
 
@@ -106,4 +105,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-

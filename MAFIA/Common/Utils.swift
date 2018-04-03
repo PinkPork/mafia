@@ -43,12 +43,20 @@ struct Utils {
     /// For more information, see [Mafia palette colors](http://paletton.com/#uid=13K0u0kglbk2lVJ3FigJ49yWU08)
     struct Palette {
         struct Basic {
-            static let blue: UIColor = UIColor(red:0.13, green:0.16, blue:0.24, alpha:1.0)
-            static let darkBlue: UIColor = UIColor(red:0.01, green:0.07, blue:0.20, alpha:1.0)
-            static let white: UIColor = UIColor(red:0.89, green:0.91, blue:0.95, alpha:1.0)
-            static let black: UIColor = UIColor(red:0.00, green:0.00, blue:0.00, alpha:1.0)
-            static let gray: UIColor = UIColor(red:0.35, green:0.36, blue:0.38, alpha:1.0)
+            static let blue: UIColor = UIColor(red: 0.13, green: 0.16, blue: 0.24, alpha: 1.0)
+            static let darkBlue: UIColor = UIColor(red: 0.01, green: 0.07, blue: 0.20, alpha: 1.0)
+            static let white: UIColor = UIColor(red: 0.89, green: 0.91, blue: 0.95, alpha: 1.0)
+            static let black: UIColor = UIColor(red: 0.00, green: 0.00, blue: 0.00, alpha: 1.0)
+            static let gray: UIColor = UIColor(red: 0.32, green: 0.38, blue: 0.42, alpha: 1.0)
+            static let lightGray: UIColor = UIColor(hex: 0x52616B)
+            static let red: UIColor = UIColor(red: 0.56, green: 0.13, blue: 0.13, alpha: 1.0)
         }
-    }        
+    }
+
+    // MARK: - Font types
+
+    enum Font: String {
+        case papyrus = "Papyrus"
+    }
     
 }

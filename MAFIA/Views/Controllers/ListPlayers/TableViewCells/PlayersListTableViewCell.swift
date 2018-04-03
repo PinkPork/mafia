@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol PlayersListTableViewCellDelegate {
-    func startGame(withList list: List) -> Void
+protocol PlayersListTableViewCellDelegate: class {
+    func startGame(withList list: List)
 }
 
 class PlayersListTableViewCell: UITableViewCell {
@@ -19,7 +19,7 @@ class PlayersListTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var playersListForGameButton: UIButton!
     var list: List?
-    var delegate: PlayersListTableViewCellDelegate?
+    weak var delegate: PlayersListTableViewCellDelegate?
     
     // MARK: - IBActions
     

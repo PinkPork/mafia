@@ -14,7 +14,7 @@ typealias RemovePlayerFromListCompletion = ((Bool) -> Void)
 class DetailListPlayersService {
     
     func add(toList list: List, playerWithName name: String, completion: AddPlayerToListCompletion) {
-        if let listMO = ListMO.reverseParse(fromList: list){
+        if let listMO = ListMO.reverseParse(fromList: list) {
             let playerMO = PlayerMO(name: name)
             listMO.addToPlayers(playerMO)
 

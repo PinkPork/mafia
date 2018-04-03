@@ -16,7 +16,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var villagerLabel: UILabel!
     @IBOutlet weak var mobLabel: UILabel!
     @IBOutlet weak var currentPlayerListName: UILabel!
-    
+    @IBOutlet weak var emptyView: EmptyListView!
     
     // MARK: Vars & Constants
     
@@ -28,6 +28,7 @@ class GameViewController: UIViewController {
         }
     }
     private var pullToRefresh: UIRefreshControl!
+    private var addPlayerAction: UIAlertAction!
     
     override func viewDidLoad() {
         super.viewDidLoad()        
@@ -49,9 +50,8 @@ class GameViewController: UIViewController {
         }
     }
     
-    
-    @IBAction func refreshRoles(_ sender: UIBarButtonItem) {
-        presenter.restartGame()
+    @IBAction func addPlayerInCurrentGame(_ sender: Any) {
+        addPlayerPopUp()
     }
     
     // MARK: - Methods
@@ -59,6 +59,14 @@ class GameViewController: UIViewController {
     private func setupView() {
         presenter = GamePresenter(view: self)
         presenter.showPlayers()
+        
+        emptyView.delegate = self
+    }
+    
+    private func updateAddButtonState(text: String?) {
+        // Disable the Add button if the text field is empty.
+        let emptyText = text ?? ""
+        addPlayerAction?.isEnabled = !emptyText.isEmpty
     }
     
     private func setupTableView() {
@@ -82,6 +90,33 @@ class GameViewController: UIViewController {
         playersToDisplay = presenter.refreshRoles(players: playersToDisplay)
         tableView.reloadData()
         self.pullToRefresh.endRefreshing()
+    }
+    
+    @objc func refreshRoles(_ sender: UIBarButtonItem) {
+        presenter.restartGame()
+    }
+    
+    private func addPlayerPopUp() {
+        let alertController = UIAlertController(title: "ADD_PLAYER_TITLE".localized(), message: "ADD_PLAYER_MESSAGE".localized(), preferredStyle: .alert)
+        
+        alertController.addTextField { (textField) in
+            textField.delegate = self
+            textField.becomeFirstResponder()
+        }
+        
+        addPlayerAction = UIAlertAction(title: "ADD_ACTION".localized(), style: .default) { (action) in
+            let textField = alertController.textFields?.first
+            guard let playerName = textField?.text, !playerName.isEmpty else { return }
+            self.presenter.addPlayerInCurrentGame(withName: playerName)
+        }
+        
+        let cancelButton = UIAlertAction(title: "CANCEL_ACTION".localized(), style: .cancel)
+        
+        alertController.addAction(addPlayerAction)
+        alertController.addAction(cancelButton)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
     }
     
     // MARK: - Navigation
@@ -121,8 +156,16 @@ extension GameViewController: GameView {
     func updateGameUI() {
         villagerLabel.text = presenter.aliveCiviliansPlayerText
         mobLabel.text = presenter.aliveMafiaPlayerText
+        
+        if presenter.selectedListName != "LIST_PLAYER_NO_NAME".localized() {
+            emptyView.isHidden = true
+        } else {
+            emptyView.isHidden = false
+        }
+        
         currentPlayerListName.text = presenter.selectedListName
         tableView.isUserInteractionEnabled = presenter.gameCanStart
+        
     }
     
     func endGame(winner: Role) {
@@ -157,7 +200,6 @@ extension GameViewController: GameView {
     }
 }
 
-
 // MARK: - TableView Datasource
 
 extension GameViewController: UITableViewDataSource {
@@ -184,8 +226,6 @@ extension GameViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let displayedPlayer = playersToDisplay[indexPath.row]
         self.performSegue(withIdentifier: Segues.playerDetail, sender: displayedPlayer)
-        
-        
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -220,3 +260,31 @@ extension GameViewController: MenuViewControllerDelegate {
     }
 }
 
+// MARK: - TextField Delegate
+
+extension GameViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        updateAddButtonState(text: textField.text)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        addPlayerAction?.isEnabled = false
+    }
+    
+}
+
+// MARK: - EmptyListViewDelegate conformance
+
+extension GameViewController: EmptyListViewDelegate {
+    
+    func goToAction() {
+        SideMenu.sharedInstance.menuViewController?.delegate = self
+        SideMenu.sharedInstance.menuViewController?.goTo(menuOption: .PlayersList)
+    }
+    
+}

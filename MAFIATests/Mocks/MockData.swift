@@ -20,7 +20,7 @@ struct MockData {
         static let name5: String = "Player Test5"
         
         static var playerEntityName: NSEntityDescription {
-            return CoreDataConnection.shared.getEntity(withName: PlayerMO.entityName)!
+            return CoreDataConnection.shared.getEntity(withName: PlayerMO.entityName)
         }
         
         static var rawPlayers: [String] {
@@ -42,7 +42,9 @@ struct MockData {
     
     struct CoreDataController {
         static var managedObjectContext: NSManagedObjectContext {
-            let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle.main])!
+            guard let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle.main]) else {
+                return NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+            }
             
             let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
             

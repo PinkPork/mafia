@@ -9,12 +9,12 @@
 import Foundation
 
 extension ListMO {
-    //MARK: - Vars & Constants
+    // MARK: - Vars & Constants
     
     static var entityName: String = "List"
 
     convenience init(name: String) {
-        self.init(entity: CoreDataConnection.shared.getEntity(withName: ListMO.entityName)!, insertInto: CoreDataConnection.shared.managedContext)
+        self.init(entity: CoreDataConnection.shared.getEntity(withName: ListMO.entityName), insertInto: CoreDataConnection.shared.managedContext)
         self.name = name
     }
     
@@ -24,7 +24,6 @@ extension ListMO {
     class func parse(list: ListMO) -> List {
         return RawList(name: list.name ?? "No name", players: parsePlayers(list.players))
     }
-    
     
     /// Converts a set of Core data object players into an array of default players object
     /// - parameter players: Core data players object

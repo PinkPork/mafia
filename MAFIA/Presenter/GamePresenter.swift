@@ -6,9 +6,9 @@
 //  Copyright © 2017 Santiago Carmona Gonzalez. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-protocol GameView: class {
+protocol GameView: class, BaseView {
     func setPlayers(players: [Player])
     func addNewPlayer(player: Player)
     func deletePlayer(player: Player, indexPath: IndexPath)
@@ -37,7 +37,7 @@ class GamePresenter {
     }
     
     var selectedListName: String? {
-        if GameManager.currentGame.numberOfPlayersPlaying == 0 {
+        if !GameManager.currentGame.isSelectedListPlayers {
             return "LIST_PLAYER_NO_NAME".localized()
         }
         return GameManager.currentGame.listName
@@ -106,5 +106,14 @@ class GamePresenter {
     func restartGame() {
         GameManager.currentGame.reviveAllKilledPlayers()
         view.restartGame()
+    }
+    
+    func addPlayerInCurrentGame(withName name: String) {
+        let newPlayer: RawPlayer = RawPlayer(name: name)
+        if GameManager.currentGame.addPlayerInSelectedList(newPlayer) {
+            view.addNewPlayer(player: newPlayer)
+        } else {
+            view.showAlert(withTitle: "PLAYER_ALREADY_ADDED_TITLE".localized(), message: "PLAYER_ALREADY_ADDED_MESSAGE".localized(), preferredStyle: UIAlertControllerStyle.actionSheet, completionFirstAction: nil)
+        }
     }
 }

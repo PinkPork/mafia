@@ -10,7 +10,6 @@
 import Foundation
 import CoreData
 
-
 extension ListMO {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ListMO> {

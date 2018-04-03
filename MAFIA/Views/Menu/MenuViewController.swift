@@ -18,12 +18,11 @@ class MenuViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    // MARK: -  Vars & Constants
+    // MARK: - Vars & Constants
     
     var menuOptions: [MenuOptions] = []
     var presenter: MenuPresenter!
     weak var delegate: MenuViewControllerDelegate?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +44,20 @@ class MenuViewController: UIViewController {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
+    func goTo(menuOption option: MenuOptions) {
+        var segue: String!
+        
+        switch option {
+        case .PlayersList:
+            segue = Segues.Menu.playersList
+        default:
+            return
+        }
+        
+        try! SideMenu.sharedInstance?.animateMenu()
+        delegate?.performSegue(withIdentifier: segue)
+    }
+    
 }
 
 // MARK: - MenuView protocol conformance
@@ -55,7 +68,6 @@ extension MenuViewController: MenuView {
         tableView.reloadData()
     }
 }
-
 
 // MARK: - TableView DataSource
 
@@ -80,17 +92,9 @@ extension MenuViewController: UITableViewDataSource {
 extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedOption = menuOptions[indexPath.row]
-        var segue: String!
-
-        switch selectedOption {
-        case .PlayersList:
-            segue = Segues.Menu.playersList            
-        default:
-            return
-        }
-
-        try! SideMenu.sharedInstance?.animateMenu()
-        delegate?.performSegue(withIdentifier: segue)
+        
+        goTo(menuOption: selectedOption)
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

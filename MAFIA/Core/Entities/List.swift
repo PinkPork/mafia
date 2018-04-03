@@ -13,7 +13,6 @@ protocol List: class {
     var players: [Player] { get set }
 }
 
-
 class RawList: List {
     var name: String
     var players: [Player]

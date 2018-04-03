@@ -7,8 +7,6 @@
 //
 
 import Foundation
-
-
 import XCTest
 @testable import MAFIA
 
@@ -20,7 +18,7 @@ class DetailListPlayersServiceTest: BaseTest {
     override func setUp() {
         super.setUp()
         service = DetailListPlayersService()
-        let listMo = ListMO(entity: CoreDataConnection.shared.getEntity(withName: ListMO.entityName)!, insertInto: CoreDataConnection.shared.managedContext)
+        let listMo = ListMO(entity: CoreDataConnection.shared.getEntity(withName: ListMO.entityName), insertInto: CoreDataConnection.shared.managedContext)
         listMo.name = MockData.PlayersList.name
         list = ListMO.parse(list: listMo)
     }
@@ -33,7 +31,7 @@ class DetailListPlayersServiceTest: BaseTest {
         service.add(toList: list, playerWithName: MockData.Player.name) { (playersAdded) in
             XCTAssertNotNil(playersAdded, "There was an error adding the players")
             print("-----------------------------------------------------------")
-            print("\n The player named: \(playersAdded!.name) was added to the list named: \(list.name) \n")
+            print("\n The player named: \(playersAdded?.name ?? "") was added to the list named: \(list.name) \n")
             print("-----------------------------------------------------------")
         }
     }

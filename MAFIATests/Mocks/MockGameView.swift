@@ -7,7 +7,7 @@
 //
 
 @testable import MAFIA
-import Foundation
+import UIKit
 
 class MockGameView: GameView {
     
@@ -17,6 +17,7 @@ class MockGameView: GameView {
     var updateGameUICalled = false
     var endGameCalled = false
     var restartGameCalled = false
+    var didShowAlert = false
     
     func setPlayers(players: [Player]) {
         setPlayersCalled = true
@@ -40,5 +41,9 @@ class MockGameView: GameView {
     
     func restartGame() {
         restartGameCalled = true
+    }
+
+    func showAlert(withTitle title: String?, message: String?, preferredStyle: UIAlertControllerStyle, completionFirstAction: (() -> Void)?) {
+        didShowAlert = true
     }
 }
