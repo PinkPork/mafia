@@ -54,6 +54,7 @@
 "USE_PLAYERS_LIST_BUTTON_TITLE" = "Usar esta lista";
 "KILL_PLAYER_BUTTON_TITLE" = "Matar Jugador";
 "REVIVE_PLAYER_BUTTON_TITLE" = "Revivir Jugador";
+"ADD_FROM_OTHER_LIST" = "Agregar desde otra lista";
 
 // MARK: - Roles
 "king" = "Rey";
@@ -62,3 +63,7 @@
 "mob" = "Mafioso";
 "villager" = "Aldeano";
 "none" = "Sin rol";
+
+// MARK: - Empty view titles
+
+"EMPTY_DETAIL_LIST_PLAYERS" = "No tienes ningun miembro en esta lista";

@@ -54,15 +54,23 @@
                                     <constraint firstItem="08L-Io-bBv" firstAttribute="centerY" secondItem="Z0i-pH-HsG" secondAttribute="centerY" id="ygd-fN-184"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="62C-5r-IPh" customClass="EmptyListView" customModule="MAFIA" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="62C-5r-IPh" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="5FX-6J-IpZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oQm-oX-6bK" secondAttribute="trailing" id="746-HB-14y"/>
                             <constraint firstItem="T8y-f5-Pwu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="DMT-eb-gRb"/>
+                            <constraint firstItem="62C-5r-IPh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DwE-C5-NSZ"/>
                             <constraint firstItem="T8y-f5-Pwu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="E88-fR-YJv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="oQm-oX-6bK" secondAttribute="bottom" id="OkK-gZ-5Ea"/>
                             <constraint firstItem="oQm-oX-6bK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="R4k-O3-pl5"/>
                             <constraint firstItem="T8y-f5-Pwu" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="UU5-5M-ynJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="62C-5r-IPh" secondAttribute="trailing" id="nhd-Vd-zZV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="62C-5r-IPh" secondAttribute="bottom" id="ofj-be-vzk"/>
                             <constraint firstItem="oQm-oX-6bK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pXi-Oh-J6K"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -81,6 +89,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="currentPlayerListName" destination="bPs-tW-ux6" id="RWk-mY-z2b"/>
+                        <outlet property="emptyView" destination="62C-5r-IPh" id="Jcu-ZQ-zLH"/>
                         <outlet property="mobLabel" destination="08L-Io-bBv" id="195-sg-COC"/>
                         <outlet property="tableView" destination="oQm-oX-6bK" id="lJT-3B-2rn"/>
                         <outlet property="villagerLabel" destination="Z0i-pH-HsG" id="vH7-Jh-jtA"/>
@@ -244,17 +253,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JMX-Bw-gP8">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JMX-Bw-gP8">
+                                <rect key="frame" x="20" y="64" width="335" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wH-vw-1cC">
+                                <rect key="frame" x="62" y="582" width="250" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="iqJ-qQ-rnM"/>
+                                    <constraint firstAttribute="width" constant="250" id="j7P-bW-afR"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mku-1b-cs4" customClass="EmptyListView" customModule="MAFIA" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2tv-Eu-i3i" firstAttribute="trailing" secondItem="JMX-Bw-gP8" secondAttribute="trailing" id="7AW-ne-gvb"/>
+                            <constraint firstItem="4wH-vw-1cC" firstAttribute="centerX" secondItem="oXX-Kc-fuE" secondAttribute="centerX" id="6S8-ub-9f3"/>
+                            <constraint firstItem="2tv-Eu-i3i" firstAttribute="trailing" secondItem="JMX-Bw-gP8" secondAttribute="trailing" constant="20" id="7AW-ne-gvb"/>
                             <constraint firstItem="2tv-Eu-i3i" firstAttribute="bottom" secondItem="JMX-Bw-gP8" secondAttribute="bottom" id="CFJ-sn-lAO"/>
                             <constraint firstItem="JMX-Bw-gP8" firstAttribute="top" secondItem="2tv-Eu-i3i" secondAttribute="top" id="Gfx-6r-iYy"/>
-                            <constraint firstItem="JMX-Bw-gP8" firstAttribute="leading" secondItem="2tv-Eu-i3i" secondAttribute="leading" id="yrO-50-qHp"/>
+                            <constraint firstItem="2tv-Eu-i3i" firstAttribute="bottom" secondItem="Mku-1b-cs4" secondAttribute="bottom" id="PAk-CP-7aW"/>
+                            <constraint firstItem="Mku-1b-cs4" firstAttribute="top" secondItem="2tv-Eu-i3i" secondAttribute="top" id="QeC-tN-lS3"/>
+                            <constraint firstItem="Mku-1b-cs4" firstAttribute="leading" secondItem="2tv-Eu-i3i" secondAttribute="leading" id="Ydh-Eu-db5"/>
+                            <constraint firstItem="2tv-Eu-i3i" firstAttribute="bottom" secondItem="4wH-vw-1cC" secondAttribute="bottom" constant="20" id="v8A-Sw-jzR"/>
+                            <constraint firstItem="2tv-Eu-i3i" firstAttribute="trailing" secondItem="Mku-1b-cs4" secondAttribute="trailing" id="ya9-M6-WtP"/>
+                            <constraint firstItem="JMX-Bw-gP8" firstAttribute="leading" secondItem="2tv-Eu-i3i" secondAttribute="leading" constant="20" id="yrO-50-qHp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2tv-Eu-i3i"/>
                     </view>
@@ -266,6 +293,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addFromOtherListButton" destination="4wH-vw-1cC" id="OBb-YS-00D"/>
+                        <outlet property="emptyView" destination="Mku-1b-cs4" id="BHs-w2-i4b"/>
                         <outlet property="tableView" destination="JMX-Bw-gP8" id="La2-wI-XNC"/>
                     </connections>
                 </viewController>

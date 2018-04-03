@@ -27,9 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Navigation bar setup
         
+        UINavigationBar.appearance().isTranslucent = true
         UINavigationBar.appearance().tintColor = Utils.Palette.Basic.white
-        UINavigationBar.appearance().barTintColor = Utils.Palette.Basic.darkBlue
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: Utils.Palette.Basic.white]
+        UINavigationBar.appearance().barTintColor = Utils.Palette.Basic.red
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: Utils.Palette.Basic.white, .font: UIFont.init(name: "Papyrus", size: 24.0)!]
         UIApplication.shared.statusBarStyle = .lightContent
                 
         

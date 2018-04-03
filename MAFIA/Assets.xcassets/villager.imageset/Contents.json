@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "civilian.png",
+      "filename" : "skyscraper@1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "skyscraper@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "skyscraper@3x.png",
       "scale" : "3x"
     }
   ],

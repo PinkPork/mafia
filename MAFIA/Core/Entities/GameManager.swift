@@ -33,6 +33,10 @@ class GameManager {
         return playersPlaying?.count ?? 0
     }
     
+    var isSelectedListPlayers: Bool {
+        return selectedListPlayers != nil
+    }
+    
     /// Returns the number of civilians team players that are currently playing and are live
     var aliveCivilians: Int {
         get {
