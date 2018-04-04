@@ -9,7 +9,7 @@
 @testable import MAFIA
 import XCTest
 
-class GamePresenterTest: XCTestCase {
+class GamePresenterTest: BasePresenterTest {
     
     let mockGameView = MockGameView()
     var mockPlayerService: MockPlayerService!
@@ -18,15 +18,40 @@ class GamePresenterTest: XCTestCase {
     override func setUp() {
         super.setUp()
         mockPlayerService = MockPlayerService(players: getMockPlayers())
-        let selectedPlayerList = ListMO(entity: CoreDataConnection.shared.getEntity(withName: ListMO.entityName), insertInto: CoreDataConnection.shared.managedContext)
-//        selectedPlayerList.players =  getMockPlayers().toNSSet()
-        GameManager.currentGame.setSelectedList(listPlayers: ListMO.parse(list: selectedPlayerList))
         gamePresenterTest = GamePresenter(view: mockGameView, playerService: mockPlayerService)
+        let selectedPlayerList = RawList(name: MockData.PlayersList.name, players: getMockPlayers())
+        GameManager.currentGame.setSelectedList(listPlayers: selectedPlayerList)
     }
     
     func testShouldShowPlayers() {
         gamePresenterTest.showPlayers()
         XCTAssertTrue(mockGameView.setPlayersCalled)
+    }
+
+    func testAddNewPlayer() {
+        gamePresenterTest.addPlayerInCurrentGame(withName: "Fulano")
+        XCTAssert(mockGameView.addNewPlayerCalled)
+    }
+
+    func testDeletePlayer() {
+        gamePresenterTest.deletePlayer(player: GameManager.currentGame.playersPlaying!.first!, indexPath: IndexPath(row: 0, section: 0))
+        XCTAssert(mockGameView.deletePlayerCalled)
+    }
+
+    func testKillPlayer() {
+        let eliminatedPlayers = GameManager.currentGame.numberOfEliminatedPlayers
+        gamePresenterTest.kill(player: GameManager.currentGame.playersPlaying!.first!)
+        XCTAssert(mockGameView.endGameCalled)
+        XCTAssert(mockGameView.updateGameUICalled)
+        XCTAssertLessThan(eliminatedPlayers, GameManager.currentGame.numberOfEliminatedPlayers)
+    }
+
+    func testRevivePlayer() {
+        gamePresenterTest.kill(player: GameManager.currentGame.playersPlaying!.first!)
+        let alivePlayers = GameManager.currentGame.numberOfAlivePlayers
+        gamePresenterTest.revivePlayer(player: GameManager.currentGame.playersPlaying!.first!)        
+        XCTAssert(mockGameView.updateGameUICalled)
+        XCTAssertGreaterThan(GameManager.currentGame.numberOfAlivePlayers, alivePlayers)
     }
     
     func testRefreshRoles() {
@@ -60,13 +85,5 @@ class GamePresenterTest: XCTestCase {
             players: \(players.count)
             """
         )
-    }
-    
-    /// Gets 5 mock players with different name and the same role **Role.none** for test
-    /// - returns: An Array `PlayerMO` with mockData
-    private func getMockPlayers() -> [Player] {
-        return MockData.Player.rawPlayers.map({ (name) -> Player in
-           return RawPlayer(name: name)
-        })
     }
 }

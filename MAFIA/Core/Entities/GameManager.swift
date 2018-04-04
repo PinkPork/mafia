@@ -56,6 +56,16 @@ class GameManager {
             })
             return mafiaPlayers
     }
+
+    /// Returns the number of players alive in the current game
+    var numberOfAlivePlayers: Int {
+        return numberOfPlayersPlaying - eliminatedPlayers.count
+    }
+
+    /// Returns the number of players death in the current game
+    var numberOfEliminatedPlayers: Int {
+        return eliminatedPlayers.count
+    }
     
     func setSelectedList(listPlayers: List) {
         selectedListPlayers = listPlayers
