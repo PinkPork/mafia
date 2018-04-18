@@ -17,10 +17,15 @@ class GameViewController: UIViewController {
     @IBOutlet weak var mobLabel: UILabel!
     @IBOutlet weak var currentPlayerListName: UILabel!
     @IBOutlet weak var emptyView: EmptyListView!
+    @IBOutlet weak var targetImageView: UIImageView!
+    @IBOutlet weak var villagerImageView: UIImageView!
+    @IBOutlet weak var mobImageView: UIImageView!
+    @IBOutlet weak var totalPlayingLabel: UILabel!
+    @IBOutlet weak var borderView: UIView!
     
     // MARK: Vars & Constants
     
-    private let kHeaderView: CGFloat = 80
+    private let kHeaderView: CGFloat = 200
     private var presenter: GamePresenter!
     private var playersToDisplay: [Player] = [Player]() {
         didSet {
@@ -156,6 +161,7 @@ extension GameViewController: GameView {
     func updateGameUI() {
         villagerLabel.text = presenter.aliveCiviliansPlayerText
         mobLabel.text = presenter.aliveMafiaPlayerText
+        totalPlayingLabel.text = presenter.totalNumberOfPlayers
         
         if presenter.selectedListName != "LIST_PLAYER_NO_NAME".localized() {
             emptyView.isHidden = true
@@ -165,6 +171,17 @@ extension GameViewController: GameView {
         
         currentPlayerListName.text = presenter.selectedListName
         tableView.isUserInteractionEnabled = presenter.gameCanStart
+        
+        targetImageView.image = UIImage(named: "target")
+        villagerImageView.image = UIImage(named: "villager")
+        mobImageView.image = UIImage(named: "wanted")
+        
+        currentPlayerListName.font = UIFont(name: "PAPYRUS_FONT".localized(), size: 25)
+        villagerLabel.font = UIFont(name: "PAPYRUS_FONT".localized(), size: 17)
+        mobLabel.font = UIFont(name: "PAPYRUS_FONT".localized(), size: 17)
+        totalPlayingLabel.font = UIFont(name: "PAPYRUS_FONT".localized(), size: 17)
+        
+        borderView.backgroundColor = Utils.Palette.Basic.red
         
     }
     

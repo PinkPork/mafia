@@ -13,6 +13,7 @@
 "CIVILIANS_TITLE" = "Villagers";
 "MAFIA_TITLE" = "Mobsters";
 "LIST_PLAYER_NO_NAME" = "Select a list to play";
+"TOTAL_PLAYING_TITLE" = "Total playing";
 
 // MARK: - Alert titles
 
