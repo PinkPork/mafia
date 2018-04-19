@@ -12,42 +12,80 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="PlayerTableViewCell" customModule="MAFIA" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PPZ-0N-Je8">
-                        <rect key="frame" x="8" y="5" width="94" height="59.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lh2-ss-5VG">
-                        <rect key="frame" x="112" y="5" width="200" height="60"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I5c-Db-JLM" userLabel="Cell Border View">
+                        <rect key="frame" x="15" y="5" width="290" height="89.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rw1-UZ-L3s" userLabel="Player Name Label">
+                                <rect key="frame" x="30" y="30" width="59.5" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ozY-y0-Qo9" userLabel="Role View">
+                                <rect key="frame" x="175" y="5" width="100" height="79.5"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mob" translatesAutoresizingMaskIntoConstraints="NO" id="zjM-oH-WJm">
+                                        <rect key="frame" x="25.5" y="0.0" width="49" height="51"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="51" id="fyV-zX-DH6"/>
+                                            <constraint firstAttribute="width" constant="49" id="wm4-zT-GQ8"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6fI-W2-0ye" userLabel="Role Label">
+                                        <rect key="frame" x="0.0" y="53.5" width="100" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="e1A-GX-Cef"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="6fI-W2-0ye" firstAttribute="top" secondItem="zjM-oH-WJm" secondAttribute="bottom" constant="2" id="0dd-W0-32m"/>
+                                    <constraint firstItem="zjM-oH-WJm" firstAttribute="centerX" secondItem="6fI-W2-0ye" secondAttribute="centerX" id="8ES-oV-tTq"/>
+                                    <constraint firstAttribute="bottom" secondItem="6fI-W2-0ye" secondAttribute="bottom" id="KPm-7S-2PK"/>
+                                    <constraint firstAttribute="trailing" secondItem="6fI-W2-0ye" secondAttribute="trailing" id="LY6-u2-wwl"/>
+                                    <constraint firstItem="zjM-oH-WJm" firstAttribute="top" secondItem="ozY-y0-Qo9" secondAttribute="top" id="Ob7-Im-pjh"/>
+                                    <constraint firstItem="6fI-W2-0ye" firstAttribute="leading" secondItem="ozY-y0-Qo9" secondAttribute="leading" id="xDJ-7m-tgS"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="60" id="VIh-SI-et3"/>
-                            <constraint firstAttribute="width" constant="200" id="zMi-le-gMS"/>
+                            <constraint firstAttribute="trailing" secondItem="ozY-y0-Qo9" secondAttribute="trailing" constant="15" id="9A0-Z7-CeD"/>
+                            <constraint firstItem="ozY-y0-Qo9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rw1-UZ-L3s" secondAttribute="trailing" constant="5" id="JOk-mT-6pi"/>
+                            <constraint firstItem="rw1-UZ-L3s" firstAttribute="leading" secondItem="I5c-Db-JLM" secondAttribute="leading" constant="30" id="iAI-VP-LtU"/>
+                            <constraint firstAttribute="bottom" secondItem="ozY-y0-Qo9" secondAttribute="bottom" constant="5" id="jLB-f9-izl"/>
+                            <constraint firstItem="rw1-UZ-L3s" firstAttribute="centerY" secondItem="ozY-y0-Qo9" secondAttribute="centerY" id="ohJ-Ea-6G9"/>
+                            <constraint firstItem="ozY-y0-Qo9" firstAttribute="top" secondItem="I5c-Db-JLM" secondAttribute="top" constant="5" id="xXc-YP-lKa"/>
                         </constraints>
-                    </imageView>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="Lh2-ss-5VG" secondAttribute="trailing" constant="8" id="66X-QK-SWZ"/>
-                    <constraint firstItem="PPZ-0N-Je8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="6O5-0n-dwP"/>
-                    <constraint firstItem="PPZ-0N-Je8" firstAttribute="centerY" secondItem="Lh2-ss-5VG" secondAttribute="centerY" id="A72-Rm-DzI"/>
-                    <constraint firstItem="Lh2-ss-5VG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="HIf-yA-sks"/>
-                    <constraint firstItem="PPZ-0N-Je8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="OnQ-Zd-0hM"/>
-                    <constraint firstAttribute="bottom" secondItem="PPZ-0N-Je8" secondAttribute="bottom" constant="5" id="Q06-Al-vkn"/>
-                    <constraint firstAttribute="bottom" secondItem="Lh2-ss-5VG" secondAttribute="bottom" constant="5" id="ahD-bs-KnM"/>
-                    <constraint firstItem="Lh2-ss-5VG" firstAttribute="leading" secondItem="PPZ-0N-Je8" secondAttribute="trailing" constant="10" id="sit-Za-cg6"/>
+                    <constraint firstItem="I5c-Db-JLM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="0Xs-7T-OSQ"/>
+                    <constraint firstAttribute="bottom" secondItem="I5c-Db-JLM" secondAttribute="bottom" constant="5" id="4nO-7R-BtA"/>
+                    <constraint firstItem="I5c-Db-JLM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="CLu-o8-xlB"/>
+                    <constraint firstAttribute="trailing" secondItem="I5c-Db-JLM" secondAttribute="trailing" constant="15" id="s0x-MI-lQU"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="nameLabel" destination="PPZ-0N-Je8" id="nhC-vA-Ob5"/>
-                <outlet property="roleImageView" destination="Lh2-ss-5VG" id="pXG-zN-3if"/>
+                <outlet property="cellBorderView" destination="I5c-Db-JLM" id="oCN-O5-qRb"/>
+                <outlet property="nameLabel" destination="rw1-UZ-L3s" id="UKE-DP-EJ0"/>
+                <outlet property="roleImageView" destination="zjM-oH-WJm" id="Nfk-ez-DDH"/>
+                <outlet property="roleLabel" destination="6fI-W2-0ye" id="adn-jA-9zw"/>
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="mob" width="49" height="51"/>
+    </resources>
 </document>

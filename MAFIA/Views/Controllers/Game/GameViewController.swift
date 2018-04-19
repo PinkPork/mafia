@@ -36,7 +36,7 @@ class GameViewController: UIViewController {
     private var addPlayerAction: UIAlertAction!
     
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
         setupTableView()
         setupView()
         updateGameUI()
@@ -89,6 +89,8 @@ class GameViewController: UIViewController {
         } else {
             tableView.addSubview(pullToRefresh)
         }
+        
+        tableView.separatorStyle = .none
     }
     
     private func refreshRoles() {
@@ -269,6 +271,10 @@ extension GameViewController: UITableViewDelegate {
             }
         }))
         return actionsForRow
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
 }
 extension GameViewController: MenuViewControllerDelegate {
