@@ -16,6 +16,7 @@ class PlayerTableViewCell: UITableViewCell {
     @IBOutlet weak var roleImageView: UIImageView!
     @IBOutlet weak var roleLabel: UILabel!
     @IBOutlet weak var cellBorderView: UIView!
+    @IBOutlet weak var bulletImageView: UIImageView!
     
     
     // MARK: - Vars & Constants
@@ -43,9 +44,11 @@ class PlayerTableViewCell: UITableViewCell {
     func setCellData(player: Player) {
         self.player = player
         self.nameLabel.text = player.name
-        self.roleImageView.image = UIImage(named: "\(player.role.imageDescription)")
         self.roleLabel.text = player.role.roleDescription
-        self.contentView.backgroundColor = GameManager.currentGame.checkForKilledPlayers(player: player) ? UIColor.red : UIColor.white
+        self.roleImageView.image = GameManager.currentGame.checkForKilledPlayers(player: player) ? UIImage(named: "deselected_\(player.role.imageDescription)") : UIImage(named: "\(player.role.imageDescription)")
+        self.nameLabel.textColor = GameManager.currentGame.checkForKilledPlayers(player: player) ? Utils.Palette.Basic.veryLightGrey : Utils.Palette.Basic.lightGray
+        self.roleLabel.textColor = GameManager.currentGame.checkForKilledPlayers(player: player) ? Utils.Palette.Basic.veryLightGrey : Utils.Palette.Basic.lightGray
+        self.bulletImageView.isHidden = GameManager.currentGame.checkForKilledPlayers(player: player) ? false : true
     }
     
     func setCellBorder() {

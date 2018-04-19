@@ -57,6 +57,10 @@
                                     <constraint firstItem="6fI-W2-0ye" firstAttribute="leading" secondItem="ozY-y0-Qo9" secondAttribute="leading" id="xDJ-7m-tgS"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bullet" translatesAutoresizingMaskIntoConstraints="NO" id="4lq-lH-HYj" userLabel="Bullet">
+                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -78,6 +82,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="bulletImageView" destination="4lq-lH-HYj" id="WCo-Db-mTa"/>
                 <outlet property="cellBorderView" destination="I5c-Db-JLM" id="oCN-O5-qRb"/>
                 <outlet property="nameLabel" destination="rw1-UZ-L3s" id="UKE-DP-EJ0"/>
                 <outlet property="roleImageView" destination="zjM-oH-WJm" id="Nfk-ez-DDH"/>
@@ -86,6 +91,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="bullet" width="27" height="22"/>
         <image name="mob" width="49" height="51"/>
     </resources>
 </document>
