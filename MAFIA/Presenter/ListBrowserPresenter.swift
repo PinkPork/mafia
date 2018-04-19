@@ -8,23 +8,23 @@
 
 import UIKit
 
-protocol ListPlayersView: class, BaseView {
+protocol ListBrowserView: class, BaseView {
     func setListPlayers(listPlayers: [List])
     func addNewList(listPlayer: List)
     func deleteList(listPlayer: List, indexPath: IndexPath)
 }
 
-class ListPlayersPresenter {
-    unowned var view: ListPlayersView
-    private let playersListService: PlayersListService
+class ListBrowserPresenter {
+    unowned var view: ListBrowserView
+    private let playersListService: ListService
     
-    init(view: ListPlayersView, playerListService: PlayersListService = PlayersListService()) {
+    init(view: ListBrowserView, playerListService: ListService = ListService()) {
         self.view = view
         self.playersListService = playerListService
     }
     
     func createList(withName name: String, errorCompletion: (() -> Void)? = nil) {
-        playersListService.createPlayersListWith(name: name) { [weak self] (listPlayer) in
+        playersListService.createListWith(name: name) { [weak self] (listPlayer) in
             if let listPlayer = listPlayer {
                 self?.view.addNewList(listPlayer: listPlayer)
             } else {

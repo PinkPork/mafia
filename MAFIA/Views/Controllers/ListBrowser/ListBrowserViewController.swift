@@ -1,5 +1,5 @@
 //
-//  ListPlayersViewController.swift
+//  ListBrowserViewController
 //  MAFIA
 //
 //  Created by Hugo Bernal on Dec/29/17.
@@ -8,19 +8,20 @@
 
 import UIKit
 
-class ListPlayersViewController: UIViewController {
+class ListBrowserViewController: UIViewController {
     
     // MARK: - IBOutlets
     
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Vars & Constants
-    
-    private var listPlayers: [List] = [List]()
-    private var presenter: ListPlayersPresenter!
-    weak var gamePresenter: GamePresenter!
-    private var addListAction: UIAlertAction!
+
     private let listCellIndetifier: String = "PlayersListCell"
+    private var lists: [List] = [List]()
+    private var presenter: ListBrowserPresenter!
+    private var addListAction: UIAlertAction!
+
+    weak var gamePresenter: GamePresenter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,14 +38,14 @@ class ListPlayersViewController: UIViewController {
     // MARK: - Methods
     
     private func setupView() {
-        presenter = ListPlayersPresenter(view: self)
+        presenter = ListBrowserPresenter(view: self)
         presenter.showListPlayers()
     }
     
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UINib.init(nibName: "PlayersListTableViewCell", bundle: nil), forCellReuseIdentifier: listCellIndetifier)
+        tableView.register(UINib.init(nibName: ListBrowserTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: listCellIndetifier)
     }
     
     private func updateAddButtonState(text: String?) {
@@ -76,32 +77,32 @@ class ListPlayersViewController: UIViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? DetailListPlayersViewController {
-            destination.listPlayers = sender as? RawList
+        if let destination = segue.destination as? ListViewController {
+            destination.list = sender as? RawList
         }
     }
 }
 
 // MARK: - ListPlayersView protocol conformance
 
-extension ListPlayersViewController: ListPlayersView {
+extension ListBrowserViewController: ListBrowserView {
     func showAlert(withTitle title: String?, message: String?, preferredStyle: UIAlertControllerStyle) {
         self.presentAlert(title: title, message: message, preferredStyle: preferredStyle)
     }
     
     func deleteList(listPlayer: List, indexPath: IndexPath) {
-        listPlayers.remove(at: indexPath.row)
+        lists.remove(at: indexPath.row)
         tableView.reloadData()
     }
     
     func addNewList(listPlayer: List) {
-        listPlayers.append(listPlayer)
+        lists.append(listPlayer)
         tableView.reloadData()
         presentAlert(title: "LIST_ADDED_TITLE".localized(), message: String.localizedStringWithFormat("LIST_ADDED_MESSAGE".localized(), listPlayer.name), preferredStyle: .actionSheet)
     }
     
     func setListPlayers(listPlayers: [List]) {
-        self.listPlayers = listPlayers
+        self.lists = listPlayers
         tableView.reloadData()
     }
     
@@ -109,7 +110,7 @@ extension ListPlayersViewController: ListPlayersView {
 
 // MARK: - PlayersListTableViewCellDelegate protocol conformance
 
-extension ListPlayersViewController: PlayersListTableViewCellDelegate {
+extension ListBrowserViewController: ListBrowserTableViewCellDelegate {
     func startGame(withList list: List) {
         presenter.selectList(list: list)
         gamePresenter.restartGame()
@@ -119,15 +120,15 @@ extension ListPlayersViewController: PlayersListTableViewCellDelegate {
 
 // MARK: - TableView DataSource
 
-extension ListPlayersViewController: UITableViewDataSource {
+extension ListBrowserViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listPlayers.count
+        return lists.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: listCellIndetifier, for: indexPath)  as! PlayersListTableViewCell
-        let list = listPlayers[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: listCellIndetifier, for: indexPath)  as! ListBrowserTableViewCell
+        let list = lists[indexPath.row]
         cell.setCellData(list: list)
         cell.delegate = self
         return cell
@@ -136,16 +137,16 @@ extension ListPlayersViewController: UITableViewDataSource {
 
 // MARK: - TableView Delegate
 
-extension ListPlayersViewController: UITableViewDelegate {
+extension ListBrowserViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedList = listPlayers[indexPath.row]
+        let selectedList = lists[indexPath.row]
         self.performSegue(withIdentifier: Segues.detailListPlayers, sender: selectedList)
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         return [UITableViewRowAction.init(style: .destructive, title: "DELETE_ACTION".localized(), handler: { [weak self] (_, indexPath) in
             if let strongSelf = self {
-                strongSelf.presenter.deleteList(playersList: strongSelf.listPlayers[indexPath.row], indexPath: indexPath)
+                strongSelf.presenter.deleteList(playersList: strongSelf.lists[indexPath.row], indexPath: indexPath)
             }
         })]
     }
@@ -153,7 +154,7 @@ extension ListPlayersViewController: UITableViewDelegate {
 
 // MARK: - TextField Delegate
 
-extension ListPlayersViewController: UITextFieldDelegate {
+extension ListBrowserViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

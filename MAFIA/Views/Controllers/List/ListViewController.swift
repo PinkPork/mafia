@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailListPlayersViewController: UIViewController {
+class ListViewController: UIViewController {
     
     // MARK: - IBOutlets
     
@@ -19,13 +19,13 @@ class DetailListPlayersViewController: UIViewController {
     // MARK: - Vars & Constants
 
     private let gradient = CAGradientLayer()
-    private var presenter: DetailListPlayersPresenter!
+    private var presenter: ListPresenter!
     private var addPlayerAction: UIAlertAction!
     private var isHiddenEmptyView: Bool {
-        return !listPlayers.players.isEmpty
+        return !list.players.isEmpty
     }
     
-    weak var listPlayers: RawList!
+    weak var list: RawList!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,9 +49,9 @@ class DetailListPlayersViewController: UIViewController {
     // MARK: - Methods
     
     private func setupView() {
-        presenter = DetailListPlayersPresenter(view: self)
+        presenter = ListPresenter(view: self)
         
-        guard let title = listPlayers?.name else { return }
+        guard let title = list?.name else { return }
         self.navigationItem.title = title
     }
 
@@ -86,7 +86,7 @@ class DetailListPlayersViewController: UIViewController {
         addPlayerAction = UIAlertAction(title: "ADD_ACTION".localized(), style: .default) { (action) in
             let textField = alertController.textFields?.first
             guard let playerName = textField?.text, !playerName.isEmpty else { return }
-            guard let list = self.listPlayers else { return }
+            guard let list = self.list else { return }
             self.presenter.addPlayer(withName: playerName, toList: list, errorCompletion: self.showAddPlayerPopUp)
         }
         
@@ -109,29 +109,29 @@ class DetailListPlayersViewController: UIViewController {
 
 // MARK: - DetailListPlayersView protocol conformace
 
-extension DetailListPlayersViewController: DetailListPlayersView {
+extension ListViewController: ListView {
    
     func addNewPlayer(player: Player) {
-        listPlayers.players.append(player)
+        list.players.append(player)
         tableView.reloadData()
     }
     
     func deletePlayer(player: Player, indexPath: IndexPath) {
-        listPlayers.players.remove(at: indexPath.row)
+        list.players.remove(at: indexPath.row)
         tableView.reloadData()
     }
 }
 
 // MARK: - TableView DataSource
 
-extension DetailListPlayersViewController: UITableViewDataSource {
+extension ListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         // Displays the empty view if there are not any player in the list.
         emptyView.isHidden = isHiddenEmptyView
 
-        return listPlayers.players.count
+        return list.players.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -142,7 +142,7 @@ extension DetailListPlayersViewController: UITableViewDataSource {
             return cell
         }
 
-        let player = listPlayers.players[indexPath.row]
+        let player = list.players[indexPath.row]
         playerDetailsCell.setCell(title: player.name)
 
         return playerDetailsCell
@@ -151,13 +151,13 @@ extension DetailListPlayersViewController: UITableViewDataSource {
 
 // MARK: - TableView Delegate
 
-extension DetailListPlayersViewController: UITableViewDelegate {
+extension ListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "DELETE_ACTION".localized()) { [weak self] (contextAction: UIContextualAction, sourceView: UIView, completion: (Bool) -> Void) in
             if let strongSelf = self {
-                guard let list = strongSelf.listPlayers else { return }
-                strongSelf.presenter.deletePlayer(player: strongSelf.listPlayers.players[indexPath.row], list: list, indexPath: indexPath)
+                guard let list = strongSelf.list else { return }
+                strongSelf.presenter.deletePlayer(player: strongSelf.list.players[indexPath.row], list: list, indexPath: indexPath)
                 completion(true)
             } else {
                 completion(false)
@@ -171,7 +171,7 @@ extension DetailListPlayersViewController: UITableViewDelegate {
 
 // MARK: - TextField Delegate
 
-extension DetailListPlayersViewController: UITextFieldDelegate {
+extension ListViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

@@ -1,5 +1,5 @@
 //
-//  ListPlayersPresenterTest.swift
+//  ListBrowserPresenterTest.swift
 //  MAFIATests
 //
 //  Created by Santiago Carmona Gonzalez on 4/3/18.
@@ -9,16 +9,16 @@
 @testable import MAFIA
 import XCTest
 
-class ListPlayersPresenterTest: BasePresenterTest {
+class ListBrowserPresenterTest: BasePresenterTest {
 
     let mockListPlayersView = MockListPlayersView()
-    var mockListPlayerService: MockListPlayerService!
-    var listPlayersPresenterTest: ListPlayersPresenter!
+    var mockListPlayerService: MockListService!
+    var listPlayersPresenterTest: ListBrowserPresenter!
     
     override func setUp() {
         super.setUp()
-        mockListPlayerService = MockListPlayerService(lists: lists)
-        listPlayersPresenterTest = ListPlayersPresenter(view: mockListPlayersView, playerListService: mockListPlayerService)
+        mockListPlayerService = MockListService(lists: lists)
+        listPlayersPresenterTest = ListBrowserPresenter(view: mockListPlayersView, playerListService: mockListPlayerService)
     }
     
     override func tearDown() {

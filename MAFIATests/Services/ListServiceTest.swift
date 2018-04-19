@@ -9,13 +9,13 @@
 import XCTest
 @testable import MAFIA
 
-class PlayersListServiceTest: BaseTest {
+class ListServiceTest: BaseTest {
     
-    var service: PlayersListService!
+    var service: ListService!
     
     override func setUp() {
         super.setUp()
-        service = PlayersListService()        
+        service = ListService()        
     }
     
     override func tearDown() {
@@ -23,14 +23,14 @@ class PlayersListServiceTest: BaseTest {
     }
     
     func testCreatePlayList() {
-        service.createPlayersListWith(name: MockData.PlayersList.name, completion: { (playerList) in
+        service.createListWith(name: MockData.PlayersList.name, completion: { (playerList) in
             XCTAssertNotNil(playerList, "There was a problem creating a list with name: \(MockData.PlayersList.name)")
         })
     }
     
     func testGetAllLists() {
         for list in MockData.PlayersList.rawLists {
-            service.createPlayersListWith(name: list, completion: { (playerList) in
+            service.createListWith(name: list, completion: { (playerList) in
                 XCTAssertNotNil(playerList, "There was a problem creating a list with name: \(MockData.PlayersList.name)")
             })
         }
@@ -52,7 +52,7 @@ class PlayersListServiceTest: BaseTest {
     }
     
     func testDeleteList() {
-        service.createPlayersListWith(name: MockData.PlayersList.name, completion: { (playerList) in
+        service.createListWith(name: MockData.PlayersList.name, completion: { (playerList) in
             XCTAssertNotNil(playerList, "There was a problem creating a list with name: \(MockData.PlayersList.name)")
         })
     

@@ -8,18 +8,26 @@
 
 import UIKit
 
-protocol PlayersListTableViewCellDelegate: class {
+protocol ListBrowserTableViewCellDelegate: class {
     func startGame(withList list: List)
 }
 
-class PlayersListTableViewCell: UITableViewCell {
+class ListBrowserTableViewCell: UITableViewCell {
 
     // MARK: - IBOutlets
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var playersListForGameButton: UIButton!
-    var list: List?
-    weak var delegate: PlayersListTableViewCellDelegate?
+
+    // MARK: - Vars & Constants
+
+    static var identifier: String {
+        return String(describing: self)
+    }
+
+    private var list: List?
+    weak var delegate: ListBrowserTableViewCellDelegate?
+
     
     // MARK: - IBActions
     

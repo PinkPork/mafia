@@ -9,7 +9,7 @@
 @testable import MAFIA
 import UIKit
 
-class MockListPlayersView: ListPlayersView {
+class MockListPlayersView: ListBrowserView {
 
     var setListPlayersCalled = false
     var addNewListCalled = false

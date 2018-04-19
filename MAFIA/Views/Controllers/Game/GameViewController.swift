@@ -27,13 +27,13 @@ class GameViewController: UIViewController {
     
     private let kHeaderView: CGFloat = 200
     private var presenter: GamePresenter!
+    private var pullToRefresh: UIRefreshControl!
+    private var addPlayerAction: UIAlertAction!
     private var playersToDisplay: [Player] = [Player]() {
         didSet {
             updateGameUI()
         }
     }
-    private var pullToRefresh: UIRefreshControl!
-    private var addPlayerAction: UIAlertAction!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,7 +130,7 @@ class GameViewController: UIViewController {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationViewController = segue.destination as? ListPlayersViewController {
+        if let destinationViewController = segue.destination as? ListBrowserViewController {
             destinationViewController.gamePresenter = presenter
         } else if let destinationViewController = segue.destination as? PlayerDetailViewController {
             destinationViewController.navigationItem.title = presenter.selectedListName

@@ -1,5 +1,5 @@
 //
-//  PlayersListService.swift
+//  ListService.swift
 //  MAFIA
 //
 //  Created by Santiago Carmona Gonzalez on 12/28/17.
@@ -13,9 +13,9 @@ typealias GetListsCompletion = (([List]?) -> Void)
 typealias GetListCompletion = ((List?) -> Void)
 typealias DeleteListCompletion = ((Bool) -> Void)
 
-class PlayersListService: BaseService {
+class ListService: BaseService {
     
-    func createPlayersListWith(name: String, players: [Player] = [Player](), completion: CreateListCompletion) {
+    func createListWith(name: String, players: [Player] = [Player](), completion: CreateListCompletion) {
 
         let playerList = ListMO(name: name)
         playerList.players = players.flatMap(PlayerMO.reverseParse).toNSSet()

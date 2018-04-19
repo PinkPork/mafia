@@ -1,5 +1,5 @@
 //
-//  MockListPlayerService.swift
+//  MockListService.swift
 //  MAFIATests
 //
 //  Created by Santiago Carmona Gonzalez on 4/4/18.
@@ -9,14 +9,14 @@
 @testable import MAFIA
 import Foundation
 
-class MockListPlayerService: PlayersListService {
+class MockListService: ListService {
     private let lists: [List]
 
     init(lists: [List]) {
         self.lists = lists
     }
 
-    override func createPlayersListWith(name: String, players: [Player], completion: (List?) -> Void) {
+    override func createListWith(name: String, players: [Player], completion: (List?) -> Void) {
         completion(lists.first)
     }
 

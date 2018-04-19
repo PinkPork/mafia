@@ -8,16 +8,16 @@
 
 import Foundation
 
-protocol DetailListPlayersView: class, BaseView {
+protocol ListView: class, BaseView {
     func addNewPlayer(player: Player)
     func deletePlayer(player: Player, indexPath: IndexPath)
 }
 
-class DetailListPlayersPresenter {
-    unowned var view: DetailListPlayersView
+class ListPresenter {
+    unowned var view: ListView
     private let detailListPlayersService: DetailListPlayersService
     
-    init(view: DetailListPlayersView, detailListPlayersService: DetailListPlayersService = DetailListPlayersService()) {
+    init(view: ListView, detailListPlayersService: DetailListPlayersService = DetailListPlayersService()) {
         self.view = view
         self.detailListPlayersService = detailListPlayersService
     }
