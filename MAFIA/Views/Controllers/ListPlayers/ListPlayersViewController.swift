@@ -16,10 +16,10 @@ class ListPlayersViewController: UIViewController {
     
     // MARK: - Vars & Constants
     
-    private var listPlayers: [PlayersList] = [PlayersList]()
+    private var listPlayers: [List] = [List]()
     private var presenter: ListPlayersPresenter!
     weak var gamePresenter: GamePresenter!
-    private var addListAction: UIAlertAction?
+    private var addListAction: UIAlertAction!
     private let listCellIndetifier: String = "PlayersListCell"
 
     override func viewDidLoad() {
@@ -67,7 +67,7 @@ class ListPlayersViewController: UIViewController {
         
         let cancelButton = UIAlertAction(title: "CANCEL_ACTION".localized(), style: .cancel)
         
-        alertController.addAction(addListAction!)
+        alertController.addAction(addListAction)
         alertController.addAction(cancelButton)
         
         self.present(alertController, animated: true, completion: nil)
@@ -77,7 +77,7 @@ class ListPlayersViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? DetailListPlayersViewController {
-            destination.listPlayers = sender as? RawPlayersList
+            destination.listPlayers = sender as? RawList
         }
     }
 }
@@ -89,18 +89,18 @@ extension ListPlayersViewController: ListPlayersView {
         self.presentAlert(title: title, message: message, preferredStyle: preferredStyle)
     }
     
-    func deleteList(listPlayer: PlayersList, indexPath: IndexPath) {
+    func deleteList(listPlayer: List, indexPath: IndexPath) {
         listPlayers.remove(at: indexPath.row)
         tableView.reloadData()
     }
     
-    func addNewList(listPlayer: PlayersList) {
+    func addNewList(listPlayer: List) {
         listPlayers.append(listPlayer)
         tableView.reloadData()
         presentAlert(title: "LIST_ADDED_TITLE".localized(), message: String.localizedStringWithFormat("LIST_ADDED_MESSAGE".localized(), listPlayer.name), preferredStyle: .actionSheet)
     }
     
-    func setListPlayers(listPlayers: [PlayersList]) {
+    func setListPlayers(listPlayers: [List]) {
         self.listPlayers = listPlayers
         tableView.reloadData()
     }
@@ -110,7 +110,7 @@ extension ListPlayersViewController: ListPlayersView {
 // MARK: - PlayersListTableViewCellDelegate protocol conformance
 
 extension ListPlayersViewController: PlayersListTableViewCellDelegate {
-    func startGame(withList list: PlayersList) {
+    func startGame(withList list: List) {
         presenter.selectList(list: list)
         gamePresenter.restartGame()
         self.navigationController?.popViewController(animated: true)
@@ -168,5 +168,3 @@ extension ListPlayersViewController: UITextFieldDelegate {
         addListAction?.isEnabled = false
     }
 }
-
-

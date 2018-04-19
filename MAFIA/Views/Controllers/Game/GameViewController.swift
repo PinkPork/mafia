@@ -28,7 +28,7 @@ class GameViewController: UIViewController {
         }
     }
     private var pullToRefresh: UIRefreshControl!
-    private var addPlayerAction: UIAlertAction?
+    private var addPlayerAction: UIAlertAction!
     
     override func viewDidLoad() {
         super.viewDidLoad()        
@@ -61,8 +61,6 @@ class GameViewController: UIViewController {
         presenter.showPlayers()
         
         emptyView.delegate = self
-        
-        
     }
     
     private func updateAddButtonState(text: String?) {
@@ -114,7 +112,7 @@ class GameViewController: UIViewController {
         
         let cancelButton = UIAlertAction(title: "CANCEL_ACTION".localized(), style: .cancel)
         
-        alertController.addAction(addPlayerAction!)
+        alertController.addAction(addPlayerAction)
         alertController.addAction(cancelButton)
         
         self.present(alertController, animated: true, completion: nil)
@@ -202,7 +200,6 @@ extension GameViewController: GameView {
     }
 }
 
-
 // MARK: - TableView Datasource
 
 extension GameViewController: UITableViewDataSource {
@@ -229,8 +226,6 @@ extension GameViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let displayedPlayer = playersToDisplay[indexPath.row]
         self.performSegue(withIdentifier: Segues.playerDetail, sender: displayedPlayer)
-        
-        
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -293,4 +288,3 @@ extension GameViewController: EmptyListViewDelegate {
     }
     
 }
-

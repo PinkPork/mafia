@@ -28,7 +28,7 @@ extension NSManagedObjectContext: Database {
     /// - returns: An NSManagedObject with the entityDescription given by the `id` parameter
     
     func loadObject<Type>(withId id: String) -> Type? {
-        if let entityDescription = NSEntityDescription.entity(forEntityName: id , in: self) {
+        if let entityDescription = NSEntityDescription.entity(forEntityName: id, in: self) {
             return NSManagedObject(entity: entityDescription, insertInto: self) as? Type
         }
         return nil

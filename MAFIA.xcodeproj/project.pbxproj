@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		07434A7E2002B2E0004AE1CC /* DetailListPlayersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07434A7D2002B2E0004AE1CC /* DetailListPlayersPresenter.swift */; };
-		6E0163152011785F00E91421 /* PlayersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0163142011785F00E91421 /* PlayersList.swift */; };
+		6E0163152011785F00E91421 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0163142011785F00E91421 /* List.swift */; };
 		6E016318201178E500E91421 /* PlayerMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E016316201178E500E91421 /* PlayerMO+CoreDataClass.swift */; };
 		6E016319201178E500E91421 /* PlayerMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E016317201178E500E91421 /* PlayerMO+CoreDataProperties.swift */; };
 		6E01631B20117AAE00E91421 /* CoreDataIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E01631A20117AAE00E91421 /* CoreDataIdentifier.swift */; };
-		6E01631E20117B4E00E91421 /* PlayersListMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E01631C20117B4E00E91421 /* PlayersListMO+CoreDataClass.swift */; };
-		6E01631F20117B4E00E91421 /* PlayersListMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E01631D20117B4E00E91421 /* PlayersListMO+CoreDataProperties.swift */; };
+		6E01631E20117B4E00E91421 /* ListMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E01631C20117B4E00E91421 /* ListMO+CoreDataClass.swift */; };
+		6E01631F20117B4E00E91421 /* ListMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E01631D20117B4E00E91421 /* ListMO+CoreDataProperties.swift */; };
 		6E0163262011802100E91421 /* PlayerMOExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0163252011802100E91421 /* PlayerMOExtension.swift */; };
-		6E016328201190E700E91421 /* PlayersListMOExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E016327201190E700E91421 /* PlayersListMOExtension.swift */; };
+		6E016328201190E700E91421 /* ListMOExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E016327201190E700E91421 /* ListMOExtension.swift */; };
 		6E2618AD1FF5C9BD00F3AF93 /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2618AC1FF5C9BD00F3AF93 /* DatabaseProtocol.swift */; };
 		6E2618AF1FF5D2B200F3AF93 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2618AE1FF5D2B200F3AF93 /* BaseService.swift */; };
 		6E8F889E1FF701D900F7AB49 /* NSManagedObjectContextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F889D1FF701D900F7AB49 /* NSManagedObjectContextExtension.swift */; };
@@ -55,6 +55,7 @@
 		9688E1A720728C2600853071 /* PlayerDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9688E1A520728C2600853071 /* PlayerDetailsTableViewCell.xib */; };
 		9688E1A92072B44700853071 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688E1A82072B44700853071 /* UIColorExtension.swift */; };
 		9688E1AD2072C7F100853071 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688E1AC2072C7F100853071 /* UIViewExtension.swift */; };
+		9688E1AF2073D04000853071 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688E1AE2073D04000853071 /* UIFontExtension.swift */; };
 		96B3C3171FF40BB100363A3F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B3C3161FF40BB100363A3F /* MenuViewController.swift */; };
 		96BEA68C1FF42F6000231518 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BEA68B1FF42F6000231518 /* MenuPresenter.swift */; };
 		96F9DE7F1FED60A900C32C30 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F9DE7D1FED60A900C32C30 /* MenuTableViewCell.swift */; };
@@ -65,6 +66,7 @@
 		97CE9FD31FEB14C900A8A55E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CE9FD21FEB14C900A8A55E /* StringExtension.swift */; };
 		97CE9FD71FEB15CF00A8A55E /* Default.strings in Resources */ = {isa = PBXBuildFile; fileRef = 97CE9FD91FEB15CF00A8A55E /* Default.strings */; };
 		A546B4182010CDC000F3CB89 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A546B4172010CDC000F3CB89 /* UIViewControllerExtension.swift */; };
+		AD1C6D5909604EEF3DA38444 /* Pods_MAFIA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CFE82394293015048A278BB /* Pods_MAFIA.framework */; };
 		CF20DF962041F7720045D941 /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF20DF952041F7720045D941 /* EmptyListView.swift */; };
 		CF20DF982041F78A0045D941 /* EmptyListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF20DF972041F78A0045D941 /* EmptyListView.xib */; };
 		CF5A520A200926D600BC7890 /* PlayersListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5A5208200926D600BC7890 /* PlayersListTableViewCell.swift */; };
@@ -93,14 +95,16 @@
 
 /* Begin PBXFileReference section */
 		07434A7D2002B2E0004AE1CC /* DetailListPlayersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListPlayersPresenter.swift; sourceTree = "<group>"; };
-		6E0163142011785F00E91421 /* PlayersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersList.swift; sourceTree = "<group>"; };
+		307593A3C5E5C930B25F1631 /* Pods-MAFIA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAFIA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MAFIA/Pods-MAFIA.debug.xcconfig"; sourceTree = "<group>"; };
+		3352B843D1F40BA1BDA85695 /* Pods-MAFIA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAFIA.release.xcconfig"; path = "Pods/Target Support Files/Pods-MAFIA/Pods-MAFIA.release.xcconfig"; sourceTree = "<group>"; };
+		6E0163142011785F00E91421 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		6E016316201178E500E91421 /* PlayerMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6E016317201178E500E91421 /* PlayerMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6E01631A20117AAE00E91421 /* CoreDataIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataIdentifier.swift; sourceTree = "<group>"; };
-		6E01631C20117B4E00E91421 /* PlayersListMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayersListMO+CoreDataClass.swift"; sourceTree = "<group>"; };
-		6E01631D20117B4E00E91421 /* PlayersListMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayersListMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6E01631C20117B4E00E91421 /* ListMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListMO+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6E01631D20117B4E00E91421 /* ListMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6E0163252011802100E91421 /* PlayerMOExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMOExtension.swift; sourceTree = "<group>"; };
-		6E016327201190E700E91421 /* PlayersListMOExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersListMOExtension.swift; sourceTree = "<group>"; };
+		6E016327201190E700E91421 /* ListMOExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMOExtension.swift; sourceTree = "<group>"; };
 		6E2618AC1FF5C9BD00F3AF93 /* DatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
 		6E2618AE1FF5D2B200F3AF93 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		6E8F889D1FF701D900F7AB49 /* NSManagedObjectContextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtension.swift; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 		9688E1A520728C2600853071 /* PlayerDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		9688E1A82072B44700853071 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		9688E1AC2072C7F100853071 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		9688E1AE2073D04000853071 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		96B3C3161FF40BB100363A3F /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		96BEA68B1FF42F6000231518 /* MenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
 		96F9DE7D1FED60A900C32C30 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
@@ -155,6 +160,7 @@
 		97CE9FCF1FEB08AE00A8A55E /* GameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
 		97CE9FD21FEB14C900A8A55E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		97CE9FD81FEB15CF00A8A55E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Default.strings; sourceTree = "<group>"; };
+		9CFE82394293015048A278BB /* Pods_MAFIA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MAFIA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A546B4172010CDC000F3CB89 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		A546B41C20110D4500F3CB89 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Main.strings"; sourceTree = "<group>"; };
 		A546B41D20110D4500F3CB89 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -177,6 +183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD1C6D5909604EEF3DA38444 /* Pods_MAFIA.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,11 +204,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12B843804BCD6964D835B66C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9CFE82394293015048A278BB /* Pods_MAFIA.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6E0163242011800C00E91421 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				6E0163252011802100E91421 /* PlayerMOExtension.swift */,
-				6E016327201190E700E91421 /* PlayersListMOExtension.swift */,
+				6E016327201190E700E91421 /* ListMOExtension.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -219,7 +234,7 @@
 			children = (
 				9630A8911FFEA29B000C96CA /* GameManager.swift */,
 				96775C872011403A0092658D /* Player.swift */,
-				6E0163142011785F00E91421 /* PlayersList.swift */,
+				6E0163142011785F00E91421 /* List.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -315,12 +330,14 @@
 			children = (
 				6E016316201178E500E91421 /* PlayerMO+CoreDataClass.swift */,
 				6E016317201178E500E91421 /* PlayerMO+CoreDataProperties.swift */,
-				6E01631C20117B4E00E91421 /* PlayersListMO+CoreDataClass.swift */,
-				6E01631D20117B4E00E91421 /* PlayersListMO+CoreDataProperties.swift */,
+				6E01631C20117B4E00E91421 /* ListMO+CoreDataClass.swift */,
+				6E01631D20117B4E00E91421 /* ListMO+CoreDataProperties.swift */,
 				96591C651FE85B660067BB2E /* MAFIA */,
 				96591C7D1FE85B660067BB2E /* MAFIATests */,
 				96591C881FE85B660067BB2E /* MAFIAUITests */,
 				96591C641FE85B660067BB2E /* Products */,
+				D66B8CD5A3C5D0A89DBD9AD5 /* Pods */,
+				12B843804BCD6964D835B66C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -467,6 +484,7 @@
 				A546B4172010CDC000F3CB89 /* UIViewControllerExtension.swift */,
 				9688E1A82072B44700853071 /* UIColorExtension.swift */,
 				9688E1AC2072C7F100853071 /* UIViewExtension.swift */,
+				9688E1AE2073D04000853071 /* UIFontExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -514,6 +532,15 @@
 			path = ListPlayers;
 			sourceTree = "<group>";
 		};
+		D66B8CD5A3C5D0A89DBD9AD5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				307593A3C5E5C930B25F1631 /* Pods-MAFIA.debug.xcconfig */,
+				3352B843D1F40BA1BDA85695 /* Pods-MAFIA.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -521,9 +548,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96591C8E1FE85B660067BB2E /* Build configuration list for PBXNativeTarget "MAFIA" */;
 			buildPhases = (
+				A57F786DE5A10F190107C625 /* [CP] Check Pods Manifest.lock */,
 				96591C5F1FE85B660067BB2E /* Sources */,
 				96591C601FE85B660067BB2E /* Frameworks */,
 				96591C611FE85B660067BB2E /* Resources */,
+				F9310E8AC09678AB24B928B1 /* [CP] Embed Pods Frameworks */,
+				17527F7A9BB4EC11211E2CBB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -651,6 +681,56 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		17527F7A9BB4EC11211E2CBB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MAFIA/Pods-MAFIA-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A57F786DE5A10F190107C625 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MAFIA-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9310E8AC09678AB24B928B1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MAFIA/Pods-MAFIA-frameworks.sh\"\n\"${PODS_ROOT}/SwiftLint/swiftlint\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		96591C5F1FE85B660067BB2E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -659,15 +739,16 @@
 				9620D7B41FE94F29008E0F55 /* PlayerService.swift in Sources */,
 				96002FD11FE860E300F8DF1F /* GamePresenter.swift in Sources */,
 				966546872010F9FA008D0A8B /* BaseView.swift in Sources */,
-				6E0163152011785F00E91421 /* PlayersList.swift in Sources */,
+				6E0163152011785F00E91421 /* List.swift in Sources */,
 				960A297720002C5B00D23981 /* Segues.swift in Sources */,
+				9688E1AF2073D04000853071 /* UIFontExtension.swift in Sources */,
 				96F9DE821FED83DC00C32C30 /* SideMenu.swift in Sources */,
 				9688E1A620728C2600853071 /* PlayerDetailsTableViewCell.swift in Sources */,
 				96173D832005597A008742AA /* NSSetExtension.swift in Sources */,
 				96591C691FE85B660067BB2E /* GameViewController.swift in Sources */,
 				97CE9FD01FEB08AE00A8A55E /* GameRules.swift in Sources */,
 				9620D7B61FE95134008E0F55 /* CoreDataConnection.swift in Sources */,
-				6E016328201190E700E91421 /* PlayersListMOExtension.swift in Sources */,
+				6E016328201190E700E91421 /* ListMOExtension.swift in Sources */,
 				96591C671FE85B660067BB2E /* AppDelegate.swift in Sources */,
 				6E01631B20117AAE00E91421 /* CoreDataIdentifier.swift in Sources */,
 				97CE9FD31FEB14C900A8A55E /* StringExtension.swift in Sources */,
@@ -691,11 +772,11 @@
 				9688E1A92072B44700853071 /* UIColorExtension.swift in Sources */,
 				CFE3DA871FF70ECA004D9D0F /* ListPlayersViewController.swift in Sources */,
 				CF5A520A200926D600BC7890 /* PlayersListTableViewCell.swift in Sources */,
-				6E01631E20117B4E00E91421 /* PlayersListMO+CoreDataClass.swift in Sources */,
+				6E01631E20117B4E00E91421 /* ListMO+CoreDataClass.swift in Sources */,
 				96BEA68C1FF42F6000231518 /* MenuPresenter.swift in Sources */,
 				960A297520002BB100D23981 /* DetailListPlayersViewController.swift in Sources */,
 				6E2618AD1FF5C9BD00F3AF93 /* DatabaseProtocol.swift in Sources */,
-				6E01631F20117B4E00E91421 /* PlayersListMO+CoreDataProperties.swift in Sources */,
+				6E01631F20117B4E00E91421 /* ListMO+CoreDataProperties.swift in Sources */,
 				07434A7E2002B2E0004AE1CC /* DetailListPlayersPresenter.swift in Sources */,
 				960A2979200034DD00D23981 /* DetailListPlayersService.swift in Sources */,
 				9688E1AD2072C7F100853071 /* UIViewExtension.swift in Sources */,
@@ -890,6 +971,7 @@
 		};
 		96591C8F1FE85B660067BB2E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 307593A3C5E5C930B25F1631 /* Pods-MAFIA.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -906,6 +988,7 @@
 		};
 		96591C901FE85B660067BB2E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3352B843D1F40BA1BDA85695 /* Pods-MAFIA.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

@@ -26,10 +26,11 @@ extension UIView {
      * - parameter colors: The colors used in the gradient
      */
     func addGradient(_ colors: [CGColor]? = [Utils.Palette.Basic.red.cgColor, Utils.Palette.Basic.black.cgColor]) {
+        self.layoutIfNeeded()
         let gradient = CAGradientLayer()
         gradient.colors = colors
-        gradient.frame = self.bounds
         self.layer.masksToBounds = true
+        gradient.frame = self.bounds
         self.layer.insertSublayer(gradient, at: 0)
     }
 }

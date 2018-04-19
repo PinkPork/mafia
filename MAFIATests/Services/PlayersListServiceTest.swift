@@ -58,8 +58,8 @@ class PlayersListServiceTest: BaseTest {
         service.createPlayersListWith(name: MockData.PlayersList.name, completion: { (playerList) in
             XCTAssertNotNil(playerList, "There was a problem creating a list with name: \(MockData.PlayersList.name)")
         })
-        
-        service.deleteList(list: RawPlayersList(name: MockData.PlayersList.name)) { (success) in
+    
+        service.deleteList(list: RawList(name: MockData.PlayersList.name)) { (success) in
             XCTAssertTrue(success, "There was a problem deleting a list with name: \(MockData.PlayersList.name)")
         }
     }

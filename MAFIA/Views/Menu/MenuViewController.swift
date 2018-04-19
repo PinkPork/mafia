@@ -18,12 +18,11 @@ class MenuViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    // MARK: -  Vars & Constants
+    // MARK: - Vars & Constants
     
     var menuOptions: [MenuOptions] = []
     var presenter: MenuPresenter!
     weak var delegate: MenuViewControllerDelegate?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +69,6 @@ extension MenuViewController: MenuView {
     }
 }
 
-
 // MARK: - TableView DataSource
 
 extension MenuViewController: UITableViewDataSource {
@@ -100,5 +98,3 @@ extension MenuViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
-
-

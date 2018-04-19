@@ -10,11 +10,11 @@ import Foundation
 
 extension PlayerMO {
     
-    //MARK: - Vars & Constants
+    // MARK: - Vars & Constants
     static var entityName: String = "Player"
 
     convenience init(name: String) {
-        self.init(entity: CoreDataConnection.shared.getEntity(withName: PlayerMO.entityName)!, insertInto: CoreDataConnection.shared.managedContext)
+        self.init(entity: CoreDataConnection.shared.getEntity(withName: PlayerMO.entityName), insertInto: CoreDataConnection.shared.managedContext)
         self.name = name
     }
     

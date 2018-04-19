@@ -1,5 +1,5 @@
 //
-//  PlayersList.swift
+//  List.swift
 //  MAFIA
 //
 //  Created by Santiago Carmona gonzalez on 1/18/18.
@@ -8,13 +8,12 @@
 
 import Foundation
 
-protocol PlayersList: class {
+protocol List: class {
     var name: String { get set }
     var players: [Player] { get set }
 }
 
-
-class RawPlayersList: PlayersList {
+class RawList: List {
     var name: String
     var players: [Player]
     

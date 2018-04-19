@@ -22,7 +22,7 @@ class DetailListPlayersPresenter {
         self.detailListPlayersService = detailListPlayersService
     }
     
-    func addPlayer(withName name: String, toList list: PlayersList, errorCompletion: (() -> Void)? = nil) {
+    func addPlayer(withName name: String, toList list: List, errorCompletion: (() -> Void)? = nil) {
         
         guard list.players.filter({ $0.name == name }).count == 0 else {
             self.view.showAlert(withTitle: "PLAYER_ALREADY_ADDED_TITLE".localized(),
@@ -40,7 +40,7 @@ class DetailListPlayersPresenter {
         }
     }
     
-    func deletePlayer(player: Player, list: PlayersList, indexPath: IndexPath) {
+    func deletePlayer(player: Player, list: List, indexPath: IndexPath) {
         detailListPlayersService.remove(player, fromList: list) { [weak self] (success) in
             if success {
                 self?.view.deletePlayer(player: player, indexPath: indexPath)

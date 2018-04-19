@@ -44,7 +44,6 @@ class EmptyListView: UIView {
         buttonOutlet.layer.cornerRadius = 28
         buttonOutlet.setTitleColor(Utils.Palette.Basic.white, for: .normal)
         buttonOutlet.addGradient()
-        
         titleLabel.font = UIFont(name: "PAPYRUS_FONT".localized(), size: 36.0)
         titleLabel.textColor = Utils.Palette.Basic.gray
         messageLabel.font = UIFont(name: "PAPYRUS_FONT".localized(), size: 14.0)

@@ -20,12 +20,12 @@ class DetailListPlayersViewController: UIViewController {
 
     private let gradient = CAGradientLayer()
     private var presenter: DetailListPlayersPresenter!
-    private var addPlayerAction: UIAlertAction?
+    private var addPlayerAction: UIAlertAction!
     private var isHiddenEmptyView: Bool {
         return !listPlayers.players.isEmpty
     }
     
-    weak var listPlayers: RawPlayersList!
+    weak var listPlayers: RawList!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +45,6 @@ class DetailListPlayersViewController: UIViewController {
     @IBAction func addPlayer(_ sender: Any) {
         showAddPlayerPopUp()
     }
-    
     
     // MARK: - Methods
     
@@ -93,7 +92,7 @@ class DetailListPlayersViewController: UIViewController {
         
         let cancelButton = UIAlertAction(title: "CANCEL_ACTION".localized(), style: .cancel)
         
-        alertController.addAction(addPlayerAction!)
+        alertController.addAction(addPlayerAction)
         alertController.addAction(cancelButton)
         
         self.present(alertController, animated: true, completion: nil)
@@ -155,8 +154,7 @@ extension DetailListPlayersViewController: UITableViewDataSource {
 extension DetailListPlayersViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "DELETE_ACTION".localized()) {
-            [weak self] (contextAction: UIContextualAction, sourceView: UIView, completion: (Bool) -> Void) in
+        let deleteAction = UIContextualAction(style: .destructive, title: "DELETE_ACTION".localized()) { [weak self] (contextAction: UIContextualAction, sourceView: UIView, completion: (Bool) -> Void) in
             if let strongSelf = self {
                 guard let list = strongSelf.listPlayers else { return }
                 strongSelf.presenter.deletePlayer(player: strongSelf.listPlayers.players[indexPath.row], list: list, indexPath: indexPath)

@@ -2,7 +2,7 @@
 //  PlayersListMO+CoreDataProperties.swift
 //  MAFIA
 //
-//  Created by Santiago Carmona gonzalez on 1/18/18.
+//  Created by Santiago Carmona gonzalez on 1/27/18.
 //  Copyright © 2018 Santiago Carmona Gonzalez. All rights reserved.
 //
 //
@@ -10,11 +10,10 @@
 import Foundation
 import CoreData
 
+extension ListMO {
 
-extension PlayersListMO {
-   
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<PlayersListMO> {
-        return NSFetchRequest<PlayersListMO>(entityName: "PlayersList")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<ListMO> {
+        return NSFetchRequest<ListMO>(entityName: "List")
     }
 
     @NSManaged public var name: String?
@@ -23,7 +22,7 @@ extension PlayersListMO {
 }
 
 // MARK: Generated accessors for players
-extension PlayersListMO {
+extension ListMO {
 
     @objc(addPlayersObject:)
     @NSManaged public func addToPlayers(_ value: PlayerMO)

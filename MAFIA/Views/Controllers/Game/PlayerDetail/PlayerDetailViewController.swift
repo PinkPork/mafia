@@ -19,21 +19,15 @@ class PlayerDetailViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var roleImageView: UIImageView!
     @IBOutlet weak var roleLabel: UILabel!
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setData(player: player)
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation

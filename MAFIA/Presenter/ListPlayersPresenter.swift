@@ -9,9 +9,9 @@
 import UIKit
 
 protocol ListPlayersView: class, BaseView {
-    func setListPlayers(listPlayers: [PlayersList])
-    func addNewList(listPlayer: PlayersList)
-    func deleteList(listPlayer: PlayersList, indexPath: IndexPath)
+    func setListPlayers(listPlayers: [List])
+    func addNewList(listPlayer: List)
+    func deleteList(listPlayer: List, indexPath: IndexPath)
 }
 
 class ListPlayersPresenter {
@@ -33,7 +33,7 @@ class ListPlayersPresenter {
         }
     }
     
-    func deleteList(playersList: PlayersList, indexPath: IndexPath) {
+    func deleteList(playersList: List, indexPath: IndexPath) {
         playersListService.deleteList(list: playersList) { [weak self] (success) in
              if success {
                 self?.view.deleteList(listPlayer: playersList, indexPath: indexPath)
@@ -49,7 +49,7 @@ class ListPlayersPresenter {
         }
     }
     
-    func selectList(list: PlayersList) {
+    func selectList(list: List) {
         GameManager.currentGame.setSelectedList(listPlayers: list)
     }
 }
