@@ -36,6 +36,13 @@ class GamePresenter {
         return (gameCanStart ? "\("MAFIA_TITLE".localized()) \n \(GameManager.currentGame.aliveMafia)" : nil)
     }
     
+    var totalNumberOfPlayers: String? {
+        if GameManager.currentGame.numberOfPlayersPlaying == 0 {
+            return nil
+        }
+        return (gameCanStart ? "\("TOTAL_PLAYING_TITLE".localized()) \n \(GameManager.currentGame.numberOfPlayersPlaying)" : nil)
+    }
+    
     var selectedListName: String? {
         if !GameManager.currentGame.isSelectedListPlayers {
             return "LIST_PLAYER_NO_NAME".localized()

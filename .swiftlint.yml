@@ -107,5 +107,6 @@ opt_in_rules:
 
 excluded:
 - Pods
+- ./MAFIATests
 
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji)

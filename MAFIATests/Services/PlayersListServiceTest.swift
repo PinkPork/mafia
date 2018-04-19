@@ -28,9 +28,6 @@ class PlayersListServiceTest: BaseTest {
         })
     }
     
-    func testCreatePlayListWithUsers() {
-    }
-    
     func testGetAllLists() {
         for list in MockData.PlayersList.rawLists {
             service.createPlayersListWith(name: list, completion: { (playerList) in

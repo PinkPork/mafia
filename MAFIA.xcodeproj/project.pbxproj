@@ -56,6 +56,10 @@
 		9688E1A92072B44700853071 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688E1A82072B44700853071 /* UIColorExtension.swift */; };
 		9688E1AD2072C7F100853071 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688E1AC2072C7F100853071 /* UIViewExtension.swift */; };
 		9688E1AF2073D04000853071 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688E1AE2073D04000853071 /* UIFontExtension.swift */; };
+		9688E1B1207403BB00853071 /* ListPlayersPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688E1B0207403BB00853071 /* ListPlayersPresenterTest.swift */; };
+		9688E1B3207522EB00853071 /* MockListPlayersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688E1B2207522EB00853071 /* MockListPlayersView.swift */; };
+		9688E1B52075311900853071 /* MockListPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688E1B42075311900853071 /* MockListPlayerService.swift */; };
+		9688E1BB2075334600853071 /* BasePresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688E1BA2075334600853071 /* BasePresenterTest.swift */; };
 		96B3C3171FF40BB100363A3F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B3C3161FF40BB100363A3F /* MenuViewController.swift */; };
 		96BEA68C1FF42F6000231518 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BEA68B1FF42F6000231518 /* MenuPresenter.swift */; };
 		96F9DE7F1FED60A900C32C30 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F9DE7D1FED60A900C32C30 /* MenuTableViewCell.swift */; };
@@ -151,6 +155,10 @@
 		9688E1A82072B44700853071 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		9688E1AC2072C7F100853071 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		9688E1AE2073D04000853071 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
+		9688E1B0207403BB00853071 /* ListPlayersPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPlayersPresenterTest.swift; sourceTree = "<group>"; };
+		9688E1B2207522EB00853071 /* MockListPlayersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockListPlayersView.swift; sourceTree = "<group>"; };
+		9688E1B42075311900853071 /* MockListPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockListPlayerService.swift; sourceTree = "<group>"; };
+		9688E1BA2075334600853071 /* BasePresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePresenterTest.swift; sourceTree = "<group>"; };
 		96B3C3161FF40BB100363A3F /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		96BEA68B1FF42F6000231518 /* MenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
 		96F9DE7D1FED60A900C32C30 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
@@ -261,7 +269,9 @@
 		96173D84200562FB008742AA /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				9688E1BA2075334600853071 /* BasePresenterTest.swift */,
 				96173D8520056369008742AA /* GamePresenterTest.swift */,
+				9688E1B0207403BB00853071 /* ListPlayersPresenterTest.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -318,9 +328,9 @@
 		963BA3E61FF59C2500090DDE /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				9688E1BF207536EE00853071 /* Services */,
+				9688E1BD207536A600853071 /* Views */,
 				963BA3E71FF59C3600090DDE /* MockData.swift */,
-				96173D8720056537008742AA /* MockGameView.swift */,
-				96173D892005669C008742AA /* MockPlayerService.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -438,6 +448,24 @@
 				9688E1A520728C2600853071 /* PlayerDetailsTableViewCell.xib */,
 			);
 			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		9688E1BD207536A600853071 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				96173D8720056537008742AA /* MockGameView.swift */,
+				9688E1B2207522EB00853071 /* MockListPlayersView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9688E1BF207536EE00853071 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				96173D892005669C008742AA /* MockPlayerService.swift */,
+				9688E1B42075311900853071 /* MockListPlayerService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		96F9DE791FED603600C32C30 /* Menu */ = {
@@ -727,7 +755,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MAFIA/Pods-MAFIA-frameworks.sh\"\n\"${PODS_ROOT}/SwiftLint/swiftlint\"";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MAFIA/Pods-MAFIA-frameworks.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -791,13 +819,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				963BA3E31FF596A600090DDE /* PlayerServiceTest.swift in Sources */,
+				9688E1BB2075334600853071 /* BasePresenterTest.swift in Sources */,
 				96173D8A2005669C008742AA /* MockPlayerService.swift in Sources */,
 				963BA3E81FF59C3600090DDE /* MockData.swift in Sources */,
 				96591C7F1FE85B660067BB2E /* MAFIATests.swift in Sources */,
 				960A297B2000388500D23981 /* DetailListPlayersServiceTest.swift in Sources */,
 				96173D8820056537008742AA /* MockGameView.swift in Sources */,
 				96173D81200523E1008742AA /* BaseTest.swift in Sources */,
+				9688E1B1207403BB00853071 /* ListPlayersPresenterTest.swift in Sources */,
 				963BA3E51FF596BC00090DDE /* PlayersListServiceTest.swift in Sources */,
+				9688E1B3207522EB00853071 /* MockListPlayersView.swift in Sources */,
+				9688E1B52075311900853071 /* MockListPlayerService.swift in Sources */,
 				96173D8620056369008742AA /* GamePresenterTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
