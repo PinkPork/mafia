@@ -34,9 +34,11 @@ class GameViewController: UIViewController {
             updateGameUI()
         }
     }
-    private lazy var menu: MenuViewController? = {
-        let menu = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu") as? MenuViewController
-        menu?.delegate = self
+    private lazy var menu: MenuViewController = {
+        guard let menu = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu") as? MenuViewController else {
+            return MenuViewController()
+        }
+        menu.delegate = self
         return menu
     }()
     
@@ -54,10 +56,8 @@ class GameViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func showMenu(_ sender: UIBarButtonItem) {
-        if let menu = menu {
-            menu.transitioningDelegate = self            
-            present(menu, animated: true, completion: nil)
-        }
+        menu.transitioningDelegate = self
+        present(menu, animated: true, completion: nil)
     }
     
     @IBAction func addPlayerInCurrentGame(_ sender: Any) {
@@ -311,7 +311,7 @@ extension GameViewController: UITextFieldDelegate {
 extension GameViewController: EmptyListViewDelegate {
     
     func goToAction() {
-        menu?.goTo(menuOption: .PlayersList)
+        menu.goTo(menuOption: .PlayersList)
     }
     
 }
