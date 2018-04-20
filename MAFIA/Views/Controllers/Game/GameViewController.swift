@@ -34,6 +34,11 @@ class GameViewController: UIViewController {
             updateGameUI()
         }
     }
+    private lazy var menu: MenuViewController? = {
+        let menu = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenu") as? MenuViewController
+        menu?.delegate = self
+        return menu
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,9 +54,9 @@ class GameViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func showMenu(_ sender: UIBarButtonItem) {
-        if let menu = SideMenu.sharedInstance {
-            try! menu.show(view: self.view)
-            menu.menuViewController?.delegate = self
+        if let menu = menu {
+            menu.transitioningDelegate = self            
+            present(menu, animated: true, completion: nil)
         }
     }
     
@@ -278,8 +283,8 @@ extension GameViewController: UITableViewDelegate {
     }
 }
 extension GameViewController: MenuViewControllerDelegate {
-    func performSegue(withIdentifier identifier: String) {
-        self.performSegue(withIdentifier: identifier, sender: nil)
+    func performSegue(withIdentifier identifier: String) {       
+        self.performSegue(withIdentifier: identifier, sender: nil)        
     }
 }
 
@@ -306,8 +311,23 @@ extension GameViewController: UITextFieldDelegate {
 extension GameViewController: EmptyListViewDelegate {
     
     func goToAction() {
-        SideMenu.sharedInstance.menuViewController?.delegate = self
-        SideMenu.sharedInstance.menuViewController?.goTo(menuOption: .PlayersList)
+        menu?.goTo(menuOption: .PlayersList)
     }
     
+}
+
+extension GameViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if presented is MenuViewController {
+            return PushMenuTransition(originFrame: self.view.frame)
+        }
+        return nil
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if dismissed is MenuViewController {
+            return PushMenuTransition(originFrame: self.view.frame, dismissing: true)
+        }
+        return nil
+    }
 }

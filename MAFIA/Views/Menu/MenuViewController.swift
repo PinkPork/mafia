@@ -16,10 +16,13 @@ class MenuViewController: UIViewController {
     
     // MARK: - IBOutlets
     
+    @IBOutlet weak var backView: UIView!
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var backgroundColorView: UIView!
+    @IBOutlet weak var logoImageView: UIImageView!
+
     // MARK: - Vars & Constants
-    
+
     var menuOptions: [MenuOptions] = []
     var presenter: MenuPresenter!
     weak var delegate: MenuViewControllerDelegate?
@@ -27,8 +30,9 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setupBackgroundColorView()
         setupTableView()
-        
+        setupCloseTapGesture()
     }
     
     // MARK: - Methods
@@ -36,12 +40,29 @@ class MenuViewController: UIViewController {
     private func setupView() {
         presenter = MenuPresenter(view: self)
         presenter.displayOptions()
+        logoImageView.image = UIImage(named: "LogoWhite")
+    }
+
+    private func setupBackgroundColorView() {
+        backgroundColorView.addGradient(colors: Utils.Palette.Basic.black.cgColor, Utils.Palette.Basic.red.cgColor)
     }
     
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.contentInset = UIEdgeInsets(top: logoImageView.frame.maxY, left: 0, bottom: 0, right: 0)
+        let nib = UINib(nibName: MenuTableViewCell.identifier, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: MenuTableViewCell.identifier)
+    }
+
+    private func setupCloseTapGesture() {
+        let closeTapGesture = UITapGestureRecognizer(target: self, action: #selector(closeMenu))
+        backView.addGestureRecognizer(closeTapGesture)
+    }
+
+    @objc func closeMenu() {
+        dismiss(animated: true, completion: nil)
     }
     
     func goTo(menuOption option: MenuOptions) {
@@ -53,9 +74,8 @@ class MenuViewController: UIViewController {
         default:
             return
         }
-        
-        try! SideMenu.sharedInstance?.animateMenu()
-        delegate?.performSegue(withIdentifier: segue)
+        closeMenu()
+        self.delegate?.performSegue(withIdentifier: segue)
     }
     
 }
@@ -81,9 +101,15 @@ extension MenuViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = menuOptions[indexPath.row].title
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableViewCell.identifier)
+
+        guard let menuCell = cell as? MenuTableViewCell else {
+            assertionFailure("Unexpected cell of type: \(type(of: cell))")
+            return UITableViewCell()
+        }
+        
+        menuCell.setCell(title: menuOptions[indexPath.row].title)
+        return menuCell
     }
 }
 

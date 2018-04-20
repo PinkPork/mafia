@@ -52,6 +52,11 @@ struct Utils {
             static let veryLightGrey: UIColor = UIColor(hex: 0xD2E5EC)
             static let red: UIColor = UIColor(red: 0.56, green: 0.13, blue: 0.13, alpha: 1.0)
         }
+
+        struct Menu {
+            static let gray: UIColor = UIColor(hex: 0x9B9B9B)
+            static let textColor: UIColor = UIColor(hex: 0xB8B8B8)
+        }
     }
 
     // MARK: - Font types

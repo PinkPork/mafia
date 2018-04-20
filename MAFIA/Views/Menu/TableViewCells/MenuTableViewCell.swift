@@ -9,15 +9,35 @@
 import UIKit
 
 class MenuTableViewCell: UITableViewCell {
+
+    // MARK: - IBOutlets
+
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var bottomBorder: UIView!
+
+    // MARK: - Vars & Constants
+
+    static var identifier: String {
+        return String(describing: self)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setup()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+
+    private func setup() {
+        titleLabel.font = UIFont(name: "PAPYRUS_FONT".localized(), size: 24)
+        titleLabel.textColor = Utils.Palette.Menu.textColor
+        bottomBorder.backgroundColor = Utils.Palette.Menu.gray
+    }
+
+    func setCell(title: String) {
+        titleLabel.text = title
     }
     
 }

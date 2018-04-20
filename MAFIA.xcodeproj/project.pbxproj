@@ -63,9 +63,9 @@
 		96B3C3171FF40BB100363A3F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B3C3161FF40BB100363A3F /* MenuViewController.swift */; };
 		96BEA68C1FF42F6000231518 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BEA68B1FF42F6000231518 /* MenuPresenter.swift */; };
 		96E47F29208900E900A53F58 /* ListBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E47F28208900E900A53F58 /* ListBrowserViewController.swift */; };
+		96E47F2C208A359D00A53F58 /* PushMenuTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E47F2B208A359D00A53F58 /* PushMenuTransition.swift */; };
 		96F9DE7F1FED60A900C32C30 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F9DE7D1FED60A900C32C30 /* MenuTableViewCell.swift */; };
 		96F9DE801FED60A900C32C30 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96F9DE7E1FED60A900C32C30 /* MenuTableViewCell.xib */; };
-		96F9DE821FED83DC00C32C30 /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F9DE811FED83DC00C32C30 /* SideMenu.swift */; };
 		97CE9FCE1FEB05A700A8A55E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CE9FCD1FEB05A700A8A55E /* Utils.swift */; };
 		97CE9FD01FEB08AE00A8A55E /* GameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CE9FCF1FEB08AE00A8A55E /* GameRules.swift */; };
 		97CE9FD31FEB14C900A8A55E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CE9FD21FEB14C900A8A55E /* StringExtension.swift */; };
@@ -162,9 +162,9 @@
 		96B3C3161FF40BB100363A3F /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		96BEA68B1FF42F6000231518 /* MenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
 		96E47F28208900E900A53F58 /* ListBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListBrowserViewController.swift; sourceTree = "<group>"; };
+		96E47F2B208A359D00A53F58 /* PushMenuTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushMenuTransition.swift; sourceTree = "<group>"; };
 		96F9DE7D1FED60A900C32C30 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		96F9DE7E1FED60A900C32C30 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
-		96F9DE811FED83DC00C32C30 /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		97CE9FCD1FEB05A700A8A55E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		97CE9FCF1FEB08AE00A8A55E /* GameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
 		97CE9FD21FEB14C900A8A55E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -468,11 +468,18 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		96E47F2A208A357800A53F58 /* UIViewControllerTransitions */ = {
+			isa = PBXGroup;
+			children = (
+				96E47F2B208A359D00A53F58 /* PushMenuTransition.swift */,
+			);
+			path = UIViewControllerTransitions;
+			sourceTree = "<group>";
+		};
 		96F9DE791FED603600C32C30 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
 				96F9DE7C1FED608C00C32C30 /* TableViewCells */,
-				96F9DE811FED83DC00C32C30 /* SideMenu.swift */,
 				96B3C3161FF40BB100363A3F /* MenuViewController.swift */,
 			);
 			path = Menu;
@@ -490,6 +497,7 @@
 		97CE9FCB1FEB057E00A8A55E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				96E47F2A208A357800A53F58 /* UIViewControllerTransitions */,
 				97CE9FD41FEB14EE00A8A55E /* LocalizedStrings */,
 				97CE9FD11FEB14BD00A8A55E /* Extensions */,
 				97CE9FCD1FEB05A700A8A55E /* Utils.swift */,
@@ -770,7 +778,6 @@
 				6E0163152011785F00E91421 /* List.swift in Sources */,
 				960A297720002C5B00D23981 /* Segues.swift in Sources */,
 				9688E1AF2073D04000853071 /* UIFontExtension.swift in Sources */,
-				96F9DE821FED83DC00C32C30 /* SideMenu.swift in Sources */,
 				9688E1A620728C2600853071 /* PlayerDetailsTableViewCell.swift in Sources */,
 				96173D832005597A008742AA /* NSSetExtension.swift in Sources */,
 				96591C691FE85B660067BB2E /* GameViewController.swift in Sources */,
@@ -791,6 +798,7 @@
 				9620D7C01FE99267008E0F55 /* Enums.swift in Sources */,
 				A546B4182010CDC000F3CB89 /* UIViewControllerExtension.swift in Sources */,
 				6E016319201178E500E91421 /* PlayerMO+CoreDataProperties.swift in Sources */,
+				96E47F2C208A359D00A53F58 /* PushMenuTransition.swift in Sources */,
 				6E0163262011802100E91421 /* PlayerMOExtension.swift in Sources */,
 				96591C6F1FE85B660067BB2E /* MAFIA.xcdatamodeld in Sources */,
 				CFB15BD1200D985E00B02AFB /* PlayerDetailViewController.swift in Sources */,

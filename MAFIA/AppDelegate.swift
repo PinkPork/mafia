@@ -16,17 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        // Load Side Menu context and scene
-        
-         SideMenu { (menu) in
-            menu.menuOffsetSize = 110.0
-            menu.useAnimations = true
-            menu.menuViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenuScene") as? MenuViewController
-        }
-        
         // Navigation bar setup
         
-        UINavigationBar.appearance().isTranslucent = true
+        UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().tintColor = Utils.Palette.Basic.white
         UINavigationBar.appearance().barTintColor = Utils.Palette.Basic.red
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: Utils.Palette.Basic.white, .font: UIFont.get(withType: .papyrus, size: 24)]
