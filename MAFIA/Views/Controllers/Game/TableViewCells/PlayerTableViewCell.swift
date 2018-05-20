@@ -18,10 +18,10 @@ class PlayerTableViewCell: UITableViewCell {
     @IBOutlet weak var cellBorderView: UIView!
     @IBOutlet weak var bulletImageView: UIImageView!
     
-    
     // MARK: - Vars & Constants
-    static let nib: String = "PlayerTableViewCell"
-    static let identifier: String = "PlayerCell"
+    static var identifier: String {
+        return String(describing: self)
+    }
     var player: Player!
     
     override func awakeFromNib() {
@@ -36,7 +36,6 @@ class PlayerTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-//        self.contentView.backgroundColor = selected ? UIColor.red : UIColor.white
     }
     
     // MARK: - Methods

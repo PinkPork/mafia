@@ -28,7 +28,6 @@ class ListBrowserTableViewCell: UITableViewCell {
     private var list: List?
     weak var delegate: ListBrowserTableViewCellDelegate?
 
-    
     // MARK: - IBActions
     
     @IBAction func usePlayersListForGameButton(_ sender: Any) {

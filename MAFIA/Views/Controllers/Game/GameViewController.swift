@@ -83,7 +83,7 @@ class GameViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.contentInset = UIEdgeInsets(top: kHeaderView, left: 0, bottom: 0, right: 0)
-        tableView.register(UINib.init(nibName: PlayerTableViewCell.nib, bundle: Bundle.main), forCellReuseIdentifier: PlayerTableViewCell.identifier)
+        tableView.register(UINib(nibName: PlayerTableViewCell.identifier, bundle: Bundle.main), forCellReuseIdentifier: PlayerTableViewCell.identifier)
         
         pullToRefresh = UIRefreshControl()
         pullToRefresh.attributedTitle = NSAttributedString(string: "PULL_TO_REFRESH_ACTION".localized())
