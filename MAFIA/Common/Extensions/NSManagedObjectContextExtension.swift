@@ -15,7 +15,12 @@ extension NSManagedObjectContext: Database {
     /// - parameter query: The query used to filter the collection
     /// - parameter params: Parameters used by query
     
-    func loadObjects<Type>(_ modelName: String, matching query: String? = nil, params: [Any]? = nil) -> [Type] {
+    func loadObjects<Type>(ofType type: Any, matching query: String? = nil, params: [Any]? = nil) -> [Type] {
+        
+        guard let modelName = type as? String else {
+            return [Type]()
+        }
+        
         let request: NSFetchRequest<NSManagedObject> = NSFetchRequest<NSManagedObject>(entityName: modelName)
         if let query = query {
             request.predicate = NSPredicate(format: query, argumentArray: params)
@@ -27,8 +32,8 @@ extension NSManagedObjectContext: Database {
     /// - parameter id: The model entityDescription
     /// - returns: An NSManagedObject with the entityDescription given by the `id` parameter
     
-    func loadObject<Type>(withId id: String) -> Type? {
-        if let entityDescription = NSEntityDescription.entity(forEntityName: id, in: self) {
+    func loadObject<Type>(withId id: Any) -> Type? {
+        if let id = id as? String, let entityDescription = NSEntityDescription.entity(forEntityName: id, in: self) {
             return NSManagedObject(entity: entityDescription, insertInto: self) as? Type
         }
         return nil
@@ -38,6 +43,7 @@ extension NSManagedObjectContext: Database {
     /// - parameter object: The object to be saved
     /// - returns: true if the object could be saved otherwise false
     
+    @discardableResult
     func save<Type>(_ object: Type) -> Bool {
         do {
             try self.save()

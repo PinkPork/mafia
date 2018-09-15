@@ -29,12 +29,12 @@ class ListService: BaseService {
     }
 
     func getLists(completion: @escaping GetListsCompletion) {
-        let objects: [ListMO] = CoreDataConnection.shared.managedContext.loadObjects(ListMO.entityName)
+        let objects: [ListMO] = CoreDataConnection.shared.managedContext.loadObjects(ofType: ListMO.entityName)
         completion(objects.map(ListMO.parse))
     }
 
     func getList(withName name: String, completion: GetListCompletion) {
-        let objects: [ListMO] = CoreDataConnection.shared.managedContext.loadObjects(ListMO.entityName, matching: "name == %@", params: [name])
+        let objects: [ListMO] = CoreDataConnection.shared.managedContext.loadObjects(ofType: ListMO.entityName, matching: "name == %@", params: [name])
         completion(objects.map(ListMO.parse).first)
     }
 

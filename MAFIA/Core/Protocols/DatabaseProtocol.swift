@@ -17,8 +17,8 @@ import CoreData
 typealias Database = ReadableDatabase & WritableDatabase
 
 protocol ReadableDatabase {
-    func loadObjects<Type>(_ modelName: String, matching query: String?, params: [Any]?) -> [Type]
-    func loadObject<Type>(withId id: String) -> Type?
+    func loadObjects<Type>(ofType type: Any, matching query: String?, params: [Any]?) -> [Type]
+    func loadObject<Type>(withId id: Any) -> Type?
 }
 
 protocol WritableDatabase {

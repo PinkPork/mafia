@@ -23,12 +23,12 @@ class PlayerService: BaseService {
     }
     
     func getPlayers(completion: @escaping GetPlayersCompletion) {
-        let objects: [PlayerMO] = CoreDataConnection.shared.managedContext.loadObjects(PlayerMO.entityName)
+        let objects: [PlayerMO] = CoreDataConnection.shared.managedContext.loadObjects(ofType: PlayerMO.entityName)
         completion(objects.map(PlayerMO.parse))
     }
     
     func getPlayer(withName name: String, completion: GetPlayerCompletion) {
-        let objects: [PlayerMO] = CoreDataConnection.shared.managedContext.loadObjects(PlayerMO.entityName, matching: "name == %@", params: [name])
+        let objects: [PlayerMO] = CoreDataConnection.shared.managedContext.loadObjects(ofType: PlayerMO.entityName, matching: "name == %@", params: [name])
         completion(objects.map(PlayerMO.parse).first)
     }
     

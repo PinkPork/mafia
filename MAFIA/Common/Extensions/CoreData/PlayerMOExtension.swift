@@ -29,7 +29,7 @@ extension PlayerMO {
     /// - parameter player: defuault Player object
     /// - returns: `PlayerMO` Core data object
     class func reverseParse(fromPlayer player: Player) -> PlayerMO? {
-        let objects: [PlayerMO] = CoreDataConnection.shared.managedContext.loadObjects(PlayerMO.entityName, matching: "name == %@", params: [player.name])
+        let objects: [PlayerMO] = CoreDataConnection.shared.managedContext.loadObjects(ofType: PlayerMO.entityName, matching: "name == %@", params: [player.name])
         return objects.first
     }
         

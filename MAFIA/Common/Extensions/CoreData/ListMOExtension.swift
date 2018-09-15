@@ -40,7 +40,7 @@ extension ListMO {
     /// - parameter fromList: Default List object
     /// - returns: `ListMO` Core data object
     class func reverseParse(fromList list: List) -> ListMO? {
-        let objects: [ListMO] = CoreDataConnection.shared.managedContext.loadObjects(ListMO.entityName, matching: "name == %@", params: [list.name])
+        let objects: [ListMO] = CoreDataConnection.shared.managedContext.loadObjects(ofType: ListMO.entityName, matching: "name == %@", params: [list.name])
         return objects.first
     }
 }
