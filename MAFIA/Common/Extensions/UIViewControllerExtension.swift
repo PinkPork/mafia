@@ -10,7 +10,7 @@ import UIKit
 
 extension UIViewController {
     
-    func presentAlert(title: String?, message: String?, preferredStyle: UIAlertControllerStyle = .alert, completionFirstAction: (() -> Void)? = nil) {
+    func presentAlert(title: String?, message: String?, preferredStyle: UIAlertController.Style = .alert, completionFirstAction: (() -> Void)? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         let okayAction = UIAlertAction(title: "OKAY".localized(), style: .default) { _ in
             completionFirstAction?()
@@ -22,9 +22,9 @@ extension UIViewController {
     }
 
     func add(_ child: UIViewController) {
-        addChildViewController(child)
+        addChild(child)
         view.addSubview(child.view)
-        child.didMove(toParentViewController: self)
+        child.didMove(toParent: self)
     }
 
     func remove() {
@@ -32,14 +32,14 @@ extension UIViewController {
             return
         }
 
-        willMove(toParentViewController: nil)
-        removeFromParentViewController()
+        willMove(toParent: nil)
+        removeFromParent()
         view.removeFromSuperview()
     }
 }
 
 extension UIViewController: BaseView {
-    func showAlert(withTitle title: String?, message: String?, preferredStyle: UIAlertControllerStyle, completionFirstAction: (() -> Void)?) {
+    func showAlert(withTitle title: String?, message: String?, preferredStyle: UIAlertController.Style, completionFirstAction: (() -> Void)?) {
         self.presentAlert(title: title, message: message, preferredStyle: preferredStyle, completionFirstAction: completionFirstAction)
     }
 }

@@ -14,16 +14,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Navigation bar setup
         
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().tintColor = Utils.Palette.Basic.white
         UINavigationBar.appearance().barTintColor = Utils.Palette.Basic.red
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: Utils.Palette.Basic.white, .font: UIFont.get(withType: .papyrus, size: 24)]
-        UIApplication.shared.statusBarStyle = .lightContent
-                
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: Utils.Palette.Basic.white, NSAttributedString.Key.font: UIFont.get(withType: .papyrus, size: 24)]
         return true
     }
 

@@ -43,7 +43,7 @@ class MockGameView: GameView {
         restartGameCalled = true
     }
 
-    func showAlert(withTitle title: String?, message: String?, preferredStyle: UIAlertControllerStyle, completionFirstAction: (() -> Void)?) {
+    func showAlert(withTitle title: String?, message: String?, preferredStyle: UIAlertController.Style, completionFirstAction: (() -> Void)?) {
         didShowAlert = true
     }
 }

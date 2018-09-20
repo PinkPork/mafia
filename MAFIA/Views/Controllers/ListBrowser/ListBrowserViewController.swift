@@ -86,7 +86,7 @@ class ListBrowserViewController: UIViewController {
 // MARK: - ListPlayersView protocol conformance
 
 extension ListBrowserViewController: ListBrowserView {
-    func showAlert(withTitle title: String?, message: String?, preferredStyle: UIAlertControllerStyle) {
+    func showAlert(withTitle title: String?, message: String?, preferredStyle: UIAlertController.Style) {
         self.presentAlert(title: title, message: message, preferredStyle: preferredStyle)
     }
     
@@ -144,7 +144,7 @@ extension ListBrowserViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        return [UITableViewRowAction.init(style: .destructive, title: "DELETE_ACTION".localized(), handler: { [weak self] (_, indexPath) in
+        return [UITableViewRowAction.init(style: UITableViewRowAction.Style.destructive, title: "DELETE_ACTION".localized(), handler: { [weak self] (_, indexPath) in
             if let strongSelf = self {
                 strongSelf.presenter.deleteList(playersList: strongSelf.lists[indexPath.row], indexPath: indexPath)
             }

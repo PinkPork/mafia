@@ -71,7 +71,7 @@ class PushMenuTransition: NSObject, UIViewControllerAnimatedTransitioning {
         UIView.animateKeyframes(
             withDuration: duration,
             delay: 0,
-            options: .calculationModeCubic,
+            options: UIView.KeyframeAnimationOptions.calculationModeCubic,
             animations: animation,
             completion: completion
         )

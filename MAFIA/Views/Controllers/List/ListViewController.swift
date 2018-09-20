@@ -101,8 +101,8 @@ class ListViewController: UIViewController {
     private func setupAddFromOtherListButton() {
         addFromOtherListButton.layer.cornerRadius = 28
         addFromOtherListButton.addGradient()
-        addFromOtherListButton.setTitle("ADD_FROM_OTHER_LIST".localized(), for: .normal)
-        addFromOtherListButton.setTitleColor(Utils.Palette.Basic.white, for: .normal)
+        addFromOtherListButton.setTitle("ADD_FROM_OTHER_LIST".localized(), for: UIControl.State.normal)
+        addFromOtherListButton.setTitleColor(Utils.Palette.Basic.white, for: UIControl.State.normal)
         addFromOtherListButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
     }
 }

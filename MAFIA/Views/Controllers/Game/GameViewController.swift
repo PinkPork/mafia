@@ -87,7 +87,7 @@ class GameViewController: UIViewController {
         
         pullToRefresh = UIRefreshControl()
         pullToRefresh.attributedTitle = NSAttributedString(string: "PULL_TO_REFRESH_ACTION".localized())
-        pullToRefresh.addTarget(self, action: #selector(refreshRoles(_:)), for: UIControlEvents.valueChanged)
+        pullToRefresh.addTarget(self, action: #selector(refreshRoles(_:)), for: UIControl.Event.valueChanged)
         
         if #available(iOS 10.0, *) {
             tableView.refreshControl = pullToRefresh
@@ -256,7 +256,7 @@ extension GameViewController: UITableViewDelegate {
         let playerToKill = playersToDisplay[indexPath.row]
         var actionsForRow = [UITableViewRowAction]()
         if GameManager.currentGame.checkForKilledPlayers(player: playerToKill) == false {
-            actionsForRow.append(UITableViewRowAction.init(style: .destructive, title: "KILL_PLAYER_BUTTON_TITLE".localized(), handler: { [weak self] (_, indexPath) in
+            actionsForRow.append(UITableViewRowAction.init(style: UITableViewRowAction.Style.destructive, title: "KILL_PLAYER_BUTTON_TITLE".localized(), handler: { [weak self] (_, indexPath) in
                 if let strongSelf = self {
                     strongSelf.presenter.kill(player: strongSelf.playersToDisplay[indexPath.row])
                     tableView.reloadData()
@@ -270,7 +270,7 @@ extension GameViewController: UITableViewDelegate {
                 }
             }))
         }
-        actionsForRow.append(UITableViewRowAction.init(style: .destructive, title: "DELETE_ACTION".localized(), handler: { [weak self] (_, indexPath) in
+        actionsForRow.append(UITableViewRowAction.init(style: UITableViewRowAction.Style.destructive, title: "DELETE_ACTION".localized(), handler: { [weak self] (_, indexPath) in
             if let strongSelf = self {
                 strongSelf.presenter.deletePlayer(player: playerToKill, indexPath: indexPath)
             }

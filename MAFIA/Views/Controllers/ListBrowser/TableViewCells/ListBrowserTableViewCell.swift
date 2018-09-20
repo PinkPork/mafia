@@ -38,7 +38,7 @@ class ListBrowserTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        playersListForGameButton.setTitle("USE_PLAYERS_LIST_BUTTON_TITLE".localized(), for: .normal)
+        playersListForGameButton.setTitle("USE_PLAYERS_LIST_BUTTON_TITLE".localized(), for: UIControl.State.normal)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

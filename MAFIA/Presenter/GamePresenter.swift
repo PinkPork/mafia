@@ -120,7 +120,7 @@ class GamePresenter {
         if GameManager.currentGame.addPlayerInSelectedList(newPlayer) {
             view.addNewPlayer(player: newPlayer)
         } else {
-            view.showAlert(withTitle: "PLAYER_ALREADY_ADDED_TITLE".localized(), message: "PLAYER_ALREADY_ADDED_MESSAGE".localized(), preferredStyle: UIAlertControllerStyle.actionSheet, completionFirstAction: nil)
+            view.showAlert(withTitle: "PLAYER_ALREADY_ADDED_TITLE".localized(), message: "PLAYER_ALREADY_ADDED_MESSAGE".localized(), preferredStyle: UIAlertController.Style.actionSheet, completionFirstAction: nil)
         }
     }
 }
