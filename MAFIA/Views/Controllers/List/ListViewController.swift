@@ -57,6 +57,9 @@ class ListViewController: UIViewController {
 
     private func setupEmptyView() {
         emptyView.set(titleLabel: "EMPTY_DETAIL_LIST_PLAYERS".localized())
+        emptyView.set(messageLabel: "MAFIA_PHRASE_1".localized())
+        emptyView.set(buttonTitle: "ADD_NEW_PLAYER".localized())
+        emptyView.delegate = self
     }
     
     private func setupTableView() {
@@ -183,5 +186,12 @@ extension ListViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         addPlayerAction?.isEnabled = false
+    }
+}
+
+// MARK: - EmptyListView Delegate
+extension ListViewController: EmptyListViewDelegate {
+    func goToAction() {
+        showAddPlayerPopUp()
     }
 }

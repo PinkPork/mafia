@@ -56,6 +56,8 @@
 "KILL_PLAYER_BUTTON_TITLE" = "Kill player";
 "REVIVE_PLAYER_BUTTON_TITLE" = "Revive player";
 "ADD_FROM_OTHER_LIST" = "Add from other list";
+"SELECT_NEW_LIST_TO_PLAY" = "Select new list to play";
+"ADD_NEW_PLAYER" = "Add player";
 
 // MARK: - Action Titles
 
@@ -74,5 +76,7 @@
 "PAPYRUS_FONT" = "Papyrus";
 
 // MARK: - Empty view titles
-
 "EMPTY_DETAIL_LIST_PLAYERS" = "You don't have any member in this list";
+
+// MARK: - Mafia phrases
+"MAFIA_PHRASE_1" = "The night begins";

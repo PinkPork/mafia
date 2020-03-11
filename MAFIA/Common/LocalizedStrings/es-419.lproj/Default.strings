@@ -13,6 +13,7 @@
 "CIVILIANS_TITLE" = "Aldeanos";
 "MAFIA_TITLE" = "Mafia";
 "LIST_PLAYER_NO_NAME" = "Selecciona una lista para jugar";
+"TOTAL_PLAYING_TITLE" = "Jugadores";
 
 // MARK: - Alert titles
 
@@ -55,6 +56,12 @@
 "KILL_PLAYER_BUTTON_TITLE" = "Matar Jugador";
 "REVIVE_PLAYER_BUTTON_TITLE" = "Revivir Jugador";
 "ADD_FROM_OTHER_LIST" = "Agregar desde otra lista";
+"SELECT_NEW_LIST_TO_PLAY" = "Selecciona una lista para jugar";
+"ADD_NEW_PLAYER" = "Agregar jugador";
+
+// MARK: - Action Titles
+
+"PULL_TO_REFRESH_ACTION" = "Deslizar para refrescar";
 
 // MARK: - Roles
 "king" = "Rey";
@@ -63,3 +70,13 @@
 "mob" = "Mafioso";
 "villager" = "Aldeano";
 "none" = "Sin rol";
+
+// MARK - Fonts:
+
+"PAPYRUS_FONT" = "Papyrus";
+
+// MARK: - Empty view titles
+"EMPTY_DETAIL_LIST_PLAYERS" = "No tienes ningun miembro agregado en esta lista";
+
+// MARK: - Mafia phrases
+"MAFIA_PHRASE_1" = "Cae la noche";

@@ -12,16 +12,16 @@ class GameViewController: UIViewController {
     
     // MARK: - IBOutlets
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var villagerLabel: UILabel!
-    @IBOutlet weak var mobLabel: UILabel!
-    @IBOutlet weak var currentPlayerListName: UILabel!
-    @IBOutlet weak var emptyView: EmptyListView!
-    @IBOutlet weak var targetImageView: UIImageView!
-    @IBOutlet weak var villagerImageView: UIImageView!
-    @IBOutlet weak var mobImageView: UIImageView!
-    @IBOutlet weak var totalPlayingLabel: UILabel!
-    @IBOutlet weak var borderView: UIView!
+    @IBOutlet weak private var tableView: UITableView!
+    @IBOutlet weak private var villagerLabel: UILabel!
+    @IBOutlet weak private var mobLabel: UILabel!
+    @IBOutlet weak private var currentPlayerListName: UILabel!
+    @IBOutlet weak private var emptyView: EmptyListView!
+    @IBOutlet weak private var targetImageView: UIImageView!
+    @IBOutlet weak private var villagerImageView: UIImageView!
+    @IBOutlet weak private var mobImageView: UIImageView!
+    @IBOutlet weak private var totalPlayingLabel: UILabel!
+    @IBOutlet weak private var borderView: UIView!
     
     // MARK: Vars & Constants
     
@@ -70,6 +70,9 @@ class GameViewController: UIViewController {
         presenter = GamePresenter(view: self)
         presenter.showPlayers()
         
+        emptyView.set(titleLabel: "LIST_PLAYER_NO_NAME".localized())
+        emptyView.set(messageLabel: "MAFIA_PHRASE_1".localized())
+        emptyView.set(buttonTitle: "SELECT_NEW_LIST_TO_PLAY".localized())
         emptyView.delegate = self
     }
     

@@ -14,15 +14,14 @@ protocol EmptyListViewDelegate: class {
 
 class EmptyListView: UIView {
     
-    // MARK: - Properties
-    
-    weak var delegate: EmptyListViewDelegate?
-    
     // MARK: - IBOutlets
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var buttonOutlet: UIButton!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var messageLabel: UILabel!
+    @IBOutlet weak private var buttonOutlet: UIButton!
+    
+    // MARK: - Properties
+    weak var delegate: EmptyListViewDelegate?
 
     // MARK: - Life Cycle
 
@@ -36,27 +35,49 @@ class EmptyListView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setup()
     }
 
     // MARK: - Methods
-    
-    func setup() {
-        buttonOutlet.layer.cornerRadius = 28
-        buttonOutlet.setTitleColor(Utils.Palette.Basic.white, for: UIControl.State.normal)
-        buttonOutlet.addGradient()
-        titleLabel.font = UIFont(name: "PAPYRUS_FONT".localized(), size: 36.0)
-        titleLabel.textColor = Utils.Palette.Basic.gray
-        messageLabel.font = UIFont(name: "PAPYRUS_FONT".localized(), size: 14.0)
-    }
-
+        
     func set(titleLabel title: String) {
         titleLabel.text = title
     }
     
+    func set(messageLabel message: String) {
+        messageLabel.text = message
+    }
+    
+    func set(buttonTitle title: String) {
+        buttonOutlet.setTitle(title, for: .normal)
+    }
+    
     // MARK: - IBActions
     
-    @IBAction func buttonAction(_ sender: Any) {
+    @IBAction private func buttonAction(_ sender: Any) {
         delegate?.goToAction()
     }
-
+    
+    // MARK: - Private Methods
+    
+    private func setup() {
+        setupButtonOutlet()
+        setupTitleLabel()
+        setupMessageLabel()
+    }
+    
+    private func setupButtonOutlet() {
+        buttonOutlet.layer.cornerRadius = 28
+        buttonOutlet.addGradient()
+        buttonOutlet.setTitleColor(Utils.Palette.Basic.white, for: UIControl.State.normal)
+    }
+    
+    private func setupTitleLabel() {
+        titleLabel.font = UIFont(name: "PAPYRUS_FONT".localized(), size: 36.0)
+        titleLabel.textColor = Utils.Palette.Basic.gray
+    }
+    
+    private func setupMessageLabel() {
+        messageLabel.font = UIFont(name: "PAPYRUS_FONT".localized(), size: 14.0)
+    }
 }

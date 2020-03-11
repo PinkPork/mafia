@@ -25,6 +25,7 @@ class ListBrowserViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar()
         setupTableView()
         setupView()
     }
@@ -36,6 +37,10 @@ class ListBrowserViewController: UIViewController {
     }
     
     // MARK: - Methods
+    
+    private func setupNavigationBar() {
+        title = "MENU_PLAYERS_LIST".localized()
+    }
     
     private func setupView() {
         presenter = ListBrowserPresenter(view: self)
