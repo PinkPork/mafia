@@ -54,8 +54,6 @@ class GamePresenter {
         return (GameManager.currentGame.numberOfPlayersPlaying >= GameRules.minimumPlayers)
     }
     
-    var refreshWithoutPopup: Bool = false
-    
     init(view: GameView, playerService: PlayerService = PlayerService()) {
         self.view = view
         self.playerService = playerService

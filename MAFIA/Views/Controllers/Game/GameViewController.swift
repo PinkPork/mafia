@@ -119,7 +119,7 @@ class GameViewController: UIViewController {
     }
     
     private func refreshPlayersPopUp() {
-        guard !self.presenter.refreshWithoutPopup else {
+        guard !GameManager.currentGame.refreshWithoutPopup else {
             self.presenter.restartGame()
             return
         }
@@ -130,7 +130,7 @@ class GameViewController: UIViewController {
         }
         
         let yesForeverAction = UIAlertAction(title: "YES_FOREVER_ACTION".localized(), style: .default) { (action) in
-            self.presenter.refreshWithoutPopup = true
+            GameManager.currentGame.refreshWithoutPopup = true
             self.presenter.restartGame()
         }
         
