@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol GameView: class, BaseView {
+protocol GameView: AnyObject, BaseView {
     func setPlayers(players: [Player])
     func addNewPlayer(player: Player)
     func deletePlayer(player: Player, indexPath: IndexPath)
@@ -53,6 +53,8 @@ class GamePresenter {
     var gameCanStart: Bool {
         return (GameManager.currentGame.numberOfPlayersPlaying >= GameRules.minimumPlayers)
     }
+    
+    var refreshWithoutPopup: Bool = false
     
     init(view: GameView, playerService: PlayerService = PlayerService()) {
         self.view = view

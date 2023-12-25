@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol MenuView: class {
+protocol MenuView: AnyObject {
     func setMenu(options: [MenuOptions])
 }
 

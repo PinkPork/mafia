@@ -24,6 +24,7 @@
 "LIST_ALREADY_ADDED_TITLE" = "Lista no agregada";
 "PLAYER_ADDED_TITLE" = "Jugador Agregado";
 "PLAYER_ALREADY_ADDED_TITLE" = "Jugador no Agregado";
+"REFRESH_LIST_TITLE" = "Actualizar lista";
 
 // MARK: - Alert Messages
 
@@ -35,6 +36,7 @@
 "LIST_ALREADY_ADDED_MESSAGE" = "El nombre de la lista ya existe, ingrese un nombre diferente.";
 "PLAYER_ADDED_MESSAGE" = "El jugador \"%@\", fue agregado exitosamente";
 "PLAYER_ALREADY_ADDED_MESSAGE" = "El nombre del jugador ya fue ingresado previamente, ingrese un jugador diferente.";
+"REFRESH_LIST_MESSAGE" = "Esta seguro que quiere actualizar la lista?";
 
 // MARK: - Alert Action Titles
 
@@ -44,6 +46,8 @@
 "CANCEL_ACTION" = "Cancelar";
 "DELETE_ACTION" = "Eliminar";
 "OKAY" = "Entendido";
+"YES_ACTION" = "Si";
+"YES_FOREVER_ACTION" = "Si para siempre";
 
 // MARK: - Menu Titles
 
