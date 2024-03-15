@@ -49,10 +49,6 @@ class GameViewController: UIViewController {
         updateGameUI()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()        
-    }
-    
     // MARK: - IBActions
     
     @IBAction func showMenu(_ sender: UIBarButtonItem) {
@@ -64,6 +60,9 @@ class GameViewController: UIViewController {
         addPlayerPopUp()
     }
     
+    @IBAction func refreshCurrentList(_ sender: Any) {
+        refreshPlayersPopUp()
+    }
     // MARK: - Methods
     
     private func setupView() {
@@ -88,27 +87,12 @@ class GameViewController: UIViewController {
         tableView.contentInset = UIEdgeInsets(top: kHeaderView, left: 0, bottom: 0, right: 0)
         tableView.register(UINib(nibName: PlayerTableViewCell.identifier, bundle: Bundle.main), forCellReuseIdentifier: PlayerTableViewCell.identifier)
         
-        pullToRefresh = UIRefreshControl()
-        pullToRefresh.attributedTitle = NSAttributedString(string: "PULL_TO_REFRESH_ACTION".localized())
-        pullToRefresh.addTarget(self, action: #selector(refreshRoles(_:)), for: UIControl.Event.valueChanged)
-        
-        if #available(iOS 10.0, *) {
-            tableView.refreshControl = pullToRefresh
-        } else {
-            tableView.addSubview(pullToRefresh)
-        }
-        
         tableView.separatorStyle = .none
     }
     
     private func refreshRoles() {
         playersToDisplay = presenter.refreshRoles(players: playersToDisplay)
         tableView.reloadData()
-        self.pullToRefresh.endRefreshing()
-    }
-    
-    @objc func refreshRoles(_ sender: UIBarButtonItem) {
-        presenter.restartGame()
     }
     
     private func addPlayerPopUp() {
@@ -132,6 +116,31 @@ class GameViewController: UIViewController {
         
         self.present(alertController, animated: true, completion: nil)
         
+    }
+    
+    private func refreshPlayersPopUp() {
+        guard !GameManager.currentGame.refreshWithoutPopup else {
+            self.presenter.restartGame()
+            return
+        }
+        let alertController = UIAlertController(title: "REFRESH_LIST_TITLE".localized(), message: "REFRESH_LIST_MESSAGE".localized(), preferredStyle: .alert)
+        
+        let yesAction = UIAlertAction(title: "YES_ACTION".localized(), style: .default) { (action) in
+            self.presenter.restartGame()
+        }
+        
+        let yesForeverAction = UIAlertAction(title: "YES_FOREVER_ACTION".localized(), style: .default) { (action) in
+            GameManager.currentGame.refreshWithoutPopup = true
+            self.presenter.restartGame()
+        }
+        
+        let cancelButton = UIAlertAction(title: "CANCEL_ACTION".localized(), style: .cancel)
+        
+        alertController.addAction(yesForeverAction)
+        alertController.addAction(yesAction)
+        alertController.addAction(cancelButton)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     // MARK: - Navigation

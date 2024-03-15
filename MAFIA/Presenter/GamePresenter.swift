@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol GameView: class, BaseView {
+protocol GameView: AnyObject, BaseView {
     func setPlayers(players: [Player])
     func addNewPlayer(player: Player)
     func deletePlayer(player: Player, indexPath: IndexPath)

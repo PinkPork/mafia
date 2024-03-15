@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ListView: class, BaseView {
+protocol ListView: AnyObject, BaseView {
     func addNewPlayer(player: Player)
     func deletePlayer(player: Player, indexPath: IndexPath)
 }

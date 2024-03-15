@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ListBrowserView: class, BaseView {
+protocol ListBrowserView: AnyObject, BaseView {
     func setListPlayers(listPlayers: [List])
     func addNewList(listPlayer: List)
     func deleteList(listPlayer: List, indexPath: IndexPath)

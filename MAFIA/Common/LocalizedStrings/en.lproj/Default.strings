@@ -24,6 +24,7 @@
 "LIST_ALREADY_ADDED_TITLE" = "List not added";
 "PLAYER_ADDED_TITLE" = "Player added";
 "PLAYER_ALREADY_ADDED_TITLE" = "Player not added";
+"REFRESH_LIST_TITLE" = "Refresh List";
 
 // MARK: - Alert Messages
 
@@ -35,6 +36,7 @@
 "LIST_ALREADY_ADDED_MESSAGE" = "The name of the list already exists, write a different name.";
 "PLAYER_ADDED_MESSAGE" = "The player \"%@\", was succefully added.";
 "PLAYER_ALREADY_ADDED_MESSAGE" = "The name of the player already exist with this list, write a different name for the player.";
+"REFRESH_LIST_MESSAGE" = "Are you sure you want to refresh?";
 
 // MARK: - Alert Action Titles
 
@@ -44,6 +46,8 @@
 "CANCEL_ACTION" = "Cancel";
 "DELETE_ACTION" = "Delete";
 "OKAY" = "Got It";
+"YES_ACTION" = "Yes";
+"YES_FOREVER_ACTION" = "Yes forever";
 
 // MARK: - Menu Titles
 

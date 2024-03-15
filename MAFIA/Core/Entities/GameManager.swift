@@ -37,6 +37,8 @@ class GameManager {
         return selectedListPlayers != nil
     }
     
+    var refreshWithoutPopup: Bool = false
+    
     /// Returns the number of civilians team players that are currently playing and are live
     var aliveCivilians: Int {
             let mafiaPlayers = numberOfPlayersPlaying / 3     //Esto sirve para calcular la cantidad de mafiosos.
@@ -68,6 +70,7 @@ class GameManager {
     }
     
     func setSelectedList(listPlayers: List) {
+        refreshWithoutPopup = false
         selectedListPlayers = listPlayers
     }
     
