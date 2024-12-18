@@ -1019,6 +1019,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 44BN8Y7Q6Y;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 44BN8Y7Q6Y;
 				INFOPLIST_FILE = MAFIA/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1027,6 +1028,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = co.com.pinkpork.MAFIA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Mafia-Distribution-Provisioning";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Mafia-AppStore-2024";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
