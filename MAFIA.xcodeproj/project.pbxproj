@@ -168,7 +168,6 @@
 		97CE9FCD1FEB05A700A8A55E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		97CE9FCF1FEB08AE00A8A55E /* GameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
 		97CE9FD21FEB14C900A8A55E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		97CE9FD81FEB15CF00A8A55E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Default.strings; sourceTree = "<group>"; };
 		9CFE82394293015048A278BB /* Pods_MAFIA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MAFIA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A546B4172010CDC000F3CB89 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		A546B41C20110D4500F3CB89 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -863,7 +862,6 @@
 		97CE9FD91FEB15CF00A8A55E /* Default.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				97CE9FD81FEB15CF00A8A55E /* en */,
 				A546B41E20110D4500F3CB89 /* es-419 */,
 				A546B421201123FF00F3CB89 /* es */,
 			);
