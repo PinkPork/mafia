@@ -70,7 +70,7 @@
 // MARK: - Roles
 "king" = "Rey";
 "doctor" = "Medico";
-"sheriff" = "Policia";
+"sheriff" = "Sheriff";
 "mob" = "Mafioso";
 "villager" = "Aldeano";
 "none" = "Sin rol";
