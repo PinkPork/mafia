@@ -161,6 +161,7 @@
 		9688E1BA2075334600853071 /* BasePresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePresenterTest.swift; sourceTree = "<group>"; };
 		96B3C3161FF40BB100363A3F /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		96BEA68B1FF42F6000231518 /* MenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
+		96D74D082D14D16B00112079 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Default.strings; sourceTree = "<group>"; };
 		96E47F28208900E900A53F58 /* ListBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListBrowserViewController.swift; sourceTree = "<group>"; };
 		96E47F2B208A359D00A53F58 /* PushMenuTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushMenuTransition.swift; sourceTree = "<group>"; };
 		96F9DE7D1FED60A900C32C30 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
@@ -864,6 +865,7 @@
 			children = (
 				A546B41E20110D4500F3CB89 /* es-419 */,
 				A546B421201123FF00F3CB89 /* es */,
+				96D74D082D14D16B00112079 /* en */,
 			);
 			name = Default.strings;
 			sourceTree = "<group>";

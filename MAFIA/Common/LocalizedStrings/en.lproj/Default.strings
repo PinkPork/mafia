@@ -1,86 +1,166 @@
-/* 
-  Default.strings
-  MAFIA
+/*
+ Default.strings
+ MAFIA
 
-  Created by Santiago Carmona gonzalez on 12/20/17.
-  Copyright © 2017 Santiago Carmona Gonzalez. All rights reserved.
-*/
+ Created by Santiago Carmona gonzalez on 12/20/17.
+ Copyright © 2017 Santiago Carmona Gonzalez. All rights reserved.
+ */
 
+/**
+
+ // MARK: -  Main Titles
+
+ "CIVILIANS_TITLE" = "Villagers";
+ "MAFIA_TITLE" = "Mobsters";
+ "LIST_PLAYER_NO_NAME" = "Select a list to play";
+ "TOTAL_PLAYING_TITLE" = "Total playing";
+
+ // MARK: - Alert titles
+
+ "END_GAME_TITLE" = "Game Over";
+ "ADD_LIST_TITLE" = "Add Lists";
+ "ADD_PLAYER_TITLE" = "Add player";
+ "LIST_ADDED_TITLE" = "List added";
+ "LIST_ALREADY_ADDED_TITLE" = "List not added";
+ "PLAYER_ADDED_TITLE" = "Player added";
+ "PLAYER_ALREADY_ADDED_TITLE" = "Player not added";
+ "REFRESH_LIST_TITLE" = "Refresh List";
+
+ // MARK: - Alert Messages
+
+ "MAFIA_WON_GAME_MESSAGE" = "The MOB won the game";
+ "CIVILIANS_WON_GAME_MESSAGE" = "The VILLAGERS won the game";
+ "ADD_LIST_MESSAGE" = "Write the name of the list you wish to add.";
+ "ADD_PLAYER_MESSAGE" = "Write the name of the player you wish to add.";
+ "LIST_ADDED_MESSAGE" = "The list \"%@\" was succesfully added.";
+ "LIST_ALREADY_ADDED_MESSAGE" = "The name of the list already exists, write a different name.";
+ "PLAYER_ADDED_MESSAGE" = "The player \"%@\", was succefully added.";
+ "PLAYER_ALREADY_ADDED_MESSAGE" = "The name of the player already exist with this list, write a different name for the player.";
+ "REFRESH_LIST_MESSAGE" = "Are you sure you want to refresh?";
+
+ // MARK: - Alert Action Titles
+
+ "END_GAME_ACTION_TITLE" = "Start New Game";
+ "CONTINUE_GAME_ACTION_TITLE" = "Continue Playing";
+ "ADD_ACTION" = "Add";
+ "CANCEL_ACTION" = "Cancel";
+ "DELETE_ACTION" = "Delete";
+ "OKAY" = "Got It";
+ "YES_ACTION" = "Yes";
+ "YES_FOREVER_ACTION" = "Yes forever";
+
+ // MARK: - Menu Titles
+
+ "MENU_ADD_NEW_PLAYER" = "Add new player";
+ "MENU_PLAYERS_LIST" = "Player Lists";
+
+ // MARK: - Button Titles
+
+ "USE_PLAYERS_LIST_BUTTON_TITLE" = "Use this list";
+ "KILL_PLAYER_BUTTON_TITLE" = "Kill player";
+ "REVIVE_PLAYER_BUTTON_TITLE" = "Revive player";
+ "ADD_FROM_OTHER_LIST" = "Add from other list";
+ "SELECT_NEW_LIST_TO_PLAY" = "Select new list to play";
+ "ADD_NEW_PLAYER" = "Add player";
+
+ // MARK: - Action Titles
+
+ "PULL_TO_REFRESH_ACTION" = "Pull to Refresh";
+
+ // MARK: - Roles
+ "king" = "King";
+ "doctor" = "Doctor";
+ "sheriff" = "Sheriff";
+ "mob" = "Mobster";
+ "villager" = "Villager";
+ "none" = "No role";
+
+ // MARK - Fonts:
+
+ "PAPYRUS_FONT" = "Papyrus";
+
+ // MARK: - Empty view titles
+ "EMPTY_DETAIL_LIST_PLAYERS" = "You don't have any member in this list";
+
+ // MARK: - Mafia phrases
+ "MAFIA_PHRASE_1" = "The night begins";
+ */
 
 
 // MARK: -  Main Titles
 
-"CIVILIANS_TITLE" = "Villagers";
-"MAFIA_TITLE" = "Mobsters";
-"LIST_PLAYER_NO_NAME" = "Select a list to play";
-"TOTAL_PLAYING_TITLE" = "Total playing";
+"CIVILIANS_TITLE" = "Aldeanos";
+"MAFIA_TITLE" = "Mafia";
+"LIST_PLAYER_NO_NAME" = "Selecciona una lista para jugar";
+"TOTAL_PLAYING_TITLE" = "Jugadores";
 
 // MARK: - Alert titles
 
-"END_GAME_TITLE" = "Game Over";
-"ADD_LIST_TITLE" = "Add Lists";
-"ADD_PLAYER_TITLE" = "Add player";
-"LIST_ADDED_TITLE" = "List added";
-"LIST_ALREADY_ADDED_TITLE" = "List not added";
-"PLAYER_ADDED_TITLE" = "Player added";
-"PLAYER_ALREADY_ADDED_TITLE" = "Player not added";
-"REFRESH_LIST_TITLE" = "Refresh List";
+"END_GAME_TITLE" = "Fin del juego";
+"ADD_LIST_TITLE" = "Agregar Listas";
+"ADD_PLAYER_TITLE" = "Agregar Jugadores";
+"LIST_ADDED_TITLE" = "Lista Agregada";
+"LIST_ALREADY_ADDED_TITLE" = "Lista no agregada";
+"PLAYER_ADDED_TITLE" = "Jugador Agregado";
+"PLAYER_ALREADY_ADDED_TITLE" = "Jugador no Agregado";
+"REFRESH_LIST_TITLE" = "Actualizar lista";
 
 // MARK: - Alert Messages
 
-"MAFIA_WON_GAME_MESSAGE" = "The MOB won the game";
-"CIVILIANS_WON_GAME_MESSAGE" = "The VILLAGERS won the game";
-"ADD_LIST_MESSAGE" = "Write the name of the list you wish to add.";
-"ADD_PLAYER_MESSAGE" = "Write the name of the player you wish to add.";
-"LIST_ADDED_MESSAGE" = "The list \"%@\" was succesfully added.";
-"LIST_ALREADY_ADDED_MESSAGE" = "The name of the list already exists, write a different name.";
-"PLAYER_ADDED_MESSAGE" = "The player \"%@\", was succefully added.";
-"PLAYER_ALREADY_ADDED_MESSAGE" = "The name of the player already exist with this list, write a different name for the player.";
-"REFRESH_LIST_MESSAGE" = "Are you sure you want to refresh?";
+"MAFIA_WON_GAME_MESSAGE" = "La MAFIA gano el juego";
+"CIVILIANS_WON_GAME_MESSAGE" = "Los ALDEANOS ganaron el juego";
+"ADD_LIST_MESSAGE" = "Ingrese el nombre de la lista que desea agregar.";
+"ADD_PLAYER_MESSAGE" = "Ingrese el nombre del jugador que desea agregar.";
+"LIST_ADDED_MESSAGE" = "La lista \"%@\" fue agregada exitosamente.";
+"LIST_ALREADY_ADDED_MESSAGE" = "El nombre de la lista ya existe, ingrese un nombre diferente.";
+"PLAYER_ADDED_MESSAGE" = "El jugador \"%@\", fue agregado exitosamente";
+"PLAYER_ALREADY_ADDED_MESSAGE" = "El nombre del jugador ya fue ingresado previamente, ingrese un jugador diferente.";
+"REFRESH_LIST_MESSAGE" = "Esta seguro que quiere actualizar la lista?";
 
 // MARK: - Alert Action Titles
 
-"END_GAME_ACTION_TITLE" = "Start New Game";
-"CONTINUE_GAME_ACTION_TITLE" = "Continue Playing";
-"ADD_ACTION" = "Add";
-"CANCEL_ACTION" = "Cancel";
-"DELETE_ACTION" = "Delete";
-"OKAY" = "Got It";
-"YES_ACTION" = "Yes";
-"YES_FOREVER_ACTION" = "Yes forever";
+"END_GAME_ACTION_TITLE" = "Iniciar nueva partida";
+"CONTINUE_GAME_ACTION_TITLE" = "Continuar jugando";
+"ADD_ACTION" = "Agregar";
+"CANCEL_ACTION" = "Cancelar";
+"DELETE_ACTION" = "Eliminar";
+"OKAY" = "Entendido";
+"YES_ACTION" = "Si";
+"YES_FOREVER_ACTION" = "Si para siempre";
 
 // MARK: - Menu Titles
 
-"MENU_ADD_NEW_PLAYER" = "Add new player";
-"MENU_PLAYERS_LIST" = "Player Lists";
+"MENU_ADD_NEW_PLAYER" = "Agregar nuevo jugador";
+"MENU_PLAYERS_LIST" = "Listas de jugadores";
 
 // MARK: - Button Titles
 
-"USE_PLAYERS_LIST_BUTTON_TITLE" = "Use this list";
-"KILL_PLAYER_BUTTON_TITLE" = "Kill player";
-"REVIVE_PLAYER_BUTTON_TITLE" = "Revive player";
-"ADD_FROM_OTHER_LIST" = "Add from other list";
-"SELECT_NEW_LIST_TO_PLAY" = "Select new list to play";
-"ADD_NEW_PLAYER" = "Add player";
+"USE_PLAYERS_LIST_BUTTON_TITLE" = "Usar esta lista";
+"KILL_PLAYER_BUTTON_TITLE" = "Matar Jugador";
+"REVIVE_PLAYER_BUTTON_TITLE" = "Revivir Jugador";
+"ADD_FROM_OTHER_LIST" = "Agregar desde otra lista";
+"SELECT_NEW_LIST_TO_PLAY" = "Selecciona una lista para jugar";
+"ADD_NEW_PLAYER" = "Agregar jugador";
 
 // MARK: - Action Titles
 
-"PULL_TO_REFRESH_ACTION" = "Pull to Refresh";
+"PULL_TO_REFRESH_ACTION" = "Deslizar para refrescar";
 
 // MARK: - Roles
-"king" = "King";
-"doctor" = "Doctor";
+"king" = "Rey";
+"doctor" = "Medico";
 "sheriff" = "Sheriff";
-"mob" = "Mobster";
-"villager" = "Villager";
-"none" = "No role";
+"mob" = "Mafioso";
+"villager" = "Aldeano";
+"none" = "Sin rol";
 
 // MARK - Fonts:
 
 "PAPYRUS_FONT" = "Papyrus";
 
 // MARK: - Empty view titles
-"EMPTY_DETAIL_LIST_PLAYERS" = "You don't have any member in this list";
+"EMPTY_DETAIL_LIST_PLAYERS" = "No tienes ningun miembro agregado en esta lista";
 
 // MARK: - Mafia phrases
-"MAFIA_PHRASE_1" = "The night begins";
+"MAFIA_PHRASE_1" = "Cae la noche";
+
