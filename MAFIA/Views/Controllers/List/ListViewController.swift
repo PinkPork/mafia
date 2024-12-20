@@ -176,7 +176,7 @@ extension ListViewController: UITableViewDelegate {
 
 extension ListViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        updateAddButtonState(text: textField.text)
+        updateAddButtonState(text: (textField.text as? NSString)?.replacingCharacters(in: range, with: string))
         return true
     }
 }
