@@ -103,7 +103,6 @@ extension ListBrowserViewController: ListBrowserView {
     func addNewList(listPlayer: List) {
         lists.append(listPlayer)
         tableView.reloadData()
-        presentAlert(title: "LIST_ADDED_TITLE".localized(), message: String.localizedStringWithFormat("LIST_ADDED_MESSAGE".localized(), listPlayer.name), preferredStyle: .actionSheet)
     }
     
     func setListPlayers(listPlayers: [List]) {
@@ -160,17 +159,8 @@ extension ListBrowserViewController: UITableViewDelegate {
 // MARK: - TextField Delegate
 
 extension ListBrowserViewController: UITextFieldDelegate {
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         updateAddButtonState(text: textField.text)
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        addListAction?.isEnabled = false
+        return true
     }
 }
