@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUV-C8-GHW" userLabel="Border">
-                                        <rect key="frame" x="120.5" y="41.5" width="134.5" height="2"/>
+                                        <rect key="frame" x="88" y="41.5" width="192" height="2"/>
                                         <color key="backgroundColor" red="0.57179965099999996" green="0.18854309759999999" blue="0.15942935859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="VT5-gG-b5R"/>
@@ -46,7 +46,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hac-VL-eC0" userLabel="Mob">
-                                        <rect key="frame" x="213.5" y="53.5" width="41.5" height="77.5"/>
+                                        <rect key="frame" x="218.5" y="53.5" width="41.5" height="77.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wanted" translatesAutoresizingMaskIntoConstraints="NO" id="ow1-HH-pxz" userLabel="Mob Image">
                                                 <rect key="frame" x="0.0" y="0.0" width="41.5" height="52"/>
@@ -70,13 +70,13 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4FE-pf-IHV" userLabel="Villager">
-                                        <rect key="frame" x="120.5" y="53.5" width="41.5" height="77.5"/>
+                                        <rect key="frame" x="108" y="53.5" width="49" height="76.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="villager" translatesAutoresizingMaskIntoConstraints="NO" id="P2b-yh-MCL" userLabel="Villager Image">
-                                                <rect key="frame" x="0.0" y="0.0" width="41.5" height="52"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="49" height="51"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z0i-pH-HsG">
-                                                <rect key="frame" x="0.0" y="57" width="41.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="56" width="49" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -98,17 +98,17 @@
                                 <constraints>
                                     <constraint firstItem="4FE-pf-IHV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="T8y-f5-Pwu" secondAttribute="leading" constant="10" id="2G7-N6-518"/>
                                     <constraint firstItem="bPs-tW-ux6" firstAttribute="leading" secondItem="tiH-UU-dbE" secondAttribute="trailing" constant="10" id="6Ip-IT-crl"/>
-                                    <constraint firstItem="MUV-C8-GHW" firstAttribute="leading" secondItem="4FE-pf-IHV" secondAttribute="leading" id="CcZ-2g-c3B"/>
+                                    <constraint firstItem="MUV-C8-GHW" firstAttribute="leading" secondItem="4FE-pf-IHV" secondAttribute="leading" constant="-20" id="CcZ-2g-c3B"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Hac-VL-eC0" secondAttribute="trailing" constant="10" id="JNV-Rm-S36"/>
-                                    <constraint firstItem="H23-ie-RKi" firstAttribute="leading" secondItem="4FE-pf-IHV" secondAttribute="trailing" constant="5" id="Lku-CX-jyb"/>
+                                    <constraint firstItem="H23-ie-RKi" firstAttribute="leading" secondItem="4FE-pf-IHV" secondAttribute="trailing" constant="10" id="Lku-CX-jyb"/>
                                     <constraint firstItem="Hac-VL-eC0" firstAttribute="top" secondItem="4FE-pf-IHV" secondAttribute="top" id="Tgd-Uu-o5H"/>
                                     <constraint firstItem="tiH-UU-dbE" firstAttribute="top" secondItem="T8y-f5-Pwu" secondAttribute="top" constant="20" id="V5C-EG-nPM"/>
                                     <constraint firstItem="bPs-tW-ux6" firstAttribute="centerY" secondItem="tiH-UU-dbE" secondAttribute="centerY" id="YVE-u0-Be9"/>
                                     <constraint firstItem="H23-ie-RKi" firstAttribute="top" secondItem="4FE-pf-IHV" secondAttribute="top" id="ctU-gC-0GW"/>
-                                    <constraint firstItem="MUV-C8-GHW" firstAttribute="trailing" secondItem="Hac-VL-eC0" secondAttribute="trailing" id="fEg-Pv-h1S"/>
+                                    <constraint firstItem="MUV-C8-GHW" firstAttribute="trailing" secondItem="Hac-VL-eC0" secondAttribute="trailing" constant="20" id="fEg-Pv-h1S"/>
                                     <constraint firstItem="bPs-tW-ux6" firstAttribute="centerX" secondItem="T8y-f5-Pwu" secondAttribute="centerX" id="fwn-Tk-trg"/>
                                     <constraint firstItem="4FE-pf-IHV" firstAttribute="top" secondItem="MUV-C8-GHW" secondAttribute="bottom" constant="10" id="grQ-zr-4Fg"/>
-                                    <constraint firstItem="Hac-VL-eC0" firstAttribute="leading" secondItem="H23-ie-RKi" secondAttribute="trailing" constant="5" id="hE0-rE-VcU"/>
+                                    <constraint firstItem="Hac-VL-eC0" firstAttribute="leading" secondItem="H23-ie-RKi" secondAttribute="trailing" constant="10" id="hE0-rE-VcU"/>
                                     <constraint firstAttribute="height" constant="200" id="i0H-x6-JCc"/>
                                     <constraint firstItem="H23-ie-RKi" firstAttribute="centerX" secondItem="bPs-tW-ux6" secondAttribute="centerX" id="q8q-rJ-Dg4"/>
                                     <constraint firstItem="MUV-C8-GHW" firstAttribute="top" secondItem="bPs-tW-ux6" secondAttribute="bottom" constant="2" id="uOa-qG-tjZ"/>
@@ -403,7 +403,7 @@
         <image name="civilian" width="1200" height="633"/>
         <image name="icon_menu" width="24" height="24"/>
         <image name="target" width="18" height="18"/>
-        <image name="villager" width="41" height="52"/>
+        <image name="villager" width="49" height="51"/>
         <image name="wanted" width="40" height="52"/>
     </resources>
 </document>
