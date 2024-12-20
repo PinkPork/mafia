@@ -175,17 +175,9 @@ extension ListViewController: UITableViewDelegate {
 // MARK: - TextField Delegate
 
 extension ListViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         updateAddButtonState(text: textField.text)
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        addPlayerAction?.isEnabled = false
+        return true
     }
 }
 

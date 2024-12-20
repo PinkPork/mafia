@@ -35,7 +35,6 @@ class ListPresenter {
         detailListPlayersService.add(toList: list, playerWithName: name) { [weak self] (player) in
             if let player = player {
                 self?.view.addNewPlayer(player: player)
-                self?.view.showAlert(withTitle: "PLAYER_ADDED_TITLE".localized(), message: String.localizedStringWithFormat("PLAYER_ADDED_MESSAGE".localized(), name), preferredStyle: .actionSheet, completionFirstAction: nil)
             }
         }
     }
