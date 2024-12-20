@@ -34,7 +34,7 @@ class ListPresenter {
         
         detailListPlayersService.add(toList: list, playerWithName: name) { [weak self] (player) in
             if let player = player {
-                self?.view.addNewPlayer(player: player)
+                self?.view.addNewPlayer(player: player)                
             }
         }
     }

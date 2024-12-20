@@ -108,7 +108,8 @@ class GameViewController: UIViewController {
             guard let playerName = textField?.text, !playerName.isEmpty else { return }
             self.presenter.addPlayerInCurrentGame(withName: playerName)
         }
-        
+        addPlayerAction.isEnabled = false
+
         let cancelButton = UIAlertAction(title: "CANCEL_ACTION".localized(), style: .cancel)
         
         alertController.addAction(addPlayerAction)
@@ -304,10 +305,9 @@ extension GameViewController: MenuViewControllerDelegate {
 
 extension GameViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        updateAddButtonState(text: textField.text)
+        updateAddButtonState(text: (textField.text as? NSString)?.replacingCharacters(in: range, with: string))
         return true
     }
-    
 }
 
 // MARK: - EmptyListViewDelegate conformance
