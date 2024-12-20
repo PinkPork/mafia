@@ -40,7 +40,7 @@ class GamePresenter {
         if GameManager.currentGame.numberOfPlayersPlaying == 0 {
             return nil
         }
-        return (gameCanStart ? "\("TOTAL_PLAYING_TITLE".localized()) \n \(GameManager.currentGame.numberOfPlayersPlaying)" : nil)
+      return (gameCanStart ? "\("TOTAL_PLAYING_TITLE".localized()) \n \(GameManager.currentGame.numberOfAlivePlayers) / \(GameManager.currentGame.numberOfPlayersPlaying)" : nil)
     }
     
     var selectedListName: String? {

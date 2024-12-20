@@ -181,7 +181,7 @@ extension GameViewController: GameView {
         villagerLabel.text = presenter.aliveCiviliansPlayerText
         mobLabel.text = presenter.aliveMafiaPlayerText
         totalPlayingLabel.text = presenter.totalNumberOfPlayers
-        
+
         if presenter.selectedListName != "LIST_PLAYER_NO_NAME".localized() {
             emptyView.isHidden = true
         } else {
