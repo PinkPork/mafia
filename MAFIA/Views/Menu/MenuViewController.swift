@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol MenuViewControllerDelegate: class {
+protocol MenuViewControllerDelegate: AnyObject {
     func performSegue(withIdentifier identifier: String)
 }
 

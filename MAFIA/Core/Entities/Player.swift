@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Player: class {
+protocol Player: AnyObject {
     var name: String { get }
     var role: Role { get set }
 }

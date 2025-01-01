@@ -25,10 +25,6 @@ class PlayerDetailViewController: UIViewController {
         setData(player: player)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     /*
     // MARK: - Navigation
 

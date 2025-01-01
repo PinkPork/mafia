@@ -29,10 +29,6 @@ class PlayerDetailsTableViewCell: UITableViewCell {
         setup()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-
     // MARK: - Methods
 
     private func setup() {

@@ -41,7 +41,7 @@ class GameManager {
     
     /// Returns the number of civilians team players that are currently playing and are live
     var aliveCivilians: Int {
-            let mafiaPlayers = numberOfPlayersPlaying / 3     //Esto sirve para calcular la cantidad de mafiosos.
+            let mafiaPlayers = numberOfPlayersPlaying / 3 // Esto sirve para calcular la cantidad de mafiosos.
             var civiliansPlaying = numberOfPlayersPlaying - mafiaPlayers
             civiliansPlaying = eliminatedPlayers.reduce(civiliansPlaying, {(result, player) -> Int in
                 return player.role != .mob ? result - 1 : result
@@ -83,7 +83,7 @@ class GameManager {
     /// Removes a player from the `eliminatedPlayers` array
     /// parameter player: The player to be revived from the current game
     func revive(_ player: Player) {
-        if let index = eliminatedPlayers.index(where: { $0.name == player.name }) {
+        if let index = eliminatedPlayers.firstIndex(where: { $0.name == player.name }) {
             eliminatedPlayers.remove(at: index)
         }
     }
@@ -97,7 +97,7 @@ class GameManager {
     /// **NOTE:** If you want to play again with the player you should select again the list.
     /// returns: `true` if the player could be deleted from the current game, otherwise `false`
     func removeForCurrentGame(player: Player) -> Bool {
-        if let index = selectedListPlayers?.players.index(where: { $0.name == player.name }) {
+        if let index = selectedListPlayers?.players.firstIndex(where: { $0.name == player.name }) {
             selectedListPlayers?.players.remove(at: index)
             return true
         }

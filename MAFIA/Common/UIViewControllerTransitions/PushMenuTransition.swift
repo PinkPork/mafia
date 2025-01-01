@@ -59,7 +59,7 @@ class PushMenuTransition: NSObject, UIViewControllerAnimatedTransitioning {
 
         let animation = {
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: self.relativeDuration) {
-                viewControllerToAnimate.view.frame.origin.x = self.isDismissing ?  -self.originFrame.width : 0.0
+                viewControllerToAnimate.view.frame.origin.x = self.isDismissing ? -self.originFrame.width : 0.0
                 viewControllerToFadeInOut.view.alpha = self.isDismissing ? 1.0 : 0.7
             }
         }

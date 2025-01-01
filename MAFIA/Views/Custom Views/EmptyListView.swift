@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol EmptyListViewDelegate: class {
+protocol EmptyListViewDelegate: AnyObject {
     func goToAction()
 }
 

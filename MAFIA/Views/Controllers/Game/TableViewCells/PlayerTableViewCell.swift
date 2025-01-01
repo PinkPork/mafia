@@ -23,19 +23,10 @@ class PlayerTableViewCell: UITableViewCell {
         return String(describing: self)
     }
     var player: Player!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-    
+
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         setCellBorder()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
     
     // MARK: - Methods

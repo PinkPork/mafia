@@ -25,10 +25,6 @@ class MenuTableViewCell: UITableViewCell {
         super.awakeFromNib()
         setup()
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
 
     private func setup() {
         titleLabel.font = UIFont(name: "PAPYRUS_FONT".localized(), size: 24)

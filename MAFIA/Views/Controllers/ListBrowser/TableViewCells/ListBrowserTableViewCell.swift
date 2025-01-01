@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ListBrowserTableViewCellDelegate: class {
+protocol ListBrowserTableViewCellDelegate: AnyObject {
     func startGame(withList list: List)
 }
 
@@ -39,10 +39,6 @@ class ListBrowserTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         playersListForGameButton.setTitle("USE_PLAYERS_LIST_BUTTON_TITLE".localized(), for: UIControl.State.normal)
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
     
     // MARK: Methods
