@@ -23,7 +23,7 @@ struct MockData {
             return CoreDataConnection.shared.getEntity(withName: PlayerMO.entityName)
         }
         
-        static var rawPlayers: [String] {
+        static var Players: [String] {
             return [Player.name, Player.name1, Player.name2, Player.name3, Player.name4, Player.name5]
         }
     }

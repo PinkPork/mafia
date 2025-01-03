@@ -9,19 +9,20 @@
 import UIKit
 import CoreData
 
-@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    static private(set) var instance: AppDelegate! = nil
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+        AppDelegate.instance = self
+
         // Navigation bar setup
-        
-        UINavigationBar.appearance().isTranslucent = false
-        UINavigationBar.appearance().tintColor = Utils.Palette.Basic.white
-        UINavigationBar.appearance().barTintColor = Utils.Palette.Basic.red
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: Utils.Palette.Basic.white, NSAttributedString.Key.font: UIFont.get(withType: .papyrus, size: 24)]
+//        UINavigationBar.appearance().isTranslucent = false
+//        UINavigationBar.appearance().tintColor = Utils.Palette.Basic.white
+//        UINavigationBar.appearance().barTintColor = Utils.Palette.Basic.red
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: Utils.Palette.Basic.black, NSAttributedString.Key.font: UIFont.get(withType: .papyrus, size: 24)]
         return true
     }
 

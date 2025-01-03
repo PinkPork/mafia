@@ -19,8 +19,8 @@ class DetailListPlayersService {
             listMO.addToPlayers(playerMO)
 
             if CoreDataConnection.shared.managedContext.save(list) {
-                let rawPlayer = PlayerMO.parse(player: playerMO)                
-                completion(rawPlayer)
+                let Player = PlayerMO.parse(player: playerMO)                
+                completion(Player)
                 return
             }
         }

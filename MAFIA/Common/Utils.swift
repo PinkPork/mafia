@@ -64,5 +64,4 @@ struct Utils {
     enum Font: String {
         case papyrus = "Papyrus"
     }
-    
 }

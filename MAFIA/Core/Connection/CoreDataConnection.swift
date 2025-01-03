@@ -17,7 +17,7 @@ class CoreDataConnection {
     var managedContext: NSManagedObjectContext
     
     private init() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let appDelegate = AppDelegate.instance!
         let persistantContainerContext = appDelegate.persistentContainer.viewContext
         self.managedContext = persistantContainerContext
     }

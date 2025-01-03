@@ -22,7 +22,7 @@ extension PlayerMO {
     /// - parameter player: Core data PlayerMO object
     /// - returns: `Player` default object
     class func parse(player: PlayerMO) -> Player {
-        return RawPlayer(name: player.name ?? "No name")
+        return Player(name: player.name ?? "No name")
     }
 
     /// Inverse of parse; Converts default Player object into a PlayerMO Core data object by searching in the actual NSManagedContext the player given

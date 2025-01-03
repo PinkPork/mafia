@@ -58,15 +58,7 @@ class GamePresenter {
         self.view = view
         self.playerService = playerService
     }
-    
-    func savePlayer(name: String) {
-        self.playerService.savePlayer(name: name) {[weak self] (player) in
-            if let player = player {                
-                self?.view.addNewPlayer(player: player)
-            }
-        }
-    }
-    
+
     func showPlayers() {
         if let players = GameManager.currentGame.playersPlaying {
             view.setPlayers(players: refreshRoles(players: players))
@@ -76,7 +68,7 @@ class GamePresenter {
     
     func refreshRoles(players: [Player]) -> [Player] {
         if players.count >= GameRules.minimumPlayers {
-            return RawPlayer.assignRandomRole(to: players)
+            return Player.assignRandomRole(to: players)
         }
         players.forEach({ $0.role = .none })
         return players
@@ -107,6 +99,8 @@ class GamePresenter {
         } else if GameManager.currentGame.aliveMafia >= GameManager.currentGame.aliveCivilians {
             winnerRole = .mob
         }
+
+        guard winnerRole != .none else { return }
         view.endGame(winner: winnerRole)
     }
     
@@ -116,7 +110,7 @@ class GamePresenter {
     }
     
     func addPlayerInCurrentGame(withName name: String) {
-        let newPlayer: RawPlayer = RawPlayer(name: name)
+        let newPlayer: Player = Player(name: name)
         if GameManager.currentGame.addPlayerInSelectedList(newPlayer) {
             view.addNewPlayer(player: newPlayer)
         } else {

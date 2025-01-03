@@ -8,14 +8,8 @@
 
 import Foundation
 
-protocol Player: AnyObject {
-    var name: String { get }
-    var role: Role { get set }
-}
-
-// We could use this struct if we decide to migrate to firebase or webservices.
-class RawPlayer: Player {
-    var name: String
+final class Player {
+    let name: String
     var role: Role
 
     init(name: String) {
@@ -32,7 +26,7 @@ class RawPlayer: Player {
     /// - parameter players: The players playing on the current game
     /// - returns: An Array of players, each of them with a random role setted
     
-    class func assignRandomRole(to players: [Player]) -> [Player] {
+    static func assignRandomRole(to players: [Player]) -> [Player] {
         
         let mobRoles = [Role](repeatElement(Role.mob, count: players.count / 3))
         let villagersTotal = players.count - (mobRoles.count + GameRules.uniqueRoles.count)
@@ -44,5 +38,11 @@ class RawPlayer: Player {
             player.role = allRoles[index]
         }
         return players
+    }
+}
+
+extension Player: Equatable {
+    static func == (lhs: Player, rhs: Player) -> Bool {
+        return lhs.name == rhs.name && lhs.role == rhs.role
     }
 }

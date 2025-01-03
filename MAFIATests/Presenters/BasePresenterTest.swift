@@ -27,8 +27,8 @@ class BasePresenterTest: XCTestCase {
     /// Gets 5 mock players with different name and the same role **Role.none** for test
     /// - returns: An Array `Player` with mockData
     func getMockPlayers() -> [Player] {
-        return MockData.Player.rawPlayers.map({ (name) -> Player in
-            return RawPlayer(name: name)
+        return MockData.Player.Players.map({ (name) -> Player in
+            return Player(name: name)
         })
     }
 
