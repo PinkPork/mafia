@@ -1,92 +1,92 @@
 import SwiftUI
 
 extension GameBoardScreen {
-    enum Route {
-        case playerList
+    enum Route: Hashable {
+        case playerListBrowser
+        case playerList(PlayerList)
+
+        var id: String {
+            switch self {
+            case .playerListBrowser:
+                return UUID().uuidString
+            case .playerList(let list):
+                return list.name
+            }
+        }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
     }
 }
 
 struct GameBoardScreen: View {
-    @StateObject var viewModel: GameBoardViewModel = .init()
-
-    @State private var path: [Route] = []
-    @State private var playerToAdd: String = ""
+    @StateObject private var viewModel: ViewModel = .init(state: .empty)
 
     var body: some View {
-        NavigationStack(path: self.$path) {
-            Group {
-                switch viewModel.state {
-                case .empty:
-                    self.emptyView
-                case .playing(let players):
-                    self.playingView(players: players)
-                        .padding(.top, .spacing.large)
-                        .toolbar {
-                            ToolbarItemGroup {
-                                Button(action: {
-                                    self.viewModel.presentedSheet = .addPlayer
-                                }, label: {
-                                    Image(icon: .plus)
-                                })
-
-                                Button(action: {                                    
-                                    self.viewModel.presenter.restartGame()
-                                }, label: {
-                                    Image(icon: .refresh)
-                                })
-                            }
+        NavigationStack(path: self.$viewModel.path) {
+            self.bodyView
+                .navigationDestination(for: Route.self) { route in
+                    switch route {
+                    case .playerListBrowser:
+                        PlayerListBrowserView(
+                            viewModel: .init(coordinator: self.viewModel)
+                        ) {
+                            self.viewModel.presenter.restartGame()
                         }
-                        .tint(Utils.Palette.Basic.black.color)
+                    case .playerList(let list):
+                        PlayerListView(viewModel: .init(list: list))
+                    }
                 }
-            }
-            .navigationDestination(for: Route.self) { route in
-                switch route {
-                case .playerList: Text("Player List goes here")
-                }
-            }
-            .navigationTitle("MAFIA")
-            .navigationBarTitleDisplayMode(.inline)
-
+                .navigationTitle("MAFIA")
+                .navigationBarTitleDisplayMode(.inline)
         }
         .alert(item: self.$viewModel.presentedAlert) { alert in
-            switch alert {
-            case .gameOver(let winner):
-                var message: String = ""
-                switch winner {
-                case .villager, .king, .doctor, .sheriff:
-                    message = "CIVILIANS_WON_GAME_MESSAGE".localized()
-                case .mob, .none:
-                    message = "MAFIA_WON_GAME_MESSAGE".localized()
-                }
-                return Alert(
-                    title: Text("END_GAME_TITLE".localized()).title(),
-                    message: Text(message).body(),
-                    primaryButton: .default(
-                        Text("END_GAME_ACTION_TITLE".localized())) {
-                            self.viewModel.presenter.restartGame()
-                    },
-                    secondaryButton: .cancel(Text("CONTINUE_GAME_ACTION_TITLE".localized()))
-                )
-            case .custom(let title, let message, _, let action):
-                return Alert(
-                    title: Text(title ?? "").title(),
-                    message: Text(message ?? "").body(),
-                    dismissButton: .default(Text("OK".localized()), action: {
-                        action?()
-                        self.viewModel.presentedAlert = nil
-                    })
-                )
-            }
+            self.alertView(from: alert)
         }
         .sheet(item: self.$viewModel.presentedSheet) { sheet in
-            switch sheet {
-            case .addPlayer:
-                AddPlayerView(addPlayerAction: { name in
-                    self.viewModel.presentedSheet = nil
-                    self.viewModel.presenter.addPlayerInCurrentGame(withName: name)
-                })
-                .presentationDetents([.fraction(0.3)])
-            }
+            self.sheetView(from: sheet)
+        }
+        .task {
+            self.viewModel.presenter.showPlayers()
+        }
+    }
+}
+
+// MARK: - Composition Views
+extension GameBoardScreen {
+    @ViewBuilder
+    private var bodyView: some View {
+        switch viewModel.state {
+        case .empty:
+            self.emptyView
+        case .playing(let players):
+            self.playingView(players: players)
+                .padding(.top, .spacing.large)
+                .toolbar {
+                    ToolbarItemGroup {
+                        Button(action: {
+                            self.viewModel.presentedSheet = .addPlayer
+                        }, label: {
+                            Image(icon: .plus)
+                        })
+
+                        Button(action: {
+                            self.viewModel.presenter.restartGame()
+                        }, label: {
+                            Image(icon: .refresh)
+                        })
+                    }
+
+                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                        Button(action: {
+                            self.viewModel.navigate(to: .playerListBrowser)
+                        }, label: {
+                            Image(icon: .list)
+                        })
+                    }
+                }
+                .tint(Utils.Palette.Basic.black.color)
         }
     }
 
@@ -100,10 +100,10 @@ struct GameBoardScreen: View {
                 .subtitle()
 
             Button(action: {
-                self.path.append(.playerList)
+                self.viewModel.navigate(to: .playerListBrowser)
             }, label: {
                 Text("SELECT_NEW_LIST_TO_PLAY".localized())
-                        .primaryButton()
+                    .primaryButton()
             })
             .buttonStyle(PrimaryButtonStyle())
         }
@@ -113,7 +113,7 @@ struct GameBoardScreen: View {
         VStack {
             self.playingHeader
 
-            SwiftUI.List {
+            List {
                 ForEach(players, id: \.name) { player in
                     let isPlayerDead = self.viewModel.isPlayerDead(player)
                     HStack {
@@ -213,10 +213,65 @@ struct GameBoardScreen: View {
                 .multilineTextAlignment(.center)
         }
     }
+
+    private func alertView(from alert: GameBoardScreen.ViewModel.PresentedAlert) -> Alert {
+        switch alert {
+        case .gameOver(let winner):
+            var message: String = ""
+            switch winner {
+            case .villager, .king, .doctor, .sheriff:
+                message = "CIVILIANS_WON_GAME_MESSAGE".localized()
+            case .mob, .none:
+                message = "MAFIA_WON_GAME_MESSAGE".localized()
+            }
+            return Alert(
+                title: Text("END_GAME_TITLE".localized()).title(),
+                message: Text(message).body(),
+                primaryButton: .default(
+                    Text("END_GAME_ACTION_TITLE".localized())) {
+                        self.viewModel.presenter.restartGame()
+                    },
+                secondaryButton: .cancel(Text("CONTINUE_GAME_ACTION_TITLE".localized()))
+            )
+        case .custom(let title, let message, _, let action):
+            return Alert(
+                title: Text(title ?? "").title(),
+                message: Text(message ?? "").body(),
+                dismissButton: .default(Text("OK".localized()), action: {
+                    action?()
+                    self.viewModel.presentedAlert = nil
+                })
+            )
+        }
+    }
+
+    private func sheetView(from sheet: ViewModel.PresentedSheet) -> some View {
+        switch sheet {
+        case .addPlayer:
+            TextInputView(title: "ADD_NEW_PLAYER".localized(), placeholder: "Jugador 1") { name in
+                self.viewModel.presentedSheet = nil
+                self.viewModel.presenter.addPlayerInCurrentGame(withName: name)
+            }
+            .presentationDetents([.fraction(0.3)])
+        }
+    }
 }
 
-#Preview {
-    GameManager.currentGame.setSelectedList(listPlayers: RawList(name: "Lista de prueba", players: [
+extension Role {
+    fileprivate var icon: Icon {
+        switch self {
+        case .villager: return .villager
+        case .mob: return .mob
+        case .king: return .king
+        case .doctor: return .doctor
+        case .sheriff: return .sheriff
+        case .none: return .none
+        }
+    }
+}
+
+#Preview("Playing View") {
+    GameManager.currentGame.setSelectedList(listPlayers: PlayerList(name: "Lista de prueba", players: [
         Player(name: "Jugador 1"),
         Player(name: "Jugador 2"),
         Player(name: "Jugador 3"),
@@ -228,15 +283,6 @@ struct GameBoardScreen: View {
     return GameBoardScreen()
 }
 
-extension Role {
-    var icon: Icon {
-        switch self {
-        case .villager: return .villager
-        case .mob: return .mob
-        case .king: return .king
-        case .doctor: return .doctor
-        case .sheriff: return .sheriff
-        case .none: return .none
-        }
-    }
+#Preview("Empty View") {
+    return GameBoardScreen()
 }

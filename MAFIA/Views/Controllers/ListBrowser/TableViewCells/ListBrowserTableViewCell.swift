@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ListBrowserTableViewCellDelegate: AnyObject {
-    func startGame(withList list: List)
+    func startGame(withList list: PlayerList)
 }
 
 class ListBrowserTableViewCell: UITableViewCell {
@@ -25,7 +25,7 @@ class ListBrowserTableViewCell: UITableViewCell {
         return String(describing: self)
     }
 
-    private var list: List?
+    private var list: PlayerList?
     weak var delegate: ListBrowserTableViewCellDelegate?
 
     // MARK: - IBActions
@@ -43,7 +43,7 @@ class ListBrowserTableViewCell: UITableViewCell {
     
     // MARK: Methods
     
-    func setCellData(list: List) {
+    func setCellData(list: PlayerList) {
         self.list = list
         nameLabel.text = list.name
     }

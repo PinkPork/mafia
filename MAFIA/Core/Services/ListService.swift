@@ -8,9 +8,9 @@
 
 import Foundation
 
-typealias CreateListCompletion = ((List?) -> Void)
-typealias GetListsCompletion = (([List]?) -> Void)
-typealias GetListCompletion = ((List?) -> Void)
+typealias CreateListCompletion = ((PlayerList?) -> Void)
+typealias GetListsCompletion = (([PlayerList]?) -> Void)
+typealias GetListCompletion = ((PlayerList?) -> Void)
 typealias DeleteListCompletion = ((Bool) -> Void)
 
 class ListService: BaseService {
@@ -38,7 +38,7 @@ class ListService: BaseService {
         completion(objects.map(ListMO.parse).first)
     }
 
-    func deleteList(list: List, completion: DeleteListCompletion) {
+    func deleteList(list: PlayerList, completion: DeleteListCompletion) {
         if let playersListMO = ListMO.reverseParse(fromList: list) {
             completion(CoreDataConnection.shared.managedContext.delete(playersListMO))
             return

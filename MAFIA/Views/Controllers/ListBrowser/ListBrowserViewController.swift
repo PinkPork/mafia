@@ -17,7 +17,7 @@ class ListBrowserViewController: UIViewController {
     // MARK: - Vars & Constants
 
     private let listCellIndetifier: String = "PlayersListCell"
-    private var lists: [List] = [List]()
+    private var lists: [PlayerList] = [PlayerList]()
     private var presenter: ListBrowserPresenter!
     private var addListAction: UIAlertAction!
 
@@ -83,7 +83,7 @@ class ListBrowserViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? ListViewController {
-            destination.list = sender as? RawList
+            destination.list = sender as? PlayerList
         }
     }
 }
@@ -95,17 +95,17 @@ extension ListBrowserViewController: ListBrowserView {
         self.presentAlert(title: title, message: message, preferredStyle: preferredStyle)
     }
     
-    func deleteList(listPlayer: List, indexPath: IndexPath) {
+    func deleteList(listPlayer: PlayerList, indexPath: IndexPath) {
         lists.remove(at: indexPath.row)
         tableView.reloadData()
     }
     
-    func addNewList(listPlayer: List) {
+    func addNewList(listPlayer: PlayerList) {
         lists.append(listPlayer)
         tableView.reloadData()
     }
     
-    func setListPlayers(listPlayers: [List]) {
+    func setListPlayers(listPlayers: [PlayerList]) {
         self.lists = listPlayers
         tableView.reloadData()
     }
@@ -115,7 +115,7 @@ extension ListBrowserViewController: ListBrowserView {
 // MARK: - PlayersListTableViewCellDelegate protocol conformance
 
 extension ListBrowserViewController: ListBrowserTableViewCellDelegate {
-    func startGame(withList list: List) {
+    func startGame(withList list: PlayerList) {
         presenter.selectList(list: list)
         gamePresenter.restartGame()
         self.navigationController?.popViewController(animated: true)

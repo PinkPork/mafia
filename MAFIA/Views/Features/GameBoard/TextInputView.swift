@@ -1,28 +1,30 @@
 import SwiftUI
 
-struct AddPlayerView: View {
-    var addPlayerAction: (String) -> Void
+struct TextInputView: View {
+    let title: String
+    let placeholder: String
+    var action: (String) -> Void
 
-    @State private var playerName: String = ""
+    @State private var text: String = ""
     @FocusState private var isFocused: Bool
 
     var body: some View {
         VStack {
-            Text("ADD_PLAYER_MESSAGE".localized())
+            Text(self.title)
                 .custom(size: .fontSize.extraSmall)
 
-            NameTextField(label: "Jugador X", text: self.$playerName)
+            PrimaryTextField(label: self.placeholder, text: self.$text)
                 .padding()
                 .focused(self.$isFocused)
 
             Button(action: {
-                self.addPlayerAction(self.playerName)
+                self.action(self.text)
             }, label: {
                 Text("ADD_ACTION".localized())
                     .primaryButton()
                     .padding(.horizontal)
             })
-            .disabled(self.playerName.isEmpty)
+            .disabled(self.text.isEmpty)
             .buttonStyle(PrimaryButtonStyle())
         }
         .task {
@@ -33,8 +35,8 @@ struct AddPlayerView: View {
     }
 }
 
-private struct NameTextField: View {
-    let label: LocalizedStringKey
+struct PrimaryTextField: View {
+    let label: String
     @Binding var text: String
 
     @Environment(\.isEnabled) private var isEnabled: Bool
@@ -48,7 +50,7 @@ private struct NameTextField: View {
 }
 
 #Preview {
-    AddPlayerView { _ in
+    TextInputView(title: "Add Text", placeholder: "placrholder") { _ in
 
     }
 }

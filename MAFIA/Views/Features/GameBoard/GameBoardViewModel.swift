@@ -1,21 +1,10 @@
 import Foundation
 import UIKit
 
-extension GameBoardViewModel {
+extension GameBoardScreen.ViewModel {
     enum State: Equatable {
         case empty
         case playing(players: [Player])
-
-        static func == (lhs: GameBoardViewModel.State, rhs: GameBoardViewModel.State) -> Bool {
-            switch (lhs, rhs) {
-            case (.empty, .empty):
-                return true
-            case (.playing(let lhsPlayers), .playing(let rhsPlayers)):
-                return lhsPlayers == rhsPlayers
-            case (.empty, _), (.playing, _):
-                return false
-            }
-        }
     }
 
     enum PresentedAlert: Identifiable {
@@ -32,39 +21,41 @@ extension GameBoardViewModel {
     }
 }
 
-final class GameBoardViewModel: ObservableObject {
-    private(set) lazy var presenter: GamePresenter = .init(view: self)
+extension GameBoardScreen {
+    final class ViewModel: ObservableObject, Coordinator {
+        private(set) lazy var presenter: GamePresenter = .init(view: self)
 
-    @Published var state: State = .empty
-    @Published var presentedAlert: PresentedAlert?
-    @Published var presentedSheet: PresentedSheet?
+        @Published var state: State
+        @Published var presentedAlert: PresentedAlert?
+        @Published var presentedSheet: PresentedSheet?
+        @Published var path: [GameBoardScreen.Route] = []
 
-    var aliveCiviliansPlayerText: String {
-        return self.presenter.aliveCiviliansPlayerText ?? ""
-    }
+        var aliveCiviliansPlayerText: String {
+            return self.presenter.aliveCiviliansPlayerText ?? ""
+        }
 
-    var aliveMafiaPlayerText: String {
-        return self.presenter.aliveMafiaPlayerText ?? ""
-    }
+        var aliveMafiaPlayerText: String {
+            return self.presenter.aliveMafiaPlayerText ?? ""
+        }
 
-    var totalNumberOfPlayers: String {
-        return self.presenter.totalNumberOfPlayers ?? ""
-    }
+        var totalNumberOfPlayers: String {
+            return self.presenter.totalNumberOfPlayers ?? ""
+        }
 
-    var selectedListName: String {
-        return self.presenter.selectedListName ?? ""
-    }
+        var selectedListName: String {
+            return self.presenter.selectedListName ?? ""
+        }
 
-    init() {        
-        self.presenter.showPlayers()
-    }
+        init(state: State) {
+            self.state = state
+        }
 
-    func isPlayerDead(_ player: Player) -> Bool {
-        return GameManager.currentGame.checkForKilledPlayers(player: player)
+        func isPlayerDead(_ player: Player) -> Bool {
+            return GameManager.currentGame.checkForKilledPlayers(player: player)
+        }
     }
 }
-
-extension GameBoardViewModel: GameView {
+extension GameBoardScreen.ViewModel: GameView {
     func setPlayers(players: [Player]) {
         self.state = .playing(players: players)
     }

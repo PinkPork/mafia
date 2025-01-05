@@ -11,18 +11,18 @@ import Foundation
 extension ListMO {
     // MARK: - Vars & Constants
     
-    static var entityName: String = "List"
+    static var entityName: String = "PlayerList"
 
     convenience init(name: String) {
         self.init(entity: CoreDataConnection.shared.getEntity(withName: ListMO.entityName), insertInto: CoreDataConnection.shared.managedContext)
         self.name = name
     }
     
-    /// Converts ListMO Core data object into a default List object
+    /// Converts ListMO Core data object into a default PlayerList object
     /// - parameter list: Core data PlayersListMO object
     /// - returns: `list` default object
-    class func parse(list: ListMO) -> List {
-        return RawList(name: list.name ?? "No name", players: parsePlayers(list.players))
+    class func parse(list: ListMO) -> PlayerList {
+        return PlayerList(name: list.name ?? "No name", players: parsePlayers(list.players))
     }
     
     /// Converts a set of Core data object players into an array of default players object
@@ -37,9 +37,9 @@ extension ListMO {
     }
 
     /// Inverse of parse; Converts PlayersList object into a PlayersListMO Core data object by searching in the actual NSManagedContext the list given
-    /// - parameter fromList: Default List object
+    /// - parameter fromList: Default PlayerList object
     /// - returns: `ListMO` Core data object
-    class func reverseParse(fromList list: List) -> ListMO? {
+    class func reverseParse(fromList list: PlayerList) -> ListMO? {
         let objects: [ListMO] = CoreDataConnection.shared.managedContext.loadObjects(ofType: ListMO.entityName, matching: "name == %@", params: [list.name])
         return objects.first
     }

@@ -13,7 +13,7 @@ import XCTest
 class DetailListPlayersServiceTest: BaseTest {
     
     var service: DetailListPlayersService!
-    var list: List!
+    var list: PlayerList!
     
     override func setUp() {
         super.setUp()

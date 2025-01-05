@@ -9,6 +9,8 @@ enum Icon: String {
     case none = "xmark"
     case refresh = "arrow.clockwise"
     case plus = "person.badge.plus"
+    case plusList = "text.badge.plus"
+    case list = "list.bullet"
 
     case mob = "wanted"
     case villager = "villager"

@@ -14,7 +14,7 @@ class GameManager {
     
     static let currentGame = GameManager()
     
-    private var selectedListPlayers: List?
+    private var selectedListPlayers: PlayerList?
     private var eliminatedPlayers: [Player] = [Player]()
     
     private init() {
@@ -69,7 +69,7 @@ class GameManager {
         return eliminatedPlayers.count
     }
     
-    func setSelectedList(listPlayers: List) {
+    func setSelectedList(listPlayers: PlayerList) {
         refreshWithoutPopup = false
         selectedListPlayers = listPlayers
     }

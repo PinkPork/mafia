@@ -25,7 +25,7 @@ class ListViewController: UIViewController {
         return !list.players.isEmpty
     }
     
-    weak var list: RawList!
+    weak var list: PlayerList!
 
     override func viewDidLoad() {
         super.viewDidLoad()

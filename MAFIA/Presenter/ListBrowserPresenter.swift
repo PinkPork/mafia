@@ -9,9 +9,9 @@
 import UIKit
 
 protocol ListBrowserView: AnyObject, BaseView {
-    func setListPlayers(listPlayers: [List])
-    func addNewList(listPlayer: List)
-    func deleteList(listPlayer: List, indexPath: IndexPath)
+    func setListPlayers(listPlayers: [PlayerList])
+    func addNewList(listPlayer: PlayerList)
+    func deleteList(listPlayer: PlayerList, indexPath: IndexPath)
 }
 
 class ListBrowserPresenter {
@@ -33,7 +33,7 @@ class ListBrowserPresenter {
         }
     }
     
-    func deleteList(playersList: List, indexPath: IndexPath) {
+    func deleteList(playersList: PlayerList, indexPath: IndexPath) {
         playersListService.deleteList(list: playersList) { [weak self] (success) in
              if success {
                 self?.view.deleteList(listPlayer: playersList, indexPath: indexPath)
@@ -49,7 +49,7 @@ class ListBrowserPresenter {
         }
     }
     
-    func selectList(list: List) {
+    func selectList(list: PlayerList) {
         GameManager.currentGame.setSelectedList(listPlayers: list)
     }
 }
