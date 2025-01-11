@@ -124,8 +124,6 @@ struct PlayerListBrowserView: View {
     }
 }
 
-
-
 #Preview("Empty") {
     final class MockCoordinator: Coordinator {
         var path: [GameBoardScreen.Route] = []

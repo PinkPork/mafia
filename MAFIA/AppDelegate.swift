@@ -19,9 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppDelegate.instance = self
 
         // Navigation bar setup
-//        UINavigationBar.appearance().isTranslucent = false
-//        UINavigationBar.appearance().tintColor = Utils.Palette.Basic.white
-//        UINavigationBar.appearance().barTintColor = Utils.Palette.Basic.red
+        UIBarButtonItem.appearance().tintColor = Utils.Palette.Basic.red
+        UINavigationBar.appearance().tintColor = Utils.Palette.Basic.red
+        UINavigationBar.appearance().barTintColor = Utils.Palette.Basic.red
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: Utils.Palette.Basic.black, NSAttributedString.Key.font: UIFont.get(withType: .papyrus, size: 24)]
         return true
     }

@@ -41,6 +41,7 @@ struct GameBoardScreen: View {
                 .navigationTitle("MAFIA")
                 .navigationBarTitleDisplayMode(.inline)
         }
+        .accentColor(Utils.Palette.Basic.red.color)
         .alert(item: self.$viewModel.presentedAlert) { alert in
             self.alertView(from: alert)
         }
@@ -86,7 +87,6 @@ extension GameBoardScreen {
                         })
                     }
                 }
-                .tint(Utils.Palette.Basic.black.color)
         }
     }
 

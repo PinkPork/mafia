@@ -10,12 +10,3 @@ struct MafiaApp: App {
         }
     }
 }
-
-private struct MainView: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> UIViewController {
-        let mainViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() ?? UIViewController()
-        return mainViewController
-    }
-
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
-}

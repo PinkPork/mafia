@@ -18,9 +18,12 @@ enum Icon: String {
 
 extension Image {
     init(icon: Icon) {
-        guard let image = UIImage(systemName: icon.rawValue) ?? UIImage(named: icon.rawValue) else {
+        if let image = UIImage(systemName: icon.rawValue) {
+            self.init(systemName: icon.rawValue)
+        } else if let image = UIImage(named: icon.rawValue) {
+            self.init(icon.rawValue)
+        } else {
             fatalError("Couldn't find image named: \(icon.rawValue)")
-        }
-        self.init(uiImage: image)
+        }        
     }
 }
