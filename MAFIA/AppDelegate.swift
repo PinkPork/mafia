@@ -19,10 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppDelegate.instance = self
 
         // Navigation bar setup
-        UIBarButtonItem.appearance().tintColor = Utils.Palette.Basic.red
-        UINavigationBar.appearance().tintColor = Utils.Palette.Basic.red
-        UINavigationBar.appearance().barTintColor = Utils.Palette.Basic.red
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: Utils.Palette.Basic.black, NSAttributedString.Key.font: UIFont.get(withType: .papyrus, size: 24)]
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Utils.Palette.Basic.black, NSAttributedString.Key.font: UIFont.get(withType: .papyrus, size: 24)]
+        appearance.backgroundColor = .white
+
+        let buttonAppearance = UIBarButtonItemAppearance()
+        buttonAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Utils.Palette.Basic.red, NSAttributedString.Key.font: UIFont.get(withType: .papyrus, size: 18)]
+        appearance.buttonAppearance = buttonAppearance
+
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
         return true
     }
 
