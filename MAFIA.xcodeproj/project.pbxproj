@@ -20,7 +20,6 @@
 		6E2618AF1FF5D2B200F3AF93 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2618AE1FF5D2B200F3AF93 /* BaseService.swift */; };
 		6E8F889E1FF701D900F7AB49 /* NSManagedObjectContextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F889D1FF701D900F7AB49 /* NSManagedObjectContextExtension.swift */; };
 		96002FD11FE860E300F8DF1F /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96002FD01FE860E300F8DF1F /* GamePresenter.swift */; };
-		960A297720002C5B00D23981 /* Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A297620002C5B00D23981 /* Segues.swift */; };
 		960A2979200034DD00D23981 /* DetailListPlayersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A2978200034DD00D23981 /* DetailListPlayersService.swift */; };
 		960A297B2000388500D23981 /* DetailListPlayersServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A297A2000388500D23981 /* DetailListPlayersServiceTest.swift */; };
 		96173D81200523E1008742AA /* BaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96173D80200523E1008742AA /* BaseTest.swift */; };
@@ -65,13 +64,10 @@
 		9688E1B3207522EB00853071 /* MockListPlayersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688E1B2207522EB00853071 /* MockListPlayersView.swift */; };
 		9688E1B52075311900853071 /* MockListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688E1B42075311900853071 /* MockListService.swift */; };
 		9688E1BB2075334600853071 /* BasePresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688E1BA2075334600853071 /* BasePresenterTest.swift */; };
-		96BEA68C1FF42F6000231518 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BEA68B1FF42F6000231518 /* MenuPresenter.swift */; };
-		96E47F2C208A359D00A53F58 /* PushMenuTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E47F2B208A359D00A53F58 /* PushMenuTransition.swift */; };
 		97CE9FCE1FEB05A700A8A55E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CE9FCD1FEB05A700A8A55E /* Utils.swift */; };
 		97CE9FD01FEB08AE00A8A55E /* GameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CE9FCF1FEB08AE00A8A55E /* GameRules.swift */; };
 		97CE9FD31FEB14C900A8A55E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CE9FD21FEB14C900A8A55E /* StringExtension.swift */; };
 		97CE9FD71FEB15CF00A8A55E /* Default.strings in Resources */ = {isa = PBXBuildFile; fileRef = 97CE9FD91FEB15CF00A8A55E /* Default.strings */; };
-		A546B4182010CDC000F3CB89 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A546B4172010CDC000F3CB89 /* UIViewControllerExtension.swift */; };
 		CFE3DA8A1FF71B43004D9D0F /* ListBrowserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE3DA891FF71B43004D9D0F /* ListBrowserPresenter.swift */; };
 /* End PBXBuildFile section */
 
@@ -106,7 +102,6 @@
 		6E2618AE1FF5D2B200F3AF93 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		6E8F889D1FF701D900F7AB49 /* NSManagedObjectContextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtension.swift; sourceTree = "<group>"; };
 		96002FD01FE860E300F8DF1F /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
-		960A297620002C5B00D23981 /* Segues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segues.swift; sourceTree = "<group>"; };
 		960A2978200034DD00D23981 /* DetailListPlayersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListPlayersService.swift; sourceTree = "<group>"; };
 		960A297A2000388500D23981 /* DetailListPlayersServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListPlayersServiceTest.swift; sourceTree = "<group>"; };
 		96173D80200523E1008742AA /* BaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTest.swift; sourceTree = "<group>"; };
@@ -157,13 +152,10 @@
 		9688E1B2207522EB00853071 /* MockListPlayersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockListPlayersView.swift; sourceTree = "<group>"; };
 		9688E1B42075311900853071 /* MockListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockListService.swift; sourceTree = "<group>"; };
 		9688E1BA2075334600853071 /* BasePresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePresenterTest.swift; sourceTree = "<group>"; };
-		96BEA68B1FF42F6000231518 /* MenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
 		96D74D082D14D16B00112079 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Default.strings; sourceTree = "<group>"; };
-		96E47F2B208A359D00A53F58 /* PushMenuTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushMenuTransition.swift; sourceTree = "<group>"; };
 		97CE9FCD1FEB05A700A8A55E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		97CE9FCF1FEB08AE00A8A55E /* GameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
 		97CE9FD21FEB14C900A8A55E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		A546B4172010CDC000F3CB89 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		A546B41D20110D4500F3CB89 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		A546B41E20110D4500F3CB89 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Default.strings"; sourceTree = "<group>"; };
 		A546B420201123FF00F3CB89 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -367,7 +359,6 @@
 			isa = PBXGroup;
 			children = (
 				96002FD01FE860E300F8DF1F /* GamePresenter.swift */,
-				96BEA68B1FF42F6000231518 /* MenuPresenter.swift */,
 				CFE3DA891FF71B43004D9D0F /* ListBrowserPresenter.swift */,
 				07434A7D2002B2E0004AE1CC /* ListPresenter.swift */,
 			);
@@ -435,24 +426,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		96E47F2A208A357800A53F58 /* UIViewControllerTransitions */ = {
-			isa = PBXGroup;
-			children = (
-				96E47F2B208A359D00A53F58 /* PushMenuTransition.swift */,
-			);
-			path = UIViewControllerTransitions;
-			sourceTree = "<group>";
-		};
 		97CE9FCB1FEB057E00A8A55E /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				96E47F2A208A357800A53F58 /* UIViewControllerTransitions */,
 				97CE9FD41FEB14EE00A8A55E /* LocalizedStrings */,
 				97CE9FD11FEB14BD00A8A55E /* Extensions */,
 				97CE9FCD1FEB05A700A8A55E /* Utils.swift */,
 				9620D7BF1FE99267008E0F55 /* Enums.swift */,
 				97CE9FCF1FEB08AE00A8A55E /* GameRules.swift */,
-				960A297620002C5B00D23981 /* Segues.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -467,7 +448,6 @@
 				965F34F81FE9CE8C00752CD9 /* MutableCollectionExtension.swift */,
 				96173D822005597A008742AA /* NSSetExtension.swift */,
 				967F416F20098EEB006D04CB /* ArrayExtension.swift */,
-				A546B4172010CDC000F3CB89 /* UIViewControllerExtension.swift */,
 				9688E1A82072B44700853071 /* UIColorExtension.swift */,
 				9688E1AC2072C7F100853071 /* UIViewExtension.swift */,
 				9688E1AE2073D04000853071 /* UIFontExtension.swift */,
@@ -632,7 +612,6 @@
 				96002FD11FE860E300F8DF1F /* GamePresenter.swift in Sources */,
 				966546872010F9FA008D0A8B /* BaseView.swift in Sources */,
 				6E0163152011785F00E91421 /* List.swift in Sources */,
-				960A297720002C5B00D23981 /* Segues.swift in Sources */,
 				9688E1AF2073D04000853071 /* UIFontExtension.swift in Sources */,
 				96173D832005597A008742AA /* NSSetExtension.swift in Sources */,
 				97CE9FD01FEB08AE00A8A55E /* GameRules.swift in Sources */,
@@ -656,9 +635,7 @@
 				9625F4B62D284C79009C797D /* PrimaryButtonStyle.swift in Sources */,
 				967A77052D25E80600C7C2F4 /* MafiaApp.swift in Sources */,
 				9625F4BD2D289E46009C797D /* PlayerListBrowserView.swift in Sources */,
-				A546B4182010CDC000F3CB89 /* UIViewControllerExtension.swift in Sources */,
 				6E016319201178E500E91421 /* PlayerMO+CoreDataProperties.swift in Sources */,
-				96E47F2C208A359D00A53F58 /* PushMenuTransition.swift in Sources */,
 				6E0163262011802100E91421 /* PlayerMOExtension.swift in Sources */,
 				96591C6F1FE85B660067BB2E /* MAFIA.xcdatamodeld in Sources */,
 				97CE9FCE1FEB05A700A8A55E /* Utils.swift in Sources */,
@@ -666,7 +643,6 @@
 				9688E1A92072B44700853071 /* UIColorExtension.swift in Sources */,
 				6E01631E20117B4E00E91421 /* ListMO+CoreDataClass.swift in Sources */,
 				963BFCE22D32E0E0004BBE37 /* PlayerListDetail.swift in Sources */,
-				96BEA68C1FF42F6000231518 /* MenuPresenter.swift in Sources */,
 				967A770A2D25ED7000C7C2F4 /* GameBoardScreen.swift in Sources */,
 				9625F4AA2D2847A4009C797D /* Text+Font.swift in Sources */,
 				6E2618AD1FF5C9BD00F3AF93 /* DatabaseProtocol.swift in Sources */,

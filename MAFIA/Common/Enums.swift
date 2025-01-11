@@ -24,14 +24,3 @@ enum Role { // TODO: This might change in the future if we are going to add the 
         return String(describing: self).localized().capitalizeFirst()
     }
 }
-
-/// The options displayed on the side Menu
-enum MenuOptions: String {
-    
-    case NewPlayer = "MENU_ADD_NEW_PLAYER"
-    case PlayersList = "MENU_PLAYERS_LIST"
-    
-    var title: String {
-        return self.rawValue.localized()
-    }
-}
