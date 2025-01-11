@@ -151,7 +151,7 @@ extension GameBoardScreen {
                             } label: {
                                 Text("KILL_PLAYER_BUTTON_TITLE".localized())
                             }
-                            .tint(.red)
+                            .tint(Utils.Palette.Basic.red.color)
                         }
                     }
                     .swipeActions(edge: .leading, allowsFullSwipe: false) {
@@ -160,7 +160,7 @@ extension GameBoardScreen {
                         } label: {
                             Text("DELETE_ACTION".localized())
                         }
-                        .tint(.red)
+                        .tint(Utils.Palette.Basic.darkBlue.color)
                     }
                 }
             }
