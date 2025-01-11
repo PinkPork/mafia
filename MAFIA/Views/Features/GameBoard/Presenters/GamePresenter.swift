@@ -99,8 +99,7 @@ class GamePresenter {
         } else if GameManager.currentGame.aliveMafia >= GameManager.currentGame.aliveCivilians {
             winnerRole = .mob
         }
-
-        guard winnerRole != .none else { return }
+        
         view.endGame(winner: winnerRole)
     }
     

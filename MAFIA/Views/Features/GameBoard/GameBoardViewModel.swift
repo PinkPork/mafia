@@ -86,6 +86,9 @@ extension GameBoardScreen.ViewModel: GameView {
     }
 
     func endGame(winner: Role) {
+        guard winner != .none else {
+            return
+        }
         self.presentedAlert = .gameOver(winner: winner)
     }
 

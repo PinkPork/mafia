@@ -127,6 +127,7 @@
 		963BA3E71FF59C3600090DDE /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		963BFCDF2D32D3C6004BBE37 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		963BFCE12D32E0E0004BBE37 /* PlayerListDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListDetail.swift; sourceTree = "<group>"; };
+		963BFCE92D3305FC004BBE37 /* MAFIA.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MAFIA.xctestplan; sourceTree = "<group>"; };
 		96591C631FE85B660067BB2E /* MAFIA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAFIA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96591C661FE85B660067BB2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96591C6E1FE85B660067BB2E /* MAFIA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MAFIA.xcdatamodel; sourceTree = "<group>"; };
@@ -311,6 +312,7 @@
 		96591C651FE85B660067BB2E /* MAFIA */ = {
 			isa = PBXGroup;
 			children = (
+				963BFCE92D3305FC004BBE37 /* MAFIA.xctestplan */,
 				97CE9FCB1FEB057E00A8A55E /* Common */,
 				96591C991FE85B940067BB2E /* Core */,
 				96591C971FE85B7F0067BB2E /* Views */,
