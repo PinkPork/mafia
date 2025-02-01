@@ -54,7 +54,7 @@ final class GameDetailModel {
     }
 }
 
-struct GameDetail: View {
+struct GameDetailView: View {
     @State var model: GameDetailModel
 
     init?(id: Game.ID) {
@@ -129,6 +129,6 @@ struct GameDetail: View {
     let game = Game.mock
     @Shared(.games) var games = [game]
     NavigationStack {
-        GameDetail(id: game.id)
+        GameDetailView(id: game.id)
     }
 }

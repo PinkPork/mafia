@@ -6,13 +6,13 @@ struct AppView: View {
 
     var body: some View {
         NavigationStack(path: Binding($path)) {
-            GameList()
+            GameListView()
                 .navigationDestination(for: AppPath.self) { path in
                     switch path {
                     case .gameDetail(let id):
-                        GameDetail(id: id)
+                        GameDetailView(id: id)
                     case .game(id: let id):
-                        EmptyView()
+                        GameMatchView(id: id)
                     }
                 }
         }

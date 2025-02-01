@@ -34,7 +34,7 @@ final class GameListModel {
     }
 }
 
-struct GameList: View {
+struct GameListView: View {
     @State var model = GameListModel()
 
     var body: some View {
@@ -113,7 +113,7 @@ extension SharedReaderKey where Self == FileStorageKey<IdentifiedArrayOf<Game>>.
         .mock
     ]
     NavigationStack {
-        GameList()
+        GameListView()
             .environment(\.locale, .init(identifier: "es"))
     }
 }
