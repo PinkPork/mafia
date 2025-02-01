@@ -114,5 +114,6 @@ extension SharedReaderKey where Self == FileStorageKey<IdentifiedArrayOf<Game>>.
     ]
     NavigationStack {
         GameList()
+            .environment(\.locale, .init(identifier: "es"))
     }
 }

@@ -13,7 +13,6 @@ struct Player: Hashable, Identifiable, Codable {
     var name: String = ""
 }
 
-
 extension Game {
     static let mock = Self(
         id: .init(rawValue: UUID()),
