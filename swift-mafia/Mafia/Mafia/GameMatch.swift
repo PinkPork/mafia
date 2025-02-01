@@ -13,7 +13,6 @@ import SwiftUINavigation
 @MainActor
 @Observable
 final class GameMatchModel {
-    @ObservationIgnored
 
     var match: Match
     @ObservationIgnored @Shared var game: Game
@@ -58,8 +57,16 @@ struct GameMatchView: View {
                 Text("Game Over")
                 Text("Winner: \(winner)")
             } else {
-                Button("Next Turn") {
-                    model.nextTurnButtonTapped()
+                Section {
+                    Label(
+                        model.match.state == .day ? "Day" : "Night",
+                        systemImage: model.match.state == .day ? "sun.max.fill" : "moon.fill"
+                    )
+                    Button("Next Turn") {
+                        model.nextTurnButtonTapped()
+                    }
+                } header: {
+                    Text("Current Turn")
                 }
             }
 
@@ -82,6 +89,18 @@ struct GameMatchView: View {
                         }
 
                         Text(player.state == .alive ? "Alive" : "Dead")
+                    }
+                    .swipeActions {
+                        Button("Kill") {
+                            model.match.players[id: player.id]?.state = .dead
+                        }
+                        .tint(.red)
+                    }
+                    .swipeActions(edge: .leading) {
+                        Button("Revive") {
+                            model.match.players[id: player.id]?.state = .alive
+                        }
+                        .tint(.green)
                     }
                 }
             } header: {
