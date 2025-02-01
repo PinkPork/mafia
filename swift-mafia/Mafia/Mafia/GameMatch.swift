@@ -38,6 +38,8 @@ final class GameMatchModel {
             match.state = .day
         case .over: break
         }
+
+        $game.withLock { $0.matches[id: match.id] = match }
     }
 }
 

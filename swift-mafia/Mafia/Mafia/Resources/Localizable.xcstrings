@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld" : {
+
+    },
     "Add" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -34,6 +37,66 @@
         }
       }
     },
+    "Alive" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vivo"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
+        }
+      }
+    },
+    "Current Turn" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turno Actual"
+          }
+        }
+      }
+    },
+    "Day" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Día"
+          }
+        }
+      }
+    },
+    "Dead" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muerto"
+          }
+        }
+      }
+    },
+    "Delete" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Borrar"
+          }
+        }
+      }
+    },
     "Dismiss" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -41,6 +104,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Salir"
+          }
+        }
+      }
+    },
+    "Doctor" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medico"
           }
         }
       }
@@ -55,7 +128,48 @@
         }
       }
     },
+    "Edit" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editar"
+          }
+        }
+      }
+    },
+    "Error loading games" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error cargando juegos"
+          }
+        }
+      }
+    },
+    "Game Over" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pailas, se acabó el juego"
+          }
+        }
+      }
+    },
+    "Game Title" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titulo del Juego"
+          }
+        }
+      }
+    },
     "Hello, world!" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -66,11 +180,32 @@
       }
     },
     "Hello, World!" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Borrame"
+          }
+        }
+      }
+    },
+    "Kill" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Matar"
+          }
+        }
+      }
+    },
+    "King" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rey"
           }
         }
       }
@@ -92,6 +227,16 @@
         }
       }
     },
+    "Mobster" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mafioso"
+          }
+        }
+      }
+    },
     "New Game" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -99,6 +244,116 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nuevo Juego"
+          }
+        }
+      }
+    },
+    "New Game Title" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titulo del Juego"
+          }
+        }
+      }
+    },
+    "Next Turn" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siguiente Turno"
+          }
+        }
+      }
+    },
+    "Night" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noche"
+          }
+        }
+      }
+    },
+    "No games available, start by creating one" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay juegos disponibles, comienza creando uno."
+          }
+        }
+      }
+    },
+    "Past Games" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Juegos pasados"
+          }
+        }
+      }
+    },
+    "Player Name" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre del jugador"
+          }
+        }
+      }
+    },
+    "Players" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jugadores"
+          }
+        }
+      }
+    },
+    "Revive" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Revivir"
+          }
+        }
+      }
+    },
+    "Sheriff" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sheriff"
+          }
+        }
+      }
+    },
+    "Start Game" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Juego Nuevo"
+          }
+        }
+      }
+    },
+    "Villager" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aldeano"
           }
         }
       }
