@@ -2,13 +2,13 @@ import Foundation
 import Sharing
 
 enum AppPath: Codable, Hashable {
-    case listSelection(id: Game.ID?)
     case gameDetail(id: Game.ID)
+    case game(id: Game.ID)
 
     var isRestorable: Bool {
         switch self {
-        case .listSelection: true
         case .gameDetail: true
+        case .game: true
         }
     }
 }

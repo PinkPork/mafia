@@ -27,7 +27,7 @@ final class GameListModel {
     func confirmAddGameButtonTapped() {
         defer { addGame = nil }
 
-        guard let addGame = addGame else { return }
+        guard let addGame else { return }
         let game = addGame.game
         // TODO: Add rules to validate the game
         _ = $games.withLock { $0.append(game) }
