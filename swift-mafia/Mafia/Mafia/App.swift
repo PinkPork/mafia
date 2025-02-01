@@ -9,7 +9,10 @@ struct AppView: View {
             GameList()
                 .navigationDestination(for: AppPath.self) { path in
                     switch path {
-                    default: EmptyView()
+                    case .gameDetail(let id):
+                        GameDetail(id: id)
+                    case .game(id: let id):
+                        EmptyView()
                     }
                 }
         }

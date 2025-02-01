@@ -102,6 +102,23 @@
           }
         }
       }
+    },
+    "You need a minimum of 6 players to start" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You need a minimum of 6 players to start"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se necesitan al menos 6 jugadores para comenzar"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

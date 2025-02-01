@@ -66,19 +66,26 @@ struct GameDetail: View {
 
     var body: some View {
         List {
-            Section {
-                Button {
-                    model.startGameButtonTapped()
-                } label: {
-                    Label("Start Game", systemImage: "play.fill")
-                        .font(.headline)
-                        .foregroundColor(.accentColor)
+            if model.game.players.count < 6 {
+                Section {
+                    Label("You need a minimum of 6 players to start", systemImage: "exclamationmark.triangle")
+                        .accentColor(.red)
+                }
+            } else {
+                Section {
+                    Button {
+                        model.startGameButtonTapped()
+                    } label: {
+                        Label("Start Game", systemImage: "play.fill")
+                            .font(.headline)
+                            .foregroundColor(.accentColor)
+                    }
                 }
             }
 
             Section {
                 ForEach(model.game.players) { player in
-                    Label(player.name, systemImage: "person.fill")
+                    Label(player.name, systemImage: "person")
                 }
             } header: {
                 Text("Players")
