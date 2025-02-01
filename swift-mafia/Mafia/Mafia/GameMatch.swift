@@ -13,10 +13,24 @@ import SwiftUINavigation
 @MainActor
 @Observable
 final class GameMatchModel {
+    @ObservationIgnored
+
+    var match: Match
     @ObservationIgnored @Shared var game: Game
 
-    init(game: Shared<Game>) {
+    init(game: Shared<Game>, matchId: Match.ID? = nil) {
+        @Dependency(\.uuid) var uuid
+        let match: Match = matchId.flatMap { game.matches[id: $0].wrappedValue } ?? Match(
+            id: .init(uuid()),
+            players: Match.assignRoles(players: game.wrappedValue.players)
+        )
+
         self._game = game
+        self.match = match
+    }
+
+    func toogleStateButtonTapped() {
+
     }
 }
 
@@ -31,12 +45,16 @@ struct GameMatchView: View {
     }
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            Button("Toogle State") {
+            }
+        }
+        .navigationTitle(model.game.title)
     }
 }
 
 #Preview {
-    let game = Game.mock
+    var game = Game.mock
     @Shared(.games) var games = [game]
     NavigationStack {
         GameMatchView(id: game.id)

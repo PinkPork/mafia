@@ -23,12 +23,16 @@ enum RolePlayerState: Hashable, Codable {
 }
 
 enum MatchState: Hashable, Codable {
-    case day, night, over
+    enum Winner: Hashable, Codable {
+        case mobsters, villagers
+    }
+
+    case day, night, over(withWinner: Winner)
 }
 
 struct Match: Hashable, Identifiable, Codable {
     struct RolePlayer: Hashable, Identifiable, Codable {
-        let id: Player.ID
+        var id: Player.ID { player.id }
         let player: Player
         let role: Role
         var state: RolePlayerState = .alive
@@ -40,10 +44,12 @@ struct Match: Hashable, Identifiable, Codable {
 
     init(
         id: Tagged<Self, UUID>,
-        players: IdentifiedArrayOf<Player>
+        state: MatchState = .day,
+        players: IdentifiedArrayOf<RolePlayer>
     ) {
         self.id = id
-        self.players = Self.assignRoles(players: players)
+        self.state = state
+        self.players = players
     }
 
     static func assignRoles(players: IdentifiedArrayOf<Player>) -> IdentifiedArrayOf<RolePlayer> {
@@ -57,7 +63,6 @@ struct Match: Hashable, Identifiable, Codable {
             if numberOfMobsters > 0 {
                 numberOfMobsters -= 1
                 return RolePlayer(
-                    id: player.id,
                     player: player,
                     role: .mobster
                 )
@@ -65,14 +70,12 @@ struct Match: Hashable, Identifiable, Codable {
 
             if let uniqueRole = uniqueRoles.popLast() {
                 return RolePlayer(
-                    id: player.id,
                     player: player,
                     role: uniqueRole
                 )
             }
 
             return RolePlayer(
-                id: player.id,
                 player: player,
                 role: .villager
             )
@@ -86,12 +89,48 @@ extension Game {
         id: .init(rawValue: UUID()),
         title: "Mafia",
         players: [
-            Player(id: .init(rawValue: UUID()), name: "Jaime"),
-            Player(id: .init(rawValue: UUID()), name: "Santy"),
-            Player(id: .init(rawValue: UUID()), name: "Hugo"),
-            Player(id: .init(rawValue: UUID()), name: "Jose Calvo"),
-            Player(id: .init(rawValue: UUID()), name: "Lucho"),
-            Player(id: .init(rawValue: UUID()), name: "El de Alemania"),
+            .Jaime,
+            .Santy,
+            .Hugo,
+            .Calvo,
+            .Lucho,
+            .Alemania,
+        ],
+        matches: [
+            .init(
+                id: .init(rawValue: UUID()),
+                state: .day,
+                players: [
+                    Match.RolePlayer(player: .Jaime, role: .king, state: .alive),
+                    Match.RolePlayer(player: .Santy, role: .doctor, state: .alive),
+                    Match.RolePlayer(player: .Hugo, role: .sheriff, state: .alive),
+                    Match.RolePlayer(player: .Calvo, role: .mobster, state: .alive),
+                    Match.RolePlayer(player: .Lucho, role: .mobster, state: .alive),
+                    Match.RolePlayer(player: .Alemania, role: .mobster, state: .alive),
+                ]
+            ),
+            .init(
+                id: .init(rawValue: UUID()),
+                state: .over(withWinner: .mobsters),
+                players: [
+                    Match.RolePlayer(player: .Jaime, role: .king, state: .dead),
+                    Match.RolePlayer(player: .Santy, role: .doctor, state: .dead),
+                    Match.RolePlayer(player: .Hugo, role: .sheriff, state: .alive),
+                    Match.RolePlayer(player: .Calvo, role: .mobster, state: .alive),
+                    Match.RolePlayer(player: .Lucho, role: .mobster, state: .alive),
+                    Match.RolePlayer(player: .Alemania, role: .mobster, state: .alive),
+                ]
+            ),
         ]
     )
+}
+
+extension Player {
+
+    static let Jaime = Player(id: .init(rawValue: UUID()), name: "Jaime")
+    static let Santy = Player(id: .init(rawValue: UUID()), name: "Santy")
+    static let Hugo = Player(id: .init(rawValue: UUID()), name: "Hugo")
+    static let Calvo = Player(id: .init(rawValue: UUID()), name: "Jose Calvo")
+    static let Lucho = Player(id: .init(rawValue: UUID()), name: "Lucho")
+    static let Alemania = Player(id: .init(rawValue: UUID()), name: "El de Alemania")
 }
