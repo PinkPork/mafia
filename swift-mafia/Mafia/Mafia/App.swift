@@ -13,6 +13,8 @@ struct AppView: View {
                         GameDetailView(id: id)
                     case .game(id: let id):
                         GameMatchView(id: id)
+                    case let .match(id: gameId, match: matchId):
+                        GameMatchView(id: gameId, matchId: matchId)
                     }
                 }
         }

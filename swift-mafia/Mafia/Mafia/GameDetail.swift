@@ -92,6 +92,18 @@ struct GameDetailView: View {
             }
 
             Section {
+                ForEach(model.game.matches) { match in
+                    NavigationLink(
+                        value: AppPath.match(id: model.game.id, match: match.id)
+                    ) {
+                        MatchCardView(match: match)
+                    }
+                }
+            } header: {
+                Text("Past Games")
+            }
+
+            Section {
                 Button("Delete") {
                     Task { await model.deleteButtonTapped() }
                 }
@@ -121,6 +133,19 @@ struct GameDetailView: View {
                         }
                     }
             }
+        }
+    }
+}
+
+struct MatchCardView: View {
+    let match: Match
+
+    var body: some View {
+        switch match.state {
+        case .over(let winner):
+            Label("Winner: \(winner)", systemImage: "star.fill")
+        default:
+            Label("Current Turn: \(match.state)", systemImage: "arrow.clockwise")
         }
     }
 }

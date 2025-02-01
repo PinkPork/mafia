@@ -44,11 +44,11 @@ final class GameMatchModel {
 struct GameMatchView: View {
     @State var model: GameMatchModel
 
-    init?(id: Game.ID) {
+    init?(id: Game.ID, matchId: Match.ID? = nil) {
         @Shared(.games) var games
         guard let game = Shared($games[id: id])
         else { return nil }
-        _model = State(wrappedValue: GameMatchModel(game: game))
+        _model = State(wrappedValue: GameMatchModel(game: game, matchId: matchId))
     }
 
     var body: some View {
