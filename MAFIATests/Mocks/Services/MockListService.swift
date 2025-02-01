@@ -10,13 +10,13 @@
 import Foundation
 
 class MockListService: ListService {
-    private let lists: [List]
+    private let lists: [PlayerList]
 
-    init(lists: [List]) {
+    init(lists: [PlayerList]) {
         self.lists = lists
     }
 
-    override func createListWith(name: String, players: [Player], completion: (List?) -> Void) {
+    override func createListWith(name: String, players: [Player], completion: (PlayerList?) -> Void) {
         completion(lists.first)
     }
 
@@ -24,11 +24,11 @@ class MockListService: ListService {
         completion(lists)
     }
 
-    override func getList(withName name: String, completion: (List?) -> Void) {
+    override func getList(withName name: String, completion: (PlayerList?) -> Void) {
         completion(lists.first(where:  { $0.name == name }))
     }
 
-    override func deleteList(list: List, completion: (Bool) -> Void) {
+    override func deleteList(list: PlayerList, completion: (Bool) -> Void) {
         completion(true)
     }
 }

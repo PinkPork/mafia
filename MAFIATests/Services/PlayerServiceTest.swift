@@ -36,7 +36,7 @@ class PlayerServiceTest: BaseTest {
     }
     
     func testLoadAllPlayers() {
-        for player in MockData.Player.rawPlayers {
+        for player in MockData.Player.Players {
             service.savePlayer(name: player) { (player) in
                 XCTAssertNotNil(player, "There was an error creating a player with name: \(name)")
             }

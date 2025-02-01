@@ -56,7 +56,7 @@ class ListServiceTest: BaseTest {
             XCTAssertNotNil(playerList, "There was a problem creating a list with name: \(MockData.PlayersList.name)")
         })
     
-        service.deleteList(list: RawList(name: MockData.PlayersList.name)) { (success) in
+        service.deleteList(list: PlayerList(name: MockData.PlayersList.name)) { (success) in
             XCTAssertTrue(success, "There was a problem deleting a list with name: \(MockData.PlayersList.name)")
         }
     }

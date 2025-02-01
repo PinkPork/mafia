@@ -16,15 +16,15 @@ class MockListPlayersView: ListBrowserView {
     var deleteListCalled = false
     var didShowAlert = false
 
-    func setListPlayers(listPlayers: [List]) {
+    func setListPlayers(listPlayers: [PlayerList]) {
         setListPlayersCalled = true
     }
 
-    func addNewList(listPlayer: List) {
+    func addNewList(listPlayer: PlayerList) {
         addNewListCalled = true
     }
 
-    func deleteList(listPlayer: List, indexPath: IndexPath) {
+    func deleteList(listPlayer: PlayerList, indexPath: IndexPath) {
         deleteListCalled = true
     }
 

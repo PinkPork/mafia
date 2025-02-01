@@ -19,7 +19,7 @@ class GamePresenterTest: BasePresenterTest {
         super.setUp()
         mockPlayerService = MockPlayerService(players: getMockPlayers())
         gamePresenterTest = GamePresenter(view: mockGameView, playerService: mockPlayerService)
-        let selectedPlayerList = RawList(name: MockData.PlayersList.name, players: getMockPlayers())
+        let selectedPlayerList = PlayerList(name: MockData.PlayersList.name, players: getMockPlayers())
         GameManager.currentGame.setSelectedList(listPlayers: selectedPlayerList)
     }
     

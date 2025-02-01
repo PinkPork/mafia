@@ -1,5 +1,5 @@
 //
-//  List.swift
+//  PlayerList.swift
 //  MAFIA
 //
 //  Created by Santiago Carmona gonzalez on 1/18/18.
@@ -8,17 +8,16 @@
 
 import Foundation
 
-protocol List: class {
-    var name: String { get set }
-    var players: [Player] { get set }
-}
-
-class RawList: List {
-    var name: String
+final class PlayerList: Equatable {
+    let name: String
     var players: [Player]
     
     init(name: String, players: [Player] = [Player]()) {
         self.name = name
         self.players = players
+    }
+
+    static func == (lhs: PlayerList, rhs: PlayerList) -> Bool {
+        return lhs.name == rhs.name && lhs.players == rhs.players
     }
 }

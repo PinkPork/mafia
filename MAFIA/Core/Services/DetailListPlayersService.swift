@@ -13,24 +13,24 @@ typealias RemovePlayerFromListCompletion = ((Bool) -> Void)
 
 class DetailListPlayersService {
     
-    func add(toList list: List, playerWithName name: String, completion: AddPlayerToListCompletion) {
+    func add(toList list: PlayerList, playerWithName name: String, completion: AddPlayerToListCompletion) {
         if let listMO = ListMO.reverseParse(fromList: list) {
             let playerMO = PlayerMO(name: name)
             listMO.addToPlayers(playerMO)
 
             if CoreDataConnection.shared.managedContext.save(list) {
-                let rawPlayer = PlayerMO.parse(player: playerMO)                
-                completion(rawPlayer)
+                let Player = PlayerMO.parse(player: playerMO)                
+                completion(Player)
                 return
             }
         }
         completion(nil)
     }
     
-    func remove(_ player: Player, fromList list: List, completion: RemovePlayerFromListCompletion) {
+    func remove(_ player: Player, fromList list: PlayerList, completion: RemovePlayerFromListCompletion) {
 
         if let listMO = ListMO.reverseParse(fromList: list) {
-            if let playerMO = PlayerMO.reverseParse(fromPlayer: player) {
+            if let playerMO = (listMO.players?.allObjects as? [PlayerMO])?.first(where: { $0.name == player.name }) {
                 listMO.removeFromPlayers(playerMO)
                 if CoreDataConnection.shared.managedContext.save(listMO) {
                     completion(true)

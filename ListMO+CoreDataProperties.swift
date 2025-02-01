@@ -13,7 +13,7 @@ import CoreData
 extension ListMO {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ListMO> {
-        return NSFetchRequest<ListMO>(entityName: "List")
+        return NSFetchRequest<ListMO>(entityName: "PlayerList")
     }
 
     @NSManaged public var name: String?

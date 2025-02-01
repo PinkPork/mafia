@@ -12,7 +12,7 @@ import XCTest
 class BasePresenterTest: XCTestCase {
 
     var players: [Player]!
-    var lists: [List]!
+    var lists: [PlayerList]!
     
     override func setUp() {
         super.setUp()
@@ -27,16 +27,16 @@ class BasePresenterTest: XCTestCase {
     /// Gets 5 mock players with different name and the same role **Role.none** for test
     /// - returns: An Array `Player` with mockData
     func getMockPlayers() -> [Player] {
-        return MockData.Player.rawPlayers.map({ (name) -> Player in
-            return RawPlayer(name: name)
+        return MockData.Player.Players.map({ (name) -> Player in
+            return Player(name: name)
         })
     }
 
     /// Gets 5 mock list with different name
-    /// - returns: An Array `List` with mockData
-    func getMockLists() -> [List] {
-        return MockData.PlayersList.rawLists.map({ (name) -> List in
-            return RawList(name: name)
+    /// - returns: An Array `PlayerList` with mockData
+    func getMockLists() -> [PlayerList] {
+        return MockData.PlayersList.rawLists.map({ (name) -> PlayerList in
+            return PlayerList(name: name)
         })
     }
     

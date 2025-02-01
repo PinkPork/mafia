@@ -23,17 +23,17 @@ struct MockData {
             return CoreDataConnection.shared.getEntity(withName: PlayerMO.entityName)
         }
         
-        static var rawPlayers: [String] {
+        static var Players: [String] {
             return [Player.name, Player.name1, Player.name2, Player.name3, Player.name4, Player.name5]
         }
     }
     
     struct PlayersList {
-        static let name: String = "List Test"
-        static let name1: String = "List Test1"
-        static let name2: String = "List Test2"
-        static let name3: String = "List Test3"
-        static let name4: String = "List Test4"
+        static let name: String = "PlayerList Test"
+        static let name1: String = "PlayerList Test1"
+        static let name2: String = "PlayerList Test2"
+        static let name3: String = "PlayerList Test3"
+        static let name4: String = "PlayerList Test4"
         
         static var rawLists: [String] {
             return [PlayersList.name, PlayersList.name1, PlayersList.name2, PlayersList.name3, PlayersList.name4]

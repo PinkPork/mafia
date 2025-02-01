@@ -160,6 +160,7 @@
 
 // MARK: - Empty view titles
 "EMPTY_DETAIL_LIST_PLAYERS" = "No tienes ningun miembro agregado en esta lista";
+"EMPTY_LISTS" = "No tienes ninguna lista agregada";
 
 // MARK: - Mafia phrases
 "MAFIA_PHRASE_1" = "Cae la noche";
