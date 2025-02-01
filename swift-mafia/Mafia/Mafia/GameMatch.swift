@@ -29,8 +29,16 @@ final class GameMatchModel {
         self.match = match
     }
 
-    func toogleStateButtonTapped() {
-
+    func nextTurnButtonTapped() {
+        switch match.state {
+        case .day:
+            match.state = .night
+        case .night:
+            // TODO: validate players updates
+            match.state = .over(withWinner: .mobsters)
+            match.state = .day
+        case .over: break
+        }
     }
 }
 
@@ -46,8 +54,40 @@ struct GameMatchView: View {
 
     var body: some View {
         List {
-            Button("Toogle State") {
+            if case let .over(winner) = model.match.state {
+                Text("Game Over")
+                Text("Winner: \(winner)")
+            } else {
+                Button("Next Turn") {
+                    model.nextTurnButtonTapped()
+                }
             }
+
+            Section {
+                ForEach(model.match.players) { player in
+                    HStack {
+                        Label(player.player.name, systemImage: "person")
+
+                        switch player.role {
+                        case .mobster:
+                            Label("Mobster", systemImage: "bandage")
+                        case .villager:
+                            Label("Villager", systemImage: "heart")
+                        case .king:
+                            Label("King", systemImage: "crown")
+                        case .doctor:
+                            Label("Doctor", systemImage: "cross")
+                        case .sheriff:
+                            Label("Sheriff", systemImage: "star")
+                        }
+
+                        Text(player.state == .alive ? "Alive" : "Dead")
+                    }
+                }
+            } header: {
+                Text("Players")
+            }
+
         }
         .navigationTitle(model.game.title)
     }
