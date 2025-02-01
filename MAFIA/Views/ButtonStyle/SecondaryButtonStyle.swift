@@ -1,16 +1,16 @@
 import SwiftUI
 
-struct PrimaryButtonStyle: ButtonStyle {
+struct SecondaryButtonStyle: ButtonStyle {
     @Environment(\.isEnabled) private var isEnabled: Bool
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.papyrus(size: .fontSize.medium))
-            .foregroundColor(Utils.Palette.Basic.white.color)
-            .padding(.spacing.medium)
-            .background(
+            .foregroundColor(Utils.Palette.Basic.red.color)
+            .padding(.spacing.small)
+            .background {
                 RoundedRectangle(cornerRadius: .cornerRadius.medium)
-                    .fill(
+                    .strokeBorder(
                         LinearGradient(
                             gradient: Gradient(
                                 colors: [
@@ -22,17 +22,17 @@ struct PrimaryButtonStyle: ButtonStyle {
                             endPoint: .trailing
                         )
                     )
-            )
+            }
             .opacity(self.isEnabled ? 1 : 0.5)
             .animation(.snappy, value: self.isEnabled)
     }
 }
 
 #Preview {
-    Button("Primary Button") {
-        print("Primary Button tapped")
+    Button("Secondary Button") {
+        print("Secondary Button tapped")
     }
-    .buttonStyle(PrimaryButtonStyle())
+    .buttonStyle(SecondaryButtonStyle())
     .padding()
     .previewLayout(.sizeThatFits)
 }

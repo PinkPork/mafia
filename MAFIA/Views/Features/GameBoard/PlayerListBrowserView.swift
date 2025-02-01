@@ -23,7 +23,6 @@ extension PlayerListBrowserView {
 
         init(coordinator: some Coordinator<GameBoardScreen.Route>) {
             self.coordinator = coordinator
-            self.presenter.showListPlayers()
         }
     }
 }
@@ -34,7 +33,7 @@ extension PlayerListBrowserView.ViewModel: ListBrowserView {
             self.state = .loaded(list: listPlayers)
         }
     }
-    
+
     func addNewList(listPlayer: PlayerList) {
         if case var .loaded(lists) = self.state {
             lists.append(listPlayer)
@@ -42,21 +41,25 @@ extension PlayerListBrowserView.ViewModel: ListBrowserView {
         }
         self.coordinator.navigate(to: .playerList(listPlayer))
     }
-    
+
     func deleteList(listPlayer: PlayerList, indexPath: IndexPath) {
         guard case var .loaded(lists) = self.state else { return }
         guard let index = lists.firstIndex(of: listPlayer) else { return }
         lists.remove(at: index)
+        guard lists.isEmpty == false else {
+            self.state = .empty
+            return
+        }
         self.state = .loaded(list: lists)
     }
-    
+
     func showAlert(withTitle title: String?, message: String?, preferredStyle: UIAlertController.Style, completionFirstAction: (() -> Void)?) {
 
     }
 
 }
 
-struct PlayerListBrowserView: View {    
+struct PlayerListBrowserView: View {
     @StateObject var viewModel: ViewModel
 
     var didSelectList: () -> Void
@@ -83,9 +86,9 @@ struct PlayerListBrowserView: View {
                                 self.didSelectList()
                             }, label: {
                                 Text("USE_PLAYERS_LIST_BUTTON_TITLE".localized())
-                                    .primaryButton()
+                                    .body()
                             })
-                            .buttonStyle(PrimaryButtonStyle())
+                            .buttonStyle(SecondaryButtonStyle())
                         }
                         .swipeActions {
                             Button(role: .destructive) {
@@ -102,6 +105,9 @@ struct PlayerListBrowserView: View {
                 .listStyle(.plain)
             }
         }
+        .onAppear {
+            self.viewModel.presenter.showListPlayers()
+        }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
@@ -111,7 +117,7 @@ struct PlayerListBrowserView: View {
                 })
             }
         }
-        
+
         .sheet(item: self.$viewModel.presentedSheet) { sheet in
             switch sheet {
             case .addList:

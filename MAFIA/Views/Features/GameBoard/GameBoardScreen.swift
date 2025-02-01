@@ -92,10 +92,6 @@ extension GameBoardScreen {
 
     private var emptyView: some View {
         VStack(spacing: .spacing.medium) {
-            Text("LIST_PLAYER_NO_NAME".localized())
-                .title()
-                .multilineTextAlignment(.center)
-
             Text("MAFIA_PHRASE_1".localized())
                 .subtitle()
 
