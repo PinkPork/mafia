@@ -2,10 +2,26 @@
   "sourceLanguage" : "en",
   "strings" : {
     " - " : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " - "
+          }
+        }
+      },
+      "shouldTranslate" : false
     },
     "%lld" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      },
+      "shouldTranslate" : false
     },
     "Add" : {
       "extractionState" : "manual",
@@ -40,17 +56,6 @@
         }
       }
     },
-    "Alive" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vivo"
-          }
-        }
-      }
-    },
     "Cancel" : {
       "localizations" : {
         "es" : {
@@ -77,17 +82,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Día"
-          }
-        }
-      }
-    },
-    "Dead" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Muerto"
           }
         }
       }
@@ -337,6 +331,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aldeano"
+          }
+        }
+      }
+    },
+    "Winner:  %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ganador: "
           }
         }
       }

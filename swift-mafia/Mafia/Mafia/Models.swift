@@ -16,6 +16,26 @@ struct Player: Hashable, Identifiable, Codable {
 
 enum Role: Hashable, Codable {
     case king, doctor, sheriff, villager, mobster
+
+    var localized: LocalizedStringKey {
+        switch self {
+        case .king: return "King"
+        case .doctor: return "Doctor"
+        case .sheriff: return "Sheriff"
+        case .villager: return "Villager"
+        case .mobster: return "Mobster"
+        }
+    }
+
+    var image: Image {
+        switch self {
+        case .mobster: return Image(systemName: "bandage")
+        case .villager: return Image(systemName: "heart")
+        case .king: return Image(systemName: "crown")
+        case .doctor: return Image(systemName: "cross")
+        case .sheriff: return Image(systemName: "star")
+        }
+    }
 }
 
 enum RolePlayerState: Hashable, Codable {

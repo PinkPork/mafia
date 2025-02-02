@@ -58,6 +58,7 @@ final class GameMatchModel {
 }
 
 struct GameMatchView: View {
+    @State var player: Match.RolePlayer?
     @State var model: GameMatchModel
 
     init?(id: Game.ID, matchId: Match.ID? = nil) {
@@ -88,30 +89,16 @@ struct GameMatchView: View {
 
             Section {
                 ForEach(model.match.players) { player in
-                    HStack {
-                        switch player.role {
-                        case .mobster:
-                            Label("Mobster", systemImage: "bandage")
-                        case .villager:
-                            Label("Villager", systemImage: "heart")
-                        case .king:
-                            Label("King", systemImage: "crown")
-                        case .doctor:
-                            Label("Doctor", systemImage: "cross")
-                        case .sheriff:
-                            Label("Sheriff", systemImage: "star")
+                    RolePlayerView(
+                        player: player
+                    )
+                    .if(model.match.state == .day) {
+                        $0.onTapGesture {
+                            self.player = player
                         }
-
-                        Text(" - ")
-                        Text(player.player.name)
-                        Spacer()
-                        Image(
-                            systemName: player.state == .alive
-                            ? "person.fill"
-                            : "person.slash"
-                        )
-                        .renderingMode(.template)
-                        .foregroundColor(player.state == .alive ? .green : .red)
+                        .sheet(item: $player) { player in
+                            SelectedRolePlayerView(player: player)
+                        }
                     }
                     .if(model.match.state != .day) {
                         $0.swipeActions {
@@ -134,6 +121,56 @@ struct GameMatchView: View {
 
         }
         .navigationTitle(model.game.title)
+    }
+}
+
+struct SelectedRolePlayerView: View {
+    let player: Match.RolePlayer
+
+    var body: some View {
+        VStack {
+            player.role.image
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .padding()
+
+            Text(player.player.name)
+                .font(.title)
+            Text(player.role.localized)
+                .font(.title2)
+        }
+    }
+}
+
+struct RolePlayerView: View {
+    let player: Match.RolePlayer
+
+    var body: some View {
+        HStack {
+            switch player.role {
+            case .mobster:
+                Label("Mobster", systemImage: "bandage")
+            case .villager:
+                Label("Villager", systemImage: "heart")
+            case .king:
+                Label("King", systemImage: "crown")
+            case .doctor:
+                Label("Doctor", systemImage: "cross")
+            case .sheriff:
+                Label("Sheriff", systemImage: "star")
+            }
+
+            Text(" - ")
+            Text(player.player.name)
+            Spacer()
+            Image(
+                systemName: player.state == .alive
+                ? "person.fill"
+                : "person.slash"
+            )
+            .renderingMode(.template)
+            .foregroundColor(player.state == .alive ? .green : .red)
+        }
     }
 }
 
