@@ -22,8 +22,8 @@ enum RolePlayerState: Hashable, Codable {
     case alive, dead
 }
 
-enum MatchState: Hashable, Codable {
-    enum Winner: Hashable, Codable {
+enum MatchState: Hashable, Codable, Equatable {
+    enum Winner: Hashable, Codable, Equatable {
         case mobsters, villagers
     }
 

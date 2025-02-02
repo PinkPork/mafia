@@ -85,13 +85,13 @@ struct GameListView: View {
 struct CardView: View {
     let game: Game
     var body: some View {
-        VStack {
+        VStack(spacing: 16) {
             Text(game.title)
                 .font(.headline)
-            Spacer()
             Label("\(game.players.count)", systemImage: "person.3")
                 .font(.caption)
         }
+        .padding(.vertical, 8)
     }
 }
 

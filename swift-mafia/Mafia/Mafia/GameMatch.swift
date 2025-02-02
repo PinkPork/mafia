@@ -29,14 +29,25 @@ final class GameMatchModel {
     }
 
     func nextTurnButtonTapped() {
-        switch match.state {
-        case .day:
-            match.state = .night
-        case .night:
-            // TODO: validate players updates
+        let mobstersAlive = match.players
+            .filter {
+                $0.role == .mobster
+                && $0.state == .alive
+            }
+            .count
+        let nonMobsterAlive = match.players
+            .filter {
+                $0.role != .mobster
+                && $0.state == .alive
+            }
+            .count
+
+        if mobstersAlive == 0 {
+            match.state = .over(withWinner: .villagers)
+        } else if nonMobsterAlive <= match.players.count / 3 {
             match.state = .over(withWinner: .mobsters)
-            match.state = .day
-        case .over: break
+        } else {
+            match.state = match.state == .day ? .night : .day
         }
 
         $game.withLock {
@@ -78,8 +89,6 @@ struct GameMatchView: View {
             Section {
                 ForEach(model.match.players) { player in
                     HStack {
-                        Label(player.player.name, systemImage: "person")
-
                         switch player.role {
                         case .mobster:
                             Label("Mobster", systemImage: "bandage")
@@ -93,19 +102,30 @@ struct GameMatchView: View {
                             Label("Sheriff", systemImage: "star")
                         }
 
-                        Text(player.state == .alive ? "Alive" : "Dead")
+                        Text(" - ")
+                        Text(player.player.name)
+                        Spacer()
+                        Image(
+                            systemName: player.state == .alive
+                            ? "person.fill"
+                            : "person.slash"
+                        )
+                        .renderingMode(.template)
+                        .foregroundColor(player.state == .alive ? .green : .red)
                     }
-                    .swipeActions {
-                        Button("Kill") {
-                            model.match.players[id: player.id]?.state = .dead
+                    .if(model.match.state != .day) {
+                        $0.swipeActions {
+                            Button("Kill") {
+                                model.match.players[id: player.id]?.state = .dead
+                            }
+                            .tint(.red)
                         }
-                        .tint(.red)
-                    }
-                    .swipeActions(edge: .leading) {
-                        Button("Revive") {
-                            model.match.players[id: player.id]?.state = .alive
+                        .swipeActions(edge: .leading) {
+                            Button("Revive") {
+                                model.match.players[id: player.id]?.state = .alive
+                            }
+                            .tint(.green)
                         }
-                        .tint(.green)
                     }
                 }
             } header: {

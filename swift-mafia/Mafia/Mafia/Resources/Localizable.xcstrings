@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    " - " : {
+
+    },
     "%lld" : {
 
     },
@@ -38,6 +41,7 @@
       }
     },
     "Alive" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -78,6 +82,7 @@
       }
     },
     "Dead" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
