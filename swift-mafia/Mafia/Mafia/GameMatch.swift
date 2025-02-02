@@ -39,7 +39,10 @@ final class GameMatchModel {
         case .over: break
         }
 
-        $game.withLock { $0.matches[id: match.id] = match }
+        $game.withLock {
+            $0.matches[id: match.id] = match
+            $0 = $0
+        }
     }
 }
 
@@ -116,7 +119,9 @@ struct GameMatchView: View {
 
 #Preview {
     var game = Game.mock
-    @Shared(.games) var games = [game]
+    @Shared(.games) var games = [
+        game
+    ]
     NavigationStack {
         GameMatchView(id: game.id)
     }

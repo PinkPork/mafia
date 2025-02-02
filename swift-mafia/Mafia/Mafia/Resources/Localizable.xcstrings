@@ -168,28 +168,6 @@
         }
       }
     },
-    "Hello, world!" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Borrame"
-          }
-        }
-      }
-    },
-    "Hello, World!" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Borrame"
-          }
-        }
-      }
-    },
     "Kill" : {
       "localizations" : {
         "es" : {
