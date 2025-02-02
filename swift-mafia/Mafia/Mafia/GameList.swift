@@ -99,7 +99,7 @@ extension SharedReaderKey where Self == FileStorageKey<IdentifiedArrayOf<Game>>.
     static var games: Self {
         Self[
             .fileStorage(
-                dump(URL.documentsDirectory.appending(component: "sync-ups.json"))
+                dump(URL.documentsDirectory.appending(component: "games.json"))
             ),
             default: [
                 .mock
