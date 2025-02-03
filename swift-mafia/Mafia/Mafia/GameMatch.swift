@@ -88,6 +88,37 @@ struct GameMatchView: View {
             }
 
             Section {
+                HStack {
+                    StatView(
+                        icon: "person.3.fill",
+                        color: .red,
+                        title: "Mobsters",
+                        value: "\(model.match.players.filter { $0.role == .mobster && $0.state == .alive }.count)"
+                    )
+
+                    Spacer()
+
+                    StatView(
+                        icon: "person.fill",
+                        color: .green,
+                        title: "Villagers",
+                        value: "\(model.match.players.filter { $0.role != .mobster && $0.state == .alive }.count)"
+                    )
+
+                    Spacer()
+
+                    StatView(
+                        icon: "heart.fill",
+                        color: .blue,
+                        title: "Alive",
+                        value: String(format: "%1$d / %2$d", model.match.players.filter { $0.state == .alive }.count, model.match.players.count)
+                    )
+                }
+            } header: {
+                Text("Summary")
+            }
+
+            Section {
                 ForEach(model.match.players) { player in
                     RolePlayerView(
                         player: player
@@ -121,6 +152,32 @@ struct GameMatchView: View {
 
         }
         .navigationTitle(model.game.title)
+    }
+}
+
+struct StatView: View {
+    let icon: String
+    let color: Color
+    let title: String
+    let value: String
+
+    var body: some View {
+        VStack(spacing: 8) {
+            Image(systemName: icon)
+                .font(.title2)
+                .foregroundColor(color)
+                .padding(8)
+                .background(color.opacity(0.2))
+                .clipShape(Circle())
+
+            Text(title)
+                .font(.caption)
+                .foregroundColor(.secondary)
+
+            Text(value)
+                .font(.headline)
+                .foregroundColor(.primary)
+        }
     }
 }
 
@@ -171,6 +228,7 @@ struct RolePlayerView: View {
             .renderingMode(.template)
             .foregroundColor(player.state == .alive ? .green : .red)
         }
+        .opacity(player.state == .alive ? 1 : 0.3)
     }
 }
 
