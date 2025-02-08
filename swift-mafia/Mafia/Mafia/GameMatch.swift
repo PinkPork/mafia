@@ -82,6 +82,13 @@ struct GameMatchView: View {
                     Button("Next Turn") {
                         model.nextTurnButtonTapped()
                     }
+                    if model.match.state == .day {
+                        HStack {
+                            Spacer()
+                            StopWatchContentView()
+                            Spacer()
+                        }
+                    }
                 } header: {
                     Text("Current Turn")
                 }
