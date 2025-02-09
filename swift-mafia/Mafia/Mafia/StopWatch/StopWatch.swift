@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct StopWatchContentView: View {
-    @ObservedObject var stopwatch = Stopwatch()
+    let stopwatch = Stopwatch()
 
     var body: some View {
         VStack {

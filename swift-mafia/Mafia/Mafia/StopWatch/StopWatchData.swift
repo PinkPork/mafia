@@ -1,7 +1,8 @@
 import Foundation
 
+@Observable
 final class Stopwatch: ObservableObject {
-    @Published private var data = StopwatchData()
+    private var data = StopwatchData()
     private var timer: Timer?
 
     var totalFormatted: String {
