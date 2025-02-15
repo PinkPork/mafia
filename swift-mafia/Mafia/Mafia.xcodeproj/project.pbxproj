@@ -101,7 +101,9 @@
 				A0307AD72D4E6ACB00C0C59A /* MafiaUITests */,
 				A0307ABB2D4E6ACA00C0C59A /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
 		};
 		A0307ABB2D4E6ACA00C0C59A /* Products */ = {
 			isa = PBXGroup;
