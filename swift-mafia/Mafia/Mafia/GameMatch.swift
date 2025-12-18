@@ -72,7 +72,7 @@ struct GameMatchView: View {
         List {
             if case let .over(winner) = model.match.state {
                 Text("Game Over")
-                Text("Winner: \(winner)")
+                Text("Winner: \(winner.localizedStringResource)")
             } else {
                 Section {
                     Label(

@@ -143,9 +143,9 @@ struct MatchCardView: View {
     var body: some View {
         switch match.state {
         case .over(let winner):
-            Label("Winner: \(winner)", systemImage: "star.fill")
+            Label("Winner: \(winner.localizedStringResource)", systemImage: "star.fill")
         default:
-            Label("Current Turn: \(match.state)", systemImage: "arrow.clockwise")
+            Label("Current Turn: \(match.state.localizedStringResource)", systemImage: "arrow.clockwise")
         }
     }
 }

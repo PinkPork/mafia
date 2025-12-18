@@ -42,12 +42,32 @@ enum RolePlayerState: Hashable, Codable {
     case alive, dead
 }
 
-enum MatchState: Hashable, Codable, Equatable {
-    enum Winner: Hashable, Codable, Equatable {
+enum MatchState: Hashable, Codable, Equatable, CustomLocalizedStringResourceConvertible {
+    enum Winner: Hashable, Codable, Equatable, CustomLocalizedStringResourceConvertible {
         case mobsters, villagers
+
+        var localizedStringResource: LocalizedStringResource {
+            switch self {
+            case .mobsters:
+                "mobsters"
+            case .villagers:
+                "villagers"
+            }
+        }
     }
 
     case day, night, over(withWinner: Winner)
+
+    var localizedStringResource: LocalizedStringResource {
+        switch self {
+        case .day:
+            "Day"
+        case .night:
+            "Night"
+        case .over(let winner):
+            "Game over: \(winner.localizedStringResource.localizedStringResource)"
+        }
+    }
 }
 
 struct Match: Hashable, Identifiable, Codable {
