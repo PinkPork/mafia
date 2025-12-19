@@ -9,6 +9,7 @@ import Dependencies
 import Sharing
 import SwiftUI
 import SwiftUINavigation
+import IdentifiedCollections
 
 @MainActor
 @Observable
@@ -60,12 +61,14 @@ final class GameMatchModel {
 struct GameMatchView: View {
     @State var player: Match.RolePlayer?
     @State var model: GameMatchModel
+    @State var roleReveal: Bool
 
-    init?(id: Game.ID, matchId: Match.ID? = nil) {
+    init?(id: Game.ID, matchId: Match.ID? = nil, roleReveal: Bool = false) {
         @Shared(.games) var games
         guard let game = Shared($games[id: id])
         else { return nil }
         _model = State(wrappedValue: GameMatchModel(game: game, matchId: matchId))
+        _roleReveal = State(initialValue: roleReveal)
     }
 
     var body: some View {
@@ -158,7 +161,21 @@ struct GameMatchView: View {
             }
 
         }
+        .overlay {
+            if roleReveal {
+                RoleRevealView(players: model.match.players, isPresented: $roleReveal)
+                    .background(Color.white)
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button("Start Game") {
+                                roleReveal.toggle()
+                            }
+                        }
+                    }
+            }
+        }
         .navigationTitle(model.game.title)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -193,7 +210,7 @@ struct SelectedRolePlayerView: View {
 
     var body: some View {
         VStack {
-            player.role.image
+            Image(systemName: player.role.systemImage)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .padding()
@@ -211,19 +228,7 @@ struct RolePlayerView: View {
 
     var body: some View {
         HStack {
-            switch player.role {
-            case .mobster:
-                Label("Mobster", systemImage: "bandage")
-            case .villager:
-                Label("Villager", systemImage: "heart")
-            case .king:
-                Label("King", systemImage: "crown")
-            case .doctor:
-                Label("Doctor", systemImage: "cross")
-            case .sheriff:
-                Label("Sheriff", systemImage: "star")
-            }
-
+            Label(player.role.localized, systemImage: player.role.systemImage)
             Text(" - ")
             Text(player.player.name)
             Spacer()
@@ -236,6 +241,112 @@ struct RolePlayerView: View {
             .foregroundColor(player.state == .alive ? .green : .red)
         }
         .opacity(player.state == .alive ? 1 : 0.3)
+        .clipShape(Rectangle())
+    }
+}
+
+private struct RoleRevealView: View {
+    let players: IdentifiedArrayOf<Match.RolePlayer>
+    @Binding var isPresented: Bool
+    @State private var dragOffset: CGFloat = 0
+    @State private var index: Int = 0
+    private var currentPlayer: Match.RolePlayer? {
+        return players.indices.contains(index) ? players[index] : nil
+    }
+    
+    private var hasNextPlayer: Bool {
+        index < players.count - 1
+    }
+
+    var body: some View {
+        VStack {
+            if let player = currentPlayer {
+                Spacer()
+
+                ZStack {
+                    VStack(spacing: 12) {
+                        Image(systemName: player.role.systemImage)
+                            .font(.largeTitle)
+                            .foregroundStyle(.secondary)
+                        Text(player.role.localized)
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(.secondary)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal)
+
+                    // Draggable card on top
+                    PlayerCardView(name: player.player.name)
+                        .padding(.horizontal)
+                        .offset(y: dragOffset)
+                        .gesture(
+                            DragGesture(minimumDistance: 5)
+                                .onChanged { value in
+                                    let dy = value.translation.height
+                                    dragOffset = dy
+                                }
+                                .onEnded { _ in
+                                    withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                                        dragOffset = 0
+                                    }
+                                }
+                        )
+                        .animation(.spring(response: 0.35, dampingFraction: 0.9), value: dragOffset)                        
+                }
+            }
+
+            Spacer(minLength: 0)
+
+            Button {
+                if hasNextPlayer {
+                    index += 1
+                } else {
+                    isPresented = false
+                }
+            } label: {
+                Text(hasNextPlayer ? "Next Player" : "Start Game")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Capsule().fill(Color.accentColor))
+                    .foregroundColor(.white)
+            }
+        }
+        .padding(.horizontal)
+        .padding(.bottom)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private struct PlayerCardView: View {
+        let name: String
+
+        var body: some View {
+            VStack(spacing: 16) {
+                Text(name)
+                    .font(.title)
+                    .fontWeight(.semibold)
+
+                VStack(spacing: 8) {
+                    Image(systemName: "hand.draw")
+                        .font(.title2)
+                        .foregroundStyle(.secondary)
+                    Text("Drag up to reveal the role")
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .padding(50)
+            .background(
+                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                    .fill(.ultraThickMaterial)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                    .strokeBorder(.quaternary, lineWidth: 1)
+            )
+            .shadow(radius: 8)
+        }
     }
 }
 
@@ -245,6 +356,7 @@ struct RolePlayerView: View {
         game
     ]
     NavigationStack {
-        GameMatchView(id: game.id)
+        GameMatchView(id: game.id, roleReveal: true)
     }
 }
+
