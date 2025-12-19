@@ -71,7 +71,7 @@ struct GameMatchView: View {
         _roleReveal = State(initialValue: roleReveal)
     }
 
-    var body: some View {
+    var body: some View {        
         List {
             if case let .over(winner) = model.match.state {
                 Text("Game Over")
@@ -133,27 +133,20 @@ struct GameMatchView: View {
                     RolePlayerView(
                         player: player
                     )
-                    .if(model.match.state == .day) {
-                        $0.onTapGesture {
-                            self.player = player
-                        }
-                        .sheet(item: $player) { player in
-                            SelectedRolePlayerView(player: player)
-                        }
+                    .onTapGesture {
+                        self.player = player
                     }
-                    .if(model.match.state != .day) {
-                        $0.swipeActions {
-                            Button("Kill") {
-                                model.match.players[id: player.id]?.state = .dead
-                            }
-                            .tint(.red)
+                    .swipeActions {
+                        Button("Kill") {
+                            model.match.players[id: player.id]?.state = .dead
                         }
-                        .swipeActions(edge: .leading) {
-                            Button("Revive") {
-                                model.match.players[id: player.id]?.state = .alive
-                            }
-                            .tint(.green)
+                        .tint(.red)
+                    }
+                    .swipeActions(edge: .leading) {
+                        Button("Revive") {
+                            model.match.players[id: player.id]?.state = .alive
                         }
+                        .tint(.green)
                     }
                 }
             } header: {
@@ -173,6 +166,9 @@ struct GameMatchView: View {
                         }
                     }
             }
+        }
+        .sheet(item: $player) { player in
+            SelectedRolePlayerView(player: player)
         }
         .navigationTitle(model.game.title)
         .navigationBarTitleDisplayMode(.inline)
@@ -241,7 +237,7 @@ struct RolePlayerView: View {
             .foregroundColor(player.state == .alive ? .green : .red)
         }
         .opacity(player.state == .alive ? 1 : 0.3)
-        .clipShape(Rectangle())
+        .contentShape(Rectangle())
     }
 }
 
@@ -292,7 +288,7 @@ private struct RoleRevealView: View {
                                     }
                                 }
                         )
-                        .animation(.spring(response: 0.35, dampingFraction: 0.9), value: dragOffset)                        
+                        .animation(.spring(response: 0.35, dampingFraction: 0.9), value: dragOffset)
                 }
             }
 
