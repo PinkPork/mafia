@@ -69,6 +69,9 @@ struct GameFormView: View {
             Section {
                 ForEach($model.game.players) { $player in
                     TextField("Player Name", text: $player.name)
+                        .onSubmit {
+                            model.addPlayerButtonTapped() 
+                        }
                         .focused($focus, equals: .player(player.id))
                 }
                 .onDelete { indexSet in
