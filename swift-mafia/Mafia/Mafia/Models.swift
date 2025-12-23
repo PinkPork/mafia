@@ -27,13 +27,13 @@ enum Role: Hashable, Codable {
         }
     }
 
-    var image: Image {
+    var systemImage: String {
         switch self {
-        case .mobster: return Image(systemName: "bandage")
-        case .villager: return Image(systemName: "heart")
-        case .king: return Image(systemName: "crown")
-        case .doctor: return Image(systemName: "cross")
-        case .sheriff: return Image(systemName: "star")
+        case .mobster: return "bandage"
+        case .villager: return "heart"
+        case .king: return "crown"
+        case .doctor: return "cross"
+        case .sheriff: return "star"
         }
     }
 }
@@ -80,7 +80,7 @@ struct Match: Hashable, Identifiable, Codable {
 
     let id: Tagged<Self, UUID>
     var players: IdentifiedArrayOf<RolePlayer> = []
-    var state: MatchState = .day
+    var state: MatchState
 
     init(
         id: Tagged<Self, UUID>,
