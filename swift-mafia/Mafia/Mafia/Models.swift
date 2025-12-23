@@ -14,7 +14,7 @@ struct Player: Hashable, Identifiable, Codable {
     var name: String = ""
 }
 
-enum Role: Hashable, Codable {
+enum Role: Hashable, Codable, Comparable {
     case king, doctor, sheriff, villager, mobster
 
     var localized: LocalizedStringKey {
@@ -29,10 +29,10 @@ enum Role: Hashable, Codable {
 
     var systemImage: String {
         switch self {
-        case .mobster: return "bandage"
-        case .villager: return "heart"
+        case .mobster: return "hand.thumbsdown"
+        case .villager: return "hand.thumbsup"
         case .king: return "crown"
-        case .doctor: return "cross"
+        case .doctor: return "cross.circle"
         case .sheriff: return "star"
         }
     }
@@ -120,7 +120,7 @@ struct Match: Hashable, Identifiable, Codable {
                 role: .villager
             )
         }
-        return IdentifiedArrayOf<RolePlayer>(uniqueElements: rolePlayers)
+        return IdentifiedArrayOf<RolePlayer>(uniqueElements: rolePlayers.shuffled())
     }
 }
 
