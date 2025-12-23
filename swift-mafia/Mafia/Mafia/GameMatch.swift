@@ -100,7 +100,7 @@ struct GameMatchView: View {
             Section {
                 HStack {
                     StatView(
-                        icon: "person.3.fill",
+                        icon: Role.mobster.systemImage,
                         color: .red,
                         title: "Mobsters",
                         value: "\(model.match.players.filter { $0.role == .mobster && $0.state == .alive }.count)"
@@ -109,7 +109,7 @@ struct GameMatchView: View {
                     Spacer()
 
                     StatView(
-                        icon: "person.fill",
+                        icon: "person.3.fill",
                         color: .green,
                         title: "Villagers",
                         value: "\(model.match.players.filter { $0.role != .mobster && $0.state == .alive }.count)"
@@ -129,7 +129,7 @@ struct GameMatchView: View {
             }
 
             Section {
-                ForEach(model.match.players) { player in
+                ForEach(model.match.players.sorted(by: { $0.role > $1.role })) { player in
                     RolePlayerView(
                         player: player
                     )
@@ -186,7 +186,7 @@ struct StatView: View {
             Image(systemName: icon)
                 .font(.title2)
                 .foregroundColor(color)
-                .padding(8)
+                .padding()
                 .background(color.opacity(0.2))
                 .clipShape(Circle())
 
@@ -214,7 +214,7 @@ struct SelectedRolePlayerView: View {
             Text(player.player.name)
                 .font(.title)
             Text(player.role.localized)
-                .font(.title2)
+                .font(.largeTitle)
         }
     }
 }
@@ -246,6 +246,9 @@ private struct RoleRevealView: View {
     @Binding var isPresented: Bool
     @State private var dragOffset: CGFloat = 0
     @State private var index: Int = 0
+    @State private var revealed: Bool = false
+    @State private var roleViewHeight: CGFloat = .zero
+    @State private var playerCardHeight: CGFloat = .zero
     private var currentPlayer: Match.RolePlayer? {
         return players.indices.contains(index) ? players[index] : nil
     }
@@ -271,10 +274,21 @@ private struct RoleRevealView: View {
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal)
+                    .onGeometryChange(for: CGRect.self) { proxy in
+                        proxy.frame(in: .local)
+                    } action: {
+                        roleViewHeight = $0.size.height
+                    }
+
 
                     // Draggable card on top
                     PlayerCardView(name: player.player.name)
                         .padding(.horizontal)
+                        .onGeometryChange(for: CGRect.self) {
+                            $0.frame(in: .local)
+                        } action: {
+                            playerCardHeight = $0.height
+                        }
                         .offset(y: dragOffset)
                         .gesture(
                             DragGesture(minimumDistance: 5)
@@ -283,9 +297,10 @@ private struct RoleRevealView: View {
                                     dragOffset = dy
                                 }
                                 .onEnded { _ in
-                                    withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-                                        dragOffset = 0
+                                    if abs(dragOffset) > (roleViewHeight + playerCardHeight / 4) {
+                                        revealed = true
                                     }
+                                    dragOffset = 0
                                 }
                         )
                         .animation(.spring(response: 0.35, dampingFraction: 0.9), value: dragOffset)
@@ -297,6 +312,7 @@ private struct RoleRevealView: View {
             Button {
                 if hasNextPlayer {
                     index += 1
+                    revealed = false
                 } else {
                     isPresented = false
                 }
@@ -308,6 +324,8 @@ private struct RoleRevealView: View {
                     .background(Capsule().fill(Color.accentColor))
                     .foregroundColor(.white)
             }
+            .opacity(revealed ? 1 : 0)
+            .animation(.default, value: revealed)
         }
         .padding(.horizontal)
         .padding(.bottom)
