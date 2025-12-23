@@ -178,7 +178,7 @@ struct GameMatchView: View {
 struct StatView: View {
     let icon: String
     let color: Color
-    let title: String
+    let title: LocalizedStringResource
     let value: String
 
     var body: some View {
